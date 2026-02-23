@@ -5,6 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Slate Systems - Admin Portal</title>
     <style>
+        :root {
+            --slate-navy: #0f172a;
+            --slate-dark: #1e293b;
+            --slate-border: #334155;
+            --slate-blue: #3b82f6;
+            --slate-blue-hover: #2563eb;
+            --slate-orange: #f97316;
+            --slate-orange-hover: #ea580c;
+            --slate-text: #e2e8f0;
+            --slate-text-muted: #94a3b8;
+            --slate-text-dim: #64748b;
+            --slate-success: #22c55e;
+            --slate-warning: #eab308;
+            --slate-danger: #dc2626;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -13,625 +29,875 @@
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
-            background: #0f172a;
-            color: #e2e8f0;
+            background: var(--slate-navy);
+            color: var(--slate-text);
             min-height: 100vh;
             line-height: 1.6;
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
+        /* Top Navigation */
+        .top-nav {
+            background: var(--slate-dark);
+            border-bottom: 1px solid var(--slate-border);
+            padding: 0.75rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
 
-        header {
-            text-align: center;
-            padding: 3rem 0;
-            border-bottom: 1px solid #1e293b;
-            margin-bottom: 3rem;
-        }
-
-        .logo {
-            font-size: 2rem;
-            font-weight: 700;
-            color: #3b82f6;
-            margin-bottom: 0.5rem;
-        }
-
-        .subtitle {
-            color: #94a3b8;
-            font-size: 1.1rem;
-        }
-
-        .portal-badge {
-            display: inline-block;
-            background: #3b82f6;
-            color: white;
-            padding: 0.25rem 0.75rem;
-            border-radius: 9999px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-top: 1rem;
-        }
-
-        .section {
-            margin-bottom: 3rem;
-        }
-
-        .section-title {
-            font-size: 1.5rem;
-            color: #f8fafc;
-            margin-bottom: 1.5rem;
+        .nav-brand {
             display: flex;
             align-items: center;
             gap: 0.75rem;
         }
 
-        .section-title::before {
-            content: '';
-            width: 4px;
-            height: 1.5rem;
-            background: #3b82f6;
-            border-radius: 2px;
+        .nav-logo {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, var(--slate-blue), var(--slate-orange));
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.1rem;
         }
 
-        .card-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        .nav-title {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--slate-text);
+        }
+
+        .nav-links {
+            display: flex;
             gap: 1.5rem;
         }
 
-        .card {
-            background: #1e293b;
-            border-radius: 12px;
-            padding: 1.5rem;
-            transition: transform 0.2s, box-shadow 0.2s;
-            border: 1px solid #334155;
-        }
-
-        .card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-            border-color: #3b82f6;
-        }
-
-        .card a {
+        .nav-link {
+            color: var(--slate-text-muted);
             text-decoration: none;
-            color: inherit;
-        }
-
-        .card-title {
-            font-size: 1.1rem;
-            color: #f8fafc;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-        }
-
-        .card-description {
-            color: #94a3b8;
             font-size: 0.9rem;
+            padding: 0.5rem 0;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s;
         }
 
-        .card-meta {
+        .nav-link:hover, .nav-link.active {
+            color: var(--slate-text);
+            border-bottom-color: var(--slate-orange);
+        }
+
+        .nav-badge {
+            background: var(--slate-orange);
+            color: white;
+            font-size: 0.7rem;
+            padding: 0.15rem 0.4rem;
+            border-radius: 4px;
+            font-weight: 600;
+            margin-left: 0.25rem;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Page Header */
+        .page-header {
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--slate-border);
+        }
+
+        .page-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--slate-text);
+            margin-bottom: 0.5rem;
+        }
+
+        .page-subtitle {
+            color: var(--slate-text-muted);
+            font-size: 1rem;
+        }
+
+        /* Quick Stats Row */
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: var(--slate-dark);
+            border: 1px solid var(--slate-border);
+            border-radius: 10px;
+            padding: 1.25rem;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--slate-orange);
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--slate-text-muted);
+            margin-top: 0.25rem;
+        }
+
+        /* Section Styling */
+        .section {
+            margin-bottom: 2.5rem;
+        }
+
+        .section-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-top: 1rem;
-            padding-top: 1rem;
-            border-top: 1px solid #334155;
-            font-size: 0.8rem;
-            color: #64748b;
+            margin-bottom: 1rem;
         }
 
-        .card-role {
-            background: #334155;
-            padding: 0.25rem 0.5rem;
+        .section-title {
+            font-size: 1.25rem;
+            color: var(--slate-text);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .section-title::before {
+            content: '';
+            width: 4px;
+            height: 1.25rem;
+            background: var(--slate-orange);
+            border-radius: 2px;
+        }
+
+        .section-link {
+            color: var(--slate-blue);
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .section-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Team Portal Cards */
+        .portal-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .portal-card {
+            background: var(--slate-dark);
+            border: 1px solid var(--slate-border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.2s;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .portal-card:hover {
+            border-color: var(--slate-blue);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .portal-card-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .portal-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .portal-icon.sales { background: linear-gradient(135deg, #22c55e, #16a34a); }
+        .portal-icon.fulfillment { background: linear-gradient(135deg, #3b82f6, #2563eb); }
+        .portal-icon.support { background: linear-gradient(135deg, #f97316, #ea580c); }
+        .portal-icon.technical { background: linear-gradient(135deg, #8b5cf6, #7c3aed); }
+
+        .portal-card-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--slate-text);
+        }
+
+        .portal-card-subtitle {
+            font-size: 0.85rem;
+            color: var(--slate-text-muted);
+        }
+
+        .portal-card-body {
+            font-size: 0.9rem;
+            color: var(--slate-text-muted);
+            margin-bottom: 1rem;
+        }
+
+        .portal-card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1rem;
+            border-top: 1px solid var(--slate-border);
+            font-size: 0.8rem;
+        }
+
+        .portal-sop-count {
+            color: var(--slate-text-dim);
+        }
+
+        .portal-action {
+            color: var(--slate-blue);
+            font-weight: 500;
+        }
+
+        /* Flow Diagram Box */
+        .flow-box {
+            background: var(--slate-dark);
+            border: 1px solid var(--slate-border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            overflow-x: auto;
+        }
+
+        .flow-box pre {
+            font-family: 'SF Mono', Monaco, Consolas, monospace;
+            font-size: 0.7rem;
+            line-height: 1.3;
+            color: var(--slate-text-muted);
+            margin: 0;
+            white-space: pre;
+        }
+
+        .flow-legend {
+            display: flex;
+            gap: 2rem;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--slate-border);
+            font-size: 0.8rem;
+            flex-wrap: wrap;
+        }
+
+        .flow-legend span {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* SOP Card Grid */
+        .sop-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1rem;
+        }
+
+        .sop-card {
+            background: var(--slate-dark);
+            border: 1px solid var(--slate-border);
+            border-radius: 10px;
+            padding: 1.25rem;
+            transition: all 0.2s;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .sop-card:hover {
+            border-color: var(--slate-orange);
+            transform: translateY(-1px);
+        }
+
+        .sop-card-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--slate-text);
+            margin-bottom: 0.5rem;
+        }
+
+        .sop-card-desc {
+            font-size: 0.85rem;
+            color: var(--slate-text-muted);
+            margin-bottom: 0.75rem;
+        }
+
+        .sop-card-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.75rem;
+            color: var(--slate-text-dim);
+        }
+
+        .sop-role {
+            background: var(--slate-border);
+            padding: 0.2rem 0.5rem;
             border-radius: 4px;
         }
 
+        /* Backlog Table */
+        .backlog-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--slate-dark);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .backlog-table th,
+        .backlog-table td {
+            padding: 0.875rem 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--slate-border);
+        }
+
+        .backlog-table th {
+            background: var(--slate-border);
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: var(--slate-text);
+        }
+
+        .backlog-table td {
+            font-size: 0.9rem;
+        }
+
+        .backlog-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .priority-high {
+            background: var(--slate-danger);
+            color: white;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+
+        .priority-medium {
+            background: var(--slate-warning);
+            color: black;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+
+        .status-progress { color: var(--slate-warning); }
+        .status-ready { color: var(--slate-success); }
+        .status-backlog { color: var(--slate-text-dim); }
+
+        /* Footer */
         footer {
             text-align: center;
             padding: 2rem;
-            color: #64748b;
-            font-size: 0.875rem;
-            border-top: 1px solid #1e293b;
-            margin-top: 3rem;
+            color: var(--slate-text-dim);
+            font-size: 0.85rem;
+            border-top: 1px solid var(--slate-border);
+            margin-top: 2rem;
         }
 
+        /* Responsive */
         @media (max-width: 768px) {
+            .top-nav {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
             .container {
                 padding: 1rem;
             }
 
-            header {
-                padding: 2rem 0;
+            .stats-row {
+                grid-template-columns: repeat(2, 1fr);
             }
 
-            .card-grid {
-                grid-template-columns: 1fr;
+            .flow-box {
+                padding: 1rem;
+            }
+
+            .flow-box pre {
+                font-size: 0.6rem;
             }
         }
     </style>
 </head>
 <body>
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+        <div class="nav-brand">
+            <div class="nav-logo">S</div>
+            <span class="nav-title">Slate Systems</span>
+        </div>
+        <div class="nav-links">
+            <a href="#" class="nav-link active">Dashboard</a>
+            <a href="#team" class="nav-link">Team Portals</a>
+            <a href="#sops" class="nav-link">All SOPs</a>
+            <a href="#agents" class="nav-link">AI Agents <span class="nav-badge">3</span></a>
+            <a href="#backlog" class="nav-link">Backlog</a>
+        </div>
+    </nav>
+
     <div class="container">
-        <header>
-            <div class="logo">Slate Systems</div>
-            <div class="subtitle">Standard Operating Procedures</div>
-            <span class="portal-badge">Admin Portal</span>
+        <!-- Page Header -->
+        <header class="page-header">
+            <h1 class="page-title">Admin Dashboard</h1>
+            <p class="page-subtitle">Founder view - Complete operational overview</p>
         </header>
 
-        <main>
-            <!-- Client Journey Overview -->
-            <section class="section">
-                <h2 class="section-title">Client Journey Overview</h2>
-                <div style="background: #1e293b; border-radius: 12px; padding: 1.5rem; border: 1px solid #334155; overflow-x: auto;">
-                    <pre style="font-family: 'SF Mono', Monaco, monospace; font-size: 0.75rem; line-height: 1.4; color: #94a3b8; margin: 0; white-space: pre; overflow-x: auto;"><code>
-═══════════════════════════════════════════════════════════════════════════════
-                              LEAD ACQUISITION
-═══════════════════════════════════════════════════════════════════════════════
+        <!-- Quick Stats -->
+        <div class="stats-row">
+            <div class="stat-card">
+                <div class="stat-value">24</div>
+                <div class="stat-label">Total SOPs</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">3</div>
+                <div class="stat-label">AI Agents</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">2</div>
+                <div class="stat-label">Roles to Hire</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">5</div>
+                <div class="stat-label">Backlog Items</div>
+            </div>
+        </div>
 
-     [Meta Ad]                                           [Website]
-         │                                                   │
-         ▼                                                   ▼
-┌─────────────────┐                               ┌─────────────────┐
-│   Lead Form     │                               │   Contact Page  │
-│   (FB Funnel)   │                               │   (slatesystems)│
-└────────┬────────┘                               └────────┬────────┘
-         │                                                  │
-         │ 🤖 WF1: Create Opportunity                       │
-         │ 🤖 WF1: Meta Lead Event                          │
-         │ 🤖 WF1: Tag fb-lead                              │
-         ▼                                                  │
-┌─────────────────────────────────────────────────────────────┐
-│                    SALES PIPELINE                            │
-│                 Stage: NEW LEAD                              │
-└─────────────────────────────────┬───────────────────────────┘
-                                  │
-          ┌───────────────────────┴───────────────────────┐
-          │                                               │
-          ▼                                               ▼
-┌─────────────────┐                             ┌─────────────────┐
-│   BOOKS DEMO    │                             │  DOESN'T BOOK   │
-│   (Calendar)    │                             │                 │
-└────────┬────────┘                             └────────┬────────┘
-         │                                               │
-         │ 🤖 WF0: Confirmations                         │ 🤖 Move to Non-Booker stage
-         │ 🤖 WF7: FB Schedule Event                     │ 🤖 WF2: SMS Sequence
-         │                                               │
-         │                                               │ ⭐ PLANNED: AI SETTER CALL
-         │                                               │    (10-15 min after form)
-         ▼                                               │
-┌─────────────────┐                                      │
-│  Stage: CALL    │◄─────────────────────────────────────┘
-│     BOOKED      │        (if AI books them)
-└────────┬────────┘
-         │
-         │ 🤖 SMS reminders (24hr, 2hr, 10min)
-         │ 👤 Confirmation calls (morning of)
-         │
-          ┌───────────────────────┴───────────────────────┐
-          │                                               │
-          ▼                                               ▼
-┌─────────────────┐                             ┌─────────────────┐
-│    SHOWS UP     │                             │    NO-SHOW      │
-└────────┬────────┘                             └────────┬────────┘
-         │                                               │
-         │ 👤 Demo Call (5-10 min)                       │ 🤖 WF4: SMS Sequence
-         │                                               │ ⭐ PLANNED: AI RESCHEDULE CALL
-         ▼                                               │
-┌─────────────────┐                                      │
-│  CALL COMPLETED │                                      │
-└────────┬────────┘                                      │
-         │                                               ▼
- ┌───────┴───────┐                              ┌─────────────────┐
- │               │                              │  Long Term      │
- ▼               ▼                              │  Nurture        │
-┌──────┐      ┌──────┐                          └─────────────────┘
-│ WON  │      │ LOST │
-└──┬───┘      └──────┘
-   │
-═══╪══════════════════════════════════════════════════════════════════════════════
-   │                        CLIENT DELIVERY
-═══╪══════════════════════════════════════════════════════════════════════════════
-   │
-   │ 🤖 WF6: Move to Project Management
-   │ 🤖 WF-OB1: Send Onboarding Form + Tag
-   ▼
-┌─────────────────┐
-│ ONBOARDING FORM │────► 🤖 WF-OB2: Form Reminders (48hr loop)
-│     SENT        │
-└────────┬────────┘
-         │
-         │ Client fills form
-         ▼
-┌─────────────────┐
-│  FORM RECEIVED  │────► 🤖 WF-OB3: GMB Access Request
-└────────┬────────┘
-         │
-         │ 👤 Start Website Build
-         │ 👤 A2P Submission
-         ▼
-┌─────────────────┐
-│ A2P IN PROGRESS │────► 🤖 WF-OB4: Build Check-ins (Days 1,2,4,6,7)
-│   (Building)    │
-└────────┬────────┘
-         │
-         │ 👤 Website Build (8-10 days)
-         │ 👤 QA Review
-         ▼
-┌─────────────────┐
-│LAUNCH SCHEDULED │────► 🤖 WF-OB5: Launch Call Reminders
-└────────┬────────┘
-         │
-         │ 👤 Launch Call (30-45 min)
-         ▼
-┌─────────────────┐
-│     ACTIVE      │────► 🤖 WF-OB6: Tutorial + Check-ins
-│                 │      🤖 Tag: currentclient
-└────────┬────────┘
-         │
-═══════════╪══════════════════════════════════════════════════════════════════════
-           │                     ONGOING SUCCESS
-═══════════╪══════════════════════════════════════════════════════════════════════
-           │
-           │ 🤖 Monthly check-ins (planned)
-           │ 👤 Support tickets
-           │ 👤 Cancellation saves
-           ▼
-      [HAPPY CLIENT]
-                    </code></pre>
-                    <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #334155; display: flex; gap: 2rem; font-size: 0.8rem;">
-                        <span><span style="color: #22c55e;">🤖</span> Automated (GHL Workflow)</span>
-                        <span><span style="color: #3b82f6;">👤</span> Human action required</span>
-                        <span><span style="color: #eab308;">⭐</span> Planned (AI Setter)</span>
-                    </div>
+        <!-- Client Journey Overview -->
+        <section class="section">
+            <div class="section-header">
+                <h2 class="section-title">Client Journey</h2>
+                <a href="README.html" class="section-link">View Full Documentation</a>
+            </div>
+            <div class="flow-box">
+                <pre>
+═══════════════════════════════════════════════════════════════════════════════════════
+                                    LEAD ACQUISITION
+═══════════════════════════════════════════════════════════════════════════════════════
+
+        [Meta Ad]                                                [Website]
+            │                                                        │
+            ▼                                                        ▼
+   ┌─────────────────┐                                    ┌─────────────────┐
+   │   Lead Form     │                                    │   Contact Page  │
+   │   (FB Funnel)   │                                    │   (slatesystems)│
+   └────────┬────────┘                                    └────────┬────────┘
+            │                                                       │
+            │ 🤖 WF1: Create Opportunity + Meta Lead Event          │
+            │ 🤖 WF1: Tag fb-lead                                   │
+            ▼                                                       │
+   ┌───────────────────────────────────────────────────────────────────┐
+   │                        SALES PIPELINE: NEW LEAD                   │
+   └───────────────────────────────────┬───────────────────────────────┘
+                                       │
+               ┌───────────────────────┴───────────────────────┐
+               │                                               │
+               ▼                                               ▼
+      ┌─────────────────┐                            ┌─────────────────┐
+      │   BOOKS DEMO    │                            │  DOESN'T BOOK   │
+      │   (Calendar)    │                            │  (10-15 min)    │
+      └────────┬────────┘                            └────────┬────────┘
+               │                                              │
+               │ 🤖 WF7: FB Schedule Event                    │ 🤖 WF2: SMS Sequence
+               │ 🤖 WF0: Confirmations                        │ 🤖 AI SETTER CALL ⭐
+               ▼                                              │
+      ┌─────────────────┐                                     │
+      │  CALL BOOKED    │◄────────────────────────────────────┘
+      └────────┬────────┘         (if AI books them)
+               │
+               │ 🤖 SMS reminders (24hr, 2hr, 10min)
+               │
+       ┌───────┴───────┐
+       │               │
+       ▼               ▼
+  ┌────────┐     ┌────────┐
+  │ SHOWS  │     │NO-SHOW │────► 🤖 WF4: Reschedule Sequence
+  └───┬────┘     └────────┘
+      │
+      │ 👤 Demo Call (5-10 min)
+      ▼
+  ┌───┴───┐
+  ▼       ▼
+[WON]   [LOST]
+  │
+══╪═══════════════════════════════════════════════════════════════════════════════════════
+  │                                 CLIENT DELIVERY
+══╪═══════════════════════════════════════════════════════════════════════════════════════
+  │
+  │ 🤖 WF6: Move to Project Pipeline
+  │ 🤖 WF-OB1: Send Onboarding Form
+  ▼
+┌───────────────┐      ┌───────────────┐      ┌───────────────┐      ┌───────────────┐
+│ FORM SENT     │ ──►  │ FORM RECEIVED │ ──►  │   BUILDING    │ ──►  │    ACTIVE     │
+│               │      │               │      │ (8-10 days)   │      │               │
+│ 🤖 Reminders  │      │ 👤 Start Build│      │ 👤 A2P Submit │      │ 🤖 Tutorials  │
+│               │      │ 🤖 GMB Request│      │ 👤 QA Review  │      │ 👤 Support    │
+│               │      │               │      │ 👤 Launch Call│      │               │
+└───────────────┘      └───────────────┘      └───────────────┘      └───────────────┘
+                </pre>
+                <div class="flow-legend">
+                    <span><span style="color: var(--slate-success);">🤖</span> Automated (GHL Workflow)</span>
+                    <span><span style="color: var(--slate-blue);">👤</span> Human Action Required</span>
+                    <span><span style="color: var(--slate-warning);">⭐</span> AI Agent</span>
                 </div>
-            </section>
+            </div>
+        </section>
 
-            <section class="section">
-                <h2 class="section-title">Sales</h2>
-                <div class="card-grid">
-                    <div class="card">
-                        <a href="sales/sales-playbook.html">
-                            <div class="card-title">Sales Playbook</div>
-                            <div class="card-description">Complete sales script, objection handling, and closing sequences</div>
-                            <div class="card-meta">
-                                <span class="card-role">Closer</span>
-                                <span>v1.0</span>
-                            </div>
-                        </a>
+        <!-- Team Portals -->
+        <section class="section" id="team">
+            <div class="section-header">
+                <h2 class="section-title">Team Portals</h2>
+            </div>
+            <div class="portal-grid">
+                <a href="https://slate-sops-sales.pages.dev" class="portal-card" target="_blank">
+                    <div class="portal-card-header">
+                        <div class="portal-icon sales">📞</div>
+                        <div>
+                            <div class="portal-card-title">Sales / Closer</div>
+                            <div class="portal-card-subtitle">Demo calls, launch calls, retention</div>
+                        </div>
                     </div>
-                    <div class="card">
-                        <a href="sales/sales-sop.html">
-                            <div class="card-title">Sales SOP</div>
-                            <div class="card-description">Step-by-step sales call procedures</div>
-                            <div class="card-meta">
-                                <span class="card-role">Closer</span>
-                                <span>v1.0</span>
-                            </div>
-                        </a>
+                    <div class="portal-card-body">
+                        Scripts, objection handling, show rate optimization, cancellation saves. Everything a closer needs to convert leads.
                     </div>
-                    <div class="card">
-                        <a href="sales/show-rate-optimization.html">
-                            <div class="card-title">Show Rate Optimization</div>
-                            <div class="card-description">Maximize call show rates with proven tactics</div>
-                            <div class="card-meta">
-                                <span class="card-role">Closer / Setter</span>
-                                <span>v1.0</span>
-                            </div>
-                        </a>
+                    <div class="portal-card-footer">
+                        <span class="portal-sop-count">9 SOPs</span>
+                        <span class="portal-action">Open Portal →</span>
                     </div>
-                    <div class="card">
-                        <a href="sales/cancellation-saves.html">
-                            <div class="card-title">Cancellation Saves</div>
-                            <div class="card-description">Scripts and strategies for retention</div>
-                            <div class="card-meta">
-                                <span class="card-role">Closer / Founder</span>
-                                <span>v1.0</span>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="card">
-                        <a href="sales/launch-call.html">
-                            <div class="card-title">Launch Call Checklist</div>
-                            <div class="card-description">30-45 min client onboarding call flow</div>
-                            <div class="card-meta">
-                                <span class="card-role">Closer</span>
-                                <span>v1.0</span>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="card">
-                        <a href="sales/post-launch-video.html">
-                            <div class="card-title">Post-Launch Video</div>
-                            <div class="card-description">Recording personalized Loom walkthroughs</div>
-                            <div class="card-meta">
-                                <span class="card-role">Closer</span>
-                                <span>v1.0</span>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="card">
-                        <a href="sales/testimonial-collection.html">
-                            <div class="card-title">Testimonial Collection</div>
-                            <div class="card-description">When and how to collect video testimonials</div>
-                            <div class="card-meta">
-                                <span class="card-role">Closer / Founder</span>
-                                <span>v1.0</span>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </section>
+                </a>
 
-            <section class="section">
-                <h2 class="section-title">Fulfillment</h2>
-                <div class="card-grid">
-                    <div class="card">
-                        <a href="fulfillment/client-build.html">
-                            <div class="card-title">Client Build Process</div>
-                            <div class="card-description">Complete sub-account setup and configuration</div>
-                            <div class="card-meta">
-                                <span class="card-role">Fulfillment</span>
-                                <span>v1.0</span>
-                            </div>
-                        </a>
+                <a href="https://slate-sops-fulfillment.pages.dev" class="portal-card" target="_blank">
+                    <div class="portal-card-header">
+                        <div class="portal-icon fulfillment">🔧</div>
+                        <div>
+                            <div class="portal-card-title">Fulfillment</div>
+                            <div class="portal-card-subtitle">Build, A2P, GMB, QA</div>
+                        </div>
                     </div>
-                    <div class="card">
-                        <a href="fulfillment/pre-launch-checklist.html">
-                            <div class="card-title">Pre-Launch Checklist</div>
-                            <div class="card-description">Complete QA before scheduling launch call</div>
-                            <div class="card-meta">
-                                <span class="card-role">Fulfillment</span>
-                                <span>v2.0</span>
-                            </div>
-                        </a>
+                    <div class="portal-card-body">
+                        Complete client build process, A2P registration, Google Business setup, pre-launch checklist, and quality assurance.
                     </div>
-                    <div class="card">
-                        <a href="fulfillment/a2p-submission.html">
-                            <div class="card-title">A2P Submission</div>
-                            <div class="card-description">10DLC registration and troubleshooting</div>
-                            <div class="card-meta">
-                                <span class="card-role">Fulfillment</span>
-                                <span>v1.0</span>
-                            </div>
-                        </a>
+                    <div class="portal-card-footer">
+                        <span class="portal-sop-count">8 SOPs</span>
+                        <span class="portal-action">Open Portal →</span>
                     </div>
-                    <div class="card">
-                        <a href="fulfillment/gmb-setup.html">
-                            <div class="card-title">GMB Setup</div>
-                            <div class="card-description">Google Business Profile connection guide</div>
-                            <div class="card-meta">
-                                <span class="card-role">Fulfillment</span>
-                                <span>v1.0</span>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="card">
-                        <a href="fulfillment/logo-processing.html">
-                            <div class="card-title">Logo Processing</div>
-                            <div class="card-description">Download, resize, and create logos in Canva</div>
-                            <div class="card-meta">
-                                <span class="card-role">Fulfillment</span>
-                                <span>v1.0</span>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="card">
-                        <a href="fulfillment/nav-cleanup.html">
-                            <div class="card-title">Navigation Cleanup</div>
-                            <div class="card-description">Remove unused service/area pages</div>
-                            <div class="card-meta">
-                                <span class="card-role">Fulfillment</span>
-                                <span>v1.0</span>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="card">
-                        <a href="fulfillment/selective-regeneration.html">
-                            <div class="card-title">Selective Regeneration</div>
-                            <div class="card-description">Fix specific content fields via regen tool</div>
-                            <div class="card-meta">
-                                <span class="card-role">Fulfillment</span>
-                                <span>v1.0</span>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </section>
+                </a>
 
-            <section class="section">
-                <h2 class="section-title">Support</h2>
-                <div class="card-grid">
-                    <div class="card">
-                        <a href="support/support-faq.html">
-                            <div class="card-title">Support FAQ</div>
-                            <div class="card-description">Common client questions and answers</div>
-                            <div class="card-meta">
-                                <span class="card-role">Support / VA</span>
-                                <span>v1.0</span>
-                            </div>
-                        </a>
+                <a href="https://slate-sops-support.pages.dev" class="portal-card" target="_blank">
+                    <div class="portal-card-header">
+                        <div class="portal-icon support">💬</div>
+                        <div>
+                            <div class="portal-card-title">Support</div>
+                            <div class="portal-card-subtitle">Tickets, FAQ, escalation</div>
+                        </div>
                     </div>
-                    <div class="card">
-                        <a href="support/escalation-rules.html">
-                            <div class="card-title">Escalation Rules</div>
-                            <div class="card-description">When to handle vs when to escalate</div>
-                            <div class="card-meta">
-                                <span class="card-role">Support / VA</span>
-                                <span>v1.0</span>
-                            </div>
-                        </a>
+                    <div class="portal-card-body">
+                        Common questions, escalation rules, app troubleshooting, credit card decline handling. AI-assisted initially.
                     </div>
-                    <div class="card">
-                        <a href="support/app-guide.html">
-                            <div class="card-title">App Guide</div>
-                            <div class="card-description">Lead Connector app setup and troubleshooting</div>
-                            <div class="card-meta">
-                                <span class="card-role">Support</span>
-                                <span>v1.0</span>
-                            </div>
-                        </a>
+                    <div class="portal-card-footer">
+                        <span class="portal-sop-count">4 SOPs</span>
+                        <span class="portal-action">Open Portal →</span>
                     </div>
-                    <div class="card">
-                        <a href="support/cc-decline-handling.html">
-                            <div class="card-title">CC Decline Handling</div>
-                            <div class="card-description">Credit card failure recovery process</div>
-                            <div class="card-meta">
-                                <span class="card-role">Support / Founder</span>
-                                <span>v1.0</span>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </section>
+                </a>
 
-            <section class="section">
-                <h2 class="section-title">Marketing</h2>
-                <div class="card-grid">
-                    <div class="card">
-                        <a href="marketing/meta-ads.html">
-                            <div class="card-title">Meta Ads</div>
-                            <div class="card-description">Facebook/Instagram paid acquisition system</div>
-                            <div class="card-meta">
-                                <span class="card-role">Marketing / Founder</span>
-                                <span>v2.0</span>
-                            </div>
-                        </a>
+                <a href="#agents" class="portal-card">
+                    <div class="portal-card-header">
+                        <div class="portal-icon technical">🤖</div>
+                        <div>
+                            <div class="portal-card-title">AI Agents</div>
+                            <div class="portal-card-subtitle">Setter, Support, Content</div>
+                        </div>
                     </div>
-                </div>
-            </section>
+                    <div class="portal-card-body">
+                        AI Setter for outbound booking, Support Agent for client questions, Content Generator for website builds.
+                    </div>
+                    <div class="portal-card-footer">
+                        <span class="portal-sop-count">3 Agents</span>
+                        <span class="portal-action">View Agents ↓</span>
+                    </div>
+                </a>
+            </div>
+        </section>
 
-            <section class="section">
-                <h2 class="section-title">Hiring</h2>
-                <div class="card-grid">
-                    <div class="card">
-                        <a href="hiring/va-hiring.html">
-                            <div class="card-title">VA Hiring</div>
-                            <div class="card-description">Virtual assistant recruitment and onboarding</div>
-                            <div class="card-meta">
-                                <span class="card-role">Founder</span>
-                                <span>v1.0</span>
-                            </div>
-                        </a>
+        <!-- AI Agents Section -->
+        <section class="section" id="agents">
+            <div class="section-header">
+                <h2 class="section-title">AI Agents</h2>
+            </div>
+            <div class="sop-grid">
+                <a href="agents/ai-setter.html" class="sop-card">
+                    <div class="sop-card-title">🤖 AI Setter (Voice)</div>
+                    <div class="sop-card-desc">Outbound calls to non-bookers. Books demos automatically. GHL Voice AI.</div>
+                    <div class="sop-card-meta">
+                        <span class="sop-role">Sales Automation</span>
+                        <span style="color: var(--slate-warning);">IN PROGRESS</span>
                     </div>
-                </div>
-            </section>
+                </a>
 
-            <section class="section">
-                <h2 class="section-title">Technical</h2>
-                <div class="card-grid">
-                    <div class="card">
-                        <a href="agents/content-generator.html">
-                            <div class="card-title">Content Generator</div>
-                            <div class="card-description">AI content generation system documentation</div>
-                            <div class="card-meta">
-                                <span class="card-role">Technical</span>
-                                <span>v1.0</span>
-                            </div>
-                        </a>
+                <a href="agents/support-agent.html" class="sop-card">
+                    <div class="sop-card-title">💬 Support Agent</div>
+                    <div class="sop-card-desc">AI-powered client support. Answers FAQs, escalates complex issues.</div>
+                    <div class="sop-card-meta">
+                        <span class="sop-role">Support Automation</span>
+                        <span>v1.0</span>
                     </div>
-                    <div class="card">
-                        <a href="agents/support-agent.html">
-                            <div class="card-title">Support Agent</div>
-                            <div class="card-description">AI support agent configuration</div>
-                            <div class="card-meta">
-                                <span class="card-role">Technical</span>
-                                <span>v1.0</span>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </section>
+                </a>
 
-            <section class="section">
-                <h2 class="section-title">Reference</h2>
-                <div class="card-grid">
-                    <div class="card">
-                        <a href="README.html">
-                            <div class="card-title">Master Index</div>
-                            <div class="card-description">Complete SOP index, workflows, and key resources</div>
-                            <div class="card-meta">
-                                <span class="card-role">Admin</span>
-                                <span>v1.0</span>
-                            </div>
-                        </a>
+                <a href="agents/content-generator.html" class="sop-card">
+                    <div class="sop-card-title">📝 Content Generator</div>
+                    <div class="sop-card-desc">Generates website content from onboarding form. n8n + Claude.</div>
+                    <div class="sop-card-meta">
+                        <span class="sop-role">Fulfillment Automation</span>
+                        <span>v2.0</span>
                     </div>
-                    <div class="card">
-                        <a href="glossary.html">
-                            <div class="card-title">Glossary</div>
-                            <div class="card-description">Terms and definitions</div>
-                            <div class="card-meta">
-                                <span class="card-role">All</span>
-                                <span>v1.0</span>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="card">
-                        <a href="roles.html">
-                            <div class="card-title">Roles & Responsibilities</div>
-                            <div class="card-description">Team structure and ownership</div>
-                            <div class="card-meta">
-                                <span class="card-role">All</span>
-                                <span>v1.0</span>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </section>
+                </a>
+            </div>
+        </section>
 
-            <!-- Backlog Section -->
-            <section class="section">
+        <!-- All SOPs by Category -->
+        <section class="section" id="sops">
+            <div class="section-header">
+                <h2 class="section-title">All SOPs</h2>
+            </div>
+
+            <!-- Sales SOPs -->
+            <h3 style="color: var(--slate-text-muted); font-size: 1rem; margin: 1.5rem 0 1rem; font-weight: 500;">Sales</h3>
+            <div class="sop-grid">
+                <a href="sales/sales-playbook.html" class="sop-card">
+                    <div class="sop-card-title">Sales Playbook</div>
+                    <div class="sop-card-desc">Complete script, objection handling, closing sequences</div>
+                    <div class="sop-card-meta"><span class="sop-role">Closer</span><span>v1.0</span></div>
+                </a>
+                <a href="sales/sales-sop.html" class="sop-card">
+                    <div class="sop-card-title">Sales SOP</div>
+                    <div class="sop-card-desc">Step-by-step sales call procedures</div>
+                    <div class="sop-card-meta"><span class="sop-role">Closer</span><span>v1.0</span></div>
+                </a>
+                <a href="sales/demo-call.html" class="sop-card">
+                    <div class="sop-card-title">Demo Call</div>
+                    <div class="sop-card-desc">5-10 minute demo call structure</div>
+                    <div class="sop-card-meta"><span class="sop-role">Closer</span><span>v1.0</span></div>
+                </a>
+                <a href="sales/show-rate-optimization.html" class="sop-card">
+                    <div class="sop-card-title">Show Rate Optimization</div>
+                    <div class="sop-card-desc">Maximize call show rates with proven tactics</div>
+                    <div class="sop-card-meta"><span class="sop-role">Closer</span><span>v1.0</span></div>
+                </a>
+                <a href="sales/launch-call.html" class="sop-card">
+                    <div class="sop-card-title">Launch Call Checklist</div>
+                    <div class="sop-card-desc">30-45 min client onboarding call flow</div>
+                    <div class="sop-card-meta"><span class="sop-role">Closer</span><span>v1.0</span></div>
+                </a>
+                <a href="sales/cancellation-saves.html" class="sop-card">
+                    <div class="sop-card-title">Cancellation Saves</div>
+                    <div class="sop-card-desc">Scripts and strategies for retention</div>
+                    <div class="sop-card-meta"><span class="sop-role">Closer</span><span>v1.0</span></div>
+                </a>
+                <a href="sales/post-launch-video.html" class="sop-card">
+                    <div class="sop-card-title">Post-Launch Video</div>
+                    <div class="sop-card-desc">Recording personalized Loom walkthroughs</div>
+                    <div class="sop-card-meta"><span class="sop-role">Closer</span><span>v1.0</span></div>
+                </a>
+                <a href="sales/testimonial-collection.html" class="sop-card">
+                    <div class="sop-card-title">Testimonial Collection</div>
+                    <div class="sop-card-desc">When and how to collect video testimonials</div>
+                    <div class="sop-card-meta"><span class="sop-role">Closer</span><span>v1.0</span></div>
+                </a>
+            </div>
+
+            <!-- Fulfillment SOPs -->
+            <h3 style="color: var(--slate-text-muted); font-size: 1rem; margin: 1.5rem 0 1rem; font-weight: 500;">Fulfillment</h3>
+            <div class="sop-grid">
+                <a href="fulfillment/client-build.html" class="sop-card">
+                    <div class="sop-card-title">Client Build Process</div>
+                    <div class="sop-card-desc">Complete sub-account setup and configuration</div>
+                    <div class="sop-card-meta"><span class="sop-role">Fulfillment</span><span>v1.0</span></div>
+                </a>
+                <a href="fulfillment/pre-launch-checklist.html" class="sop-card">
+                    <div class="sop-card-title">Pre-Launch Checklist</div>
+                    <div class="sop-card-desc">Complete QA before scheduling launch call</div>
+                    <div class="sop-card-meta"><span class="sop-role">Fulfillment</span><span>v2.0</span></div>
+                </a>
+                <a href="fulfillment/a2p-submission.html" class="sop-card">
+                    <div class="sop-card-title">A2P Submission</div>
+                    <div class="sop-card-desc">10DLC registration with GHL Compliance Checker</div>
+                    <div class="sop-card-meta"><span class="sop-role">Fulfillment</span><span>v2.0</span></div>
+                </a>
+                <a href="fulfillment/gmb-setup.html" class="sop-card">
+                    <div class="sop-card-title">GMB Setup</div>
+                    <div class="sop-card-desc">Google Business Profile connection guide</div>
+                    <div class="sop-card-meta"><span class="sop-role">Fulfillment</span><span>v1.0</span></div>
+                </a>
+                <a href="fulfillment/logo-processing.html" class="sop-card">
+                    <div class="sop-card-title">Logo Processing</div>
+                    <div class="sop-card-desc">Download, resize, and create logos in Canva</div>
+                    <div class="sop-card-meta"><span class="sop-role">Fulfillment</span><span>v1.0</span></div>
+                </a>
+                <a href="fulfillment/nav-cleanup.html" class="sop-card">
+                    <div class="sop-card-title">Navigation Cleanup</div>
+                    <div class="sop-card-desc">Remove unused service/area pages</div>
+                    <div class="sop-card-meta"><span class="sop-role">Fulfillment</span><span>v1.0</span></div>
+                </a>
+                <a href="fulfillment/selective-regeneration.html" class="sop-card">
+                    <div class="sop-card-title">Selective Regeneration</div>
+                    <div class="sop-card-desc">Fix specific content fields via regen tool</div>
+                    <div class="sop-card-meta"><span class="sop-role">Fulfillment</span><span>v1.0</span></div>
+                </a>
+            </div>
+
+            <!-- Support SOPs -->
+            <h3 style="color: var(--slate-text-muted); font-size: 1rem; margin: 1.5rem 0 1rem; font-weight: 500;">Support</h3>
+            <div class="sop-grid">
+                <a href="support/support-faq.html" class="sop-card">
+                    <div class="sop-card-title">Support FAQ</div>
+                    <div class="sop-card-desc">Common client questions and answers</div>
+                    <div class="sop-card-meta"><span class="sop-role">Support</span><span>v1.0</span></div>
+                </a>
+                <a href="support/escalation-rules.html" class="sop-card">
+                    <div class="sop-card-title">Escalation Rules</div>
+                    <div class="sop-card-desc">When to handle vs when to escalate</div>
+                    <div class="sop-card-meta"><span class="sop-role">Support</span><span>v1.0</span></div>
+                </a>
+                <a href="support/app-guide.html" class="sop-card">
+                    <div class="sop-card-title">App Guide</div>
+                    <div class="sop-card-desc">Lead Connector app setup and troubleshooting</div>
+                    <div class="sop-card-meta"><span class="sop-role">Support</span><span>v1.0</span></div>
+                </a>
+                <a href="support/cc-decline-handling.html" class="sop-card">
+                    <div class="sop-card-title">CC Decline Handling</div>
+                    <div class="sop-card-desc">Credit card failure recovery process</div>
+                    <div class="sop-card-meta"><span class="sop-role">Support</span><span>v1.0</span></div>
+                </a>
+            </div>
+
+            <!-- Marketing SOPs -->
+            <h3 style="color: var(--slate-text-muted); font-size: 1rem; margin: 1.5rem 0 1rem; font-weight: 500;">Marketing</h3>
+            <div class="sop-grid">
+                <a href="marketing/meta-ads.html" class="sop-card">
+                    <div class="sop-card-title">Meta Ads</div>
+                    <div class="sop-card-desc">Facebook/Instagram paid acquisition system</div>
+                    <div class="sop-card-meta"><span class="sop-role">Founder</span><span>v2.0</span></div>
+                </a>
+            </div>
+
+            <!-- Reference -->
+            <h3 style="color: var(--slate-text-muted); font-size: 1rem; margin: 1.5rem 0 1rem; font-weight: 500;">Reference</h3>
+            <div class="sop-grid">
+                <a href="README.html" class="sop-card">
+                    <div class="sop-card-title">Master Index</div>
+                    <div class="sop-card-desc">Complete SOP index, workflows, key resources</div>
+                    <div class="sop-card-meta"><span class="sop-role">Admin</span><span>v1.0</span></div>
+                </a>
+                <a href="glossary.html" class="sop-card">
+                    <div class="sop-card-title">Glossary</div>
+                    <div class="sop-card-desc">Terms and definitions</div>
+                    <div class="sop-card-meta"><span class="sop-role">All</span><span>v1.0</span></div>
+                </a>
+                <a href="roles.html" class="sop-card">
+                    <div class="sop-card-title">Roles & Responsibilities</div>
+                    <div class="sop-card-desc">Team structure and ownership</div>
+                    <div class="sop-card-meta"><span class="sop-role">All</span><span>v1.0</span></div>
+                </a>
+                <a href="hiring/va-hiring.html" class="sop-card">
+                    <div class="sop-card-title">VA Hiring</div>
+                    <div class="sop-card-desc">Virtual assistant recruitment and onboarding</div>
+                    <div class="sop-card-meta"><span class="sop-role">Founder</span><span>v1.0</span></div>
+                </a>
+            </div>
+        </section>
+
+        <!-- Backlog Section -->
+        <section class="section" id="backlog">
+            <div class="section-header">
                 <h2 class="section-title">Backlog & Planned</h2>
-                <div style="background: #1e293b; border-radius: 12px; padding: 1.5rem; border: 1px solid #334155;">
-                    <table style="width: 100%; border-collapse: collapse; font-size: 0.9rem;">
-                        <thead>
-                            <tr style="border-bottom: 1px solid #334155;">
-                                <th style="text-align: left; padding: 0.75rem; color: #f8fafc;">Item</th>
-                                <th style="text-align: left; padding: 0.75rem; color: #f8fafc;">Priority</th>
-                                <th style="text-align: left; padding: 0.75rem; color: #f8fafc;">Status</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr style="border-bottom: 1px solid #334155;">
-                                <td style="padding: 0.75rem; color: #e2e8f0;">AI Setter (outbound calls to non-bookers)</td>
-                                <td style="padding: 0.75rem;"><span style="background: #dc2626; color: white; padding: 0.2rem 0.5rem; border-radius: 4px; font-size: 0.75rem;">HIGH</span></td>
-                                <td style="padding: 0.75rem; color: #eab308;">In Progress</td>
-                            </tr>
-                            <tr style="border-bottom: 1px solid #334155;">
-                                <td style="padding: 0.75rem; color: #e2e8f0;">Signal House for e2e A2P test</td>
-                                <td style="padding: 0.75rem;"><span style="background: #dc2626; color: white; padding: 0.2rem 0.5rem; border-radius: 4px; font-size: 0.75rem;">HIGH</span></td>
-                                <td style="padding: 0.75rem; color: #22c55e;">Ready</td>
-                            </tr>
-                            <tr style="border-bottom: 1px solid #334155;">
-                                <td style="padding: 0.75rem; color: #e2e8f0;">A2P automation with Claude</td>
-                                <td style="padding: 0.75rem;"><span style="background: #f59e0b; color: black; padding: 0.2rem 0.5rem; border-radius: 4px; font-size: 0.75rem;">MEDIUM</span></td>
-                                <td style="padding: 0.75rem; color: #94a3b8;">Backlogged</td>
-                            </tr>
-                            <tr style="border-bottom: 1px solid #334155;">
-                                <td style="padding: 0.75rem; color: #e2e8f0;">Video Testimonials feature</td>
-                                <td style="padding: 0.75rem;"><span style="background: #f59e0b; color: black; padding: 0.2rem 0.5rem; border-radius: 4px; font-size: 0.75rem;">MEDIUM</span></td>
-                                <td style="padding: 0.75rem; color: #94a3b8;">Backlogged</td>
-                            </tr>
-                            <tr>
-                                <td style="padding: 0.75rem; color: #e2e8f0;">SaaS Configurator auto sub-account</td>
-                                <td style="padding: 0.75rem;"><span style="background: #f59e0b; color: black; padding: 0.2rem 0.5rem; border-radius: 4px; font-size: 0.75rem;">MEDIUM</span></td>
-                                <td style="padding: 0.75rem; color: #94a3b8;">Backlogged</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </section>
-        </main>
-
-        <footer>
-            <p>&copy; 2026 Slate Systems Inc. Internal use only.</p>
-            <p style="margin-top: 0.5rem;">Last updated: February 23, 2026</p>
-        </footer>
+            </div>
+            <table class="backlog-table">
+                <thead>
+                    <tr>
+                        <th>Item</th>
+                        <th>Priority</th>
+                        <th>Status</th>
+                        <th>Owner</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>AI Setter (Voice AI outbound)</td>
+                        <td><span class="priority-high">HIGH</span></td>
+                        <td class="status-progress">In Progress</td>
+                        <td>Dan</td>
+                    </tr>
+                    <tr>
+                        <td>Signal House e2e A2P test</td>
+                        <td><span class="priority-high">HIGH</span></td>
+                        <td class="status-ready">Ready</td>
+                        <td>Dan</td>
+                    </tr>
+                    <tr>
+                        <td>Knowledge Base for AI Setter</td>
+                        <td><span class="priority-high">HIGH</span></td>
+                        <td class="status-progress">In Progress</td>
+                        <td>Dan</td>
+                    </tr>
+                    <tr>
+                        <td>A2P automation with Claude</td>
+                        <td><span class="priority-medium">MEDIUM</span></td>
+                        <td class="status-backlog">Backlogged</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>Arcads UGC creative pipeline</td>
+                        <td><span class="priority-medium">MEDIUM</span></td>
+                        <td class="status-backlog">Backlogged</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>SaaS Configurator auto sub-account</td>
+                        <td><span class="priority-medium">MEDIUM</span></td>
+                        <td class="status-backlog">Backlogged</td>
+                        <td>-</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
     </div>
+
+    <footer>
+        <p>&copy; 2026 Slate Systems Inc. Internal use only.</p>
+        <p style="margin-top: 0.5rem;">Last updated: February 23, 2026</p>
+    </footer>
 </body>
 </html>
