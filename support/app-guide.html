@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lead Connector App Guide - Slate Systems SOP</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0f172a;
+            color: #e2e8f0;
+            line-height: 1.7;
+            padding: 2rem;
+        }
+        .container { max-width: 900px; margin: 0 auto; }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #3b82f6;
+            text-decoration: none;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+        }
+        .back-link:hover { text-decoration: underline; }
+        h1 { font-size: 2rem; color: #f8fafc; margin-bottom: 0.5rem; border-bottom: 2px solid #3b82f6; padding-bottom: 0.5rem; }
+        h2 { font-size: 1.5rem; color: #f8fafc; margin: 2rem 0 1rem; padding-top: 1rem; border-top: 1px solid #334155; }
+        h3 { font-size: 1.2rem; color: #cbd5e1; margin: 1.5rem 0 0.75rem; }
+        p { margin-bottom: 1rem; }
+        ul, ol { margin: 1rem 0; padding-left: 2rem; }
+        li { margin-bottom: 0.5rem; }
+        li.nested { margin-left: 1.5rem; }
+        li.checkbox { list-style: none; margin-left: -1.5rem; }
+        li.checkbox input { margin-right: 0.5rem; }
+        blockquote {
+            background: #1e293b;
+            border-left: 4px solid #3b82f6;
+            padding: 1rem 1.5rem;
+            margin: 1rem 0;
+            border-radius: 0 8px 8px 0;
+            font-style: italic;
+        }
+        pre {
+            background: #1e293b;
+            padding: 1rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 1rem 0;
+            border: 1px solid #334155;
+        }
+        code {
+            font-family: 'SF Mono', Monaco, monospace;
+            font-size: 0.9em;
+        }
+        :not(pre) > code {
+            background: #334155;
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            background: #1e293b;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        th, td {
+            padding: 0.75rem 1rem;
+            text-align: left;
+            border-bottom: 1px solid #334155;
+        }
+        th { background: #334155; color: #f8fafc; font-weight: 600; }
+        tr:last-child td { border-bottom: none; }
+        hr { border: none; border-top: 1px solid #334155; margin: 2rem 0; }
+        a { color: #3b82f6; }
+        strong { color: #f8fafc; }
+        .meta {
+            background: #1e293b;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            border-left: 4px solid #3b82f6;
+        }
+        .meta p { margin: 0.25rem 0; font-size: 0.9rem; color: #94a3b8; }
+        footer {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid #334155;
+            text-align: center;
+            color: #64748b;
+            font-size: 0.875rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../index.html" class="back-link">← Back to Portal</a>
+        <h1>Lead Connector App Guide</h1>
+
+<blockquote><strong>Role:</strong> Support / Anyone helping clients with the app</blockquote>
+<blockquote><strong>Purpose:</strong> How to help clients use the Lead Connector app</blockquote>
+<blockquote><strong>Last Updated:</strong> Feb 22, 2026</blockquote>
+
+<hr>
+
+<h2>App Download Links</h2>
+
+<ul><li><strong>iPhone:</strong> https://apps.apple.com/app/highlevel/id1459516266</li>
+<li><strong>Android:</strong> https://play.google.com/store/apps/details?id=com.gohighlevel</li>
+</ul>
+<hr>
+
+<h2>First-Time Login</h2>
+
+<h3>Step 1: Download App</h3>
+
+<p>Send client the appropriate link based on their phone.</p>
+
+<h3>Step 2: Open App</h3>
+
+<p>They'll see a login screen.</p>
+
+<h3>Step 3: Enter Credentials</h3>
+
+<ul><li><strong>Email:</strong> Their business email (from onboarding form)</li>
+<li><strong>Password:</strong> Whatever was set during setup</li>
+</ul>
+<h3>Step 4: Common Login Issues</h3>
+
+<table><thead><tr><th>Issue</th><th>Fix</th></tr></thead><tbody><tr><td>"Invalid credentials"</td><td>Reset password in GHL</td></tr><tr><td>"Account not found"</td><td>Verify email address is correct</td></tr><tr><td>Forgot password</td><td>Click "Forgot Password" in app</td></tr></tbody></table>
+<h3>Password Requirements</h3>
+
+<ul><li>Minimum 8 characters</li>
+<li>At least 1 special character (! @ # $ etc.)</li>
+<li>At least 1 number</li>
+</ul>
+<strong>When resetting:</strong> Tell client the password must include a special character.
+
+<hr>
+
+<h2>App Layout Overview</h2>
+
+<h3>Bottom Navigation</h3>
+
+<table><thead><tr><th>Icon</th><th>Name</th><th>Purpose</th></tr></thead><tbody><tr><td>🏠</td><td>Dashboard</td><td>Overview stats</td></tr><tr><td>💬</td><td>Conversations</td><td>All messages (SMS, chat, email)</td></tr><tr><td>📋</td><td>Contacts</td><td>All people in system</td></tr><tr><td>📢</td><td>Marketing</td><td>Send review requests, campaigns</td></tr><tr><td>⚙️</td><td>More</td><td>Settings, profile</td></tr></tbody></table>
+<hr>
+
+<h2>Key Features for Clients</h2>
+
+<h3>1. Conversations (Most Important)</h3>
+
+<strong>What it is:</strong> Where all leads and messages appear.
+
+<strong>How to use:</strong>
+<ol><li class="ordered">Tap "Conversations" at bottom</li>
+<li class="ordered">See list of all conversations</li>
+<li class="ordered">Tap a conversation to open</li>
+<li class="ordered">Type message and tap Send</li>
+</ol>
+<strong>Pro tip:</strong> Conversations show ALL channels (SMS, chat widget, email) in one place.
+
+<h3>2. Contacts</h3>
+
+<strong>What it is:</strong> List of all people in their system.
+
+<strong>How to use:</strong>
+<ol><li class="ordered">Tap "Contacts" at bottom</li>
+<li class="ordered">Search for someone by name</li>
+<li class="ordered">Tap to see their details</li>
+<li class="ordered">Can call/text directly from contact card</li>
+</ol>
+<h3>3. Marketing → Request Review</h3>
+
+<strong>What it is:</strong> How to send review requests.
+
+<strong>How to use:</strong>
+<ol><li class="ordered">Tap "Marketing" at bottom</li>
+<li class="ordered">Tap "Forms"</li>
+<li class="ordered">Select "Request Review" (or similar)</li>
+<li class="ordered">Enter customer's name and phone</li>
+<li class="ordered">Tap Submit</li>
+<li class="ordered">Customer gets review request text automatically</li>
+</ol>
+<strong>When to use:</strong> Right after completing a job.
+
+<h3>4. Notifications</h3>
+
+<strong>How to enable:</strong>
+<ol><li class="ordered">Go to phone Settings</li>
+<li class="ordered">Find "Lead Connector" or "HighLevel"</li>
+<li class="ordered">Enable all notifications</li>
+</ol>
+<strong>Tell clients:</strong> "Turn on notifications so you never miss a lead."
+
+<hr>
+
+<h2>Common Client Questions</h2>
+
+<h3>"Where do I see new leads?"</h3>
+
+<blockquote>"Tap 'Conversations' at the bottom. All your new leads show up there. The newest ones are at the top."</blockquote>
+
+<h3>"How do I text someone?"</h3>
+
+<blockquote>"Tap 'Conversations', find their name, tap to open, then type your message and hit send."</blockquote>
+
+<h3>"How do I call someone from the app?"</h3>
+
+<blockquote>"Go to 'Contacts', find their name, tap it, then tap the phone icon."</blockquote>
+
+<h3>"How do I send a review request?"</h3>
+
+<blockquote>"Tap 'Marketing', then 'Forms', select 'Request Review', enter their name and phone, and submit. They'll get a text automatically."</blockquote>
+
+<h3>"I'm not getting notifications"</h3>
+
+<blockquote>"Go to your phone's Settings → Notifications → Lead Connector. Make sure everything is turned ON. Also check that Do Not Disturb isn't enabled."</blockquote>
+
+<hr>
+
+<h2>Troubleshooting</h2>
+
+<h3>App is slow or freezing</h3>
+
+<ol><li class="ordered">Force close the app</li>
+<li class="ordered">Reopen</li>
+<li class="ordered">If still slow, try reinstalling</li>
+</ol>
+<h3>Messages not sending</h3>
+
+<ol><li class="ordered">Check internet connection</li>
+<li class="ordered">Check A2P status (may be pending)</li>
+<li class="ordered">Try sending from desktop instead</li>
+</ol>
+<h3>Can't see certain features</h3>
+
+<ol><li class="ordered">Check user permissions in GHL</li>
+<li class="ordered">Some features may be admin-only</li>
+</ol>
+<h3>App crashes on open</h3>
+
+<ol><li class="ordered">Update to latest app version</li>
+<li class="ordered">Restart phone</li>
+<li class="ordered">Reinstall app</li>
+</ol>
+<hr>
+
+<h2>Desktop Alternative</h2>
+
+<p>Clients can also access everything via browser:</p>
+
+<ul><li>URL: https://app.slatesystemsllc.com (or their white-label URL)</li>
+<li>Same login credentials</li>
+<li>Full access to all features</li>
+</ul>
+<strong>When to recommend desktop:</strong>
+<ul><li>Client prefers computer</li>
+<li>Need to do complex actions</li>
+<li>App having issues</li>
+</ul>
+<hr>
+
+<h2>Quick Walkthrough (Loom Script)</h2>
+
+<p>If doing a screen-share walkthrough, cover:</p>
+
+<ol><li class="ordered"><strong>Login</strong> — Show where to enter credentials</li>
+<li class="ordered"><strong>Conversations</strong> — Show where leads appear</li>
+<li class="ordered"><strong>How to reply</strong> — Send a test message</li>
+<li class="ordered"><strong>Contacts</strong> — Show the contact list</li>
+<li class="ordered"><strong>Marketing form</strong> — Show how to request reviews</li>
+<li class="ordered"><strong>Notifications</strong> — Show phone settings</li>
+</ol>
+Keep it under 5 minutes.
+
+<hr>
+
+<h2>Related SOPs</h2>
+
+<ul><li><code>launch-call.md</code> — App setup during launch</li>
+<li><code>support-faq.md</code> — Common questions</li>
+<li><code>post-launch-video.md</code> — Recording walkthrough</li>
+</ul>
+<hr>
+
+<em>Last updated: Feb 22, 2026</em>
+
+        <footer>
+            <p>&copy; 2026 Slate Systems LLC. Internal use only.</p>
+        </footer>
+    </div>
+</body>
+</html>

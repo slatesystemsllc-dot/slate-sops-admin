@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Content Generator Agent — Specification - Slate Systems SOP</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0f172a;
+            color: #e2e8f0;
+            line-height: 1.7;
+            padding: 2rem;
+        }
+        .container { max-width: 900px; margin: 0 auto; }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #3b82f6;
+            text-decoration: none;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+        }
+        .back-link:hover { text-decoration: underline; }
+        h1 { font-size: 2rem; color: #f8fafc; margin-bottom: 0.5rem; border-bottom: 2px solid #3b82f6; padding-bottom: 0.5rem; }
+        h2 { font-size: 1.5rem; color: #f8fafc; margin: 2rem 0 1rem; padding-top: 1rem; border-top: 1px solid #334155; }
+        h3 { font-size: 1.2rem; color: #cbd5e1; margin: 1.5rem 0 0.75rem; }
+        p { margin-bottom: 1rem; }
+        ul, ol { margin: 1rem 0; padding-left: 2rem; }
+        li { margin-bottom: 0.5rem; }
+        li.nested { margin-left: 1.5rem; }
+        li.checkbox { list-style: none; margin-left: -1.5rem; }
+        li.checkbox input { margin-right: 0.5rem; }
+        blockquote {
+            background: #1e293b;
+            border-left: 4px solid #3b82f6;
+            padding: 1rem 1.5rem;
+            margin: 1rem 0;
+            border-radius: 0 8px 8px 0;
+            font-style: italic;
+        }
+        pre {
+            background: #1e293b;
+            padding: 1rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 1rem 0;
+            border: 1px solid #334155;
+        }
+        code {
+            font-family: 'SF Mono', Monaco, monospace;
+            font-size: 0.9em;
+        }
+        :not(pre) > code {
+            background: #334155;
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            background: #1e293b;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        th, td {
+            padding: 0.75rem 1rem;
+            text-align: left;
+            border-bottom: 1px solid #334155;
+        }
+        th { background: #334155; color: #f8fafc; font-weight: 600; }
+        tr:last-child td { border-bottom: none; }
+        hr { border: none; border-top: 1px solid #334155; margin: 2rem 0; }
+        a { color: #3b82f6; }
+        strong { color: #f8fafc; }
+        .meta {
+            background: #1e293b;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            border-left: 4px solid #3b82f6;
+        }
+        .meta p { margin: 0.25rem 0; font-size: 0.9rem; color: #94a3b8; }
+        footer {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid #334155;
+            text-align: center;
+            color: #64748b;
+            font-size: 0.875rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../index.html" class="back-link">← Back to Portal</a>
+        <h1>Content Generator Agent — Specification</h1>
+
+<blockquote><strong>Role:</strong> Content Generator</blockquote>
+<blockquote><strong>Type:</strong> AI Agent (OpenClaw + Claude Opus 4.5)</blockquote>
+<blockquote><strong>Status:</strong> PRODUCTION - v6.8 (Feb 16, 2026)</blockquote>
+
+<hr>
+
+<h2>Purpose</h2>
+
+<p>Transform raw onboarding form data into a complete, professional website. Generates <strong>267 custom values</strong> including company info, services, areas, blog posts, FAQs, stats, and images. Outputs directly to GHL custom values via API.</p>
+
+<hr>
+
+<h2>Quick Reference</h2>
+
+<table><thead><tr><th>Component</th><th>Value</th></tr></thead><tbody><tr><td><strong>Total Custom Values</strong></td><td>267 (241 content + 26 page heroes)</td></tr><tr><td><strong>n8n Workflows</strong></td><td>4 (Content Gen, Build Notes, Scraper, Image Upload)</td></tr><tr><td><strong>OpenClaw Endpoint</strong></td><td><code>http://178.156.233.54:18789/v1/chat/completions</code></td></tr><tr><td><strong>Model</strong></td><td>Claude Opus 4.5</td></tr><tr><td><strong>Max Tokens</strong></td><td>4000</td></tr><tr><td><strong>Image Library</strong></td><td>719 images across 37+ trades (Baserow 947)</td></tr><tr><td><strong>Tracking Table</strong></td><td>Baserow 946</td></tr></tbody></table>
+<hr>
+
+<h2>Architecture</h2>
+
+<h3>Two-Workflow System</h3>
+
+<pre><code>WORKFLOW 1: Content Generator (dGQwIMyZImbYwucC)
+[Onboarding Form] → [Parse] → [Save to Baserow] → [Scrape Website]
+                                    ↓
+                         Status: awaiting_notes
+
+<p>WORKFLOW 2: Build Notes Trigger (4BaNEGdjuP5EsLUy)<br>[Build Notes Form] → [Fetch Onboarding] → [Call OpenClaw]<br>    → [Process Response] → [Search Images] → [Upload to GHL Media]<br>    → [Update GHL Values] → [Update Baserow]<br>                                    ↓<br>                         Status: generated</p>
+
+<p>UTILITY: Website Scraper (bbqKaTdP2idMG7OS)<br>[Webhook] → [Fetch HTML] → [Parse Content] → [Return]</p>
+
+<p>UTILITY: Image Uploader (WrMcZYiQtYHXi9yG)<br>[Webhook] → [Download from MinIO] → [Upload to GHL] → [Return HTTPS URLs]<br></code></pre></p>
+
+<h3>Data Precedence</h3>
+
+<ol><li class="ordered"><strong>BUILD NOTES</strong> (highest) — Fulfillment team corrections</li>
+<li class="ordered"><strong>ONBOARDING FORM</strong> — Client-provided data</li>
+<li class="ordered"><strong>SCRAPED DATA</strong> — Existing website (supplementary)</li>
+</ol>
+<hr>
+
+<h2>Trigger</h2>
+
+<strong>NOT triggered by onboarding form submission.</strong>
+
+<p>Content generation is triggered by the <strong>Build Notes Form</strong> in Slate Ops. This allows the Fulfillment Specialist to:<br><ul><li>Review form data first</li><br><li>Add image selection preferences</li><br><li>Provide corrections/direction</li><br></ul><br><h3>Why Two-Step?</h3></p>
+
+<ol><li class="ordered">Form submission saves data + scrapes website</li>
+<li class="ordered">Human reviews, selects images, adds notes</li>
+<li class="ordered">Build Notes form triggers actual generation</li>
+<li class="ordered">Better quality control, fewer regenerations needed</li>
+</ol>
+<hr>
+
+<h2>Input: 23 Form Fields</h2>
+
+<table><thead><tr><th>Category</th><th>Fields</th></tr></thead><tbody><tr><td><strong>Core</strong></td><td>contact_id, location_id, business_name, owner_name, email</td></tr><tr><td><strong>Content</strong></td><td>client_about_us, client_services, client_service_areas</td></tr><tr><td><strong>Content</strong></td><td>client_certifications, client_highlights, client_hours, client_discounts, client_process, client_license</td></tr><tr><td><strong>Contact</strong></td><td>client_phone</td></tr><tr><td><strong>Social</strong></td><td>client_instagram, client_facebook, client_yelp, client_bbb, client_tiktok</td></tr><tr><td><strong>GMB</strong></td><td>client_has_gmb, client_gmb_link</td></tr><tr><td><strong>Branding</strong></td><td>client_color_preference (optional - AI picks if blank)</td></tr></tbody></table>
+<hr>
+
+<h2>Output: 267 Custom Values</h2>
+
+<h3>Company Info (4)</h3>
+<table><thead><tr><th>Key</th><th>Source</th></tr></thead><tbody><tr><td><code>company_name</code></td><td>AI: Strip LLC/Inc/Corp</td></tr><tr><td><code>company_owner_first_name</code></td><td>Direct from form</td></tr><tr><td><code>company_email</code></td><td>Direct from form</td></tr><tr><td><code>company_hours</code></td><td>AI: Format consistently</td></tr></tbody></table>
+<h3>Appearance (2)</h3>
+<table><thead><tr><th>Key</th><th>Source</th></tr></thead><tbody><tr><td><code>color_primary</code></td><td>AI: Hex based on trade + preference</td></tr><tr><td><code>color_secondary</code></td><td>AI: Complementary hex</td></tr></tbody></table>
+<blockquote><strong>Note:</strong> Field names are <code>color_primary</code> and <code>color_secondary</code> (NOT <code>colors__main</code>/<code>colors__secondary</code>)</blockquote>
+
+<h3>Social Links (2)</h3>
+<table><thead><tr><th>Key</th><th>Source</th></tr></thead><tbody><tr><td><code>company_instagram_link</code></td><td>Direct from form</td></tr><tr><td><code>company_facebook_link</code></td><td>Direct from form</td></tr></tbody></table>
+<h3>Hero Section (4)</h3>
+<table><thead><tr><th>Key</th><th>Source</th></tr></thead><tbody><tr><td><code>broad_service_name</code></td><td>AI: Interpret trade (e.g., "Plumbing")</td></tr><tr><td><code>sub_headline_text</code></td><td>AI: Trust signals from certs/highlights</td></tr><tr><td><code>hero_description</code></td><td>AI: 2-3 sentence compelling paragraph</td></tr><tr><td><code>logo_url</code></td><td>Passthrough from form (or blank)</td></tr></tbody></table>
+<h3>About Section (2)</h3>
+<table><thead><tr><th>Key</th><th>Source</th></tr></thead><tbody><tr><td><code>about_us_text</code></td><td>AI: Expanded professional version</td></tr><tr><td><code>about_us_paragraph</code></td><td>AI: Longer narrative</td></tr></tbody></table>
+<h3>Stats Section (8)</h3>
+<table><thead><tr><th>Key</th><th>Example</th></tr></thead><tbody><tr><td><code>stat_1_number</code> through <code>stat_4_number</code></td><td>"15+", "500+", "5", "100%"</td></tr><tr><td><code>stat_1_label</code> through <code>stat_4_label</code></td><td>"Years Experience", "Projects Completed"</td></tr></tbody></table>
+<h3>Services (60)</h3>
+<table><thead><tr><th>Key</th><th>Count</th><th>Source</th></tr></thead><tbody><tr><td><code>service_1</code> through <code>service_12</code></td><td>12</td><td>AI: Parse from services list</td></tr><tr><td><code>service_N_description</code></td><td>12</td><td>AI: 2-sentence descriptions</td></tr><tr><td><code>service_N_what_is</code></td><td>12</td><td>AI: Explanation</td></tr><tr><td><code>service_N_when_necessary</code></td><td>12</td><td>AI: When to call</td></tr><tr><td><code>service_N_what_required</code></td><td>12</td><td>AI: What we need</td></tr></tbody></table>
+<h3>Service Areas (56)</h3>
+<table><thead><tr><th>Key</th><th>Count</th><th>Source</th></tr></thead><tbody><tr><td><code>biz_area_1</code> through <code>biz_area_14</code></td><td>14</td><td>AI: Parse from areas list</td></tr><tr><td><code>area_N_our_story</code></td><td>14</td><td>AI: Local presence narrative</td></tr><tr><td><code>area_N_services_offered</code></td><td>14</td><td>AI: Services summary</td></tr><tr><td><code>area_N_why_choose_us</code></td><td>14</td><td>AI: Local differentiator</td></tr></tbody></table>
+<h3>FAQs (4)</h3>
+<table><thead><tr><th>Key</th><th>Source</th></tr></thead><tbody><tr><td><code>faq_answer_1</code> through <code>faq_answer_4</code></td><td>AI: Common industry questions</td></tr></tbody></table>
+<h3>Blog Posts (18)</h3>
+<table><thead><tr><th>Key</th><th>Count</th><th>Source</th></tr></thead><tbody><tr><td><code>blog_post_N_title</code></td><td>6</td><td>AI: SEO-friendly titles</td></tr><tr><td><code>blog_post_N_description</code></td><td>6</td><td>AI: ~50 word excerpts</td></tr><tr><td><code>blog_post_N_content</code></td><td>6</td><td>AI: Full articles (~300 words)</td></tr></tbody></table>
+<h3>Images (131)</h3>
+
+<table><thead><tr><th>Category</th><th>Count</th><th>Source</th></tr></thead><tbody><tr><td>Hero backgrounds</td><td>3</td><td>hero_image_url, reviews_background, quote_background</td></tr><tr><td>Hero backups</td><td>11</td><td>For variety/fallback</td></tr><tr><td>Service page heroes</td><td>12</td><td>service_N_hero_url</td></tr><tr><td>Area page heroes</td><td>14</td><td>area_N_hero_url</td></tr><tr><td>About image</td><td>1</td><td>about_us_image_url</td></tr><tr><td>Service images</td><td>36</td><td>3 per service (12 services)</td></tr><tr><td>Area images</td><td>28</td><td>2 per area (14 areas)</td></tr><tr><td>Gallery images</td><td>24</td><td>gallery_image_N_url</td></tr></tbody></table>
+<hr>
+
+<h2>Color System</h2>
+
+<h3>Fixed Colors (Never Change)</h3>
+<table><thead><tr><th>Color</th><th>Hex</th><th>Usage</th></tr></thead><tbody><tr><td>BLACK</td><td>#000000</td><td>Header, Footer, Hero backgrounds</td></tr><tr><td>WHITE</td><td>#ffffff</td><td>Text on dark, About section bg</td></tr><tr><td>STARS</td><td>#ffbc00</td><td>Review stars</td></tr></tbody></table>
+<h3>Variable Colors (AI Chooses)</h3>
+<table><thead><tr><th>Color</th><th>Usage</th></tr></thead><tbody><tr><td>PRIMARY</td><td>Section backgrounds</td></tr><tr><td>SECONDARY</td><td>Buttons, CTAs, accents</td></tr></tbody></table>
+<h3>Trade Defaults</h3>
+<table><thead><tr><th>Trades</th><th>PRIMARY</th><th>SECONDARY</th></tr></thead><tbody><tr><td>plumber, pool, hvac, electrician, cleaning</td><td>#0b5079</td><td>#00adef</td></tr><tr><td>landscaper, tree_service, solar</td><td>#094026</td><td>#FCB215</td></tr><tr><td>handyman, general_contractor, welder</td><td>#000000</td><td>#2c507f</td></tr><tr><td>roofer, concrete, masonry, carpenter</td><td>#7C2D12</td><td>#F97316</td></tr><tr><td>tile, flooring</td><td>#1F2937</td><td>#6B7280</td></tr></tbody></table>
+<h3>Proven Combos</h3>
+<table><thead><tr><th>Trade</th><th>PRIMARY</th><th>SECONDARY</th></tr></thead><tbody><tr><td>painter</td><td>#094026</td><td>#FCB215</td></tr><tr><td>handyman</td><td>#000000</td><td>#2c507f</td></tr><tr><td>pool</td><td>#0b5079</td><td>#00adef</td></tr></tbody></table>
+<hr>
+
+<h2>Image Library</h2>
+
+<strong>Source:</strong> MinIO bucket <code>slate-image-library/{trade}/</code>
+<strong>Metadata:</strong> Baserow table 947
+<strong>Total:</strong> 719 images across 37+ trades
+
+<h3>Image Selection Order</h3>
+
+<ol><li class="ordered"><strong>Background images</strong> (3) — hero_suitable=true only</li>
+<li class="ordered"><strong>Backup hero options</strong> (11) — variety for testing</li>
+<li class="ordered"><strong>Service page heroes</strong> (12) — 1 per service page</li>
+<li class="ordered"><strong>Area page heroes</strong> (14) — 1 per area page</li>
+<li class="ordered"><strong>About image</strong> (1) — any trade image</li>
+<li class="ordered"><strong>Service images</strong> (36) — 3 per service</li>
+<li class="ordered"><strong>Area images</strong> (28) — 2 per area</li>
+<li class="ordered"><strong>Gallery</strong> (24) — remaining stock</li>
+</ol>
+<h3>Image Upload Flow</h3>
+
+<p>MinIO stores HTTP URLs → Image Uploader workflow downloads → Uploads to GHL Media Library → Returns HTTPS URLs → Custom values get googleapis.com URLs</p>
+
+<strong>Performance:</strong> ~0.78s per image
+
+<hr>
+
+<h2>AI Observations</h2>
+
+<p>The agent outputs <code>ai_observations</code> containing:<br><ul><li>Logo suggestion (Ideogram prompt for logo creation)</li><br><li>Color rationale (why these colors were chosen)</li><br><li>Assumptions made (inferred from data)</li><br><li>Data quality notes (missing/incomplete info)</li><br></ul><br><strong>Example:</strong><br><pre><code>Logo Suggestion: Military-inspired design with sergeant stripes incorporating paint brush.<br>Colors: dark green (#094026) primary, gold (#ffbc00) accents.</p>
+
+<p>Ideogram Prompt: "Professional logo for Sergeant Painters, veteran-owned painting company,<br>military sergeant stripes chevron design incorporating paint brush, dark forest green and<br>gold colors, clean modern design, vector style, white background --ar 1:1"</p>
+
+<p>Color Rationale: Military green conveys veteran ownership, discipline, trust. Gold accent<br>provides premium feel and excellent CTA visibility.<br></code></pre></p>
+
+<hr>
+
+<h2>Selective Regeneration</h2>
+
+<strong>Purpose:</strong> Fix specific fields without regenerating everything.
+
+<strong>Form URL:</strong> <code>https://slate-tools.slatesystemsllc.workers.dev</code>
+
+<strong>Workflow ID:</strong> <code>jDGPTsr1OOLjsfxR</code>
+
+<h3>How It Works</h3>
+
+<ol><li class="ordered">Enter Location ID</li>
+<li class="ordered">Check fields to regenerate</li>
+<li class="ordered">Add optional feedback/direction</li>
+<li class="ordered">Submit</li>
+</ol>
+<h3>Smart Context</h3>
+
+<p>The AI sees existing content (for consistency) but EXCLUDES the field being changed (to avoid anchoring bias).</p>
+
+<table><thead><tr><th>Category</th><th>Context Rule</th></tr></thead><tbody><tr><td>Core Identity</td><td>Always include (unless being changed)</td></tr><tr><td>Services</td><td>Include 3 others if changing any service</td></tr><tr><td>Areas</td><td>Include 3 others if changing any area</td></tr><tr><td>Stats</td><td>Include all others (they work as set)</td></tr><tr><td>FAQs</td><td>Include 2 others for tone matching</td></tr><tr><td>Blogs</td><td>Include 1 complete blog as reference</td></tr></tbody></table>
+<h3>When to Use</h3>
+
+<ul><li>QA reveals placeholder or poor content</li>
+<li>Client requests specific changes</li>
+<li>Services/areas need refinement</li>
+<li>Blog posts need different tone</li>
+</ul>
+<h3>Cost</h3>
+
+<p>Each regeneration costs API credits. Regenerate only what's needed.</p>
+
+<hr>
+
+<h2>Technical Details</h2>
+
+<h3>OpenClaw Configuration</h3>
+
+<table><thead><tr><th>Setting</th><th>Value</th></tr></thead><tbody><tr><td>Endpoint</td><td><code>http://178.156.233.54:18789/v1/chat/completions</code></td></tr><tr><td>Format</td><td>OpenAI-compatible</td></tr><tr><td>Model</td><td>claude-opus-4.5</td></tr><tr><td>Max Tokens</td><td>4000</td></tr><tr><td>Gateway Token</td><td><code>abec5c6de28d65ddf2a6d4d7e15cb3c2d60143d9b4becf99</code></td></tr></tbody></table>
+<h3>GHL API</h3>
+
+<table><thead><tr><th>Setting</th><th>Value</th></tr></thead><tbody><tr><td>Base URL</td><td><code>https://services.leadconnectorhq.com</code></td></tr><tr><td>Auth</td><td>Bearer token (pit-781e90c0...)</td></tr><tr><td>Version</td><td>2021-07-28</td></tr></tbody></table>
+<h3>Baserow Tables</h3>
+
+<table><thead><tr><th>Table</th><th>ID</th><th>Purpose</th></tr></thead><tbody><tr><td>Content Generation</td><td>946</td><td>Track generation status, store form data</td></tr><tr><td>Image Library</td><td>947</td><td>Image metadata (trade, hero_suitable, url)</td></tr><tr><td>Build Notes</td><td>948</td><td>Image selection preferences</td></tr></tbody></table>
+<h3>Status Flow (Table 946)</h3>
+
+<ol><li class="ordered"><code>pending</code> — Row created, waiting for form</li>
+<li class="ordered"><code>awaiting_notes</code> — Form received, scraped, waiting for build notes</li>
+<li class="ordered"><code>generated</code> — Content generated and sent to GHL</li>
+</ol>
+<hr>
+
+<h2>Integration with Client Build</h2>
+
+<p>The Content Generator is invoked during <strong>Task 7</strong> of the client build process:</p>
+
+<ol><li class="ordered">Client submits onboarding form → Workflow 1 runs → Status: awaiting_notes</li>
+<li class="ordered">Fulfillment reviews form, fills Build Notes form</li>
+<li class="ordered">Build Notes submission → Workflow 2 runs → Content generated</li>
+<li class="ordered"><strong>Human check:</strong> Verify custom values in GHL Settings → Custom Values</li>
+<li class="ordered">If issues: Use Selective Regeneration form</li>
+</ol>
+<strong>See:</strong> <code>fulfillment/client-build.md</code> for full build process
+
+<hr>
+
+<h2>What Agent Does NOT Generate</h2>
+
+<p>These require human input (from toll-free purchase, GMB connection, etc.):</p>
+
+<blockquote><strong>IMPORTANT:</strong> The Reviews Widget on the homepage is NOT auto-generated. Review content must be manually entered from client's GMB/Yelp reviews or collected post-launch.</blockquote>
+
+<table><thead><tr><th>Field</th><th>Source</th></tr></thead><tbody><tr><td><code>company_phone__aesthetic_</code></td><td>Toll-free number: (XXX) XXX-XXXX</td></tr><tr><td><code>company_phone__functional_</code></td><td>Toll-free number: +1XXXXXXXXXX</td></tr><tr><td><code>company_website_link</code></td><td>Domain we set up</td></tr><tr><td><code>company_gmb_link</code></td><td>GMB connection</td></tr><tr><td><code>gmb_review_link</code></td><td>GMB "Ask for reviews" link</td></tr><tr><td><code>google_map_embed</code></td><td>GMB embed iframe</td></tr><tr><td><code>main_image_url</code></td><td>(deprecated - use hero_image_url)</td></tr></tbody></table>
+<hr>
+
+<h2>Node Versions (Current)</h2>
+
+<table><thead><tr><th>Node</th><th>Version</th><th>Purpose</th></tr></thead><tbody><tr><td>Prepare Agent Prompt</td><td>v6.8</td><td>Build prompt with form data, scraped data, build notes</td></tr><tr><td>Process Response</td><td>v1.2</td><td>Parse AI JSON response</td></tr><tr><td>Search Images</td><td>v5.1</td><td>Match images from library by trade</td></tr><tr><td>Upload Images to GHL</td><td>v2.0</td><td>Convert HTTP → HTTPS via GHL Media Library</td></tr><tr><td>Update GHL Values</td><td>v2.5</td><td>Write all 267 values to GHL API</td></tr><tr><td>Update Baserow Generated</td><td>v1.4</td><td>Mark complete, store AI observations</td></tr><tr><td>Send Ideogram Email</td><td>v1.1</td><td>Email logo prompt to team</td></tr></tbody></table>
+<hr>
+
+<h2>Performance</h2>
+
+<table><thead><tr><th>Metric</th><th>Value</th></tr></thead><tbody><tr><td>Full generation</td><td>~4-5 minutes</td></tr><tr><td>OpenClaw call</td><td>~3-4 minutes</td></tr><tr><td>Image upload</td><td>~22 seconds (28 images)</td></tr><tr><td>GHL value updates</td><td>~30 seconds (267 values)</td></tr></tbody></table>
+<hr>
+
+<h2>Files & References</h2>
+
+<table><thead><tr><th>File</th><th>Purpose</th></tr></thead><tbody><tr><td><code>slate-content-generator-v2.md</code></td><td>Full technical documentation</td></tr><tr><td><code>slate-ops-field-migration.md</code></td><td>Form field inventory (58 fields)</td></tr><tr><td><code>slate-color-system.md</code></td><td>Color guide with trade combos</td></tr><tr><td><code>slate-image-library-plan.md</code></td><td>Image library details</td></tr><tr><td><code>slate-carlsbad-custom-value-ids.json</code></td><td>GHL value ID mappings</td></tr><tr><td><code>fulfillment/client-build.md</code></td><td>Where this fits in build process</td></tr><tr><td><code>fulfillment/selective-regeneration.md</code></td><td>Detailed regen SOP</td></tr></tbody></table>
+<hr>
+
+<em>Last updated: Feb 16, 2026</em>
+<em>Version: 2.0 — Complete rewrite for v2 system</em>
+
+        <footer>
+            <p>&copy; 2026 Slate Systems LLC. Internal use only.</p>
+        </footer>
+    </div>
+</body>
+</html>

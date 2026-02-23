@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Credit Card Decline Handling SOP - Slate Systems SOP</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0f172a;
+            color: #e2e8f0;
+            line-height: 1.7;
+            padding: 2rem;
+        }
+        .container { max-width: 900px; margin: 0 auto; }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #3b82f6;
+            text-decoration: none;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+        }
+        .back-link:hover { text-decoration: underline; }
+        h1 { font-size: 2rem; color: #f8fafc; margin-bottom: 0.5rem; border-bottom: 2px solid #3b82f6; padding-bottom: 0.5rem; }
+        h2 { font-size: 1.5rem; color: #f8fafc; margin: 2rem 0 1rem; padding-top: 1rem; border-top: 1px solid #334155; }
+        h3 { font-size: 1.2rem; color: #cbd5e1; margin: 1.5rem 0 0.75rem; }
+        p { margin-bottom: 1rem; }
+        ul, ol { margin: 1rem 0; padding-left: 2rem; }
+        li { margin-bottom: 0.5rem; }
+        li.nested { margin-left: 1.5rem; }
+        li.checkbox { list-style: none; margin-left: -1.5rem; }
+        li.checkbox input { margin-right: 0.5rem; }
+        blockquote {
+            background: #1e293b;
+            border-left: 4px solid #3b82f6;
+            padding: 1rem 1.5rem;
+            margin: 1rem 0;
+            border-radius: 0 8px 8px 0;
+            font-style: italic;
+        }
+        pre {
+            background: #1e293b;
+            padding: 1rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 1rem 0;
+            border: 1px solid #334155;
+        }
+        code {
+            font-family: 'SF Mono', Monaco, monospace;
+            font-size: 0.9em;
+        }
+        :not(pre) > code {
+            background: #334155;
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            background: #1e293b;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        th, td {
+            padding: 0.75rem 1rem;
+            text-align: left;
+            border-bottom: 1px solid #334155;
+        }
+        th { background: #334155; color: #f8fafc; font-weight: 600; }
+        tr:last-child td { border-bottom: none; }
+        hr { border: none; border-top: 1px solid #334155; margin: 2rem 0; }
+        a { color: #3b82f6; }
+        strong { color: #f8fafc; }
+        .meta {
+            background: #1e293b;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            border-left: 4px solid #3b82f6;
+        }
+        .meta p { margin: 0.25rem 0; font-size: 0.9rem; color: #94a3b8; }
+        footer {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid #334155;
+            text-align: center;
+            color: #64748b;
+            font-size: 0.875rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../index.html" class="back-link">← Back to Portal</a>
+        <h1>Credit Card Decline Handling SOP</h1>
+
+<blockquote><strong>Role:</strong> Founder / Account Manager</blockquote>
+<blockquote><strong>When:</strong> Payment fails in Stripe</blockquote>
+<blockquote><strong>Goal:</strong> Recover payment while maintaining relationship</blockquote>
+<blockquote><strong>Source:</strong> Kai Stone Systems Extra Useful Trainings</blockquote>
+<blockquote><strong>Last Updated:</strong> Feb 22, 2026</blockquote>
+
+<hr>
+
+<h2>Why This Matters</h2>
+
+<p>Credit card declines are:<br><ol><li class="ordered">An opportunity to check in on client satisfaction</li><br><li class="ordered">A chance to prevent churn before it happens</li><br><li class="ordered">Revenue that will be lost if not handled</li><br></ol><br><strong>Never let a decline sit.</strong> Handle within 24-48 hours.</p>
+
+<hr>
+
+<h2>The Process</h2>
+
+<h3>Step 1: Check Stripe Weekly</h3>
+
+<ol><li class="ordered">Go to Stripe Dashboard → Payments</li>
+<li class="ordered">Filter by "Failed"</li>
+<li class="ordered">Note all declined payments</li>
+<li class="ordered">Add to your call list</li>
+</ol>
+<h3>Step 2: Call Them (Don't Just Text)</h3>
+
+<strong>Why call:</strong>
+<ul><li>Texts feel impersonal for billing issues</li>
+<li>Call shows you care</li>
+<li>Can gauge their satisfaction</li>
+<li>Harder to ignore</li>
+</ul>
+<strong>Opening (Concerned, Not Accusatory):</strong>
+<blockquote>"Hey [Name], it's [Your Name] from Slate Systems. How's everything going? I just wanted to check in — is everything okay on your end?"</blockquote>
+
+<strong>If they ask why:</strong>
+<blockquote>"I noticed there might have been an issue with your payment, and I wanted to make sure everything's good with your account. Did you recently get a new card or anything like that?"</blockquote>
+
+<strong>Key:</strong> Lead with concern, not "you owe us money."
+
+<h3>Step 3: Update Payment Method</h3>
+
+<strong>If they have a new card:</strong>
+<ol><li class="ordered">Go to Stripe → Customers → [Their Name]</li>
+<li class="ordered">Click Payment Methods</li>
+<li class="ordered">Click "+ Add" or update existing</li>
+<li class="ordered">Enter new card details</li>
+<li class="ordered">Manually charge if auto-retry exhausted</li>
+</ol>
+<strong>If they need to update themselves:</strong>
+<ul><li>Send them the billing portal link</li>
+<li>Walk them through it on the call if needed</li>
+</ul>
+<h3>Step 4: Use as Check-In Opportunity</h3>
+
+<p>While you have them:<br><ul><li>"How's the website working out?"</li><br><li>"Getting any leads from it?"</li><br><li>"Anything I can help with?"</li><br></ul><br>This turns a billing call into a retention call.</p>
+
+<hr>
+
+<h2>What If They Want to Cancel?</h2>
+
+<strong>Don't just let them go.</strong> Get feedback:
+
+<blockquote>"No problem at all. Before I process that, can I ask what's not working for you? I want to make sure we're doing right by our clients."</blockquote>
+
+<strong>Common reasons and responses:</strong>
+
+<table><thead><tr><th>Reason</th><th>Response</th></tr></thead><tbody><tr><td>"Not getting leads"</td><td>"Let's look at your Google reviews and website together. Sometimes small tweaks help."</td></tr><tr><td>"Can't afford it"</td><td>"I understand. Want to pause for a month instead of canceling completely?"</td></tr><tr><td>"Not using it"</td><td>"What if I showed you how to use the review system? That's where most clients see value."</td></tr><tr><td>"Going a different direction"</td><td>"Totally respect that. Mind if I ask what you're switching to?"</td></tr></tbody></table>
+<strong>If they still want to cancel:</strong> Process it gracefully. Don't burn the bridge.
+
+<hr>
+
+<h2>Stripe Manual Charge Process</h2>
+
+<p>If auto-retry has exhausted (usually 4 attempts over 3-4 weeks):</p>
+
+<ol><li class="ordered">Stripe → Customers → [Customer]</li>
+<li class="ordered">Verify correct payment method is on file</li>
+<li class="ordered">Click "Create payment"</li>
+<li class="ordered">Enter amount</li>
+<li class="ordered">Select payment method</li>
+<li class="ordered">Click "Charge"</li>
+</ol>
+<hr>
+
+<h2>Prevention: Reduce Future Declines</h2>
+
+<ol><li class="ordered"><strong>Collect backup payment method</strong> during onboarding</li>
+<li class="ordered"><strong>Send payment reminder</strong> 3 days before billing date</li>
+<li class="ordered"><strong>Use Stripe's Smart Retries</strong> (enabled by default)</li>
+<li class="ordered"><strong>Update cards proactively</strong> — when card expires in 30 days, reach out</li>
+</ol>
+<hr>
+
+<h2>Decline Tracking</h2>
+
+<p>Keep a simple log:</p>
+
+<table><thead><tr><th>Date</th><th>Client</th><th>Reason</th><th>Outcome</th></tr></thead><tbody><tr></tr></tbody></table>
+Review monthly to identify patterns.
+
+<hr>
+
+<h2>Scripts</h2>
+
+<h3>Initial Call</h3>
+<blockquote>"Hey [Name], it's [Your Name] from Slate Systems. How's it going? I wanted to check in and make sure everything's running smoothly for you."</blockquote>
+
+<h3>If They Ask About Payment</h3>
+<blockquote>"Yeah, I did notice there might've been a small hiccup with the payment. Did you happen to get a new card recently? No big deal either way, just want to make sure we get it sorted."</blockquote>
+
+<h3>Asking for New Card</h3>
+<blockquote>"Would you mind giving me the new card number? I can update it right here and we'll be all set."</blockquote>
+
+<h3>If No Answer (Voicemail)</h3>
+<blockquote>"Hey [Name], it's [Your Name] from Slate Systems. Just checking in to make sure everything's going well. Give me a call back when you get a chance — [your number]. Talk soon!"</blockquote>
+
+<h3>Text Follow-Up (If No Call Back)</h3>
+<blockquote>"Hey [Name]! Just checking in. Is everything okay? Noticed a small issue with the account and wanted to make sure you're all set. Let me know!"</blockquote>
+
+<hr>
+
+<h2>Escalation</h2>
+
+<p>If after 7 days:<br><ul><li>3 call attempts</li><br><li>2 text attempts</li><br><li>No response</li><br></ul><br>→ Send final email explaining service will be paused<br>→ Pause automations (don't delete account)<br>→ Try one more time in 2 weeks before canceling</p>
+
+<hr>
+
+<h2>Related SOPs</h2>
+
+<ul><li><code>cancellation-saves.md</code> — Full cancellation save process</li>
+<li><code>support-faq.md</code> — Common client questions</li>
+</ul>
+<hr>
+
+<em>Source: Kai Stone Systems Training</em>
+<em>Last updated: Feb 22, 2026</em>
+
+        <footer>
+            <p>&copy; 2026 Slate Systems LLC. Internal use only.</p>
+        </footer>
+    </div>
+</body>
+</html>

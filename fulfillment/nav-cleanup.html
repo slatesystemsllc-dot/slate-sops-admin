@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navigation Cleanup SOP - Slate Systems SOP</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0f172a;
+            color: #e2e8f0;
+            line-height: 1.7;
+            padding: 2rem;
+        }
+        .container { max-width: 900px; margin: 0 auto; }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #3b82f6;
+            text-decoration: none;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+        }
+        .back-link:hover { text-decoration: underline; }
+        h1 { font-size: 2rem; color: #f8fafc; margin-bottom: 0.5rem; border-bottom: 2px solid #3b82f6; padding-bottom: 0.5rem; }
+        h2 { font-size: 1.5rem; color: #f8fafc; margin: 2rem 0 1rem; padding-top: 1rem; border-top: 1px solid #334155; }
+        h3 { font-size: 1.2rem; color: #cbd5e1; margin: 1.5rem 0 0.75rem; }
+        p { margin-bottom: 1rem; }
+        ul, ol { margin: 1rem 0; padding-left: 2rem; }
+        li { margin-bottom: 0.5rem; }
+        li.nested { margin-left: 1.5rem; }
+        li.checkbox { list-style: none; margin-left: -1.5rem; }
+        li.checkbox input { margin-right: 0.5rem; }
+        blockquote {
+            background: #1e293b;
+            border-left: 4px solid #3b82f6;
+            padding: 1rem 1.5rem;
+            margin: 1rem 0;
+            border-radius: 0 8px 8px 0;
+            font-style: italic;
+        }
+        pre {
+            background: #1e293b;
+            padding: 1rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 1rem 0;
+            border: 1px solid #334155;
+        }
+        code {
+            font-family: 'SF Mono', Monaco, monospace;
+            font-size: 0.9em;
+        }
+        :not(pre) > code {
+            background: #334155;
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            background: #1e293b;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        th, td {
+            padding: 0.75rem 1rem;
+            text-align: left;
+            border-bottom: 1px solid #334155;
+        }
+        th { background: #334155; color: #f8fafc; font-weight: 600; }
+        tr:last-child td { border-bottom: none; }
+        hr { border: none; border-top: 1px solid #334155; margin: 2rem 0; }
+        a { color: #3b82f6; }
+        strong { color: #f8fafc; }
+        .meta {
+            background: #1e293b;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            border-left: 4px solid #3b82f6;
+        }
+        .meta p { margin: 0.25rem 0; font-size: 0.9rem; color: #94a3b8; }
+        footer {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid #334155;
+            text-align: center;
+            color: #64748b;
+            font-size: 0.875rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../index.html" class="back-link">← Back to Portal</a>
+        <h1>Navigation Cleanup SOP</h1>
+
+<blockquote><strong>Role:</strong> Fulfillment Specialist</blockquote>
+<blockquote><strong>When:</strong> During client build (after content generated)</blockquote>
+<blockquote><strong>Time:</strong> 5-10 minutes</blockquote>
+<blockquote><strong>Last Updated:</strong> Feb 22, 2026</blockquote>
+
+<hr>
+
+<h2>Why This Matters</h2>
+
+<p>The Carlsbad snapshot includes:<br><ul><li>12 service pages</li><br><li>14 service area pages</li><br></ul><br>Most clients don't use all of them. Unused pages with placeholder or irrelevant content look unprofessional and hurt SEO.</p>
+
+<strong>Rule:</strong> Only show pages relevant to the client's actual services and areas.
+
+<hr>
+
+<h2>Process</h2>
+
+<h3>Step 1: Identify What Client Offers</h3>
+
+<p>From onboarding form, note:<br><ul><li>Actual services they provide</li><br><li>Actual areas they serve</li><br></ul><br><h3>Step 2: Compare to Generated Content</h3></p>
+
+<p>Check Custom Values:<br><ul><li><code>service_1</code> through <code>service_12</code></li><br><li><code>biz_area_1</code> through <code>biz_area_14</code></li><br></ul><br><strong>Mark which ones are:</strong><br><ul><li>✅ Real services/areas → Keep</li><br><li>❌ Filler/unused → Remove from nav</li><br></ul><br><h3>Step 3: Edit Navigation Menu</h3></p>
+
+<ol><li class="ordered">Go to Sites → [Website] → Edit</li>
+<li class="ordered">Click on the navigation menu (header)</li>
+<li class="ordered">Find the "Services" dropdown</li>
+<li class="ordered">Remove links to unused service pages</li>
+<li class="ordered">Find the "Areas" dropdown</li>
+<li class="ordered">Remove links to unused area pages</li>
+<li class="ordered">Save changes</li>
+</ol>
+<h3>Step 4: Consider Hiding Pages</h3>
+
+<strong>Option A: Just remove from nav (recommended)</strong>
+<ul><li>Page still exists</li>
+<li>Search engines may still index</li>
+<li>Easier to add back later</li>
+</ul>
+<strong>Option B: Unpublish page</strong>
+<ul><li>Go to Sites → Pages</li>
+<li>Click the page</li>
+<li>Toggle "Published" off</li>
+<li>Page returns 404</li>
+</ul>
+Use Option A unless the page has bad/placeholder content.
+
+<hr>
+
+<h2>Navigation Structure Guidelines</h2>
+
+<h3>Services Menu</h3>
+
+<strong>If client has 1-3 services:</strong>
+<ul><li>List them directly in main nav (no dropdown)</li>
+</ul>
+<strong>If client has 4-12 services:</strong>
+<ul><li>Use "Services" dropdown</li>
+<li>List all in dropdown</li>
+</ul>
+<strong>Example:</strong>
+<pre><code>Home | Services ▼ | Areas ▼ | About | Contact
+         └── Drain Cleaning
+         └── Water Heater Repair
+         └── Pipe Repair
+</code></pre>
+
+<h3>Areas Menu</h3>
+
+<strong>If client has 1-3 areas:</strong>
+<ul><li>List them directly OR skip areas dropdown entirely</li>
+</ul>
+<strong>If client has 4-14 areas:</strong>
+<ul><li>Use "Service Areas" dropdown</li>
+<li>List all in dropdown</li>
+</ul>
+<strong>Example:</strong>
+<pre><code>Home | Services ▼ | Service Areas ▼ | About | Contact
+                        └── San Diego
+                        └── La Jolla
+                        └── Carlsbad
+</code></pre>
+
+<hr>
+
+<h2>Common Scenarios</h2>
+
+<h3>Client only offers 4 services (of 12)</h3>
+
+<ol><li class="ordered">Check which 4 services are real</li>
+<li class="ordered">Remove other 8 from nav dropdown</li>
+<li class="ordered">Optionally unpublish the 8 unused pages</li>
+</ol>
+<h3>Client only serves 5 areas (of 14)</h3>
+
+<ol><li class="ordered">Check which 5 areas are real</li>
+<li class="ordered">Remove other 9 from nav dropdown</li>
+<li class="ordered">Optionally unpublish unused area pages</li>
+</ol>
+<h3>Client doesn't want area pages at all</h3>
+
+<ol><li class="ordered">Remove entire "Service Areas" dropdown from nav</li>
+<li class="ordered">Keep or unpublish area pages (your choice)</li>
+</ol>
+<h3>Client wants to add a service later</h3>
+
+<ol><li class="ordered">Add the page back to navigation</li>
+<li class="ordered">Regenerate content for that service using Selective Regen</li>
+<li class="ordered">QA the new page</li>
+</ol>
+<hr>
+
+<h2>Editing Navigation in GHL</h2>
+
+<h3>Method 1: Visual Editor</h3>
+
+<ol><li class="ordered">Sites → [Website] → Edit</li>
+<li class="ordered">Click the header/nav section</li>
+<li class="ordered">Click on the menu element</li>
+<li class="ordered">Edit menu items directly</li>
+<li class="ordered">Delete unwanted items</li>
+<li class="ordered">Save</li>
+</ol>
+<h3>Method 2: Site Settings</h3>
+
+<ol><li class="ordered">Sites → [Website] → Settings</li>
+<li class="ordered">Find Navigation/Menu settings</li>
+<li class="ordered">Edit there (if available)</li>
+</ol>
+<strong>Note:</strong> GHL's editor can be finicky. Sometimes you need to click precisely on the menu element.
+
+<hr>
+
+<h2>QA After Cleanup</h2>
+
+<p>After cleaning navigation:</p>
+
+<ul><li class="checkbox"><input type="checkbox" disabled> Click every nav link — all work</li>
+<li class="checkbox"><input type="checkbox" disabled> No broken links in nav</li>
+<li class="checkbox"><input type="checkbox" disabled> No placeholder pages visible in nav</li>
+<li class="checkbox"><input type="checkbox" disabled> Mobile nav works correctly</li>
+<li class="checkbox"><input type="checkbox" disabled> Dropdown menus function properly</li>
+</ul>
+<hr>
+
+<h2>Checklist</h2>
+
+<ul><li class="checkbox"><input type="checkbox" disabled> Reviewed client's actual services</li>
+<li class="checkbox"><input type="checkbox" disabled> Reviewed client's actual service areas</li>
+<li class="checkbox"><input type="checkbox" disabled> Removed unused services from nav</li>
+<li class="checkbox"><input type="checkbox" disabled> Removed unused areas from nav</li>
+<li class="checkbox"><input type="checkbox" disabled> Tested all nav links</li>
+<li class="checkbox"><input type="checkbox" disabled> Tested mobile nav</li>
+<li class="checkbox"><input type="checkbox" disabled> Saved changes</li>
+</ul>
+<hr>
+
+<h2>Related SOPs</h2>
+
+<ul><li><code>client-build.md</code> — Nav cleanup is Task 10</li>
+<li><code>qa-checklist.md</code> — Navigation verification</li>
+</ul>
+<hr>
+
+<em>Last updated: Feb 22, 2026</em>
+
+        <footer>
+            <p>&copy; 2026 Slate Systems LLC. Internal use only.</p>
+        </footer>
+    </div>
+</body>
+</html>

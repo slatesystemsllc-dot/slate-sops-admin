@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support Agent Specification - Slate Systems SOP</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0f172a;
+            color: #e2e8f0;
+            line-height: 1.7;
+            padding: 2rem;
+        }
+        .container { max-width: 900px; margin: 0 auto; }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #3b82f6;
+            text-decoration: none;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+        }
+        .back-link:hover { text-decoration: underline; }
+        h1 { font-size: 2rem; color: #f8fafc; margin-bottom: 0.5rem; border-bottom: 2px solid #3b82f6; padding-bottom: 0.5rem; }
+        h2 { font-size: 1.5rem; color: #f8fafc; margin: 2rem 0 1rem; padding-top: 1rem; border-top: 1px solid #334155; }
+        h3 { font-size: 1.2rem; color: #cbd5e1; margin: 1.5rem 0 0.75rem; }
+        p { margin-bottom: 1rem; }
+        ul, ol { margin: 1rem 0; padding-left: 2rem; }
+        li { margin-bottom: 0.5rem; }
+        li.nested { margin-left: 1.5rem; }
+        li.checkbox { list-style: none; margin-left: -1.5rem; }
+        li.checkbox input { margin-right: 0.5rem; }
+        blockquote {
+            background: #1e293b;
+            border-left: 4px solid #3b82f6;
+            padding: 1rem 1.5rem;
+            margin: 1rem 0;
+            border-radius: 0 8px 8px 0;
+            font-style: italic;
+        }
+        pre {
+            background: #1e293b;
+            padding: 1rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 1rem 0;
+            border: 1px solid #334155;
+        }
+        code {
+            font-family: 'SF Mono', Monaco, monospace;
+            font-size: 0.9em;
+        }
+        :not(pre) > code {
+            background: #334155;
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            background: #1e293b;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        th, td {
+            padding: 0.75rem 1rem;
+            text-align: left;
+            border-bottom: 1px solid #334155;
+        }
+        th { background: #334155; color: #f8fafc; font-weight: 600; }
+        tr:last-child td { border-bottom: none; }
+        hr { border: none; border-top: 1px solid #334155; margin: 2rem 0; }
+        a { color: #3b82f6; }
+        strong { color: #f8fafc; }
+        .meta {
+            background: #1e293b;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            border-left: 4px solid #3b82f6;
+        }
+        .meta p { margin: 0.25rem 0; font-size: 0.9rem; color: #94a3b8; }
+        footer {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid #334155;
+            text-align: center;
+            color: #64748b;
+            font-size: 0.875rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../index.html" class="back-link">← Back to Portal</a>
+        <h1>Support Agent Specification</h1>
+
+<blockquote><strong>Role:</strong> Support Agent</blockquote>
+<blockquote><strong>Type:</strong> AI Agent (GHL Conversations AI / n8n + OpenClaw)</blockquote>
+<blockquote><strong>Status:</strong> SPEC - Ready for Implementation</blockquote>
+
+<hr>
+
+<h2>Purpose</h2>
+
+<p>Handle routine post-launch client support questions automatically, freeing human time for complex issues. Acts as first-line support, escalating when necessary.</p>
+
+<hr>
+
+<h2>Trigger Channels</h2>
+
+<table><thead><tr><th>Channel</th><th>Trigger</th><th>Context</th></tr></thead><tbody><tr><td>SMS</td><td>Client texts support number</td><td>Tagged <code>currentclient</code></td></tr><tr><td>Email</td><td>Client emails support@</td><td>Forward to GHL</td></tr><tr><td>Chat Widget</td><td>Message from client dashboard</td><td>Via GHL inbox</td></tr></tbody></table>
+<hr>
+
+<h2>Response Scope</h2>
+
+<h3>Agent CAN Handle (Tier 1)</h3>
+
+<table><thead><tr><th>Category</th><th>Example Questions</th><th>Response Type</th></tr></thead><tbody><tr><td><strong>Website</strong></td><td>"How do I update my phone number?"</td><td>Guide to custom values</td></tr><tr><td>"Where can I see my website?"</td><td>Send website URL</td></tr><tr><td>"My website shows wrong hours"</td><td>Log for fix, confirm ETA</td></tr><tr><td><strong>App</strong></td><td>"How do I download the app?"</td><td>Send app store links</td></tr><tr><td>"I can't log in to my dashboard"</td><td>Password reset guide</td></tr><tr><td>"How do I see my leads?"</td><td>Navigation guide</td></tr><tr><td><strong>Reviews</strong></td><td>"How do I get more reviews?"</td><td>Explain review funnel</td></tr><tr><td>"Where do I send customers to review?"</td><td>Send GMB review link</td></tr><tr><td>"Can I respond to reviews?"</td><td>Guide to reputation tab</td></tr><tr><td><strong>Leads</strong></td><td>"I got a lead, what do I do?"</td><td>Standard lead process</td></tr><tr><td>"My lead notifications aren't working"</td><td>Check settings, escalate if broken</td></tr><tr><td>"How do I export my contacts?"</td><td>Navigation guide</td></tr><tr><td><strong>Chat Widget</strong></td><td>"How do I change the chat message?"</td><td>Guide to widget settings</td></tr><tr><td>"People can't find the chat"</td><td>Check placement, suggest test</td></tr><tr><td><strong>Billing</strong></td><td>"When is my next payment?"</td><td>Check and respond</td></tr><tr><td>"How do I update my card?"</td><td>Guide to billing portal</td></tr><tr><td><strong>General</strong></td><td>"What does [X feature] do?"</td><td>Feature explanation</td></tr><tr><td>"Thank you!"</td><td>Acknowledge</td></tr></tbody></table>
+<h3>Agent MUST Escalate (Tier 2)</h3>
+
+<table><thead><tr><th>Category</th><th>Example</th><th>Escalation Reason</th></tr></thead><tbody><tr><td><strong>Cancellation</strong></td><td>"I want to cancel"</td><td>Retention conversation needed</td></tr><tr><td><strong>Complaints</strong></td><td>"This isn't working" / "I'm frustrated"</td><td>Human empathy needed</td></tr><tr><td><strong>Technical Bugs</strong></td><td>"Website is broken"</td><td>Requires investigation</td></tr><tr><td><strong>Billing Issues</strong></td><td>"I was charged wrong"</td><td>Requires account check</td></tr><tr><td><strong>Custom Requests</strong></td><td>"Can you add a new page?"</td><td>Scope change</td></tr><tr><td><strong>A2P Issues</strong></td><td>"My texts aren't sending"</td><td>Complex troubleshooting</td></tr><tr><td><strong>GMB Issues</strong></td><td>"My GMB says wrong info"</td><td>Manual GMB work</td></tr><tr><td><strong>Unknown</strong></td><td>Anything unclear</td><td>Better safe than sorry</td></tr></tbody></table>
+<hr>
+
+<h2>Knowledge Base</h2>
+
+<h3>Static Knowledge (Embedded in Prompt)</h3>
+
+<pre><code>COMPANY INFO:
+<ul><li>Company: Slate Systems LLC</li>
+<li>Support hours: Mon-Fri 9am-5pm CST</li>
+<li>Response time: Within 4 hours during business hours</li>
+<li>Emergency after-hours: Only for complete website down</li>
+</ul>
+APP DOWNLOAD LINKS:
+<ul><li>iOS: https://apps.apple.com/app/highlevel/id1459516266</li>
+<li>Android: https://play.google.com/store/apps/details?id=com.gohighlevel</li>
+</ul>
+COMMON URLS:
+<ul><li>Client Dashboard: https://app.slatesystemsllc.com</li>
+<li>Billing Portal: [from custom value]</li>
+<li>Review Link: [from custom value: gmb_review_link]</li>
+<li>Website: [from custom value: company_website_link]</li>
+</ul>
+REVIEW FUNNEL:
+<ol><li class="ordered">Client gives review link to happy customer</li>
+<li class="ordered">Customer rates experience</li>
+<li class="ordered">5-star → redirects to Google</li>
+<li class="ordered">3-star or below → private feedback form</li>
+</ol></code></pre>
+
+<h3>Dynamic Knowledge (Retrieved Per-Client)</h3>
+
+<table><thead><tr><th>Data Point</th><th>Source</th><th>Use Case</th></tr></thead><tbody><tr><td>Client name</td><td>Contact record</td><td>Personalization</td></tr><tr><td>Website URL</td><td>Custom value <code>company_website_link</code></td><td>Website questions</td></tr><tr><td>Review link</td><td>Custom value <code>gmb_review_link</code></td><td>Review questions</td></tr><tr><td>Next billing date</td><td>Payment record</td><td>Billing questions</td></tr><tr><td>A2P status</td><td>Tag check</td><td>Texting questions</td></tr><tr><td>Service areas</td><td>Custom values <code>biz_area_*</code></td><td>Coverage questions</td></tr></tbody></table>
+<hr>
+
+<h2>Conversation Flow</h2>
+
+<h3>Opening</h3>
+
+<p>When client sends first message:</p>
+
+<ol><li class="ordered"><strong>Identify client</strong> - Match phone/email to contact</li>
+<li class="ordered"><strong>Check tags</strong> - Confirm <code>currentclient</code> tag exists</li>
+<li class="ordered"><strong>Load context</strong> - Retrieve client custom values</li>
+<li class="ordered"><strong>Respond</strong> - Acknowledge and address question</li>
+</ol>
+<h3>Standard Response Format</h3>
+
+<pre><code>Hey [First Name]!
+
+<p>[Direct answer to question]</p>
+
+<p>[If action needed: Clear next step]</p>
+
+<p>[If follow-up might help: Offer to help further]</p>
+
+<p>Let me know if you have any other questions!<br></code></pre></p>
+
+<h3>Escalation Format</h3>
+
+<pre><code>Hey [First Name]!
+
+<p>I want to make sure you get the best help on this one. I'm going to have [Dan/support team] reach out to you directly - you should hear back within [timeframe].</p>
+
+<p>In the meantime, is there anything else I can help with?<br></code></pre></p>
+
+<hr>
+
+<h2>Technical Implementation</h2>
+
+<h3>Option A: GHL Conversations AI (Simpler)</h3>
+
+<ol><li class="ordered"><strong>Setup:</strong> Settings → Conversations AI → Enable</li>
+<li class="ordered"><strong>Knowledge Base:</strong> Upload static knowledge doc</li>
+<li class="ordered"><strong>Escalation:</strong> Configure auto-tag when AI marks uncertain</li>
+<li class="ordered"><strong>Limitations:</strong></li>
+</ol>   - Less control over dynamic data access
+   - Can't call external APIs
+   - Good for MVP
+
+<h3>Option B: n8n + OpenClaw (More Powerful)</h3>
+
+<pre><code>Inbound SMS/Email
+       │
+       ▼
+┌─────────────────────┐
+│ GHL Workflow        │
+│ • Check currentclient│
+│ • Extract question  │
+│ • Send to n8n       │
+└─────────────────────┘
+       │
+       ▼
+┌─────────────────────┐
+│ n8n Workflow        │
+│ • Fetch client data │
+│ • Call OpenClaw     │
+│ • Parse response    │
+│ • Send reply        │
+└─────────────────────┘
+       │
+       ▼
+┌─────────────────────┐
+│ OpenClaw Agent      │
+│ • Classify intent   │
+│ • Generate response │
+│ • Flag escalations  │
+└─────────────────────┘
+</code></pre>
+
+<hr>
+
+<h2>Agent Prompt (OpenClaw)</h2>
+
+<pre><code>You are the support agent for Slate Systems, a web design and automation company for local service businesses.
+
+<p>ROLE:<br><ul><li>Answer client questions about their website, app, leads, and reviews</li><br><li>Be helpful, friendly, and efficient</li><br><li>Keep responses SHORT (2-4 sentences max)</li><br><li>Always personalize with client's first name</li><br></ul><br>CLIENT INFO:<br>First Name: {{first_name}}<br>Business Name: {{company_name}}<br>Website: {{company_website_link}}<br>Review Link: {{gmb_review_link}}<br>A2P Status: {{a2p_status}}</p>
+
+<p>RULES:<br><ol><li class="ordered">If you can answer confidently, do so directly</li><br><li class="ordered">If the question involves: cancellation, complaint, bug report, billing dispute, or custom request - respond with ESCALATE:TRUE</li><br><li class="ordered">Never make up information you don't have</li><br><li class="ordered">If unsure, ask a clarifying question or escalate</li><br><li class="ordered">Don't use emojis unless the client does first</li><br></ol><br>QUESTION:<br>{{message}}</p>
+
+<p>Respond with JSON:<br>{<br>  "response": "Your message to the client",<br>  "escalate": true/false,<br>  "escalate_reason": "reason if escalate is true",<br>  "category": "website|app|reviews|leads|billing|other"<br>}<br></code></pre></p>
+
+<hr>
+
+<h2>Escalation Workflow</h2>
+
+<p>When agent marks <code>escalate: true</code>:</p>
+
+<ol><li class="ordered"><strong>Tag contact:</strong> Add <code>support-escalation</code></li>
+<li class="ordered"><strong>Create task:</strong> In Slate Ops pipeline</li>
+<li class="ordered"><strong>Notify:</strong> SMS/Slack to support person</li>
+<li class="ordered"><strong>Log:</strong> Record conversation summary</li>
+</ol>
+<h3>Human Response Time SLAs</h3>
+
+<table><thead><tr><th>Priority</th><th>Criteria</th><th>Response Time</th></tr></thead><tbody><tr><td>Urgent</td><td>Website down, billing error</td><td>2 hours</td></tr><tr><td>High</td><td>Complaint, cancellation risk</td><td>4 hours</td></tr><tr><td>Normal</td><td>Feature questions, bugs</td><td>24 hours</td></tr><tr><td>Low</td><td>Nice-to-have requests</td><td>48 hours</td></tr></tbody></table>
+<hr>
+
+<h2>Success Metrics</h2>
+
+<table><thead><tr><th>Metric</th><th>Target</th><th>Tracking</th></tr></thead><tbody><tr><td>Auto-resolution rate</td><td>>60%</td><td>Conversations without escalation</td></tr><tr><td>Response time</td><td><5 min</td><td>Time to first response</td></tr><tr><td>Client satisfaction</td><td>>90%</td><td>Post-conversation survey (future)</td></tr><tr><td>Escalation accuracy</td><td>>95%</td><td>Human review of escalations</td></tr></tbody></table>
+<hr>
+
+<h2>MVP Implementation Plan</h2>
+
+<h3>Phase 1: GHL Conversations AI (Week 1)</h3>
+<ul><li>Enable Conversations AI in sub-accounts</li>
+<li>Upload basic knowledge base</li>
+<li>Test with internal messages</li>
+<li>Monitor for 1 week</li>
+</ul>
+<h3>Phase 2: Custom n8n Integration (Week 2-3)</h3>
+<ul><li>Build n8n workflow for support routing</li>
+<li>Connect to OpenClaw for smart responses</li>
+<li>Add dynamic client data retrieval</li>
+<li>Implement escalation workflow</li>
+</ul>
+<h3>Phase 3: Optimization (Ongoing)</h3>
+<ul><li>Review escalated conversations weekly</li>
+<li>Add common questions to knowledge base</li>
+<li>Fine-tune prompt based on failures</li>
+<li>Track resolution rates</li>
+</ul>
+<hr>
+
+<h2>Integration Points</h2>
+
+<table><thead><tr><th>System</th><th>Integration</th><th>Purpose</th></tr></thead><tbody><tr><td>GHL</td><td>Conversations AI / Workflow</td><td>Trigger + reply</td></tr><tr><td>n8n</td><td>Webhook receiver</td><td>Process messages</td></tr><tr><td>OpenClaw</td><td>API call</td><td>Generate responses</td></tr><tr><td>Baserow</td><td>Data lookup</td><td>Client history</td></tr><tr><td>Slack</td><td>Notification</td><td>Escalation alerts</td></tr></tbody></table>
+<hr>
+
+<h2>Files & References</h2>
+
+<ul><li>Client custom values: <code>slate-content-generator-v2.md</code></li>
+<li>GHL workflow patterns: <code>slate-operations.md</code></li>
+<li>OpenClaw setup: <code>~/mcp-servers/contexts/openclaw.md</code></li>
+</ul>
+<hr>
+
+<em>Last updated: Feb 16, 2026</em>
+<em>Version: 1.0 - Initial Specification</em>
+
+        <footer>
+            <p>&copy; 2026 Slate Systems LLC. Internal use only.</p>
+        </footer>
+    </div>
+</body>
+</html>

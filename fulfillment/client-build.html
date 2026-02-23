@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client Build SOP — Master Document - Slate Systems SOP</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0f172a;
+            color: #e2e8f0;
+            line-height: 1.7;
+            padding: 2rem;
+        }
+        .container { max-width: 900px; margin: 0 auto; }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #3b82f6;
+            text-decoration: none;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+        }
+        .back-link:hover { text-decoration: underline; }
+        h1 { font-size: 2rem; color: #f8fafc; margin-bottom: 0.5rem; border-bottom: 2px solid #3b82f6; padding-bottom: 0.5rem; }
+        h2 { font-size: 1.5rem; color: #f8fafc; margin: 2rem 0 1rem; padding-top: 1rem; border-top: 1px solid #334155; }
+        h3 { font-size: 1.2rem; color: #cbd5e1; margin: 1.5rem 0 0.75rem; }
+        p { margin-bottom: 1rem; }
+        ul, ol { margin: 1rem 0; padding-left: 2rem; }
+        li { margin-bottom: 0.5rem; }
+        li.nested { margin-left: 1.5rem; }
+        li.checkbox { list-style: none; margin-left: -1.5rem; }
+        li.checkbox input { margin-right: 0.5rem; }
+        blockquote {
+            background: #1e293b;
+            border-left: 4px solid #3b82f6;
+            padding: 1rem 1.5rem;
+            margin: 1rem 0;
+            border-radius: 0 8px 8px 0;
+            font-style: italic;
+        }
+        pre {
+            background: #1e293b;
+            padding: 1rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 1rem 0;
+            border: 1px solid #334155;
+        }
+        code {
+            font-family: 'SF Mono', Monaco, monospace;
+            font-size: 0.9em;
+        }
+        :not(pre) > code {
+            background: #334155;
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            background: #1e293b;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        th, td {
+            padding: 0.75rem 1rem;
+            text-align: left;
+            border-bottom: 1px solid #334155;
+        }
+        th { background: #334155; color: #f8fafc; font-weight: 600; }
+        tr:last-child td { border-bottom: none; }
+        hr { border: none; border-top: 1px solid #334155; margin: 2rem 0; }
+        a { color: #3b82f6; }
+        strong { color: #f8fafc; }
+        .meta {
+            background: #1e293b;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            border-left: 4px solid #3b82f6;
+        }
+        .meta p { margin: 0.25rem 0; font-size: 0.9rem; color: #94a3b8; }
+        footer {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid #334155;
+            text-align: center;
+            color: #64748b;
+            font-size: 0.875rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../index.html" class="back-link">← Back to Portal</a>
+        <h1>Client Build SOP — Master Document</h1>
+
+<blockquote><strong>Role:</strong> Fulfillment Specialist</blockquote>
+<blockquote><strong>Trigger:</strong> Deal won, payment taken</blockquote>
+<blockquote><strong>Goal:</strong> Client ready for launch call in <10 days</blockquote>
+<blockquote><strong>Last Updated:</strong> Feb 21, 2026</blockquote>
+<blockquote><strong>Version:</strong> 3.1 — Fixed sub-account (auto via SaaS), phone logic (EIN→local), custom values (294)</blockquote>
+
+<hr>
+
+<h2>Visual Timeline: Complete Client Journey</h2>
+
+<pre><code>DAY 0: DEAL WON + PAYMENT
+════════════════════════════════════════════════════════════════════════════════
+
+<p>  AUTOMATIC (SaaS Configurator)<br>  ┌─────────────────────────────────────────────────────────────────────────┐<br>  │ • Sub-account created from Carlsbad snapshot                            │<br>  │ • All 16 workflows active                                               │<br>  │ • 294 custom value structure ready                                      │<br>  │ • Reviews AI agent configured                                           │<br>  └────────────────────────────────────────────────┬────────────────────────┘<br>                                                   │<br>  AUTOMATIC (WF-OB1)                               │<br>  ┌────────────────────────────────────────────────▼────────────────────────┐<br>  │ • Welcome SMS sent with onboarding form link                            │<br>  │ • Tag: onboarding-form-pending                                          │<br>  │ • Pipeline: Client Delivery → Onboarding Form Sent                      │<br>  │ • WF-OB2 starts: reminders every 48h                                    │<br>  └────────────────────────────────────────────────┬────────────────────────┘<br>                                                   │<br>                                          [CLIENT FILLS FORM]<br>                                           (1-3 days wait)<br>                                                   │<br>DAY 1-3: FORM SUBMITTED                            │<br>════════════════════════════════════════════════════╪════════════════════════════</p>
+
+<p>  AUTOMATIC (WF-OB3)                               │<br>  ┌────────────────────────────────────────────────▼────────────────────────┐<br>  │ • GMB access request SMS (links to guides.slatesystems.io)              │<br>  │ • Tag: onboarding-form-pending removed                                  │<br>  │ • Pipeline: → Form Received                                             │<br>  │ • Internal notification                                                 │<br>  └────────────────────────────────────────────────┬────────────────────────┘<br>                                                   │<br>  AUTOMATIC (Content Generator v2)                 │<br>  ┌────────────────────────────────────────────────▼────────────────────────┐<br>  │ 1. n8n receives form data via webhook                                   │<br>  │ 2. Saves to Baserow (Table 946)                                         │<br>  │ 3. Scrapes existing website (if any)                                    │<br>  │ 4. Status: awaiting_notes                                               │<br>  └────────────────────────────────────────────────┬────────────────────────┘<br>                                                   │<br>  HUMAN TASKS (PARALLEL)                           │<br>  ┌────────────────────────────────────────────────▼────────────────────────┐<br>  │                                                                          │<br>  │  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐     │<br>  │  │ Task 1      │  │ Task 2      │  │ Task 3      │  │ Task 4      │     │<br>  │  │ Review form │  │ Purchase    │  │ Buy phone   │  │ Submit      │     │<br>  │  │ completeness│  │ domain      │  │ number      │  │ Build Notes │     │<br>  │  │ (2 min)     │  │ (5 min)     │  │ (2 min)     │  │ (2 min)     │     │<br>  │  └─────────────┘  └─────────────┘  └──────┬──────┘  └──────┬──────┘     │<br>  │                                           │                │             │<br>  │                    ┌──────────────────────┘                │             │<br>  │                    │ Phone type depends on EIN:            │             │<br>  │                    │ • Has EIN → LOCAL number              │             │<br>  │                    │ • No EIN → TOLL-FREE number           │             │<br>  │                    │                                       │             │<br>  └────────────────────┼───────────────────────────────────────┼─────────────┘<br>                       │                                       │<br>DAY 2-8: BUILDING      │                                       │<br>═══════════════════════╪═══════════════════════════════════════╪═════════════</p>
+
+<p>  SEQUENTIAL (depends on phone)                    │             │<br>  ┌────────────────────▼───────────────────────────┴─────────────┴───────────┐<br>  │                                                                          │<br>  │  ┌─────────────┐     ┌─────────────┐     ┌─────────────┐                │<br>  │  │ Task 5      │     │ Task 6      │     │ AI RUNS     │                │<br>  │  │ Submit A2P  │────►│ Configure   │     │ Content Gen │                │<br>  │  │ (10 min)    │     │ forwarding  │     │ (~294 vals) │                │<br>  │  │             │     │ (2 min)     │     │ (automatic) │                │<br>  │  └─────────────┘     └─────────────┘     └─────────────┘                │<br>  │                                                                          │<br>  └──────────────────────────────────────────────────────────────────────────┘</p>
+
+<p>  PARALLEL (while A2P processes, 5-7 days)<br>  ┌──────────────────────────────────────────────────────────────────────────┐<br>  │                                                                          │<br>  │  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐     │<br>  │  │ Task 7      │  │ Task 8      │  │ Task 9      │  │ Task 10     │     │<br>  │  │ Verify AI   │  │ Process     │  │ Chat widget │  │ Update nav  │     │<br>  │  │ content     │  │ logo        │  │ config      │  │ (5 min)     │     │<br>  │  │ (5 min)     │  │ (5-30 min)  │  │ (5 min)     │  │             │     │<br>  │  └─────────────┘  └─────────────┘  └─────────────┘  └─────────────┘     │<br>  │                                                                          │<br>  └──────────────────────────────────────────────────────────────────────────┘</p>
+
+<p>  AUTOMATIC (WF-OB4)<br>  ┌──────────────────────────────────────────────────────────────────────────┐<br>  │ • Day 1: SMS - Project started                                           │<br>  │ • Day 2: SMS - Timeline                                                  │<br>  │ • Day 4: SMS - Download app                                              │<br>  │ • Day 6: SMS - Almost done                                               │<br>  │ • Day 7: SMS - Launch call invite                                        │<br>  └──────────────────────────────────────────────────────────────────────────┘</p>
+
+<p>DAY 5-9: GMB CONNECTION (when client grants access)<br>════════════════════════════════════════════════════════════════════════════════</p>
+
+<p>  SEQUENTIAL (need GMB access first)<br>  ┌──────────────────────────────────────────────────────────────────────────┐<br>  │                                                                          │<br>  │  ┌─────────────┐     ┌─────────────┐     ┌─────────────┐                │<br>  │  │ Task 11     │     │ Task 12     │     │ Task 13     │                │<br>  │  │ Connect GMB │────►│ Update GMB  │────►│ Get GMB     │                │<br>  │  │ to GHL      │     │ phone + URL │     │ values      │                │<br>  │  │ (5 min)     │     │ (5 min)     │     │ (5 min)     │                │<br>  │  └─────────────┘     └─────────────┘     └─────────────┘                │<br>  │                                                                          │<br>  └──────────────────────────────────────────────┬───────────────────────────┘<br>                                                 │<br>  PARALLEL (after GMB connected)                 │<br>  ┌──────────────────────────────────────────────▼───────────────────────────┐<br>  │                                                                          │<br>  │  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐     │<br>  │  │ Task 14     │  │ Task 15     │  │ Task 16     │  │ Task 17     │     │<br>  │  │ Verify      │  │ Social      │  │ Review      │  │ Schema      │     │<br>  │  │ Reviews AI  │  │ Planner     │  │ Widget      │  │ markup      │     │<br>  │  │ (verify)    │  │ (3 min)     │  │ (3 min)     │  │ (2 min)     │     │<br>  │  └─────────────┘  └─────────────┘  └─────────────┘  └─────────────┘     │<br>  │                                                                          │<br>  └──────────────────────────────────────────────────────────────────────────┘</p>
+
+<p>DAY 8-9: QA REVIEW<br>════════════════════════════════════════════════════════════════════════════════</p>
+
+<p>  SEQUENTIAL<br>  ┌──────────────────────────────────────────────────────────────────────────┐<br>  │                                                                          │<br>  │  ┌─────────────┐     ┌─────────────┐     ┌─────────────┐                │<br>  │  │ Task 18     │     │ Task 19     │     │ Task 20     │                │<br>  │  │ Run QA      │────►│ Fix issues  │────►│ Move to     │                │<br>  │  │ checklist   │     │ (variable)  │     │ Launch      │                │<br>  │  │ (15 min)    │     │             │     │ Scheduled   │                │<br>  │  └─────────────┘     └─────────────┘     └─────────────┘                │<br>  │                                                                          │<br>  └──────────────────────────────────────────────────────────────────────────┘</p>
+
+<p>DAY 9-14: LAUNCH<br>════════════════════════════════════════════════════════════════════════════════</p>
+
+<p>  AUTOMATIC (WF-OB5)<br>  ┌──────────────────────────────────────────────────────────────────────────┐<br>  │ • Confirmation SMS/email                                                 │<br>  │ • 24-hour reminder                                                       │<br>  │ • 1-hour reminder                                                        │<br>  │ • 10-minute reminder with link                                           │<br>  └────────────────────────────────────────────────┬─────────────────────────┘<br>                                                   │<br>  HUMAN (Closer)                                   │<br>  ┌────────────────────────────────────────────────▼─────────────────────────┐<br>  │ Launch Call (30-45 min) — see closer/launch-call.md                      │<br>  │ • App setup, Website walkthrough, Review system demo                     │<br>  │ • Move to Active stage                                                   │<br>  └────────────────────────────────────────────────┬─────────────────────────┘<br>                                                   │<br>  AUTOMATIC (WF-OB6)                               │<br>  ┌────────────────────────────────────────────────▼─────────────────────────┐<br>  │ • Tag: currentclient                                                     │<br>  │ • Day 0: Tutorial video SMS + email                                      │<br>  │ • Day 1: Review system reminder                                          │<br>  │ • Day 3: Scam warning                                                    │<br>  │ • Day 8: Check-in                                                        │<br>  │ • Day 22: Testimonial ask                                                │<br>  └──────────────────────────────────────────────────────────────────────────┘<br></code></pre></p>
+
+<hr>
+
+<h2>Summary: Parallel vs Sequential</h2>
+
+<table><thead><tr><th>Phase</th><th>Parallel Tasks</th><th>Sequential/Blocking</th></tr></thead><tbody><tr><td><strong>Form Received</strong></td><td>Review form, Domain, Phone, Build Notes</td><td>None (all parallel)</td></tr><tr><td><strong>Building</strong></td><td>Verify AI, Logo, Chat widget, Nav</td><td>A2P → Forwarding (needs phone)</td></tr><tr><td><strong>GMB</strong></td><td>Reviews AI, Social Planner, Widget, Schema</td><td>Connect → Update → Values (need GMB)</td></tr><tr><td><strong>QA</strong></td><td>None</td><td>QA → Fix → Move (sequential)</td></tr></tbody></table>
+<hr>
+
+<h2>Data Flow</h2>
+
+<h3>Input: Onboarding Form → Baserow → AI</h3>
+
+<strong>Source of Truth:</strong> <code>slate-ops-field-migration.md</code> (58 fields)
+
+<p>Content Generator receives 23 fields via webhook, scrapes existing website, awaits Build Notes.</p>
+
+<h3>Output: 294 Custom Values in Client Sub-Account</h3>
+
+<strong>ID Mapping:</strong> <code>slate-carlsbad-custom-value-ids.json</code>
+
+<table><thead><tr><th>Category</th><th>AI-Populated</th><th>Human-Populated</th></tr></thead><tbody><tr><td>Core identity</td><td>~10</td><td>0</td></tr><tr><td>Colors</td><td>5</td><td>0</td></tr><tr><td>Services (12) + descriptions + images</td><td>~84</td><td>0</td></tr><tr><td>Areas (14) + page content</td><td>~56</td><td>0</td></tr><tr><td>Blog posts (6)</td><td>~18</td><td>0</td></tr><tr><td>FAQs (4)</td><td>~8</td><td>0</td></tr><tr><td>Gallery, stats, other</td><td>~100+</td><td>0</td></tr><tr><td>Phone numbers</td><td>0</td><td>3</td></tr><tr><td>Website/GMB links</td><td>0</td><td>5</td></tr><tr><td>Logo/main image</td><td>0</td><td>2</td></tr><tr><td><strong>TOTALS</strong></td><td><strong>~282</strong></td><td><strong>~12</strong></td></tr></tbody></table>
+<hr>
+
+<h2>Step-by-Step Tasks</h2>
+
+<h3>Day 0: Deal Won</h3>
+
+<strong>AUTOMATIC:</strong>
+<ul><li>SaaS Configurator creates sub-account from Carlsbad snapshot</li>
+<li>WF-OB1: Welcome SMS + onboarding form link</li>
+<li>WF-OB2: Reminder loop starts (48h intervals)</li>
+</ul>
+<strong>HUMAN:</strong> Nothing — wait for form
+
+<hr>
+
+<h3>Day 1-3: Form Submitted</h3>
+
+<strong>AUTOMATIC:</strong>
+<ul><li>Form data saved, WF-OB3 sends GMB request SMS</li>
+<li>Content Generator saves to Baserow, scrapes website</li>
+<li>Status: <code>awaiting_notes</code></li>
+</ul>
+<strong>HUMAN TASKS (all parallel):</strong>
+
+<p>#### Task 1: Review Form Completeness (2 min)<br>Check onboarding form for:<br><ul><li class="checkbox"><input type="checkbox" disabled> Required fields filled (name, business, services, areas, hours)</li><br><li class="checkbox"><input type="checkbox" disabled> Services make sense for niche</li><br><li class="checkbox"><input type="checkbox" disabled> Logo uploaded OR "needs logo" checked</li><br><li class="checkbox"><input type="checkbox" disabled> Contact info complete</li><br></ul><br><strong>If incomplete:</strong> SMS client for missing info</p>
+
+<p>#### Task 2: Purchase Domain (5 min)<br><ol><li class="ordered">Choose domain: <code>[businessname].com</code> (no LLC/Inc)</li><br><li class="ordered">Purchase from Namecheap or Cloudflare (~$10-15/year)</li><br><li class="ordered">In client sub-account: Settings → Domains → Add Domain</li><br><li class="ordered">Add DNS records in registrar</li><br><li class="ordered">Wait for SSL (5-30 min)</li><br></ol><br>#### Task 3: Buy Phone Number (2 min)</p>
+
+<strong>Check if client has EIN:</strong>
+
+<table><thead><tr><th>Client Has</th><th>Buy This</th><th>Registration Type</th></tr></thead><tbody><tr><td><strong>EIN provided</strong></td><td>LOCAL number (area code)</td><td>10DLC brand + campaign</td></tr><tr><td><strong>No EIN</strong> (sole proprietor)</td><td>TOLL-FREE number</td><td>Toll-free verification</td></tr></tbody></table>
+<ol><li class="ordered">Settings → Phone Numbers → Add Number</li>
+<li class="ordered">Filter appropriately (local or toll-free)</li>
+<li class="ordered">Purchase</li>
+</ol>
+#### Task 4: Submit Build Notes (2 min)
+Triggers Content Generator to run:
+<ol><li class="ordered">Go to Slate Ops → Build Notes form</li>
+<li class="ordered">Enter location_id</li>
+<li class="ordered">Add any corrections/notes</li>
+<li class="ordered">Submit → AI generates ~282 custom values</li>
+</ol>
+#### Task 5: Move Pipeline
+<ul><li>Pipeline: Client Delivery → A2P In Progress</li>
+<li>Tag: <code>a2p-pending</code></li>
+</ul>
+<hr>
+
+<h3>Day 2-8: Building</h3>
+
+<strong>AUTOMATIC:</strong>
+<ul><li>WF-OB4: Progress SMS sequence</li>
+<li>Content Generator runs (after Build Notes)</li>
+</ul>
+<strong>HUMAN TASKS:</strong>
+
+<p>#### Task 5: Submit A2P (10 min) — NEEDS PHONE FIRST<br>See <code>a2p-submission.md</code> for full SOP.</p>
+
+<strong>For LOCAL numbers:</strong> Full 10DLC registration (EIN must match exactly)
+<strong>For TOLL-FREE:</strong> Simpler verification
+
+<p>#### Task 6: Configure Phone Forwarding (2 min) — AFTER A2P SUBMITTED<br><ol><li class="ordered">Phone Numbers → [number] → Edit Configuration</li><br><li class="ordered">Forward Calls To: client's business phone (+1)</li><br><li class="ordered">Disable call connect</li><br><li class="ordered">Enable "Ring All Users"</li><br><li class="ordered">Save</li><br></ol><br>#### Task 7: Verify AI Content (5 min) — PARALLEL<br><ol><li class="ordered">Go to client sub-account → Settings → Custom Values</li><br><li class="ordered">Spot-check: company_name, services, areas, colors</li><br><li class="ordered">Preview website</li><br><li class="ordered">If issues: use Selective Regen form (<code>https://slate-tools.slatesystemsllc.workers.dev</code>)</li><br></ol><br>#### Task 8: Process Logo (5-30 min) — PARALLEL<br><ul><li><strong>Uploaded:</strong> Download, resize 400x400, upload to media</li><br><li><strong>Needs creation:</strong> Use Canva, match industry + colors</li><br></ul><br>#### Task 9: Configure Chat Widget (5 min) — PARALLEL<br><ol><li class="ordered">Sites → Chat Widget</li><br><li class="ordered">Colors: use color_secondary for all</li><br><li class="ordered">Welcome: "Shoot me any questions..."</li><br><li class="ordered">Avatar: client logo</li><br><li class="ordered">CTA: "Send :)"</li><br><li class="ordered">Disable agency branding</li><br><li class="ordered">Enable on website: Sites → [Website] → Settings → Chat Widget</li><br></ol><br>#### Task 10: Update Navigation (5 min) — PARALLEL<br><ol><li class="ordered">Sites → [Website] → Edit</li><br><li class="ordered">Remove services client doesn't offer</li><br><li class="ordered">Remove areas client doesn't serve</li><br></ol><br><hr></p>
+
+<h3>Day 5-9: GMB Connection</h3>
+
+<strong>When client grants access to <code>hello@slatesystems.io</code>:</strong>
+
+<p>#### Task 11: Connect GMB to GHL (5 min) — FIRST<br><ol><li class="ordered">Settings → Integrations → Sign in with Google</li><br><li class="ordered">Use <code>hello@slatesystems.io</code></li><br><li class="ordered">Select client's business</li><br><li class="ordered">Connect</li><br></ol><br>#### Task 12: Update GMB (5 min) — AFTER CONNECT<br><ol><li class="ordered">Business Profile Manager → Edit Profile</li><br><li class="ordered">Phone: [purchased number]</li><br><li class="ordered">Website: <code>https://www.[domain].com</code> (with www!)</li><br><li class="ordered">Save</li><br></ol><br>#### Task 13: Get GMB Values (5 min) — AFTER UPDATE<br><table><thead><tr><th>Custom Value</th><th>How to Get</th></tr></thead><tbody><tr><td><code>company_gmb_link</code></td><td>Copy GMB profile URL</td></tr><tr><td><code>company_google_review_link</code></td><td>GMB → Ask for reviews</td></tr><tr><td><code>google_map_embed_code</code></td><td>Google Maps → Share → Embed (450x400)</td></tr></tbody></table><br>#### Task 14: Verify Reviews AI (3 min) — PARALLEL<br><ul><li>Reputation → Settings → Reviews AI</li><br><li>Confirm "Positive Review Responder" exists (from snapshot)</li><br><li>See <code>slate-review-ai-agent.md</code></li><br></ul><br>#### Task 15: Configure Social Planner (3 min) — PARALLEL (REQUIRED)<br><ol><li class="ordered">Marketing → Social Planner</li><br><li class="ordered">Content → New Post → Post Reviews</li><br><li class="ordered">Source: Google, Stars: 5 only, Account: client GMB</li><br><li class="ordered">Frequency: Weekly</li><br><li class="ordered"><strong>Skip only if:</strong> zero existing reviews</li><br></ol><br>#### Task 16: Create Review Widget (3 min) — PARALLEL<br><ol><li class="ordered">Reputation → Widgets → Create New</li><br><li class="ordered">Layout: Carousel, 5 Star Only</li><br><li class="ordered">Colors: all transparent/white</li><br><li class="ordered">Save → Make LIVE</li><br><li class="ordered">Embed in homepage Reviews section</li><br></ol><br>#### Task 17: Add Schema Markup (2 min) — PARALLEL<br>Sites → [Website] → Settings → Head Tracking Code:<br><pre><code><script type="application/ld+json">{<br>  "@context": "https://schema.org",<br>  "@type": "HomeAndConstructionBusiness",<br>  "name": "{{custom_values.company_name}}",<br>  "url": "{{custom_values.company_website_link}}",<br>  "telephone": "{{custom_values.company_twilio_phone}}"<br>}</script><br></code></pre></p>
+
+<hr>
+
+<h3>Day 8-9: QA Review</h3>
+
+<p>#### Task 18: Run QA Checklist (15 min)<br>See <code>qa-checklist.md</code></p>
+
+<p>Key checks:<br><ul><li class="checkbox"><input type="checkbox" disabled> Website on custom domain + SSL</li><br><li class="checkbox"><input type="checkbox" disabled> Phone forwarding works</li><br><li class="checkbox"><input type="checkbox" disabled> Chat widget works</li><br><li class="checkbox"><input type="checkbox" disabled> Review funnel works</li><br><li class="checkbox"><input type="checkbox" disabled> Review Widget displays</li><br><li class="checkbox"><input type="checkbox" disabled> Schema in head</li><br><li class="checkbox"><input type="checkbox" disabled> Social Planner configured</li><br><li class="checkbox"><input type="checkbox" disabled> No placeholder text</li><br><li class="checkbox"><input type="checkbox" disabled> Navigation clean</li><br><li class="checkbox"><input type="checkbox" disabled> Mobile responsive</li><br></ul><br>#### Task 19: Fix Issues<br>Document and fix each issue, re-verify.</p>
+
+<p>#### Task 20: Move to Launch<br><ul><li>Pipeline: → Launch Scheduled</li><br><li>WF-OB4 sends launch call invite automatically</li><br></ul><br><hr></p>
+
+<h3>Day 9-14: Launch Call</h3>
+
+<strong>Closer handles</strong> — see <code>closer/launch-call.md</code>
+
+<p>After launch:<br><ul><li>Pipeline: → Active</li><br><li>WF-OB6 handles post-launch sequence</li><br><li>Tag: <code>currentclient</code> added automatically</li><br></ul><br><hr></p>
+
+<h2>Troubleshooting</h2>
+
+<h3>A2P Rejected</h3>
+<ol><li class="ordered">Check rejection reason (usually EIN name/address mismatch)</li>
+<li class="ordered">Resubmit with exact EIN info</li>
+<li class="ordered">If stuck: GHL ticket → Book with Gabby</li>
+<li class="ordered">Push back billing if needed</li>
+</ol>
+<h3>Client Won't Grant GMB</h3>
+<ol><li class="ordered">Resend guides.slatesystems.io link</li>
+<li class="ordered">Offer screenshare call</li>
+<li class="ordered">If no GMB: guide through creation + verification</li>
+<li class="ordered">If claimed by someone else: recovery process (7+ days)</li>
+</ol>
+<h3>Content Needs Correction</h3>
+Use Selective Regeneration:
+<ol><li class="ordered"><code>https://slate-tools.slatesystemsllc.workers.dev</code></li>
+<li class="ordered">Enter location_id</li>
+<li class="ordered">Select fields to fix</li>
+<li class="ordered">Add feedback notes</li>
+<li class="ordered">Regenerate</li>
+</ol>
+<hr>
+
+<h2>Reference</h2>
+
+<h3>Key IDs</h3>
+<table><thead><tr><th>Resource</th><th>ID/URL</th></tr></thead><tbody><tr><td>Carlsbad snapshot</td><td><code>eGWfd8H3OfMWqLENVKzW</code></td></tr><tr><td>Slate Ops</td><td><code>6O1zDv28ygiXk2U0ztpD</code></td></tr><tr><td>Content Gen n8n</td><td><code>dGQwIMyZImbYwucC</code></td></tr><tr><td>Build Notes n8n</td><td><code>4BaNEGdjuP5EsLUy</code></td></tr><tr><td>Selective Regen n8n</td><td><code>jDGPTsr1OOLjsfxR</code></td></tr><tr><td>Baserow Content Table</td><td><code>946</code></td></tr><tr><td>Agency Google</td><td><code>hello@slatesystems.io</code></td></tr></tbody></table>
+<h3>Documentation</h3>
+<table><thead><tr><th>Doc</th><th>Purpose</th></tr></thead><tbody><tr><td><code>slate-content-generator-v2.md</code></td><td>AI workflow, 294 values, image matching</td></tr><tr><td><code>slate-carlsbad-custom-value-ids.json</code></td><td>All 294 value→ID mappings</td></tr><tr><td><code>slate-ops-field-migration.md</code></td><td>58 form fields</td></tr><tr><td><code>slate-review-ai-agent.md</code></td><td>Reviews AI config</td></tr><tr><td><code>kai-sops/toll-free-config.md</code></td><td>EIN vs no-EIN phone logic</td></tr></tbody></table>
+<hr>
+
+<em>Last updated: Feb 21, 2026</em>
+<em>Version: 3.1 — Fixed: Sub-account auto via SaaS, EIN→local/no-EIN→toll-free, 294 custom values, removed obsolete webhook registration</em>
+
+        <footer>
+            <p>&copy; 2026 Slate Systems LLC. Internal use only.</p>
+        </footer>
+    </div>
+</body>
+</html>

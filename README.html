@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slate Systems SOPs - Slate Systems SOP</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0f172a;
+            color: #e2e8f0;
+            line-height: 1.7;
+            padding: 2rem;
+        }
+        .container { max-width: 900px; margin: 0 auto; }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #3b82f6;
+            text-decoration: none;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+        }
+        .back-link:hover { text-decoration: underline; }
+        h1 { font-size: 2rem; color: #f8fafc; margin-bottom: 0.5rem; border-bottom: 2px solid #3b82f6; padding-bottom: 0.5rem; }
+        h2 { font-size: 1.5rem; color: #f8fafc; margin: 2rem 0 1rem; padding-top: 1rem; border-top: 1px solid #334155; }
+        h3 { font-size: 1.2rem; color: #cbd5e1; margin: 1.5rem 0 0.75rem; }
+        p { margin-bottom: 1rem; }
+        ul, ol { margin: 1rem 0; padding-left: 2rem; }
+        li { margin-bottom: 0.5rem; }
+        li.nested { margin-left: 1.5rem; }
+        li.checkbox { list-style: none; margin-left: -1.5rem; }
+        li.checkbox input { margin-right: 0.5rem; }
+        blockquote {
+            background: #1e293b;
+            border-left: 4px solid #3b82f6;
+            padding: 1rem 1.5rem;
+            margin: 1rem 0;
+            border-radius: 0 8px 8px 0;
+            font-style: italic;
+        }
+        pre {
+            background: #1e293b;
+            padding: 1rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 1rem 0;
+            border: 1px solid #334155;
+        }
+        code {
+            font-family: 'SF Mono', Monaco, monospace;
+            font-size: 0.9em;
+        }
+        :not(pre) > code {
+            background: #334155;
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            background: #1e293b;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        th, td {
+            padding: 0.75rem 1rem;
+            text-align: left;
+            border-bottom: 1px solid #334155;
+        }
+        th { background: #334155; color: #f8fafc; font-weight: 600; }
+        tr:last-child td { border-bottom: none; }
+        hr { border: none; border-top: 1px solid #334155; margin: 2rem 0; }
+        a { color: #3b82f6; }
+        strong { color: #f8fafc; }
+        .meta {
+            background: #1e293b;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            border-left: 4px solid #3b82f6;
+        }
+        .meta p { margin: 0.25rem 0; font-size: 0.9rem; color: #94a3b8; }
+        footer {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid #334155;
+            text-align: center;
+            color: #64748b;
+            font-size: 0.875rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../index.html" class="back-link">← Back to Portal</a>
+        <h1>Slate Systems SOPs</h1>
+
+<blockquote>Role-based SOPs. Documented for employees, absorbed by founders until hire.</blockquote>
+
+<h2>Roles</h2>
+
+<strong>Full definitions:</strong> <code>roles.md</code>
+
+<table><thead><tr><th>Role</th><th>Type</th><th>Absorb Until</th><th>Summary</th></tr></thead><tbody><tr><td>Founder</td><td>Human</td><td>Never</td><td>Strategy, hiring, finances, final escalation</td></tr><tr><td>Closer</td><td>Human</td><td>$25K MRR</td><td>Demos, launch calls, close deals, save cancellations</td></tr><tr><td>Fulfillment Specialist</td><td>Human</td><td>$10K MRR</td><td>Build, A2P, GMB, QA, custom values</td></tr><tr><td>Content Generator</td><td>Agent</td><td>N/A</td><td>Generate website content from form data</td></tr><tr><td>Support Agent</td><td>Agent</td><td>$25K MRR (human backup)</td><td>Answer client questions, escalate complex</td></tr><tr><td>Sales Assistant</td><td>Agent</td><td>$25K MRR (human backup)</td><td>Qualify leads, answer questions, send calendar</td></tr></tbody></table>
+<h2>SOP Index</h2>
+
+<h3>Closer Role</h3>
+<table><thead><tr><th>SOP</th><th>File</th><th>Status</th></tr></thead><tbody><tr><td>Launch Call Checklist</td><td><code>closer/launch-call.md</code></td><td>DONE</td></tr><tr><td>Post-Launch Video</td><td><code>closer/post-launch-video.md</code></td><td>DONE</td></tr><tr><td>Demo Call Framework</td><td><code>closer/demo-call.md</code></td><td>TODO</td></tr></tbody></table>
+<h3>Fulfillment Specialist Role</h3>
+<table><thead><tr><th>SOP</th><th>File</th><th>Status</th></tr></thead><tbody><tr><td><strong>Client Build (MASTER)</strong></td><td><code>fulfillment/client-build.md</code></td><td>DONE</td></tr><tr><td><strong>Launch Checklist</strong></td><td><code>fulfillment/launch-checklist.md</code></td><td>DONE</td></tr><tr><td>QA Checklist</td><td><code>fulfillment/qa-checklist.md</code></td><td>DONE</td></tr><tr><td>A2P Submission</td><td><code>fulfillment/a2p-submission.md</code></td><td>DONE</td></tr><tr><td><strong>Selective Regeneration</strong></td><td><code>fulfillment/selective-regeneration.md</code></td><td>DONE</td></tr><tr><td>Toll-Free Setup</td><td><code>fulfillment/toll-free-setup.md</code></td><td>Covered in client-build.md</td></tr><tr><td>GMB Setup</td><td><code>fulfillment/gmb-setup.md</code></td><td>DONE</td></tr></tbody></table>
+<h3>Agent Specs</h3>
+<table><thead><tr><th>Agent</th><th>File</th><th>Status</th></tr></thead><tbody><tr><td>Content Generator</td><td><code>agents/content-generator.md</code></td><td>DONE</td></tr><tr><td>Support Agent</td><td><code>agents/support-agent.md</code></td><td>DONE</td></tr><tr><td>Sales Assistant</td><td><code>agents/sales-assistant.md</code></td><td>TODO</td></tr></tbody></table>
+<h3>Founder Only</h3>
+<table><thead><tr><th>SOP</th><th>File</th><th>Status</th></tr></thead><tbody><tr><td>Hiring Process</td><td><code>founder/hiring.md</code></td><td>TODO</td></tr><tr><td>Pricing/Billing</td><td><code>founder/billing.md</code></td><td>TODO</td></tr></tbody></table>
+<h2>Master Glossary</h2>
+
+<strong>See <code>glossary.md</code></strong> for complete terminology, systems, and quick reference.
+
+<hr>
+
+<h2>References</h2>
+<ul><li>Content Generator v2 (current): <code>~/mcp-servers/contexts/slate-content-generator-v2.md</code></li>
+<li>GHL workflow details: <code>~/mcp-servers/contexts/slate-operations.md</code></li>
+<li>Architecture: <code>~/mcp-servers/contexts/slate-architecture.md</code></li>
+<li>Kai's original SOPs (legacy): <code>~/mcp-servers/contexts/kai-sops/</code></li>
+</ul>
+<em>Created Feb 6, 2026 | Updated Feb 16, 2026</em>
+
+        <footer>
+            <p>&copy; 2026 Slate Systems LLC. Internal use only.</p>
+        </footer>
+    </div>
+</body>
+</html>

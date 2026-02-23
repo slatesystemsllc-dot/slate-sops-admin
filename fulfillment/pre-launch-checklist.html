@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pre-Launch Checklist (Complete) - Slate Systems SOP</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0f172a;
+            color: #e2e8f0;
+            line-height: 1.7;
+            padding: 2rem;
+        }
+        .container { max-width: 900px; margin: 0 auto; }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #3b82f6;
+            text-decoration: none;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+        }
+        .back-link:hover { text-decoration: underline; }
+        h1 { font-size: 2rem; color: #f8fafc; margin-bottom: 0.5rem; border-bottom: 2px solid #3b82f6; padding-bottom: 0.5rem; }
+        h2 { font-size: 1.5rem; color: #f8fafc; margin: 2rem 0 1rem; padding-top: 1rem; border-top: 1px solid #334155; }
+        h3 { font-size: 1.2rem; color: #cbd5e1; margin: 1.5rem 0 0.75rem; }
+        p { margin-bottom: 1rem; }
+        ul, ol { margin: 1rem 0; padding-left: 2rem; }
+        li { margin-bottom: 0.5rem; }
+        li.nested { margin-left: 1.5rem; }
+        li.checkbox { list-style: none; margin-left: -1.5rem; }
+        li.checkbox input { margin-right: 0.5rem; }
+        blockquote {
+            background: #1e293b;
+            border-left: 4px solid #3b82f6;
+            padding: 1rem 1.5rem;
+            margin: 1rem 0;
+            border-radius: 0 8px 8px 0;
+            font-style: italic;
+        }
+        pre {
+            background: #1e293b;
+            padding: 1rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 1rem 0;
+            border: 1px solid #334155;
+        }
+        code {
+            font-family: 'SF Mono', Monaco, monospace;
+            font-size: 0.9em;
+        }
+        :not(pre) > code {
+            background: #334155;
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            background: #1e293b;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        th, td {
+            padding: 0.75rem 1rem;
+            text-align: left;
+            border-bottom: 1px solid #334155;
+        }
+        th { background: #334155; color: #f8fafc; font-weight: 600; }
+        tr:last-child td { border-bottom: none; }
+        hr { border: none; border-top: 1px solid #334155; margin: 2rem 0; }
+        a { color: #3b82f6; }
+        strong { color: #f8fafc; }
+        .meta {
+            background: #1e293b;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            border-left: 4px solid #3b82f6;
+        }
+        .meta p { margin: 0.25rem 0; font-size: 0.9rem; color: #94a3b8; }
+        footer {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid #334155;
+            text-align: center;
+            color: #64748b;
+            font-size: 0.875rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../index.html" class="back-link">← Back to Portal</a>
+        <h1>Pre-Launch Checklist (Complete)</h1>
+
+<blockquote><strong>Role:</strong> Fulfillment Specialist</blockquote>
+<blockquote><strong>When:</strong> Before moving opportunity to "Launch Scheduled"</blockquote>
+<blockquote><strong>Time:</strong> 20-30 minutes per client</blockquote>
+<blockquote><strong>Last Updated:</strong> Feb 22, 2026</blockquote>
+
+<hr>
+
+<h2>Overview</h2>
+
+<p>This checklist combines all QA checks needed before scheduling a client's launch call. Complete all sections before moving the opportunity.</p>
+
+<hr>
+
+<h2>1. SUB-ACCOUNT SETUP</h2>
+
+<ul><li class="checkbox"><input type="checkbox" disabled> Sub-account created from Carlsbad snapshot</li>
+<li class="checkbox"><input type="checkbox" disabled> Business name correct in sub-account settings</li>
+<li class="checkbox"><input type="checkbox" disabled> Reselling disabled in Reselling tab</li>
+<li class="checkbox"><input type="checkbox" disabled> Webhook URL registered in Baserow (for future regenerations)</li>
+<li class="checkbox"><input type="checkbox" disabled> All 16 Carlsbad workflows are active</li>
+<li class="checkbox"><input type="checkbox" disabled> No error indicators in workflow editor</li>
+</ul>
+<hr>
+
+<h2>2. PHONE & SMS</h2>
+
+<h3>Toll-Free Number</h3>
+<ul><li class="checkbox"><input type="checkbox" disabled> Number purchased</li>
+<li class="checkbox"><input type="checkbox" disabled> Phone forwarding configured to client's business phone</li>
+<li class="checkbox"><input type="checkbox" disabled> Test call: rings client's phone</li>
+</ul>
+<h3>A2P Verification</h3>
+<ul><li class="checkbox"><input type="checkbox" disabled> A2P verification submitted</li>
+<li class="checkbox"><input type="checkbox" disabled> A2P status: _____________ (pending/approved/rejected)</li>
+</ul>
+<blockquote><strong>Note:</strong> If A2P pending > 7 days, note in pipeline and escalate. If approved, ready to send automated texts. If pending, client can still receive calls but auto-texts won't send until approved.</blockquote>
+
+<h3>Missed Call Text-Back</h3>
+<ul><li class="checkbox"><input type="checkbox" disabled> Workflow active</li>
+<li class="checkbox"><input type="checkbox" disabled> Test: call toll-free, don't answer, verify text received</li>
+</ul>
+<hr>
+
+<h2>3. CONTENT GENERATION</h2>
+
+<h3>Custom Values - AI Generated (Verify populated)</h3>
+<ul><li class="checkbox"><input type="checkbox" disabled> <code>company_name</code> — No LLC/Inc</li>
+<li class="checkbox"><input type="checkbox" disabled> <code>broad_service_name</code> — General niche term</li>
+<li class="checkbox"><input type="checkbox" disabled> <code>service_1</code> through <code>service_12</code> — Match client's actual services</li>
+<li class="checkbox"><input type="checkbox" disabled> <code>biz_area_1</code> through <code>biz_area_14</code> — Match client's coverage</li>
+<li class="checkbox"><input type="checkbox" disabled> <code>color_primary</code> — Looks good on site</li>
+<li class="checkbox"><input type="checkbox" disabled> <code>color_secondary</code> — Complements primary</li>
+<li class="checkbox"><input type="checkbox" disabled> <code>about_us</code> text — Professional, accurate</li>
+</ul>
+<h3>Custom Values - Human Entered (Must fill manually)</h3>
+<ul><li class="checkbox"><input type="checkbox" disabled> <code>company_phone__aesthetic_</code> — (XXX) XXX-XXXX format</li>
+<li class="checkbox"><input type="checkbox" disabled> <code>company_phone__functional_</code> — +1XXXXXXXXXX format</li>
+<li class="checkbox"><input type="checkbox" disabled> <code>company_twilio_phone</code> — Same as functional</li>
+<li class="checkbox"><input type="checkbox" disabled> <code>company_website_link</code> — www.[domain].com</li>
+<li class="checkbox"><input type="checkbox" disabled> <code>website_terms_page_link</code> — /terms</li>
+</ul>
+<h3>Content Quality</h3>
+<ul><li class="checkbox"><input type="checkbox" disabled> No placeholder text visible ("Lorem ipsum", "[SERVICE]", "{{")</li>
+<li class="checkbox"><input type="checkbox" disabled> Content regenerated if issues found (use Selective Regen)</li>
+</ul>
+<hr>
+
+<h2>4. GMB (GOOGLE BUSINESS PROFILE)</h2>
+
+<h3>If Client Has GMB</h3>
+<ul><li class="checkbox"><input type="checkbox" disabled> Client granted GMB access</li>
+<li class="checkbox"><input type="checkbox" disabled> GMB connected in GHL Settings → Integrations</li>
+<li class="checkbox"><input type="checkbox" disabled> GMB phone updated to toll-free</li>
+<li class="checkbox"><input type="checkbox" disabled> GMB website updated to new domain (with www.)</li>
+<li class="checkbox"><input type="checkbox" disabled> <code>company_gmb_link</code> — Full profile URL</li>
+<li class="checkbox"><input type="checkbox" disabled> <code>gmb_review_link</code> — g.page/r/... format</li>
+<li class="checkbox"><input type="checkbox" disabled> <code>google_map_embed</code> — iframe code (width=450, height=400)</li>
+</ul>
+<h3>If Client Has No GMB</h3>
+<ul><li class="checkbox"><input type="checkbox" disabled> Leave GMB values blank</li>
+<li class="checkbox"><input type="checkbox" disabled> Note for launch call: "No GMB - client needs to set up"</li>
+</ul>
+<hr>
+
+<h2>5. WEBSITE QA</h2>
+
+<h3>Domain & SSL</h3>
+<ul><li class="checkbox"><input type="checkbox" disabled> Domain connected (not GHL subdomain)</li>
+<li class="checkbox"><input type="checkbox" disabled> SSL certificate active (padlock shows)</li>
+<li class="checkbox"><input type="checkbox" disabled> Site loads on <code>https://www.[domain].com</code></li>
+</ul>
+<h3>Homepage</h3>
+<ul><li class="checkbox"><input type="checkbox" disabled> Logo displays correctly</li>
+<li class="checkbox"><input type="checkbox" disabled> Company name correct</li>
+<li class="checkbox"><input type="checkbox" disabled> Phone number correct (toll-free)</li>
+<li class="checkbox"><input type="checkbox" disabled> Colors match brand / look professional</li>
+<li class="checkbox"><input type="checkbox" disabled> Hero background: black + Half Fade (white text readable)</li>
+<li class="checkbox"><input type="checkbox" disabled> Quote form works (test submission)</li>
+<li class="checkbox"><input type="checkbox" disabled> Chat widget appears and works</li>
+<li class="checkbox"><input type="checkbox" disabled> Review Widget displays (carousel with 5-star reviews)</li>
+<li class="checkbox"><input type="checkbox" disabled> Reviews section: black + Half Fade (if has bg image)</li>
+<li class="checkbox"><input type="checkbox" disabled> Quote CTA section: black + Half Fade (if has bg image)</li>
+</ul>
+<h3>Navigation</h3>
+<ul><li class="checkbox"><input type="checkbox" disabled> All menu items work</li>
+<li class="checkbox"><input type="checkbox" disabled> No broken links</li>
+<li class="checkbox"><input type="checkbox" disabled> Services listed match client's actual services</li>
+<li class="checkbox"><input type="checkbox" disabled> Unused service pages removed from nav</li>
+<li class="checkbox"><input type="checkbox" disabled> Unused area pages removed from nav</li>
+</ul>
+<h3>Service Pages</h3>
+<ul><li class="checkbox"><input type="checkbox" disabled> Each service page has content</li>
+<li class="checkbox"><input type="checkbox" disabled> Service images load (3 per service)</li>
+<li class="checkbox"><input type="checkbox" disabled> Hero background: black + Half Fade</li>
+<li class="checkbox"><input type="checkbox" disabled> No placeholder text</li>
+</ul>
+<h3>Service Area Pages</h3>
+<ul><li class="checkbox"><input type="checkbox" disabled> Areas match client's coverage</li>
+<li class="checkbox"><input type="checkbox" disabled> Hero background: black + Half Fade</li>
+<li class="checkbox"><input type="checkbox" disabled> No placeholder text</li>
+</ul>
+<h3>Blog Posts</h3>
+<ul><li class="checkbox"><input type="checkbox" disabled> At least 6 blog posts exist</li>
+<li class="checkbox"><input type="checkbox" disabled> Content is relevant to business niche</li>
+<li class="checkbox"><input type="checkbox" disabled> No placeholder text</li>
+</ul>
+<h3>Footer</h3>
+<ul><li class="checkbox"><input type="checkbox" disabled> Contact info correct</li>
+<li class="checkbox"><input type="checkbox" disabled> Social links work (if provided)</li>
+<li class="checkbox"><input type="checkbox" disabled> Privacy policy link works</li>
+<li class="checkbox"><input type="checkbox" disabled> Terms of service link works</li>
+</ul>
+<h3>Mobile</h3>
+<ul><li class="checkbox"><input type="checkbox" disabled> Site loads on mobile</li>
+<li class="checkbox"><input type="checkbox" disabled> Navigation works</li>
+<li class="checkbox"><input type="checkbox" disabled> Forms usable</li>
+<li class="checkbox"><input type="checkbox" disabled> Chat widget accessible</li>
+<li class="checkbox"><input type="checkbox" disabled> No horizontal scrolling issues</li>
+</ul>
+<h3>Images</h3>
+<ul><li class="checkbox"><input type="checkbox" disabled> Hero image loads (HTTPS, not HTTP)</li>
+<li class="checkbox"><input type="checkbox" disabled> Service page images load</li>
+<li class="checkbox"><input type="checkbox" disabled> Area page images load</li>
+<li class="checkbox"><input type="checkbox" disabled> Gallery images load</li>
+<li class="checkbox"><input type="checkbox" disabled> About section image loads</li>
+<li class="checkbox"><input type="checkbox" disabled> No broken image placeholders</li>
+</ul>
+<h3>Schema Markup</h3>
+<ul><li class="checkbox"><input type="checkbox" disabled> View page source → search for "application/ld+json"</li>
+<li class="checkbox"><input type="checkbox" disabled> Schema includes company name, phone, address</li>
+</ul>
+<hr>
+
+<h2>6. AUTOMATIONS & INTEGRATIONS</h2>
+
+<h3>Review System</h3>
+<ul><li class="checkbox"><input type="checkbox" disabled> Review funnel accessible</li>
+<li class="checkbox"><input type="checkbox" disabled> Test: 5-star redirects to Google</li>
+<li class="checkbox"><input type="checkbox" disabled> Test: 3-star goes to private feedback</li>
+<li class="checkbox"><input type="checkbox" disabled> Marketing form in app works (Marketing → Forms)</li>
+</ul>
+<h3>Chat Widget</h3>
+<ul><li class="checkbox"><input type="checkbox" disabled> Widget appears on all pages</li>
+<li class="checkbox"><input type="checkbox" disabled> Colors match brand (color_secondary)</li>
+<li class="checkbox"><input type="checkbox" disabled> Welcome message set</li>
+<li class="checkbox"><input type="checkbox" disabled> Client logo as avatar</li>
+<li class="checkbox"><input type="checkbox" disabled> Test message → appears in GHL inbox</li>
+<li class="checkbox"><input type="checkbox" disabled> Auto-reply sends</li>
+</ul>
+<h3>Quote Form</h3>
+<ul><li class="checkbox"><input type="checkbox" disabled> Form submits successfully</li>
+<li class="checkbox"><input type="checkbox" disabled> Lead appears in GHL</li>
+<li class="checkbox"><input type="checkbox" disabled> Notification workflow triggers</li>
+</ul>
+<h3>Reviews AI</h3>
+<ul><li class="checkbox"><input type="checkbox" disabled> Reviews AI agent exists (Reputation → Settings → Reviews AI)</li>
+<li class="checkbox"><input type="checkbox" disabled> Agent configured for 4-5 star reviews</li>
+<li class="checkbox"><input type="checkbox" disabled> GMB connected as source</li>
+<li class="checkbox"><input type="checkbox" disabled> Wait time: 5 minutes</li>
+</ul>
+<h3>Social Planner (if client has existing reviews)</h3>
+<ul><li class="checkbox"><input type="checkbox" disabled> Social Planner configured (Marketing → Social Planner)</li>
+<li class="checkbox"><input type="checkbox" disabled> Source: Google reviews</li>
+<li class="checkbox"><input type="checkbox" disabled> Filter: 5-star only</li>
+<li class="checkbox"><input type="checkbox" disabled> Frequency: Weekly</li>
+</ul>
+<h3>Review Widget</h3>
+<ul><li class="checkbox"><input type="checkbox" disabled> Widget created (Reputation → Widgets)</li>
+<li class="checkbox"><input type="checkbox" disabled> Layout: Carousel</li>
+<li class="checkbox"><input type="checkbox" disabled> Filter: 5-star only</li>
+<li class="checkbox"><input type="checkbox" disabled> Widget embedded in homepage Reviews section</li>
+</ul>
+<hr>
+
+<h2>7. USER SETUP</h2>
+
+<ul><li class="checkbox"><input type="checkbox" disabled> Client user created in sub-account</li>
+<li class="checkbox"><input type="checkbox" disabled> Role: Admin</li>
+<li class="checkbox"><input type="checkbox" disabled> Email: [client's business email]</li>
+<li class="checkbox"><input type="checkbox" disabled> Phone number added</li>
+<li class="checkbox"><input type="checkbox" disabled> Password set (with special character for app login)</li>
+</ul>
+<hr>
+
+<h2>8. FINAL CHECKS</h2>
+
+<ul><li class="checkbox"><input type="checkbox" disabled> No "Stone Systems" or old branding anywhere</li>
+<li class="checkbox"><input type="checkbox" disabled> No test data in inbox/contacts (delete test submissions)</li>
+<li class="checkbox"><input type="checkbox" disabled> Client contact info in opportunity is correct</li>
+<li class="checkbox"><input type="checkbox" disabled> Launch call availability noted (check client timezone)</li>
+</ul>
+<hr>
+
+<h2>SIGN-OFF</h2>
+
+<table><thead><tr><th>Section</th><th>Status</th><th>Notes</th></tr></thead><tbody><tr><td>Sub-Account</td><td>[ ] Pass / [ ] Issues</td></tr><tr><td>Phone & SMS</td><td>[ ] Pass / [ ] Issues</td></tr><tr><td>Content</td><td>[ ] Pass / [ ] Issues</td></tr><tr><td>GMB</td><td>[ ] Pass / [ ] N/A</td></tr><tr><td>Website</td><td>[ ] Pass / [ ] Issues</td></tr><tr><td>Automations</td><td>[ ] Pass / [ ] Issues</td></tr><tr><td>User Setup</td><td>[ ] Pass / [ ] Issues</td></tr></tbody></table>
+<strong>QA Completed By:</strong> _______________
+<strong>Date:</strong> _______________
+<strong>Ready for Launch Call:</strong> [ ] Yes / [ ] No
+
+<hr>
+
+<h2>If Issues Found</h2>
+
+<h3>Content Needs Correction</h3>
+Use Selective Regeneration:
+<ol><li class="ordered">Go to <code>https://slate-tools.slatesystemsllc.workers.dev</code></li>
+<li class="ordered">Enter the client's <strong>Location ID</strong></li>
+<li class="ordered">Check the fields that need fixing</li>
+<li class="ordered">Add feedback in the notes field</li>
+<li class="ordered">Click Regenerate</li>
+<li class="ordered">Re-verify in Custom Values</li>
+</ol>
+<h3>Common Blockers</h3>
+
+<table><thead><tr><th>Issue</th><th>Resolution</th></tr></thead><tbody><tr><td>A2P not approved</td><td>Can launch, note SMS limitations, recheck in 48h</td></tr><tr><td>No GMB access</td><td>Launch without GMB features, follow up post-launch</td></tr><tr><td>Content needs fixes</td><td>Use Selective Regeneration before scheduling</td></tr><tr><td>Website not loading</td><td>Check domain DNS, SSL takes 24h</td></tr><tr><td>Images broken</td><td>Check HTTP vs HTTPS, re-run image uploader</td></tr></tbody></table>
+<hr>
+
+<h2>Ready to Schedule?</h2>
+
+<p>If all items checked:</p>
+
+<ol><li class="ordered">Move opportunity to <strong>"Launch Scheduled"</strong></li>
+<li class="ordered">WF-OB4 sends launch call invite automatically</li>
+<li class="ordered">Notify Closer that client is ready</li>
+</ol>
+<hr>
+
+<h2>Quick Links</h2>
+
+<table><thead><tr><th>Task</th><th>Location</th></tr></thead><tbody><tr><td>Custom Values</td><td>Sub-account → Settings → Custom Values</td></tr><tr><td>Website Preview</td><td>Sites → [Website] → Preview</td></tr><tr><td>Chat Widget</td><td>Sites → Chat Widget</td></tr><tr><td>Reputation</td><td>Settings → Reputation Management</td></tr><tr><td>Selective Regen</td><td><code>https://slate-tools.slatesystemsllc.workers.dev</code></td></tr></tbody></table>
+<hr>
+
+<em>Version 2.0 — Merged from qa-checklist.md and launch-checklist.md</em>
+<em>Last updated: Feb 22, 2026</em>
+
+        <footer>
+            <p>&copy; 2026 Slate Systems LLC. Internal use only.</p>
+        </footer>
+    </div>
+</body>
+</html>

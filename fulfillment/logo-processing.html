@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logo Processing SOP - Slate Systems SOP</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0f172a;
+            color: #e2e8f0;
+            line-height: 1.7;
+            padding: 2rem;
+        }
+        .container { max-width: 900px; margin: 0 auto; }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #3b82f6;
+            text-decoration: none;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+        }
+        .back-link:hover { text-decoration: underline; }
+        h1 { font-size: 2rem; color: #f8fafc; margin-bottom: 0.5rem; border-bottom: 2px solid #3b82f6; padding-bottom: 0.5rem; }
+        h2 { font-size: 1.5rem; color: #f8fafc; margin: 2rem 0 1rem; padding-top: 1rem; border-top: 1px solid #334155; }
+        h3 { font-size: 1.2rem; color: #cbd5e1; margin: 1.5rem 0 0.75rem; }
+        p { margin-bottom: 1rem; }
+        ul, ol { margin: 1rem 0; padding-left: 2rem; }
+        li { margin-bottom: 0.5rem; }
+        li.nested { margin-left: 1.5rem; }
+        li.checkbox { list-style: none; margin-left: -1.5rem; }
+        li.checkbox input { margin-right: 0.5rem; }
+        blockquote {
+            background: #1e293b;
+            border-left: 4px solid #3b82f6;
+            padding: 1rem 1.5rem;
+            margin: 1rem 0;
+            border-radius: 0 8px 8px 0;
+            font-style: italic;
+        }
+        pre {
+            background: #1e293b;
+            padding: 1rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 1rem 0;
+            border: 1px solid #334155;
+        }
+        code {
+            font-family: 'SF Mono', Monaco, monospace;
+            font-size: 0.9em;
+        }
+        :not(pre) > code {
+            background: #334155;
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            background: #1e293b;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        th, td {
+            padding: 0.75rem 1rem;
+            text-align: left;
+            border-bottom: 1px solid #334155;
+        }
+        th { background: #334155; color: #f8fafc; font-weight: 600; }
+        tr:last-child td { border-bottom: none; }
+        hr { border: none; border-top: 1px solid #334155; margin: 2rem 0; }
+        a { color: #3b82f6; }
+        strong { color: #f8fafc; }
+        .meta {
+            background: #1e293b;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            border-left: 4px solid #3b82f6;
+        }
+        .meta p { margin: 0.25rem 0; font-size: 0.9rem; color: #94a3b8; }
+        footer {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid #334155;
+            text-align: center;
+            color: #64748b;
+            font-size: 0.875rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../index.html" class="back-link">← Back to Portal</a>
+        <h1>Logo Processing SOP</h1>
+
+<blockquote><strong>Role:</strong> Fulfillment Specialist</blockquote>
+<blockquote><strong>When:</strong> During client build (after form received)</blockquote>
+<blockquote><strong>Time:</strong> 5-30 minutes depending on scenario</blockquote>
+<blockquote><strong>Last Updated:</strong> Feb 22, 2026</blockquote>
+
+<hr>
+
+<h2>Scenarios</h2>
+
+<table><thead><tr><th>Scenario</th><th>Action</th><th>Time</th></tr></thead><tbody><tr><td>Client uploaded logo</td><td>Download, resize, verify</td><td>5 min</td></tr><tr><td>Client checked "needs logo"</td><td>Create in Canva</td><td>20-30 min</td></tr><tr><td>Logo is low quality</td><td>Request better version or recreate</td><td>Variable</td></tr></tbody></table>
+<hr>
+
+<h2>Scenario 1: Client Uploaded Logo</h2>
+
+<h3>Step 1: Download Logo</h3>
+
+<ol><li class="ordered">Go to client's onboarding form response</li>
+<li class="ordered">Find logo upload field</li>
+<li class="ordered">Download the file</li>
+<li class="ordered">Check file format: PNG, JPG, SVG, or PDF acceptable</li>
+</ol>
+<h3>Step 2: Verify Quality</h3>
+
+<strong>Check:</strong>
+<ul><li class="checkbox"><input type="checkbox" disabled> Resolution: Minimum 400x400 pixels</li>
+<li class="checkbox"><input type="checkbox" disabled> Background: Transparent preferred (PNG/SVG)</li>
+<li class="checkbox"><input type="checkbox" disabled> Not blurry or pixelated</li>
+<li class="checkbox"><input type="checkbox" disabled> Colors look correct</li>
+</ul>
+<strong>If low quality:</strong>
+<ul><li>Request higher resolution from client</li>
+<li>Or recreate in Canva (see Scenario 2)</li>
+</ul>
+<h3>Step 3: Resize for Website</h3>
+
+<p>Website needs logo at <strong>400x400 pixels</strong> or similar square ratio.</p>
+
+<strong>Using Canva:</strong>
+<ol><li class="ordered">Create new design: Custom size 400x400</li>
+<li class="ordered">Upload client logo</li>
+<li class="ordered">Center and scale to fit</li>
+<li class="ordered">Download as PNG (transparent background)</li>
+</ol>
+<strong>Using Preview (Mac):</strong>
+<ol><li class="ordered">Open logo file</li>
+<li class="ordered">Tools → Adjust Size</li>
+<li class="ordered">Set to 400x400 (uncheck "Scale proportionally" if needed)</li>
+<li class="ordered">Save</li>
+</ol>
+<h3>Step 4: Upload to GHL Media Library</h3>
+
+<ol><li class="ordered">Go to client sub-account</li>
+<li class="ordered">Sites → Media Library</li>
+<li class="ordered">Upload resized logo</li>
+<li class="ordered">Copy the URL</li>
+<li class="ordered">Paste into Custom Values → <code>logo_url</code></li>
+</ol>
+<hr>
+
+<h2>Scenario 2: Create Logo in Canva</h2>
+
+<p>When client checked "needs logo" or uploaded something unusable.</p>
+
+<h3>Step 1: Gather Info</h3>
+
+<p>From onboarding form:<br><ul><li>Business name</li><br><li>Industry/niche</li><br><li>Any color preferences</li><br><li>Any style preferences</li><br></ul><br><h3>Step 2: Open Canva</h3></p>
+
+<ol><li class="ordered">Go to canva.com</li>
+<li class="ordered">Create new design → Logo (500x500 recommended)</li>
+</ol>
+<h3>Step 3: Find Template</h3>
+
+<ol><li class="ordered">Search templates by industry (e.g., "plumbing logo", "landscaping logo")</li>
+<li class="ordered">Pick 2-3 that match the vibe</li>
+<li class="ordered">Choose one that's clean and professional</li>
+</ol>
+<h3>Step 4: Customize</h3>
+
+<strong>Text:</strong>
+<ul><li>Replace with business name</li>
+<li>Keep it readable</li>
+<li>Don't use more than 2 fonts</li>
+</ul>
+<strong>Colors:</strong>
+<ul><li>Use <code>color_primary</code> from their custom values</li>
+<li>Or use industry-appropriate colors</li>
+<li>Keep it simple (2-3 colors max)</li>
+</ul>
+<strong>Icon:</strong>
+<ul><li>Choose relevant icon for their trade</li>
+<li>Don't overcomplicate</li>
+</ul>
+<h3>Step 5: Export</h3>
+
+<ol><li class="ordered">Click Share → Download</li>
+<li class="ordered">File type: PNG</li>
+<li class="ordered">Enable "Transparent background"</li>
+<li class="ordered">Download</li>
+</ol>
+<h3>Step 6: Upload to GHL</h3>
+
+<p>Same as Scenario 1, Step 4.</p>
+
+<hr>
+
+<h2>Logo Style Guidelines</h2>
+
+<h3>DO:</h3>
+<ul><li>Keep it simple and clean</li>
+<li>Make text readable at small sizes</li>
+<li>Use professional colors</li>
+<li>Include an icon related to their trade</li>
+<li>Ensure it works on white AND dark backgrounds</li>
+</ul>
+<h3>DON'T:</h3>
+<ul><li>Use more than 2 fonts</li>
+<li>Make it overly complex</li>
+<li>Use clip art that looks cheap</li>
+<li>Include taglines (too small to read)</li>
+<li>Use gradients that don't scale well</li>
+</ul>
+<hr>
+
+<h2>Industry Logo Patterns</h2>
+
+<table><thead><tr><th>Trade</th><th>Icon Ideas</th><th>Color Ideas</th></tr></thead><tbody><tr><td>Plumber</td><td>Wrench, pipe, water drop</td><td>Blue, navy, light blue</td></tr><tr><td>HVAC</td><td>Snowflake, flame, house</td><td>Blue, red-orange, gray</td></tr><tr><td>Electrician</td><td>Lightning bolt, outlet, bulb</td><td>Yellow, blue, orange</td></tr><tr><td>Landscaper</td><td>Leaf, tree, lawn mower</td><td>Green, brown, earth tones</td></tr><tr><td>Painter</td><td>Paint brush, roller, house</td><td>Varies (often blue/green)</td></tr><tr><td>Handyman</td><td>Tools, house, hammer</td><td>Navy, orange, gray</td></tr><tr><td>Cleaner</td><td>Sparkle, spray, broom</td><td>Blue, green, white</td></tr><tr><td>Roofer</td><td>House with roof, shingle</td><td>Brown, gray, blue</td></tr></tbody></table>
+<hr>
+
+<h2>Quality Checklist</h2>
+
+<p>Before uploading final logo:</p>
+
+<ul><li class="checkbox"><input type="checkbox" disabled> Resolution: 400x400 minimum</li>
+<li class="checkbox"><input type="checkbox" disabled> Transparent background (PNG)</li>
+<li class="checkbox"><input type="checkbox" disabled> Readable at small sizes (favicon test)</li>
+<li class="checkbox"><input type="checkbox" disabled> Looks good on white background</li>
+<li class="checkbox"><input type="checkbox" disabled> Looks good on dark background (if used in header)</li>
+<li class="checkbox"><input type="checkbox" disabled> Business name spelled correctly</li>
+<li class="checkbox"><input type="checkbox" disabled> Not pixelated or blurry</li>
+</ul>
+<hr>
+
+<h2>Storage</h2>
+
+<p>Save original + processed logos to:<br><ul><li>Client's folder in Google Drive (if using)</li><br><li>Or GHL Media Library only</li><br></ul><br><hr></p>
+
+<h2>Troubleshooting</h2>
+
+<h3>Logo looks bad on website</h3>
+
+<ol><li class="ordered">Check if header background is dark vs light</li>
+<li class="ordered">May need two versions (light and dark)</li>
+<li class="ordered">Adjust <code>logo_url</code> to appropriate version</li>
+</ol>
+<h3>Client doesn't like logo we created</h3>
+
+<ol><li class="ordered">Ask what specifically they don't like</li>
+<li class="ordered">Make 2-3 variations</li>
+<li class="ordered">Let them choose</li>
+<li class="ordered">If still unhappy: Ask them to provide their own</li>
+</ol>
+<h3>Logo file is PDF</h3>
+
+<ol><li class="ordered">Open PDF in Preview (Mac) or online converter</li>
+<li class="ordered">Export as PNG</li>
+<li class="ordered">Process as normal</li>
+</ol>
+<hr>
+
+<h2>Time Estimates</h2>
+
+<table><thead><tr><th>Task</th><th>Time</th></tr></thead><tbody><tr><td>Download + resize existing logo</td><td>5 min</td></tr><tr><td>Create simple Canva logo</td><td>15-20 min</td></tr><tr><td>Create custom Canva logo (complex)</td><td>30 min</td></tr><tr><td>Multiple revisions</td><td>+15 min each</td></tr></tbody></table>
+<hr>
+
+<h2>Related SOPs</h2>
+
+<ul><li><code>client-build.md</code> — Logo is Task 8</li>
+<li><code>qa-checklist.md</code> — Logo verification</li>
+</ul>
+<hr>
+
+<em>Last updated: Feb 22, 2026</em>
+
+        <footer>
+            <p>&copy; 2026 Slate Systems LLC. Internal use only.</p>
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slate Systems - Admin Portal</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: #0f172a;
+            color: #e2e8f0;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        header {
+            text-align: center;
+            padding: 3rem 0;
+            border-bottom: 1px solid #1e293b;
+            margin-bottom: 3rem;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #3b82f6;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            color: #94a3b8;
+            font-size: 1.1rem;
+        }
+
+        .portal-badge {
+            display: inline-block;
+            background: #3b82f6;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-top: 1rem;
+        }
+
+        .section {
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            color: #f8fafc;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .section-title::before {
+            content: '';
+            width: 4px;
+            height: 1.5rem;
+            background: #3b82f6;
+            border-radius: 2px;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .card {
+            background: #1e293b;
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: 1px solid #334155;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            border-color: #3b82f6;
+        }
+
+        .card a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .card-title {
+            font-size: 1.1rem;
+            color: #f8fafc;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .card-description {
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+
+        .card-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #334155;
+            font-size: 0.8rem;
+            color: #64748b;
+        }
+
+        .card-role {
+            background: #334155;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: #64748b;
+            font-size: 0.875rem;
+            border-top: 1px solid #1e293b;
+            margin-top: 3rem;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            header {
+                padding: 2rem 0;
+            }
+
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">Slate Systems</div>
+            <div class="subtitle">Standard Operating Procedures</div>
+            <span class="portal-badge">Admin Portal</span>
+        </header>
+
+        <main>
+            <section class="section">
+                <h2 class="section-title">Sales</h2>
+                <div class="card-grid">
+                    <div class="card">
+                        <a href="sales/sales-playbook.html">
+                            <div class="card-title">Sales Playbook</div>
+                            <div class="card-description">Complete sales script, objection handling, and closing sequences</div>
+                            <div class="card-meta">
+                                <span class="card-role">Closer</span>
+                                <span>v1.0</span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="card">
+                        <a href="sales/sales-sop.html">
+                            <div class="card-title">Sales SOP</div>
+                            <div class="card-description">Step-by-step sales call procedures</div>
+                            <div class="card-meta">
+                                <span class="card-role">Closer</span>
+                                <span>v1.0</span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="card">
+                        <a href="sales/show-rate-optimization.html">
+                            <div class="card-title">Show Rate Optimization</div>
+                            <div class="card-description">Maximize call show rates with proven tactics</div>
+                            <div class="card-meta">
+                                <span class="card-role">Closer / Setter</span>
+                                <span>v1.0</span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="card">
+                        <a href="sales/cancellation-saves.html">
+                            <div class="card-title">Cancellation Saves</div>
+                            <div class="card-description">Scripts and strategies for retention</div>
+                            <div class="card-meta">
+                                <span class="card-role">Closer / Founder</span>
+                                <span>v1.0</span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="card">
+                        <a href="sales/launch-call.html">
+                            <div class="card-title">Launch Call Checklist</div>
+                            <div class="card-description">30-45 min client onboarding call flow</div>
+                            <div class="card-meta">
+                                <span class="card-role">Closer</span>
+                                <span>v1.0</span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="card">
+                        <a href="sales/post-launch-video.html">
+                            <div class="card-title">Post-Launch Video</div>
+                            <div class="card-description">Recording personalized Loom walkthroughs</div>
+                            <div class="card-meta">
+                                <span class="card-role">Closer</span>
+                                <span>v1.0</span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="card">
+                        <a href="sales/testimonial-collection.html">
+                            <div class="card-title">Testimonial Collection</div>
+                            <div class="card-description">When and how to collect video testimonials</div>
+                            <div class="card-meta">
+                                <span class="card-role">Closer / Founder</span>
+                                <span>v1.0</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">Fulfillment</h2>
+                <div class="card-grid">
+                    <div class="card">
+                        <a href="fulfillment/client-build.html">
+                            <div class="card-title">Client Build Process</div>
+                            <div class="card-description">Complete sub-account setup and configuration</div>
+                            <div class="card-meta">
+                                <span class="card-role">Fulfillment</span>
+                                <span>v1.0</span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="card">
+                        <a href="fulfillment/pre-launch-checklist.html">
+                            <div class="card-title">Pre-Launch Checklist</div>
+                            <div class="card-description">Complete QA before scheduling launch call</div>
+                            <div class="card-meta">
+                                <span class="card-role">Fulfillment</span>
+                                <span>v2.0</span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="card">
+                        <a href="fulfillment/a2p-submission.html">
+                            <div class="card-title">A2P Submission</div>
+                            <div class="card-description">10DLC registration and troubleshooting</div>
+                            <div class="card-meta">
+                                <span class="card-role">Fulfillment</span>
+                                <span>v1.0</span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="card">
+                        <a href="fulfillment/gmb-setup.html">
+                            <div class="card-title">GMB Setup</div>
+                            <div class="card-description">Google Business Profile connection guide</div>
+                            <div class="card-meta">
+                                <span class="card-role">Fulfillment</span>
+                                <span>v1.0</span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="card">
+                        <a href="fulfillment/logo-processing.html">
+                            <div class="card-title">Logo Processing</div>
+                            <div class="card-description">Download, resize, and create logos in Canva</div>
+                            <div class="card-meta">
+                                <span class="card-role">Fulfillment</span>
+                                <span>v1.0</span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="card">
+                        <a href="fulfillment/nav-cleanup.html">
+                            <div class="card-title">Navigation Cleanup</div>
+                            <div class="card-description">Remove unused service/area pages</div>
+                            <div class="card-meta">
+                                <span class="card-role">Fulfillment</span>
+                                <span>v1.0</span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="card">
+                        <a href="fulfillment/selective-regeneration.html">
+                            <div class="card-title">Selective Regeneration</div>
+                            <div class="card-description">Fix specific content fields via regen tool</div>
+                            <div class="card-meta">
+                                <span class="card-role">Fulfillment</span>
+                                <span>v1.0</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">Support</h2>
+                <div class="card-grid">
+                    <div class="card">
+                        <a href="support/support-faq.html">
+                            <div class="card-title">Support FAQ</div>
+                            <div class="card-description">Common client questions and answers</div>
+                            <div class="card-meta">
+                                <span class="card-role">Support / VA</span>
+                                <span>v1.0</span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="card">
+                        <a href="support/escalation-rules.html">
+                            <div class="card-title">Escalation Rules</div>
+                            <div class="card-description">When to handle vs when to escalate</div>
+                            <div class="card-meta">
+                                <span class="card-role">Support / VA</span>
+                                <span>v1.0</span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="card">
+                        <a href="support/app-guide.html">
+                            <div class="card-title">App Guide</div>
+                            <div class="card-description">Lead Connector app setup and troubleshooting</div>
+                            <div class="card-meta">
+                                <span class="card-role">Support</span>
+                                <span>v1.0</span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="card">
+                        <a href="support/cc-decline-handling.html">
+                            <div class="card-title">CC Decline Handling</div>
+                            <div class="card-description">Credit card failure recovery process</div>
+                            <div class="card-meta">
+                                <span class="card-role">Support / Founder</span>
+                                <span>v1.0</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">Marketing</h2>
+                <div class="card-grid">
+                    <div class="card">
+                        <a href="marketing/cold-calling.html">
+                            <div class="card-title">Cold Calling</div>
+                            <div class="card-description">Julie Becker script and objection handling</div>
+                            <div class="card-meta">
+                                <span class="card-role">Sales / Setter</span>
+                                <span>v1.0</span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="card">
+                        <a href="marketing/cold-email-system.html">
+                            <div class="card-title">Cold Email System</div>
+                            <div class="card-description">Email infrastructure, sequences, and tracking</div>
+                            <div class="card-meta">
+                                <span class="card-role">Sales / Setter</span>
+                                <span>v1.0</span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="card">
+                        <a href="marketing/meta-ads.html">
+                            <div class="card-title">Meta Ads</div>
+                            <div class="card-description">Facebook/Instagram ad campaigns</div>
+                            <div class="card-meta">
+                                <span class="card-role">Marketing / Founder</span>
+                                <span>v1.0</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">Hiring</h2>
+                <div class="card-grid">
+                    <div class="card">
+                        <a href="hiring/va-hiring.html">
+                            <div class="card-title">VA Hiring</div>
+                            <div class="card-description">Virtual assistant recruitment and onboarding</div>
+                            <div class="card-meta">
+                                <span class="card-role">Founder</span>
+                                <span>v1.0</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">Technical</h2>
+                <div class="card-grid">
+                    <div class="card">
+                        <a href="agents/content-generator.html">
+                            <div class="card-title">Content Generator</div>
+                            <div class="card-description">AI content generation system documentation</div>
+                            <div class="card-meta">
+                                <span class="card-role">Technical</span>
+                                <span>v1.0</span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="card">
+                        <a href="agents/support-agent.html">
+                            <div class="card-title">Support Agent</div>
+                            <div class="card-description">AI support agent configuration</div>
+                            <div class="card-meta">
+                                <span class="card-role">Technical</span>
+                                <span>v1.0</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">Reference</h2>
+                <div class="card-grid">
+                    <div class="card">
+                        <a href="glossary.html">
+                            <div class="card-title">Glossary</div>
+                            <div class="card-description">Terms and definitions</div>
+                            <div class="card-meta">
+                                <span class="card-role">All</span>
+                                <span>v1.0</span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="card">
+                        <a href="roles.html">
+                            <div class="card-title">Roles & Responsibilities</div>
+                            <div class="card-description">Team structure and ownership</div>
+                            <div class="card-meta">
+                                <span class="card-role">All</span>
+                                <span>v1.0</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2026 Slate Systems LLC. Internal use only.</p>
+            <p style="margin-top: 0.5rem;">Last updated: February 22, 2026</p>
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selective Regeneration SOP - Slate Systems SOP</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0f172a;
+            color: #e2e8f0;
+            line-height: 1.7;
+            padding: 2rem;
+        }
+        .container { max-width: 900px; margin: 0 auto; }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #3b82f6;
+            text-decoration: none;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+        }
+        .back-link:hover { text-decoration: underline; }
+        h1 { font-size: 2rem; color: #f8fafc; margin-bottom: 0.5rem; border-bottom: 2px solid #3b82f6; padding-bottom: 0.5rem; }
+        h2 { font-size: 1.5rem; color: #f8fafc; margin: 2rem 0 1rem; padding-top: 1rem; border-top: 1px solid #334155; }
+        h3 { font-size: 1.2rem; color: #cbd5e1; margin: 1.5rem 0 0.75rem; }
+        p { margin-bottom: 1rem; }
+        ul, ol { margin: 1rem 0; padding-left: 2rem; }
+        li { margin-bottom: 0.5rem; }
+        li.nested { margin-left: 1.5rem; }
+        li.checkbox { list-style: none; margin-left: -1.5rem; }
+        li.checkbox input { margin-right: 0.5rem; }
+        blockquote {
+            background: #1e293b;
+            border-left: 4px solid #3b82f6;
+            padding: 1rem 1.5rem;
+            margin: 1rem 0;
+            border-radius: 0 8px 8px 0;
+            font-style: italic;
+        }
+        pre {
+            background: #1e293b;
+            padding: 1rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 1rem 0;
+            border: 1px solid #334155;
+        }
+        code {
+            font-family: 'SF Mono', Monaco, monospace;
+            font-size: 0.9em;
+        }
+        :not(pre) > code {
+            background: #334155;
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            background: #1e293b;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        th, td {
+            padding: 0.75rem 1rem;
+            text-align: left;
+            border-bottom: 1px solid #334155;
+        }
+        th { background: #334155; color: #f8fafc; font-weight: 600; }
+        tr:last-child td { border-bottom: none; }
+        hr { border: none; border-top: 1px solid #334155; margin: 2rem 0; }
+        a { color: #3b82f6; }
+        strong { color: #f8fafc; }
+        .meta {
+            background: #1e293b;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            border-left: 4px solid #3b82f6;
+        }
+        .meta p { margin: 0.25rem 0; font-size: 0.9rem; color: #94a3b8; }
+        footer {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid #334155;
+            text-align: center;
+            color: #64748b;
+            font-size: 0.875rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../index.html" class="back-link">← Back to Portal</a>
+        <h1>Selective Regeneration SOP</h1>
+
+<blockquote><strong>Role:</strong> Fulfillment Specialist</blockquote>
+<blockquote><strong>When:</strong> Content needs correction after initial AI generation</blockquote>
+<blockquote><strong>Time:</strong> 2-5 minutes per regeneration</blockquote>
+<blockquote><strong>Form URL:</strong> https://regen.slatesystems.io/</blockquote>
+
+<hr>
+
+<h2>When to Use</h2>
+
+<p>Use Selective Regeneration when:<br><ul><li>QA reveals placeholder text or poor quality content</li><br><li>Client requests specific changes to generated content</li><br><li>Services/areas need refinement or different wording</li><br><li>Blog posts need different tone or style</li><br><li>Stats or FAQs don't fit the business</li><br></ul><br><strong>Do NOT use for:</strong><br><ul><li>Initial content generation (use Build Notes Trigger)</li><br><li>Changing images (image selection is separate)</li><br><li>Updating business info (edit Custom Values directly)</li><br></ul><br><hr></p>
+
+<h2>Process</h2>
+
+<h3>Step 1: Open the Form</h3>
+
+<p>Go to the Selective Regeneration Form:<br><ul><li><strong>URL:</strong> https://regen.slatesystems.io/</li><br></ul><br><h3>Step 2: Enter Location ID</h3></p>
+
+<p>Find the client's Location ID:<br><ul><li><strong>Option A:</strong> Client sub-account → Settings → Business Info → Location ID</li><br><li><strong>Option B:</strong> Baserow table 946 → <code>location_id</code> column</li><br></ul><br>Paste into the "Location ID" field.</p>
+
+<h3>Step 3: Select Fields to Regenerate</h3>
+
+<p>Check ONLY the fields that need correction:</p>
+
+<table><thead><tr><th>Section</th><th>Fields</th></tr></thead><tbody><tr><td>Marketing & Hero</td><td>Broad Service Name, Sub Headline, Hero Description, About Us, Discount</td></tr><tr><td>Stats</td><td>Stat 1-4 Number, Stat 1-4 Label</td></tr><tr><td>FAQ Answers</td><td>FAQ 1-4</td></tr><tr><td>Services 1-6</td><td>Service Name + Description pairs</td></tr><tr><td>Services 7-12</td><td>Service Name + Description pairs</td></tr><tr><td>Blog Posts 1-3</td><td>Title, Description, Content per post</td></tr><tr><td>Blog Posts 4-6</td><td>Title, Description, Content per post</td></tr><tr><td>Service Areas</td><td>Area 1-14</td></tr></tbody></table>
+<strong>Important:</strong> Only select what needs fixing. Each regeneration costs API credits.
+
+<h3>Step 4: Add Feedback (Optional but Recommended)</h3>
+
+<p>Use the "Feedback / Direction" field to guide the AI:</p>
+
+<strong>Good examples:</strong>
+<ul><li>"Make the hero description more professional and emphasize quality"</li>
+<li>"Service descriptions should be shorter, max 15 words"</li>
+<li>"About us is too generic, mention 20 years experience"</li>
+<li>"FAQ answers should be more conversational"</li>
+<li>"Blog titles should be more SEO-friendly"</li>
+</ul>
+<strong>Bad examples:</strong>
+<ul><li>"Make it better" (too vague)</li>
+<li>"Fix it" (no direction)</li>
+</ul>
+<h3>Step 5: Submit</h3>
+
+<p>Click <strong>Regenerate</strong> and wait 15-30 seconds.</p>
+
+<strong>Success:</strong> Shows "X fields regenerated for location [ID]"
+<strong>Error:</strong> Shows error message - check location ID is correct
+
+<h3>Step 6: Verify</h3>
+
+<ol><li class="ordered">Go to client sub-account → Settings → Custom Values</li>
+<li class="ordered">Find the regenerated fields</li>
+<li class="ordered">Confirm content looks correct</li>
+<li class="ordered">Preview website to verify display</li>
+</ol>
+<hr>
+
+<h2>How It Works (Technical)</h2>
+
+<p>The Selective Regeneration system uses <strong>smart context</strong>:</p>
+
+<ol><li class="ordered"><strong>Fetches existing content</strong> from GHL Custom Values</li>
+<li class="ordered"><strong>Shows AI the current brand voice</strong> (other fields NOT being changed)</li>
+<li class="ordered"><strong>Excludes the field being changed</strong> (avoids bias/anchoring)</li>
+<li class="ordered"><strong>Applies your feedback</strong> as direction</li>
+<li class="ordered"><strong>Updates GHL directly</strong> via API</li>
+</ol>
+This means regenerated content stays consistent with existing content.
+
+<hr>
+
+<h2>Field Categories & Context</h2>
+
+<p>When you regenerate a field, the AI sees related fields for consistency:</p>
+
+<table><thead><tr><th>Regenerating</th><th>AI Also Sees</th></tr></thead><tbody><tr><td>Hero Description</td><td>Broad Service Name, Sub Headline, About Us</td></tr><tr><td>Any Service</td><td>3 other services (for naming style)</td></tr><tr><td>Any Service Description</td><td>3 other descriptions (for length/tone)</td></tr><tr><td>Any Area</td><td>3 other areas (for formatting)</td></tr><tr><td>Any Stat</td><td>All other stats (they work as a set)</td></tr><tr><td>Any FAQ</td><td>2 other FAQs (for tone matching)</td></tr><tr><td>Any Blog</td><td>1 complete blog post (for style reference)</td></tr></tbody></table>
+<hr>
+
+<h2>Examples</h2>
+
+<h3>Example 1: Hero Description Too Generic</h3>
+
+<strong>Problem:</strong> Hero says "Quality services for your home"
+<strong>Action:</strong>
+<ol><li class="ordered">Select: <code>hero_description</code></li>
+<li class="ordered">Notes: "Emphasize veteran-owned, Google Guaranteed, mention painting specifically"</li>
+<li class="ordered">Regenerate</li>
+</ol>
+<strong>Result:</strong> "Expert painting services delivered with military precision. Veteran-owned, Google Guaranteed, and committed to exceptional craftsmanship."
+
+<h3>Example 2: Services Need Refinement</h3>
+
+<strong>Problem:</strong> Services are too broad ("Home Repairs")
+<strong>Action:</strong>
+<ol><li class="ordered">Select: <code>service_1</code>, <code>service_2</code>, <code>service_3</code></li>
+<li class="ordered">Notes: "Be more specific to residential plumbing - water heaters, drain cleaning, pipe repair"</li>
+<li class="ordered">Regenerate</li>
+</ol>
+<h3>Example 3: Blog Post Wrong Tone</h3>
+
+<strong>Problem:</strong> Blog post sounds too formal/corporate
+<strong>Action:</strong>
+<ol><li class="ordered">Select: <code>blog_post_2_title</code>, <code>blog_post_2_description</code>, <code>blog_post_2_content</code></li>
+<li class="ordered">Notes: "More conversational, friendly tone. Like talking to a neighbor."</li>
+<li class="ordered">Regenerate</li>
+</ol>
+<hr>
+
+<h2>Troubleshooting</h2>
+
+<h3>"Error: Onboarding not found"</h3>
+<ul><li>Location ID is wrong or doesn't exist in Baserow</li>
+<li>Check Baserow table 946 for correct location_id</li>
+</ul>
+<h3>Regeneration takes too long (>60 seconds)</h3>
+<ul><li>OpenClaw server may be slow</li>
+<li>Try again in a few minutes</li>
+<li>If persistent, check n8n execution logs</li>
+</ul>
+<h3>Content didn't change</h3>
+<ul><li>Field may not have been checked</li>
+<li>GHL API may have failed - check n8n execution</li>
+<li>Try regenerating again</li>
+</ul>
+<h3>Content is worse than before</h3>
+<ul><li>Add more specific notes/direction</li>
+<li>Regenerate with clearer guidance</li>
+<li>Manual edit in GHL may be faster for small tweaks</li>
+</ul>
+<hr>
+
+<h2>Cost & Best Practices</h2>
+
+<strong>Each regeneration uses API credits (Claude via OpenRouter)</strong>
+
+<strong>Do:</strong>
+<ul><li>Regenerate only what's broken</li>
+<li>Use detailed notes to guide AI</li>
+<li>Batch related fields together (all services at once)</li>
+</ul>
+<strong>Don't:</strong>
+<ul><li>Regenerate everything "just to be safe"</li>
+<li>Regenerate without notes (wastes iterations)</li>
+<li>Use for tiny tweaks (faster to edit manually)</li>
+</ul>
+<hr>
+
+<h2>Related Documentation</h2>
+
+<ul><li><code>client-build.md</code> — Full client build process</li>
+<li><code>qa-checklist.md</code> — QA checklist (when to use selective regen)</li>
+<li><code>slate-content-generator-v2.md</code> — Technical workflow details</li>
+</ul>
+<hr>
+
+<em>Last updated: Feb 21, 2026</em>
+<em>Workflow ID: jDGPTsr1OOLjsfxR</em>
+
+        <footer>
+            <p>&copy; 2026 Slate Systems LLC. Internal use only.</p>
+        </footer>
+    </div>
+</body>
+</html>
