@@ -46,8 +46,19 @@
             padding: 1rem;
             border-radius: 8px;
             overflow-x: auto;
+            max-width: 100%;
             margin: 1rem 0;
             border: 1px solid #334155;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        @media (max-width: 768px) {
+            body { padding: 1rem; }
+            pre { font-size: 0.85em; padding: 0.75rem; }
+            table { font-size: 0.9em; display: block; overflow-x: auto; }
+            th, td { padding: 0.5rem; }
+            h1 { font-size: 1.5rem; }
+            h2 { font-size: 1.25rem; }
         }
         code {
             font-family: 'SF Mono', Monaco, monospace;
@@ -97,7 +108,7 @@
 <body>
     <div class="container">
         <a href="../index.html" class="back-link">← Back to Portal</a>
-        <h1>Show Rate Optimization SOP</h1>
+        <h1 id="show-rate-optimization-sop">Show Rate Optimization SOP</h1>
 
 <blockquote><strong>Role:</strong> Closer / Sales</blockquote>
 <blockquote><strong>Goal:</strong> Increase show rate from ~40% to 60%+</blockquote>
@@ -106,7 +117,7 @@
 
 <hr>
 
-<h2>Why This Matters</h2>
+<h2 id="why-this-matters">Why This Matters</h2>
 
 <p>More shows = more conversations = more closes.</p>
 
@@ -119,15 +130,15 @@ Before fixing anything else in sales, fix show rate.
 
 <hr>
 
-<h2>3 Fast Wins (Do These First)</h2>
+<h2 id="3-fast-wins-do-these-first">3 Fast Wins (Do These First)</h2>
 
-<h3>1. Tighten Booking Window</h3>
+<h3 id="1-tighten-booking-window">1. Tighten Booking Window</h3>
 
 <strong>Problem:</strong> Prospects who book a week out forget, lose interest, or get busy.
 
 <strong>Fix:</strong> Cap scheduling to 48-72 hours maximum.
 
-<p>In your calendar settings:<br><ul><li>Set "Days in advance" to 2-3 days max</li><br><li>Remove availability beyond 72 hours</li><br><li>The closer the booking to now, the higher the show</li><br></ul><br><h3>2. Call Every Appointment Immediately + Morning Of</h3></p>
+<p>In your calendar settings:<br><ul><li>Set "Days in advance" to 2-3 days max</li><br><li>Remove availability beyond 72 hours</li><br><li>The closer the booking to now, the higher the show</li><br></ul><br><h3 id="2-call-every-appointment-immediately-morning-of">2. Call Every Appointment Immediately + Morning Of</h3></p>
 
 <strong>When they book:</strong>
 <ol><li class="ordered">Call them within 5 minutes</li>
@@ -142,7 +153,7 @@ Before fixing anything else in sales, fix show rate.
 </ol>
 <strong>This single habit dramatically increases shows.</strong>
 
-<h3>3. Upgrade Your Thank You Page</h3>
+<h3 id="3-upgrade-your-thank-you-page">3. Upgrade Your Thank You Page</h3>
 
 <p>After they book, they land on your thank you page. Add:</p>
 
@@ -160,9 +171,9 @@ Before fixing anything else in sales, fix show rate.
 
 <hr>
 
-<h2>Expanded Show Rate Levers</h2>
+<h2 id="expanded-show-rate-levers">Expanded Show Rate Levers</h2>
 
-<h3>Lever 1: Expand Calendar Availability</h3>
+<h3 id="lever-1-expand-calendar-availability">Lever 1: Expand Calendar Availability</h3>
 
 <strong>Problem:</strong> Leads book inconvenient times because nothing else was available.
 
@@ -177,7 +188,7 @@ Before fixing anything else in sales, fix show rate.
 </ul>
 Match availability to your market.
 
-<h3>Lever 2: Multi-Touch Confirmation Sequence</h3>
+<h3 id="lever-2-multi-touch-confirmation-sequence">Lever 2: Multi-Touch Confirmation Sequence</h3>
 
 <strong>Call schedule:</strong>
 <ol><li class="ordered">Immediately after booking</li>
@@ -192,7 +203,7 @@ Match availability to your market.
 <li>24-hour reminder</li>
 <li>1-hour reminder with meeting link</li>
 </ul>
-<h3>Lever 3: Reframe the Call Value</h3>
+<h3 id="lever-3-reframe-the-call-value">Lever 3: Reframe the Call Value</h3>
 
 <strong>Don't say:</strong>
 <ul><li>"Demo"</li>
@@ -206,7 +217,7 @@ Match availability to your market.
 </ul>
 Give them a reason to show up beyond being sold.
 
-<h3>Lever 4: Speed to Lead</h3>
+<h3 id="lever-4-speed-to-lead">Lever 4: Speed to Lead</h3>
 
 <strong>If you have 10+ leads/day:</strong>
 <ul><li>Call leads within 30 seconds of form submission</li>
@@ -217,7 +228,7 @@ Give them a reason to show up beyond being sold.
 <ul><li>Slack/SMS alert on new lead</li>
 <li>Call immediately, every time</li>
 </ul>
-<h3>Lever 5: Double Booking Strategy</h3>
+<h3 id="lever-5-double-booking-strategy">Lever 5: Double Booking Strategy</h3>
 
 <strong>When you have excess leads:</strong>
 <ol><li class="ordered">Book 2 people in the same slot</li>
@@ -232,7 +243,7 @@ Give them a reason to show up beyond being sold.
 </ul>
 <hr>
 
-<h2>Platform: Google Meet > Zoom</h2>
+<h2 id="platform-google-meet-zoom">Platform: Google Meet > Zoom</h2>
 
 <ul><li>Contractors are more familiar with Google</li>
 <li>One less friction point</li>
@@ -241,7 +252,7 @@ Give them a reason to show up beyond being sold.
 </ul>
 <hr>
 
-<h2>Checklist: New Appointment Flow</h2>
+<h2 id="checklist-new-appointment-flow">Checklist: New Appointment Flow</h2>
 
 <p>When someone books:</p>
 
@@ -260,17 +271,17 @@ Day of:
 </ul>
 <hr>
 
-<h2>Show Rate Benchmarks</h2>
+<h2 id="show-rate-benchmarks">Show Rate Benchmarks</h2>
 
 <table><thead><tr><th>Rate</th><th>Assessment</th></tr></thead><tbody><tr><td><40%</td><td>Critical problem — fix immediately</td></tr><tr><td>40-50%</td><td>Below average — implement all levers</td></tr><tr><td>50-60%</td><td>Average for contractors</td></tr><tr><td>60-70%</td><td>Good — keep optimizing</td></tr><tr><td>70%+</td><td>Excellent — maintain current system</td></tr></tbody></table>
 <hr>
 
-<h2>Common Show Rate Killers</h2>
+<h2 id="common-show-rate-killers">Common Show Rate Killers</h2>
 
 <table><thead><tr><th>Problem</th><th>Fix</th></tr></thead><tbody><tr><td>Booking too far out</td><td>48-72 hour max window</td></tr><tr><td>No confirmation calls</td><td>Call same day + morning of</td></tr><tr><td>Generic thank you page</td><td>Add video + calendar button</td></tr><tr><td>No value framing</td><td>"Strategy session" not "demo"</td></tr><tr><td>Slow lead response</td><td>Call within 30 seconds</td></tr><tr><td>Limited calendar slots</td><td>Expand to 6-8+ per day</td></tr></tbody></table>
 <hr>
 
-<h2>Related SOPs</h2>
+<h2 id="related-sops">Related SOPs</h2>
 
 <ul><li><code>sales-sop.md</code> — Full sales process</li>
 <li><code>sales-playbook.md</code> — Scripts and objections</li>
@@ -281,7 +292,7 @@ Day of:
 <em>Last updated: Feb 22, 2026</em>
 
         <footer>
-            <p>&copy; 2026 Slate Systems LLC. Internal use only.</p>
+            <p>&copy; 2026 Slate Systems Inc. Internal use only.</p>
         </footer>
     </div>
 </body>

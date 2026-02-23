@@ -46,8 +46,19 @@
             padding: 1rem;
             border-radius: 8px;
             overflow-x: auto;
+            max-width: 100%;
             margin: 1rem 0;
             border: 1px solid #334155;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        @media (max-width: 768px) {
+            body { padding: 1rem; }
+            pre { font-size: 0.85em; padding: 0.75rem; }
+            table { font-size: 0.9em; display: block; overflow-x: auto; }
+            th, td { padding: 0.5rem; }
+            h1 { font-size: 1.5rem; }
+            h2 { font-size: 1.25rem; }
         }
         code {
             font-family: 'SF Mono', Monaco, monospace;
@@ -97,41 +108,75 @@
 <body>
     <div class="container">
         <a href="../index.html" class="back-link">← Back to Portal</a>
-        <h1>Slate Systems SOPs</h1>
+        <h1 id="slate-systems-sops">Slate Systems SOPs</h1>
 
 <blockquote>Role-based SOPs. Documented for employees, absorbed by founders until hire.</blockquote>
+<blockquote><strong>Last Updated:</strong> February 23, 2026</blockquote>
 
-<h2>Roles</h2>
+<hr>
+
+<h2 id="client-journey-end-to-end-flow">CLIENT JOURNEY - END TO END FLOW</h2>
+
+<pre><code>══════════════════════════════════════════════════════════════════════════════════
+                              LEAD ACQUISITION
+══════════════════════════════════════════════════════════════════════════════════
+
+<p>     [Meta Ad]                                           [Website]<br>         │                                                   │<br>         ▼                                                   ▼<br>┌─────────────────┐                               ┌─────────────────┐<br>│   Lead Form     │                               │   Contact Page  │<br>│   (FB Funnel)   │                               │   (slatesystems)│<br>└────────┬────────┘                               └────────┬────────┘<br>         │                                                  │<br>         │ 🤖 WF1: Create Opportunity                       │<br>         │ 🤖 WF1: Meta Lead Event                          │<br>         │ 🤖 WF1: Tag fb-lead                              │<br>         ▼                                                  │<br>┌─────────────────────────────────────────────────────────────┐<br>│                    SALES PIPELINE                            │<br>│                 Stage: NEW LEAD                              │<br>└─────────────────────────────────┬───────────────────────────┘<br>                                  │<br>          ┌───────────────────────┴───────────────────────┐<br>          │                                               │<br>          ▼                                               ▼<br>┌─────────────────┐                             ┌─────────────────┐<br>│   BOOKS DEMO    │                             │  DOESN'T BOOK   │<br>│   (Calendar)    │                             │                 │<br>└────────┬────────┘                             └────────┬────────┘<br>         │                                               │<br>         │ 🤖 WF0: Confirmations                         │ 🤖 Move to Non-Booker stage<br>         │ 🤖 WF7: FB Schedule Event                     │ 🤖 WF2: SMS Sequence<br>         │ 🤖 Pre-Call Research webhook                  │<br>         │                                               │ ⭐ PLANNED: AI SETTER CALL<br>         ▼                                               │    (10-15 min after form)<br>┌─────────────────┐                                      │<br>│  Stage: CALL    │◄─────────────────────────────────────┘<br>│     BOOKED      │        (if AI books them)<br>└────────┬────────┘<br>         │<br>         │ 🤖 SMS reminders (24hr, 2hr, 10min)<br>         │ 👤 Confirmation calls (morning of)<br>         │<br>          ┌───────────────────────┴───────────────────────┐<br>          │                                               │<br>          ▼                                               ▼<br>┌─────────────────┐                             ┌─────────────────┐<br>│    SHOWS UP     │                             │    NO-SHOW      │<br>└────────┬────────┘                             └────────┬────────┘<br>         │                                               │<br>         │ 👤 Demo Call (5-10 min)                       │ 🤖 WF4: SMS Sequence<br>         │                                               │ ⭐ PLANNED: AI RESCHEDULE CALL<br>         ▼                                               │<br>┌─────────────────┐                                      │<br>│  CALL COMPLETED │                                      │<br>└────────┬────────┘                                      │<br>         │                                               ▼<br> ┌───────┴───────┐                              ┌─────────────────┐<br> │               │                              │  Long Term      │<br> ▼               ▼                              │  Nurture        │<br>┌──────┐      ┌──────┐                          └─────────────────┘<br>│ WON  │      │ LOST │<br>└──┬───┘      └──────┘<br>   │<br>═══╪══════════════════════════════════════════════════════════════════════════════<br>   │                        CLIENT DELIVERY<br>═══╪══════════════════════════════════════════════════════════════════════════════<br>   │<br>   │ 🤖 WF6: Move to Project Management<br>   │ 🤖 WF-OB1: Send Onboarding Form + Tag<br>   ▼<br>┌─────────────────┐<br>│ ONBOARDING FORM │────► 🤖 WF-OB2: Form Reminders (48hr loop)<br>│     SENT        │<br>└────────┬────────┘<br>         │<br>         │ Client fills form<br>         ▼<br>┌─────────────────┐<br>│  FORM RECEIVED  │────► 🤖 WF-OB3: GMB Access Request<br>└────────┬────────┘<br>         │<br>         │ 👤 Start Website Build<br>         │ 👤 A2P Submission<br>         ▼<br>┌─────────────────┐<br>│ A2P IN PROGRESS │────► 🤖 WF-OB4: Build Check-ins (Days 1,2,4,6,7)<br>│   (Building)    │<br>└────────┬────────┘<br>         │<br>         │ 👤 Website Build (8-10 days)<br>         │ 👤 QA Review<br>         ▼<br>┌─────────────────┐<br>│LAUNCH SCHEDULED │────► 🤖 WF-OB5: Launch Call Reminders<br>└────────┬────────┘<br>         │<br>         │ 👤 Launch Call (30-45 min)<br>         ▼<br>┌─────────────────┐<br>│     ACTIVE      │────► 🤖 WF-OB6: Tutorial + Check-ins<br>│                 │      🤖 Tag: currentclient<br>└────────┬────────┘<br>         │<br>═══════════╪══════════════════════════════════════════════════════════════════════<br>           │                     ONGOING SUCCESS<br>═══════════╪══════════════════════════════════════════════════════════════════════<br>           │<br>           │ 🤖 Monthly check-ins (planned)<br>           │ 👤 Support tickets<br>           │ 👤 Cancellation saves<br>           ▼<br>      [HAPPY CLIENT]<br></code></pre></p>
+
+<h3 id="legend">Legend</h3>
+<table><thead><tr><th>Symbol</th><th>Meaning</th></tr></thead><tbody><tr><td>🤖</td><td>Automated (GHL Workflow)</td></tr><tr><td>👤</td><td>Human action required</td></tr><tr><td>⭐</td><td>Planned (AI Setter)</td></tr></tbody></table>
+<hr>
+
+<h2 id="roles">Roles</h2>
 
 <strong>Full definitions:</strong> <code>roles.md</code>
 
 <table><thead><tr><th>Role</th><th>Type</th><th>Absorb Until</th><th>Summary</th></tr></thead><tbody><tr><td>Founder</td><td>Human</td><td>Never</td><td>Strategy, hiring, finances, final escalation</td></tr><tr><td>Closer</td><td>Human</td><td>$25K MRR</td><td>Demos, launch calls, close deals, save cancellations</td></tr><tr><td>Fulfillment Specialist</td><td>Human</td><td>$10K MRR</td><td>Build, A2P, GMB, QA, custom values</td></tr><tr><td>Content Generator</td><td>Agent</td><td>N/A</td><td>Generate website content from form data</td></tr><tr><td>Support Agent</td><td>Agent</td><td>$25K MRR (human backup)</td><td>Answer client questions, escalate complex</td></tr><tr><td>Sales Assistant</td><td>Agent</td><td>$25K MRR (human backup)</td><td>Qualify leads, answer questions, send calendar</td></tr></tbody></table>
-<h2>SOP Index</h2>
-
-<h3>Closer Role</h3>
-<table><thead><tr><th>SOP</th><th>File</th><th>Status</th></tr></thead><tbody><tr><td>Launch Call Checklist</td><td><code>closer/launch-call.md</code></td><td>DONE</td></tr><tr><td>Post-Launch Video</td><td><code>closer/post-launch-video.md</code></td><td>DONE</td></tr><tr><td>Demo Call Framework</td><td><code>closer/demo-call.md</code></td><td>TODO</td></tr></tbody></table>
-<h3>Fulfillment Specialist Role</h3>
-<table><thead><tr><th>SOP</th><th>File</th><th>Status</th></tr></thead><tbody><tr><td><strong>Client Build (MASTER)</strong></td><td><code>fulfillment/client-build.md</code></td><td>DONE</td></tr><tr><td><strong>Launch Checklist</strong></td><td><code>fulfillment/launch-checklist.md</code></td><td>DONE</td></tr><tr><td>QA Checklist</td><td><code>fulfillment/qa-checklist.md</code></td><td>DONE</td></tr><tr><td>A2P Submission</td><td><code>fulfillment/a2p-submission.md</code></td><td>DONE</td></tr><tr><td><strong>Selective Regeneration</strong></td><td><code>fulfillment/selective-regeneration.md</code></td><td>DONE</td></tr><tr><td>Toll-Free Setup</td><td><code>fulfillment/toll-free-setup.md</code></td><td>Covered in client-build.md</td></tr><tr><td>GMB Setup</td><td><code>fulfillment/gmb-setup.md</code></td><td>DONE</td></tr></tbody></table>
-<h3>Agent Specs</h3>
-<table><thead><tr><th>Agent</th><th>File</th><th>Status</th></tr></thead><tbody><tr><td>Content Generator</td><td><code>agents/content-generator.md</code></td><td>DONE</td></tr><tr><td>Support Agent</td><td><code>agents/support-agent.md</code></td><td>DONE</td></tr><tr><td>Sales Assistant</td><td><code>agents/sales-assistant.md</code></td><td>TODO</td></tr></tbody></table>
-<h3>Founder Only</h3>
-<table><thead><tr><th>SOP</th><th>File</th><th>Status</th></tr></thead><tbody><tr><td>Hiring Process</td><td><code>founder/hiring.md</code></td><td>TODO</td></tr><tr><td>Pricing/Billing</td><td><code>founder/billing.md</code></td><td>TODO</td></tr></tbody></table>
-<h2>Master Glossary</h2>
-
-<strong>See <code>glossary.md</code></strong> for complete terminology, systems, and quick reference.
-
 <hr>
 
-<h2>References</h2>
-<ul><li>Content Generator v2 (current): <code>~/mcp-servers/contexts/slate-content-generator-v2.md</code></li>
-<li>GHL workflow details: <code>~/mcp-servers/contexts/slate-operations.md</code></li>
+<h2 id="sop-index">SOP Index</h2>
+
+<h3 id="sales">Sales</h3>
+<table><thead><tr><th>SOP</th><th>File</th><th>Purpose</th></tr></thead><tbody><tr><td>Sales SOP</td><td><code>sales/sales-sop.md</code></td><td>Full sales call process</td></tr><tr><td>Sales Playbook</td><td><code>sales/sales-playbook.md</code></td><td>Scripts, objections, lightbulbs</td></tr><tr><td>Demo Call</td><td><code>sales/demo-call.md</code></td><td>Demo call structure</td></tr><tr><td>Show Rate Optimization</td><td><code>sales/show-rate-optimization.md</code></td><td>Increasing show rates</td></tr><tr><td>Launch Call</td><td><code>sales/launch-call.md</code></td><td>Client launch call structure</td></tr><tr><td>Cancellation Saves</td><td><code>sales/cancellation-saves.md</code></td><td>Saving cancelling clients</td></tr><tr><td>Testimonial Collection</td><td><code>sales/testimonial-collection.md</code></td><td>Getting client testimonials</td></tr><tr><td>Post-Launch Video</td><td><code>sales/post-launch-video.md</code></td><td>Post-launch video content</td></tr></tbody></table>
+<h3 id="fulfillment">Fulfillment</h3>
+<table><thead><tr><th>SOP</th><th>File</th><th>Purpose</th></tr></thead><tbody><tr><td><strong>Client Build (MASTER)</strong></td><td><code>fulfillment/client-build.md</code></td><td>Full client build process</td></tr><tr><td>A2P Submission</td><td><code>fulfillment/a2p-submission.md</code></td><td>A2P/Toll-Free registration</td></tr><tr><td>GMB Setup</td><td><code>fulfillment/gmb-setup.md</code></td><td>Google Business Profile setup</td></tr><tr><td>Logo Processing</td><td><code>fulfillment/logo-processing.md</code></td><td>Logo creation/processing</td></tr><tr><td>Nav Cleanup</td><td><code>fulfillment/nav-cleanup.md</code></td><td>Navigation cleanup</td></tr><tr><td>Pre-Launch Checklist</td><td><code>fulfillment/pre-launch-checklist.md</code></td><td>Pre-launch QA</td></tr><tr><td>Selective Regeneration</td><td><code>fulfillment/selective-regeneration.md</code></td><td>Content regeneration</td></tr></tbody></table>
+<h3 id="support">Support</h3>
+<table><thead><tr><th>SOP</th><th>File</th><th>Purpose</th></tr></thead><tbody><tr><td>Support FAQ</td><td><code>support/support-faq.md</code></td><td>Common support questions</td></tr><tr><td>Escalation Rules</td><td><code>support/escalation-rules.md</code></td><td>When to escalate</td></tr><tr><td>CC Decline Handling</td><td><code>support/cc-decline-handling.md</code></td><td>Credit card decline handling</td></tr><tr><td>App Guide</td><td><code>support/app-guide.md</code></td><td>Lead Connector app guide</td></tr></tbody></table>
+<h3 id="marketing">Marketing</h3>
+<table><thead><tr><th>SOP</th><th>File</th><th>Purpose</th></tr></thead><tbody><tr><td>Meta Ads</td><td><code>marketing/meta-ads.md</code></td><td>Meta/Facebook ads management</td></tr></tbody></table>
+<h3 id="hiring">Hiring</h3>
+<table><thead><tr><th>SOP</th><th>File</th><th>Purpose</th></tr></thead><tbody><tr><td>Hiring Guide</td><td><code>hiring/hiring-guide.md</code></td><td>General hiring process</td></tr><tr><td>VA Hiring</td><td><code>hiring/va-hiring.md</code></td><td>VA hiring specifically</td></tr></tbody></table>
+<h3 id="agents">Agents</h3>
+<table><thead><tr><th>SOP</th><th>File</th><th>Purpose</th></tr></thead><tbody><tr><td>Content Generator</td><td><code>agents/content-generator.md</code></td><td>AI content generation</td></tr><tr><td>Support Agent</td><td><code>agents/support-agent.md</code></td><td>Support AI agent</td></tr></tbody></table>
+<hr>
+
+<h2 id="key-workflows-reference">Key Workflows Reference</h2>
+
+<h3 id="sales-track">Sales Track</h3>
+<table><thead><tr><th>ID</th><th>Workflow</th><th>Trigger</th></tr></thead><tbody><tr><td>WF0</td><td>Call Booked → Confirmations</td><td>Appointment confirmed</td></tr><tr><td>WF1</td><td>Lead Form → New Opportunity</td><td>Form submitted</td></tr><tr><td>WF2</td><td>Non-Booker → SMS Sequence</td><td>Stage: Non-Booker Followup</td></tr><tr><td>WF3</td><td>Long Term Nurture → SMS</td><td>Stage: Long Term Nurture</td></tr><tr><td>WF4</td><td>No Show → SMS Sequence</td><td>Stage: No Show</td></tr><tr><td>WF5</td><td>Cancelled → SMS Rebook</td><td>Appointment cancelled</td></tr><tr><td>WF6</td><td>Won → Project Management</td><td>Stage: Won</td></tr><tr><td>WF7</td><td>Demo Booked → FB Conversion</td><td>Appointment booked (fb-lead only)</td></tr></tbody></table>
+<h3 id="onboarding-track">Onboarding Track</h3>
+<table><thead><tr><th>ID</th><th>Workflow</th><th>Trigger</th></tr></thead><tbody><tr><td>WF-OB1</td><td>Client Paid → Onboarding Info</td><td>Stage: Won</td></tr><tr><td>WF-OB2</td><td>Onboarding Form Reminder</td><td>Added from WF-OB1</td></tr><tr><td>WF-OB3</td><td>Form Submitted → Start Build</td><td>Form submitted</td></tr><tr><td>WF-OB4</td><td>A2P In Progress → Check-ins</td><td>Stage: A2P In Progress</td></tr><tr><td>WF-OB5</td><td>Launch Booked → Reminders</td><td>Launch call booked</td></tr><tr><td>WF-OB6</td><td>Post-Launch → Tutorial</td><td>Stage: Active</td></tr></tbody></table>
+<hr>
+
+<h2 id="key-resources">Key Resources</h2>
+
+<table><thead><tr><th>Resource</th><th>URL/Value</th></tr></thead><tbody><tr><td>VSL</td><td>https://slatesystems.io/watch-this-616006</td></tr><tr><td>Demo Calendar</td><td>Slate Systems Demo Calendar</td></tr><tr><td>Platform</td><td>Google Meet</td></tr><tr><td>GMB Guide</td><td>guides.slatesystems.io</td></tr><tr><td>Help Center</td><td>help.slatesystems.io</td></tr><tr><td>Regen Form</td><td>regen.slatesystems.io</td></tr><tr><td>Only Discount</td><td>50% off first 3 months ($148.50/mo)</td></tr></tbody></table>
+<hr>
+
+<h2 id="backlog">Backlog</h2>
+
+<table><thead><tr><th>Item</th><th>Priority</th><th>Status</th></tr></thead><tbody><tr><td>AI Setter (outbound calls to non-bookers)</td><td>HIGH</td><td>In design</td></tr><tr><td>A2P automation with Claude</td><td>MEDIUM</td><td>Backlogged</td></tr><tr><td>Video Testimonials feature</td><td>MEDIUM</td><td>Backlogged</td></tr><tr><td>SaaS Configurator auto sub-account</td><td>MEDIUM</td><td>Backlogged</td></tr><tr><td>Signal House for e2e test</td><td>HIGH</td><td>Ready</td></tr></tbody></table>
+<hr>
+
+<h2 id="references">References</h2>
+<ul><li>GHL workflow details: <code>~/mcp-servers/contexts/slate-operations.md</code></li>
 <li>Architecture: <code>~/mcp-servers/contexts/slate-architecture.md</code></li>
 <li>Kai's original SOPs (legacy): <code>~/mcp-servers/contexts/kai-sops/</code></li>
 </ul>
-<em>Created Feb 6, 2026 | Updated Feb 16, 2026</em>
+<em>Created Feb 6, 2026 | Updated Feb 23, 2026</em>
 
         <footer>
-            <p>&copy; 2026 Slate Systems LLC. Internal use only.</p>
+            <p>&copy; 2026 Slate Systems Inc. Internal use only.</p>
         </footer>
     </div>
 </body>

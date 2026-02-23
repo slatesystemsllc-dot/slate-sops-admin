@@ -46,8 +46,19 @@
             padding: 1rem;
             border-radius: 8px;
             overflow-x: auto;
+            max-width: 100%;
             margin: 1rem 0;
             border: 1px solid #334155;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        @media (max-width: 768px) {
+            body { padding: 1rem; }
+            pre { font-size: 0.85em; padding: 0.75rem; }
+            table { font-size: 0.9em; display: block; overflow-x: auto; }
+            th, td { padding: 0.5rem; }
+            h1 { font-size: 1.5rem; }
+            h2 { font-size: 1.25rem; }
         }
         code {
             font-family: 'SF Mono', Monaco, monospace;
@@ -97,7 +108,7 @@
 <body>
     <div class="container">
         <a href="../index.html" class="back-link">← Back to Portal</a>
-        <h1>Logo Processing SOP</h1>
+        <h1 id="logo-processing-sop">Logo Processing SOP</h1>
 
 <blockquote><strong>Role:</strong> Fulfillment Specialist</blockquote>
 <blockquote><strong>When:</strong> During client build (after form received)</blockquote>
@@ -106,21 +117,21 @@
 
 <hr>
 
-<h2>Scenarios</h2>
+<h2 id="scenarios">Scenarios</h2>
 
 <table><thead><tr><th>Scenario</th><th>Action</th><th>Time</th></tr></thead><tbody><tr><td>Client uploaded logo</td><td>Download, resize, verify</td><td>5 min</td></tr><tr><td>Client checked "needs logo"</td><td>Create in Canva</td><td>20-30 min</td></tr><tr><td>Logo is low quality</td><td>Request better version or recreate</td><td>Variable</td></tr></tbody></table>
 <hr>
 
-<h2>Scenario 1: Client Uploaded Logo</h2>
+<h2 id="scenario-1-client-uploaded-logo">Scenario 1: Client Uploaded Logo</h2>
 
-<h3>Step 1: Download Logo</h3>
+<h3 id="step-1-download-logo">Step 1: Download Logo</h3>
 
 <ol><li class="ordered">Go to client's onboarding form response</li>
 <li class="ordered">Find logo upload field</li>
 <li class="ordered">Download the file</li>
 <li class="ordered">Check file format: PNG, JPG, SVG, or PDF acceptable</li>
 </ol>
-<h3>Step 2: Verify Quality</h3>
+<h3 id="step-2-verify-quality">Step 2: Verify Quality</h3>
 
 <strong>Check:</strong>
 <ul><li class="checkbox"><input type="checkbox" disabled> Resolution: Minimum 400x400 pixels</li>
@@ -132,7 +143,7 @@
 <ul><li>Request higher resolution from client</li>
 <li>Or recreate in Canva (see Scenario 2)</li>
 </ul>
-<h3>Step 3: Resize for Website</h3>
+<h3 id="step-3-resize-for-website">Step 3: Resize for Website</h3>
 
 <p>Website needs logo at <strong>400x400 pixels</strong> or similar square ratio.</p>
 
@@ -148,7 +159,7 @@
 <li class="ordered">Set to 400x400 (uncheck "Scale proportionally" if needed)</li>
 <li class="ordered">Save</li>
 </ol>
-<h3>Step 4: Upload to GHL Media Library</h3>
+<h3 id="step-4-upload-to-ghl-media-library">Step 4: Upload to GHL Media Library</h3>
 
 <ol><li class="ordered">Go to client sub-account</li>
 <li class="ordered">Sites → Media Library</li>
@@ -158,24 +169,24 @@
 </ol>
 <hr>
 
-<h2>Scenario 2: Create Logo in Canva</h2>
+<h2 id="scenario-2-create-logo-in-canva">Scenario 2: Create Logo in Canva</h2>
 
 <p>When client checked "needs logo" or uploaded something unusable.</p>
 
-<h3>Step 1: Gather Info</h3>
+<h3 id="step-1-gather-info">Step 1: Gather Info</h3>
 
-<p>From onboarding form:<br><ul><li>Business name</li><br><li>Industry/niche</li><br><li>Any color preferences</li><br><li>Any style preferences</li><br></ul><br><h3>Step 2: Open Canva</h3></p>
+<p>From onboarding form:<br><ul><li>Business name</li><br><li>Industry/niche</li><br><li>Any color preferences</li><br><li>Any style preferences</li><br></ul><br><h3 id="step-2-open-canva">Step 2: Open Canva</h3></p>
 
 <ol><li class="ordered">Go to canva.com</li>
 <li class="ordered">Create new design → Logo (500x500 recommended)</li>
 </ol>
-<h3>Step 3: Find Template</h3>
+<h3 id="step-3-find-template">Step 3: Find Template</h3>
 
 <ol><li class="ordered">Search templates by industry (e.g., "plumbing logo", "landscaping logo")</li>
 <li class="ordered">Pick 2-3 that match the vibe</li>
 <li class="ordered">Choose one that's clean and professional</li>
 </ol>
-<h3>Step 4: Customize</h3>
+<h3 id="step-4-customize">Step 4: Customize</h3>
 
 <strong>Text:</strong>
 <ul><li>Replace with business name</li>
@@ -191,29 +202,29 @@
 <ul><li>Choose relevant icon for their trade</li>
 <li>Don't overcomplicate</li>
 </ul>
-<h3>Step 5: Export</h3>
+<h3 id="step-5-export">Step 5: Export</h3>
 
 <ol><li class="ordered">Click Share → Download</li>
 <li class="ordered">File type: PNG</li>
 <li class="ordered">Enable "Transparent background"</li>
 <li class="ordered">Download</li>
 </ol>
-<h3>Step 6: Upload to GHL</h3>
+<h3 id="step-6-upload-to-ghl">Step 6: Upload to GHL</h3>
 
 <p>Same as Scenario 1, Step 4.</p>
 
 <hr>
 
-<h2>Logo Style Guidelines</h2>
+<h2 id="logo-style-guidelines">Logo Style Guidelines</h2>
 
-<h3>DO:</h3>
+<h3 id="do">DO:</h3>
 <ul><li>Keep it simple and clean</li>
 <li>Make text readable at small sizes</li>
 <li>Use professional colors</li>
 <li>Include an icon related to their trade</li>
 <li>Ensure it works on white AND dark backgrounds</li>
 </ul>
-<h3>DON'T:</h3>
+<h3 id="don-t">DON'T:</h3>
 <ul><li>Use more than 2 fonts</li>
 <li>Make it overly complex</li>
 <li>Use clip art that looks cheap</li>
@@ -222,12 +233,12 @@
 </ul>
 <hr>
 
-<h2>Industry Logo Patterns</h2>
+<h2 id="industry-logo-patterns">Industry Logo Patterns</h2>
 
 <table><thead><tr><th>Trade</th><th>Icon Ideas</th><th>Color Ideas</th></tr></thead><tbody><tr><td>Plumber</td><td>Wrench, pipe, water drop</td><td>Blue, navy, light blue</td></tr><tr><td>HVAC</td><td>Snowflake, flame, house</td><td>Blue, red-orange, gray</td></tr><tr><td>Electrician</td><td>Lightning bolt, outlet, bulb</td><td>Yellow, blue, orange</td></tr><tr><td>Landscaper</td><td>Leaf, tree, lawn mower</td><td>Green, brown, earth tones</td></tr><tr><td>Painter</td><td>Paint brush, roller, house</td><td>Varies (often blue/green)</td></tr><tr><td>Handyman</td><td>Tools, house, hammer</td><td>Navy, orange, gray</td></tr><tr><td>Cleaner</td><td>Sparkle, spray, broom</td><td>Blue, green, white</td></tr><tr><td>Roofer</td><td>House with roof, shingle</td><td>Brown, gray, blue</td></tr></tbody></table>
 <hr>
 
-<h2>Quality Checklist</h2>
+<h2 id="quality-checklist">Quality Checklist</h2>
 
 <p>Before uploading final logo:</p>
 
@@ -241,26 +252,26 @@
 </ul>
 <hr>
 
-<h2>Storage</h2>
+<h2 id="storage">Storage</h2>
 
 <p>Save original + processed logos to:<br><ul><li>Client's folder in Google Drive (if using)</li><br><li>Or GHL Media Library only</li><br></ul><br><hr></p>
 
-<h2>Troubleshooting</h2>
+<h2 id="troubleshooting">Troubleshooting</h2>
 
-<h3>Logo looks bad on website</h3>
+<h3 id="logo-looks-bad-on-website">Logo looks bad on website</h3>
 
 <ol><li class="ordered">Check if header background is dark vs light</li>
 <li class="ordered">May need two versions (light and dark)</li>
 <li class="ordered">Adjust <code>logo_url</code> to appropriate version</li>
 </ol>
-<h3>Client doesn't like logo we created</h3>
+<h3 id="client-doesn-t-like-logo-we-created">Client doesn't like logo we created</h3>
 
 <ol><li class="ordered">Ask what specifically they don't like</li>
 <li class="ordered">Make 2-3 variations</li>
 <li class="ordered">Let them choose</li>
 <li class="ordered">If still unhappy: Ask them to provide their own</li>
 </ol>
-<h3>Logo file is PDF</h3>
+<h3 id="logo-file-is-pdf">Logo file is PDF</h3>
 
 <ol><li class="ordered">Open PDF in Preview (Mac) or online converter</li>
 <li class="ordered">Export as PNG</li>
@@ -268,12 +279,12 @@
 </ol>
 <hr>
 
-<h2>Time Estimates</h2>
+<h2 id="time-estimates">Time Estimates</h2>
 
 <table><thead><tr><th>Task</th><th>Time</th></tr></thead><tbody><tr><td>Download + resize existing logo</td><td>5 min</td></tr><tr><td>Create simple Canva logo</td><td>15-20 min</td></tr><tr><td>Create custom Canva logo (complex)</td><td>30 min</td></tr><tr><td>Multiple revisions</td><td>+15 min each</td></tr></tbody></table>
 <hr>
 
-<h2>Related SOPs</h2>
+<h2 id="related-sops">Related SOPs</h2>
 
 <ul><li><code>client-build.md</code> — Logo is Task 8</li>
 <li><code>qa-checklist.md</code> — Logo verification</li>
@@ -283,7 +294,7 @@
 <em>Last updated: Feb 22, 2026</em>
 
         <footer>
-            <p>&copy; 2026 Slate Systems LLC. Internal use only.</p>
+            <p>&copy; 2026 Slate Systems Inc. Internal use only.</p>
         </footer>
     </div>
 </body>

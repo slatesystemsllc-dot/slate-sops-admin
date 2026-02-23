@@ -46,8 +46,19 @@
             padding: 1rem;
             border-radius: 8px;
             overflow-x: auto;
+            max-width: 100%;
             margin: 1rem 0;
             border: 1px solid #334155;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        @media (max-width: 768px) {
+            body { padding: 1rem; }
+            pre { font-size: 0.85em; padding: 0.75rem; }
+            table { font-size: 0.9em; display: block; overflow-x: auto; }
+            th, td { padding: 0.5rem; }
+            h1 { font-size: 1.5rem; }
+            h2 { font-size: 1.25rem; }
         }
         code {
             font-family: 'SF Mono', Monaco, monospace;
@@ -97,7 +108,7 @@
 <body>
     <div class="container">
         <a href="../index.html" class="back-link">← Back to Portal</a>
-        <h1>Slate Systems Sales SOP v1.0</h1>
+        <h1 id="slate-systems-sales-sop-v1-0">Slate Systems Sales SOP v1.0</h1>
 
 <blockquote><strong>Purpose:</strong> Step-by-step procedures for every sales scenario</blockquote>
 <blockquote><strong>Product:</strong> $297/month GHL SaaS for contractors</blockquote>
@@ -105,7 +116,7 @@
 
 <hr>
 
-<h2>TABLE OF CONTENTS</h2>
+<h2 id="table-of-contents">TABLE OF CONTENTS</h2>
 
 <ol><li class="ordered"><a href="#1-pre-call-vsl-requirement">Pre-Call: VSL Requirement</a></li>
 <li class="ordered"><a href="#2-the-tight-script">The Tight Script</a></li>
@@ -116,32 +127,39 @@
 </ol>
 <hr>
 
-<h2>1. PRE-CALL: VSL REQUIREMENT</h2>
+<h2 id="1-pre-call-vsl-requirement">1. PRE-CALL: VSL REQUIREMENT</h2>
 
-<h3>Why the VSL is Non-Negotiable</h3>
+<h3 id="why-the-vsl-is-non-negotiable">Why the VSL is Non-Negotiable</h3>
 
 <p>The VSL does 90% of the selling:<br><ul><li>Explains what we do</li><br><li>Shows real results</li><br><li>States the price ($297)</li><br><li>Pre-handles objections</li><br></ul><br><strong>Without VSL:</strong> 30-45 min call, low close rate, exhausting<br><strong>With VSL:</strong> 5-10 min call, high close rate, scalable</p>
 
-<h3>VSL Delivery Sequence</h3>
+<h3 id="vsl-delivery-sequence">VSL Delivery Sequence</h3>
 
-<pre><code>[Lead fills form]
+<strong>VSL URL:</strong> https://slatesystems.io/watch-this-616006
+<strong>Calendar:</strong> Slate Systems Demo Calendar
+<strong>Platform:</strong> Google Meet
+
+<pre><code>[Lead books call]
     ↓
-[Immediate text]: "Hey [Name]! Before our call, watch this
-5-min video so you know exactly what we do: [VSL LINK]"
+[Confirmation text]: "Hey [Name]! Before our call, watch this
+5-min video so you know exactly what we do:
+https://slatesystems.io/watch-this-616006"
     ↓
-[24hr before call text]: "Hey [Name], just a reminder about
-our call tomorrow at [TIME]. Make sure you've watched this
-quick video first: [VSL LINK]"
+[24hr before call text]: "Hey [Name], reminder about our call
+tomorrow. Make sure you've watched the video first."
     ↓
-[2hr before call text]: "See you in 2 hours! Quick reminder
-to watch this if you haven't: [VSL LINK]"
+[2hr before call text]: "See you in 2 hours! Video link if
+you haven't watched: https://slatesystems.io/watch-this-616006"
 </code></pre>
+
+<strong>Screen Share Option:</strong> If they haven't watched and are on the call, offer:
+<blockquote>"I can share my screen and walk you through it real quick if you want."</blockquote>
 
 <hr>
 
-<h2>2. THE TIGHT SCRIPT</h2>
+<h2 id="2-the-tight-script">2. THE TIGHT SCRIPT</h2>
 
-<h3>Full Script with Timing</h3>
+<h3 id="full-script-with-timing">Full Script with Timing</h3>
 
 <pre><code>═══════════════════════════════════════════════════════════════
 PHASE 1: CONFIRM VIDEO (15 seconds)
@@ -157,7 +175,7 @@ PHASE 1: CONFIRM VIDEO (15 seconds)
 
 <p>═══════════════════════════════════════════════════════════════<br>PHASE 2: OPEN FOR QUESTIONS (10 seconds)<br>═══════════════════════════════════════════════════════════════</p>
 
-<p>YOU: "Perfect, you're the man. So yeah, that video is pretty<br>much exactly what we do. That being said - what questions<br>do you have?"</p>
+<p>YOU: "Perfect, appreciate you watching that. So yeah, that video<br>is pretty much exactly what we do. That being said - what<br>questions do you have?"</p>
 
 <p>→ IF QUESTIONS: Answer briefly, then ask "What other questions?"<br>→ IF NO QUESTIONS: Go to Phase 4 (Permission to Close)</p>
 
@@ -199,9 +217,9 @@ PHASE 1: CONFIRM VIDEO (15 seconds)
 
 <hr>
 
-<h2>3. HANDLING "I HAVEN'T WATCHED"</h2>
+<h2 id="3-handling-i-haven-t-watched">3. HANDLING "I HAVEN'T WATCHED"</h2>
 
-<h3>Scenario A: They're Ready to Watch Now</h3>
+<h3 id="scenario-a-they-re-ready-to-watch-now">Scenario A: They're Ready to Watch Now</h3>
 
 <pre><code>THEM: "No, I didn't get a chance to watch it yet."
 
@@ -219,11 +237,11 @@ PHASE 1: CONFIRM VIDEO (15 seconds)
 
 <p>[When they finish]</p>
 
-<p>YOU: "Cool, you're the man for watching that. So that's<br>pretty much exactly what we do. What questions do you have?"</p>
+<p>YOU: "Cool, appreciate you taking the time. So that's<br>pretty much exactly what we do. What questions do you have?"</p>
 
 <p>[Continue with Phase 2]<br></code></pre></p>
 
-<h3>Scenario B: They're Driving</h3>
+<h3 id="scenario-b-they-re-driving">Scenario B: They're Driving</h3>
 
 <pre><code>THEM: "No, I'm actually driving right now."
 
@@ -239,7 +257,7 @@ PHASE 1: CONFIRM VIDEO (15 seconds)
 
 <p>[End call. Send VSL link immediately. Wait for their text.]<br></code></pre></p>
 
-<h3>Scenario C: They're Busy / In a Rush</h3>
+<h3 id="scenario-c-they-re-busy-in-a-rush">Scenario C: They're Busy / In a Rush</h3>
 
 <pre><code>THEM: "No, I didn't watch it. Can you just give me the
 quick rundown?"
@@ -252,7 +270,7 @@ quick rundown?"
 
 <p>YOU: "Perfect. I'll send you the link right now. Watch<br>it before our call tomorrow and come with any questions.<br>Talk then."<br></code></pre></p>
 
-<h3>Scenario D: They Refuse to Watch</h3>
+<h3 id="scenario-d-they-refuse-to-watch">Scenario D: They Refuse to Watch</h3>
 
 <pre><code>THEM: "Can't you just tell me what it is? I don't have
 time for videos."
@@ -265,7 +283,7 @@ time for videos."
 
 <p>[End call. Don't waste time on people who won't invest<br>5 minutes. They won't be good clients.]<br></code></pre></p>
 
-<h3>Key Principles</h3>
+<h3 id="key-principles">Key Principles</h3>
 
 <ol><li class="ordered"><strong>Never do the demo call without them watching the VSL</strong></li>
 <li class="ordered"><strong>It's OK to wait on the line while they watch</strong></li>
@@ -275,9 +293,9 @@ time for videos."
 </ol>
 <hr>
 
-<h2>4. OBJECTION HANDLING</h2>
+<h2 id="4-objection-handling">4. OBJECTION HANDLING</h2>
 
-<h3>"How many leads will I get?"</h3>
+<h3 id="how-many-leads-will-i-get">"How many leads will I get?"</h3>
 
 <pre><code>"I'm gonna be straight with you - I can't tell you that
 Susan is gonna see your Google reviews and give you a
@@ -287,7 +305,7 @@ $20K job. I can't prove that correlation.
 
 <p>You think it's worth $297 or you don't. But I'm not<br>gonna promise you X leads per month because that would<br>be bullshit."<br></code></pre></p>
 
-<h3>"I've been burned by other companies"</h3>
+<h3 id="i-ve-been-burned-by-other-companies">"I've been burned by other companies"</h3>
 
 <pre><code>"I hear that a lot actually. Most marketing companies
 overpromise and underdeliver.
@@ -296,7 +314,7 @@ overpromise and underdeliver.
 
 <p>It either makes sense for $297 or it doesn't. No contracts,<br>cancel anytime. What other questions do you have?"<br></code></pre></p>
 
-<h3>"That's expensive" / "I need to think about it"</h3>
+<h3 id="that-s-expensive-i-need-to-think-about-it">"That's expensive" / "I need to think about it"</h3>
 
 <pre><code>"I get it. Let me ask you this - what's your average job
 ticket? $5K? $10K?
@@ -305,14 +323,14 @@ ticket? $5K? $10K?
 
 <p>And honestly, $297 is about what you'd spend taking your<br>crew to lunch twice. But I hear you - what specifically<br>do you need to think about?"<br></code></pre></p>
 
-<h3>"Do you have contracts?"</h3>
+<h3 id="do-you-have-contracts">"Do you have contracts?"</h3>
 
 <pre><code>"Nope. No contracts. Those are just used to trap people
 who want to leave. We don't do that.
 
 <p>You can cancel anytime. If we're not delivering value,<br>you shouldn't be paying us. Simple as that."<br></code></pre></p>
 
-<h3>"Let me talk to my wife/partner"</h3>
+<h3 id="let-me-talk-to-my-wife-partner">"Let me talk to my wife/partner"</h3>
 
 <pre><code>"Totally get it. When do you think you'll have that
 conversation?
@@ -321,7 +339,7 @@ conversation?
 
 <p>Cool, let's get something on the calendar for [day after].<br>That way I can answer any questions they have too.<br>What time works?"<br></code></pre></p>
 
-<h3>"I don't have a website yet"</h3>
+<h3 id="i-don-t-have-a-website-yet">"I don't have a website yet"</h3>
 
 <pre><code>"That's actually perfect. Means we don't have to convince
 you your current website sucks. We just build you a good
@@ -329,10 +347,11 @@ one from scratch.
 
 <p>What other questions do you have?"<br></code></pre></p>
 
-<h3>"I don't have a Google Business page"</h3>
+<h3 id="i-don-t-have-a-google-business-page">"I don't have a Google Business page"</h3>
 
 <pre><code>"That's free to set up. Takes about 5 days to get verified.
-I'll send you a video showing exactly how to do it.
+Check out guides.slatesystems.io - we have a step-by-step
+guide that walks you through exactly how to do it.
 
 <p>While you're getting that verified, we'll build your<br>website. By the time it's approved, everything will be<br>ready to connect.</p>
 
@@ -340,9 +359,19 @@ I'll send you a video showing exactly how to do it.
 
 <hr>
 
-<h2>5. CLOSING SEQUENCE</h2>
+<h2 id="5-closing-sequence">5. CLOSING SEQUENCE</h2>
 
-<h3>Order Matters: Card LAST</h3>
+<h3 id="payment-options">Payment Options</h3>
+
+<strong>Option A: Collect Card Verbally (Default)</strong>
+Best for: phone calls, quick closes
+
+<strong>Option B: Send Payment Link</strong>
+Best for: if they hesitate on giving card over phone
+<blockquote>"I can send you a secure payment link if you'd prefer to enter it yourself"</blockquote>
+[PAYMENT_LINK: Use GHL Payments or Stripe invoice link]
+
+<h3 id="order-matters-card-last">Order Matters: Card LAST</h3>
 
 <ol><li class="ordered">Business name</li>
 <li class="ordered">Address</li>
@@ -353,7 +382,7 @@ I'll send you a video showing exactly how to do it.
 </ol>
 <strong>Why this order:</strong> By the time you ask for the card, they've already given you 3-4 pieces of info. They're committed. The card feels like "one more thing" not "the big moment."
 
-<h3>If Card Declines</h3>
+<h3 id="if-card-declines">If Card Declines</h3>
 
 <pre><code>YOU: "Hmm, looks like that one didn't go through.
 You have another card we can try?"
@@ -364,7 +393,7 @@ You have another card we can try?"
 
 <p>YOU: "No worries. Sometimes it's a daily limit thing.<br>Want to try again tomorrow? I can call you same time."<br></code></pre></p>
 
-<h3>If They Hesitate at Card</h3>
+<h3 id="if-they-hesitate-at-card">If They Hesitate at Card</h3>
 
 <pre><code>THEM: [Long pause when you ask for card]
 
@@ -374,20 +403,28 @@ You have another card we can try?"
 
 <hr>
 
-<h2>6. POST-CALL: HANDOFF</h2>
+<h2 id="6-post-call-handoff">6. POST-CALL: HANDOFF</h2>
 
-<h3>Immediately After Close</h3>
+<h3 id="immediately-after-payment">Immediately After Payment</h3>
+
+<strong>STAY ON THE CALL</strong> — Don't hang up yet.
+
+<ol><li class="ordered"><strong>Send onboarding form link</strong> (while on call):</li>
+</ol>   <pre><code>   "Hey [Name]! You're all set. Here's your onboarding form:
+   [LINK]. Fill this out so we can build your website."
+   </code></pre>
+
+<ol><li class="ordered"><strong>Walk them through the form:</strong></li>
+</ol>   > "I'm gonna send you the onboarding form right now. It asks for your business info, services, areas you serve, and any photos. The more detail you give us, the better your site will look. Takes about 10 minutes."
+
+<ol><li class="ordered"><strong>Explain GMB importance:</strong></li>
+</ol>   > "Also, super important - we need manager access to your Google Business Profile. Check out guides.slatesystems.io for the step-by-step guide. Without this, we can't connect your reviews or update your listing."
 
 <ol><li class="ordered"><strong>Add to GHL pipeline</strong> - Move to "Onboarding Form Sent" stage</li>
-<li class="ordered"><strong>Send onboarding text:</strong></li>
-</ol>   <pre><code>   "Hey [Name]! You're all set. Here's your onboarding form:
-   [LINK]. Fill this out so we can build your website.
-   Any questions, just text me here."
-   </code></pre>
-<ol><li class="ordered"><strong>Send onboarding email</strong> - Same link, backup</li>
-<li class="ordered"><strong>Notify fulfillment</strong> - Slack/message to whoever builds</li>
 </ol>
-<h3>Onboarding Form Must Collect</h3>
+<ol><li class="ordered"><strong>Notify fulfillment</strong> - Slack/message to whoever builds</li>
+</ol>
+<h3 id="onboarding-form-must-collect">Onboarding Form Must Collect</h3>
 
 <ul><li>Business name</li>
 <li>Owner name</li>
@@ -401,13 +438,13 @@ You have another card we can try?"
 <li>Google Business Profile URL</li>
 <li>Any special notes</li>
 </ul>
-<h3>Timeline Expectation</h3>
+<h3 id="timeline-expectation">Timeline Expectation</h3>
 
 <p>Tell customer: <strong>"8-9 business days"</strong> to complete build</p>
 
 <hr>
 
-<h2>QUICK REFERENCE CARD</h2>
+<h2 id="quick-reference-card">QUICK REFERENCE CARD</h2>
 
 <pre><code>┌─────────────────────────────────────────────────────────┐
 │                    SLATE SALES CALL                      │
@@ -437,7 +474,7 @@ You have another card we can try?"
 
 <hr>
 
-<h2>Related SOPs</h2>
+<h2 id="related-sops">Related SOPs</h2>
 
 <ul><li><code>sales-playbook.md</code> — Objection handling, lightbulb moments</li>
 <li><code>show-rate-optimization.md</code> — Getting them to show up</li>
@@ -446,11 +483,16 @@ You have another card we can try?"
 </ul>
 <hr>
 
+<h2 id="key-resources">KEY RESOURCES</h2>
+
+<table><thead><tr><th>Resource</th><th>URL/Value</th></tr></thead><tbody><tr><td>VSL</td><td>https://slatesystems.io/watch-this-616006</td></tr><tr><td>GMB Guide</td><td>guides.slatesystems.io</td></tr><tr><td>Help Center</td><td>help.slatesystems.io</td></tr><tr><td>Calendar</td><td>Slate Systems Demo Calendar</td></tr><tr><td>Platform</td><td>Google Meet</td></tr><tr><td>Only Discount</td><td>50% off first 3 months ($148.50/mo)</td></tr></tbody></table>
+<hr>
+
 <em>Part of Slate Systems Sales Playbook</em>
-<em>Updated: Feb 22, 2026</em>
+<em>Updated: Feb 23, 2026</em>
 
         <footer>
-            <p>&copy; 2026 Slate Systems LLC. Internal use only.</p>
+            <p>&copy; 2026 Slate Systems Inc. Internal use only.</p>
         </footer>
     </div>
 </body>

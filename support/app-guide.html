@@ -46,8 +46,19 @@
             padding: 1rem;
             border-radius: 8px;
             overflow-x: auto;
+            max-width: 100%;
             margin: 1rem 0;
             border: 1px solid #334155;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        @media (max-width: 768px) {
+            body { padding: 1rem; }
+            pre { font-size: 0.85em; padding: 0.75rem; }
+            table { font-size: 0.9em; display: block; overflow-x: auto; }
+            th, td { padding: 0.5rem; }
+            h1 { font-size: 1.5rem; }
+            h2 { font-size: 1.25rem; }
         }
         code {
             font-family: 'SF Mono', Monaco, monospace;
@@ -97,7 +108,7 @@
 <body>
     <div class="container">
         <a href="../index.html" class="back-link">← Back to Portal</a>
-        <h1>Lead Connector App Guide</h1>
+        <h1 id="lead-connector-app-guide">Lead Connector App Guide</h1>
 
 <blockquote><strong>Role:</strong> Support / Anyone helping clients with the app</blockquote>
 <blockquote><strong>Purpose:</strong> How to help clients use the Lead Connector app</blockquote>
@@ -105,32 +116,32 @@
 
 <hr>
 
-<h2>App Download Links</h2>
+<h2 id="app-download-links">App Download Links</h2>
 
 <ul><li><strong>iPhone:</strong> https://apps.apple.com/app/highlevel/id1459516266</li>
 <li><strong>Android:</strong> https://play.google.com/store/apps/details?id=com.gohighlevel</li>
 </ul>
 <hr>
 
-<h2>First-Time Login</h2>
+<h2 id="first-time-login">First-Time Login</h2>
 
-<h3>Step 1: Download App</h3>
+<h3 id="step-1-download-app">Step 1: Download App</h3>
 
 <p>Send client the appropriate link based on their phone.</p>
 
-<h3>Step 2: Open App</h3>
+<h3 id="step-2-open-app">Step 2: Open App</h3>
 
 <p>They'll see a login screen.</p>
 
-<h3>Step 3: Enter Credentials</h3>
+<h3 id="step-3-enter-credentials">Step 3: Enter Credentials</h3>
 
 <ul><li><strong>Email:</strong> Their business email (from onboarding form)</li>
 <li><strong>Password:</strong> Whatever was set during setup</li>
 </ul>
-<h3>Step 4: Common Login Issues</h3>
+<h3 id="step-4-common-login-issues">Step 4: Common Login Issues</h3>
 
 <table><thead><tr><th>Issue</th><th>Fix</th></tr></thead><tbody><tr><td>"Invalid credentials"</td><td>Reset password in GHL</td></tr><tr><td>"Account not found"</td><td>Verify email address is correct</td></tr><tr><td>Forgot password</td><td>Click "Forgot Password" in app</td></tr></tbody></table>
-<h3>Password Requirements</h3>
+<h3 id="password-requirements">Password Requirements</h3>
 
 <ul><li>Minimum 8 characters</li>
 <li>At least 1 special character (! @ # $ etc.)</li>
@@ -140,16 +151,16 @@
 
 <hr>
 
-<h2>App Layout Overview</h2>
+<h2 id="app-layout-overview">App Layout Overview</h2>
 
-<h3>Bottom Navigation</h3>
+<h3 id="bottom-navigation">Bottom Navigation</h3>
 
 <table><thead><tr><th>Icon</th><th>Name</th><th>Purpose</th></tr></thead><tbody><tr><td>🏠</td><td>Dashboard</td><td>Overview stats</td></tr><tr><td>💬</td><td>Conversations</td><td>All messages (SMS, chat, email)</td></tr><tr><td>📋</td><td>Contacts</td><td>All people in system</td></tr><tr><td>📢</td><td>Marketing</td><td>Send review requests, campaigns</td></tr><tr><td>⚙️</td><td>More</td><td>Settings, profile</td></tr></tbody></table>
 <hr>
 
-<h2>Key Features for Clients</h2>
+<h2 id="key-features-for-clients">Key Features for Clients</h2>
 
-<h3>1. Conversations (Most Important)</h3>
+<h3 id="1-conversations-most-important">1. Conversations (Most Important)</h3>
 
 <strong>What it is:</strong> Where all leads and messages appear.
 
@@ -161,7 +172,7 @@
 </ol>
 <strong>Pro tip:</strong> Conversations show ALL channels (SMS, chat widget, email) in one place.
 
-<h3>2. Contacts</h3>
+<h3 id="2-contacts">2. Contacts</h3>
 
 <strong>What it is:</strong> List of all people in their system.
 
@@ -171,7 +182,7 @@
 <li class="ordered">Tap to see their details</li>
 <li class="ordered">Can call/text directly from contact card</li>
 </ol>
-<h3>3. Marketing → Request Review</h3>
+<h3 id="3-marketing-request-review">3. Marketing → Request Review</h3>
 
 <strong>What it is:</strong> How to send review requests.
 
@@ -185,7 +196,7 @@
 </ol>
 <strong>When to use:</strong> Right after completing a job.
 
-<h3>4. Notifications</h3>
+<h3 id="4-notifications">4. Notifications</h3>
 
 <strong>How to enable:</strong>
 <ol><li class="ordered">Go to phone Settings</li>
@@ -196,50 +207,50 @@
 
 <hr>
 
-<h2>Common Client Questions</h2>
+<h2 id="common-client-questions">Common Client Questions</h2>
 
-<h3>"Where do I see new leads?"</h3>
+<h3 id="where-do-i-see-new-leads">"Where do I see new leads?"</h3>
 
 <blockquote>"Tap 'Conversations' at the bottom. All your new leads show up there. The newest ones are at the top."</blockquote>
 
-<h3>"How do I text someone?"</h3>
+<h3 id="how-do-i-text-someone">"How do I text someone?"</h3>
 
 <blockquote>"Tap 'Conversations', find their name, tap to open, then type your message and hit send."</blockquote>
 
-<h3>"How do I call someone from the app?"</h3>
+<h3 id="how-do-i-call-someone-from-the-app">"How do I call someone from the app?"</h3>
 
 <blockquote>"Go to 'Contacts', find their name, tap it, then tap the phone icon."</blockquote>
 
-<h3>"How do I send a review request?"</h3>
+<h3 id="how-do-i-send-a-review-request">"How do I send a review request?"</h3>
 
 <blockquote>"Tap 'Marketing', then 'Forms', select 'Request Review', enter their name and phone, and submit. They'll get a text automatically."</blockquote>
 
-<h3>"I'm not getting notifications"</h3>
+<h3 id="i-m-not-getting-notifications">"I'm not getting notifications"</h3>
 
 <blockquote>"Go to your phone's Settings → Notifications → Lead Connector. Make sure everything is turned ON. Also check that Do Not Disturb isn't enabled."</blockquote>
 
 <hr>
 
-<h2>Troubleshooting</h2>
+<h2 id="troubleshooting">Troubleshooting</h2>
 
-<h3>App is slow or freezing</h3>
+<h3 id="app-is-slow-or-freezing">App is slow or freezing</h3>
 
 <ol><li class="ordered">Force close the app</li>
 <li class="ordered">Reopen</li>
 <li class="ordered">If still slow, try reinstalling</li>
 </ol>
-<h3>Messages not sending</h3>
+<h3 id="messages-not-sending">Messages not sending</h3>
 
 <ol><li class="ordered">Check internet connection</li>
 <li class="ordered">Check A2P status (may be pending)</li>
 <li class="ordered">Try sending from desktop instead</li>
 </ol>
-<h3>Can't see certain features</h3>
+<h3 id="can-t-see-certain-features">Can't see certain features</h3>
 
 <ol><li class="ordered">Check user permissions in GHL</li>
 <li class="ordered">Some features may be admin-only</li>
 </ol>
-<h3>App crashes on open</h3>
+<h3 id="app-crashes-on-open">App crashes on open</h3>
 
 <ol><li class="ordered">Update to latest app version</li>
 <li class="ordered">Restart phone</li>
@@ -247,7 +258,7 @@
 </ol>
 <hr>
 
-<h2>Desktop Alternative</h2>
+<h2 id="desktop-alternative">Desktop Alternative</h2>
 
 <p>Clients can also access everything via browser:</p>
 
@@ -262,7 +273,7 @@
 </ul>
 <hr>
 
-<h2>Quick Walkthrough (Loom Script)</h2>
+<h2 id="quick-walkthrough-loom-script">Quick Walkthrough (Loom Script)</h2>
 
 <p>If doing a screen-share walkthrough, cover:</p>
 
@@ -277,7 +288,7 @@ Keep it under 5 minutes.
 
 <hr>
 
-<h2>Related SOPs</h2>
+<h2 id="related-sops">Related SOPs</h2>
 
 <ul><li><code>launch-call.md</code> — App setup during launch</li>
 <li><code>support-faq.md</code> — Common questions</li>
@@ -288,7 +299,7 @@ Keep it under 5 minutes.
 <em>Last updated: Feb 22, 2026</em>
 
         <footer>
-            <p>&copy; 2026 Slate Systems LLC. Internal use only.</p>
+            <p>&copy; 2026 Slate Systems Inc. Internal use only.</p>
         </footer>
     </div>
 </body>

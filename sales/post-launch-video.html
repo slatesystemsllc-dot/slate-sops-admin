@@ -46,8 +46,19 @@
             padding: 1rem;
             border-radius: 8px;
             overflow-x: auto;
+            max-width: 100%;
             margin: 1rem 0;
             border: 1px solid #334155;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        @media (max-width: 768px) {
+            body { padding: 1rem; }
+            pre { font-size: 0.85em; padding: 0.75rem; }
+            table { font-size: 0.9em; display: block; overflow-x: auto; }
+            th, td { padding: 0.5rem; }
+            h1 { font-size: 1.5rem; }
+            h2 { font-size: 1.25rem; }
         }
         code {
             font-family: 'SF Mono', Monaco, monospace;
@@ -97,7 +108,7 @@
 <body>
     <div class="container">
         <a href="../index.html" class="back-link">← Back to Portal</a>
-        <h1>Post-Launch Video SOP</h1>
+        <h1 id="post-launch-video-sop">Post-Launch Video SOP</h1>
 
 <blockquote><strong>Role:</strong> Closer (or Founder during absorption)</blockquote>
 <blockquote><strong>When:</strong> Within 24 hours of launch call completion</blockquote>
@@ -105,24 +116,24 @@
 
 <hr>
 
-<h2>Purpose</h2>
+<h2 id="purpose">Purpose</h2>
 
 <p>Create a personalized Loom video walking the client through their new system. Reinforces value, reduces support questions, and increases client retention.</p>
 
 <hr>
 
-<h2>When to Send</h2>
+<h2 id="when-to-send">When to Send</h2>
 
 <table><thead><tr><th>Trigger</th><th>Timing</th><th>Channel</th></tr></thead><tbody><tr><td>Launch call completed</td><td>Within 24 hours</td><td>SMS + Email</td></tr><tr><td>Client marked Active</td><td>Same day if possible</td><td>Automate via workflow</td></tr></tbody></table>
 <hr>
 
-<h2>Video Structure (10-12 minutes)</h2>
+<h2 id="video-structure-10-12-minutes">Video Structure (10-12 minutes)</h2>
 
-<h3>Intro (30 sec)</h3>
+<h3 id="intro-30-sec">Intro (30 sec)</h3>
 
 <blockquote>"Hey [First Name]! It's [Your Name] from Slate Systems. I wanted to send you a quick walkthrough of your new website and tools so you have everything you need to hit the ground running."</blockquote>
 
-<h3>Section 1: The Website (3 min)</h3>
+<h3 id="section-1-the-website-3-min">Section 1: The Website (3 min)</h3>
 
 <p>Show their actual live website:</p>
 
@@ -144,7 +155,7 @@
    - Click-to-call works
    - Chat widget position
 
-<h3>Section 2: The App (3 min)</h3>
+<h3 id="section-2-the-app-3-min">Section 2: The App (3 min)</h3>
 
 <p>Open the mobile app or dashboard:</p>
 
@@ -167,7 +178,7 @@
    - What notifications look like
    - Importance of fast response
 
-<h3>Section 3: Getting Reviews (2 min)</h3>
+<h3 id="section-3-getting-reviews-2-min">Section 3: Getting Reviews (2 min)</h3>
 
 <ol><li class="ordered"><strong>Their Review Link</strong></li>
 </ol>   - Show/send the GMB review link
@@ -184,7 +195,7 @@
    - Text the link, don't just mention it
    - "The more 5-star reviews, the more leads"
 
-<h3>Section 4: Chat Widget (1 min)</h3>
+<h3 id="section-4-chat-widget-1-min">Section 4: Chat Widget (1 min)</h3>
 
 <ol><li class="ordered"><strong>Where It Appears</strong></li>
 </ol>   - Point out widget on site
@@ -194,7 +205,7 @@
 </ol>   - Show in app/dashboard
    - Real-time notifications
 
-<h3>Section 5: Quick Tips (1 min)</h3>
+<h3 id="section-5-quick-tips-1-min">Section 5: Quick Tips (1 min)</h3>
 
 <ol><li class="ordered"><strong>Response Time</strong></li>
 </ol>   - "Respond to leads within 5 minutes if possible"
@@ -209,32 +220,32 @@
    - "That's where your website URL, review link, and phone number live"
    - "If you ever forget how something works: help.slatesystems.io"
 
-<h3>Closing (30 sec)</h3>
+<h3 id="closing-30-sec">Closing (30 sec)</h3>
 
 <blockquote>"That's everything! Remember — your quick links are at yoursite.com/my-links, and if you ever need a refresher on anything, help.slatesystems.io has guides for everything. Questions? Just text me. Talk soon, [First Name]!"</blockquote>
 
 <hr>
 
-<h2>Recording Tips</h2>
+<h2 id="recording-tips">Recording Tips</h2>
 
-<h3>Equipment</h3>
+<h3 id="equipment">Equipment</h3>
 <ul><li>Loom (free or Pro): <a href="https://loom.com">loom.com</a></li>
 <li>Quiet environment</li>
 <li>Good lighting if on camera (optional)</li>
 </ul>
-<h3>Screen Setup</h3>
+<h3 id="screen-setup">Screen Setup</h3>
 <ol><li class="ordered">Open client website in one tab</li>
 <li class="ordered">Open app/dashboard in another tab</li>
 <li class="ordered">Have review link copied</li>
 <li class="ordered">Close unrelated tabs</li>
 </ol>
-<h3>Recording Settings</h3>
+<h3 id="recording-settings">Recording Settings</h3>
 <ul><li>Screen + Camera bubble (optional but personal)</li>
 <li>720p minimum</li>
 <li>Draw/highlight enabled</li>
 <li>Don't pause/restart excessively - natural is better</li>
 </ul>
-<h3>Quality Checks</h3>
+<h3 id="quality-checks">Quality Checks</h3>
 <ul><li>Audio clear? No background noise?</li>
 <li>Screen visible? Text readable?</li>
 <li>Under 15 minutes? (shorter = better)</li>
@@ -242,15 +253,15 @@
 </ul>
 <hr>
 
-<h2>Sending the Video</h2>
+<h2 id="sending-the-video">Sending the Video</h2>
 
-<h3>SMS (Primary)</h3>
+<h3 id="sms-primary">SMS (Primary)</h3>
 
 <pre><code>Hey [First Name]! Here's a quick video walkthrough of your new website and tools: [Loom Link]
 
 <p>Let me know if you have any questions - happy to help!<br></code></pre></p>
 
-<h3>Email (Secondary/Backup)</h3>
+<h3 id="email-secondary-backup">Email (Secondary/Backup)</h3>
 
 <strong>Subject:</strong> Your Slate Systems Walkthrough Video
 
@@ -268,35 +279,35 @@
 
 <hr>
 
-<h2>Loom Best Practices</h2>
+<h2 id="loom-best-practices">Loom Best Practices</h2>
 
-<h3>Title Format</h3>
+<h3 id="title-format">Title Format</h3>
 <code>[Business Name] - Slate Systems Walkthrough</code>
 
-<h3>Thumbnail</h3>
+<h3 id="thumbnail">Thumbnail</h3>
 <ul><li>Use first frame or screenshot of their website</li>
 <li>Makes it recognizable</li>
 </ul>
-<h3>Sharing Settings</h3>
+<h3 id="sharing-settings">Sharing Settings</h3>
 <ul><li>Anyone with link can view</li>
 <li>Download disabled</li>
 <li>Comments enabled (optional)</li>
 </ul>
-<h3>Organization</h3>
+<h3 id="organization">Organization</h3>
 Create a Loom folder: "Client Walkthroughs"
 <ul><li>Easy to find later if client asks</li>
 <li>Track view counts</li>
 </ul>
 <hr>
 
-<h2>Common Mistakes to Avoid</h2>
+<h2 id="common-mistakes-to-avoid">Common Mistakes to Avoid</h2>
 
 <table><thead><tr><th>Mistake</th><th>Fix</th></tr></thead><tbody><tr><td>Too long (20+ min)</td><td>Stay under 12 minutes</td></tr><tr><td>Generic script</td><td>Use their name/business throughout</td></tr><tr><td>Technical jargon</td><td>"Dashboard" not "CRM", "Inbox" not "Pipeline"</td></tr><tr><td>Rushing</td><td>Pause between sections, speak clearly</td></tr><tr><td>Wrong website</td><td>Double-check URL before recording</td></tr><tr><td>Notifications on screen</td><td>Enable DND before recording</td></tr><tr><td>Wrong app</td><td>Use the white-label app if applicable</td></tr></tbody></table>
 <hr>
 
-<h2>Automation (Future)</h2>
+<h2 id="automation-future">Automation (Future)</h2>
 
-<h3>Trigger: Opportunity moved to "Active"</h3>
+<h3 id="trigger-opportunity-moved-to-active">Trigger: Opportunity moved to "Active"</h3>
 
 <strong>Workflow:</strong>
 <ol><li class="ordered">Wait 4 hours (after launch call)</li>
@@ -304,44 +315,44 @@ Create a Loom folder: "Client Walkthroughs"
 <li class="ordered">Create task for Closer to record</li>
 <li class="ordered">Task reminder at 24 hours if not completed</li>
 </ol>
-<h3>Templated Sections (Someday)</h3>
+<h3 id="templated-sections-someday">Templated Sections (Someday)</h3>
 
 <p>Pre-record generic sections:<br><ul><li>App navigation (same for all clients)</li><br><li>Review funnel explanation</li><br><li>General tips</li><br></ul><br>Personalize:<br><ul><li>Intro/outro with their name</li><br><li>Website tour (must be custom)</li><br></ul><br><hr></p>
 
-<h2>Video Tracking</h2>
+<h2 id="video-tracking">Video Tracking</h2>
 
-<h3>View Confirmation</h3>
+<h3 id="view-confirmation">View Confirmation</h3>
 <ul><li>Loom shows when video viewed</li>
 <li>If not viewed in 48 hours, follow up:</li>
 </ul>
 <pre><code>Hey [First Name]! Did you get a chance to watch the walkthrough video? Let me know if you have any questions about your new website and tools!
 </code></pre>
 
-<h3>Success Metrics</h3>
+<h3 id="success-metrics">Success Metrics</h3>
 
 <table><thead><tr><th>Metric</th><th>Target</th></tr></thead><tbody><tr><td>Video sent within 24h</td><td>100%</td></tr><tr><td>Video viewed within 48h</td><td>>80%</td></tr><tr><td>Support tickets in first week</td><td><2 per client</td></tr></tbody></table>
 <hr>
 
-<h2>Example Script (Copy/Paste)</h2>
+<h2 id="example-script-copy-paste">Example Script (Copy/Paste)</h2>
 
-<h3>Intro</h3>
+<h3 id="intro">Intro</h3>
 "Hey [First Name]! It's Dan from Slate Systems. I wanted to send you a quick walkthrough of your new website and tools so you can hit the ground running. Let me show you around."
 
-<h3>Website Transition</h3>
+<h3 id="website-transition">Website Transition</h3>
 "First up, your new website. I'll pull it up right here..."
 
-<h3>App Transition</h3>
+<h3 id="app-transition">App Transition</h3>
 "Now let me show you the app where you'll manage everything..."
 
-<h3>Reviews Transition</h3>
+<h3 id="reviews-transition">Reviews Transition</h3>
 "One of the most powerful features - let's talk about getting more 5-star reviews..."
 
-<h3>Closing</h3>
+<h3 id="closing">Closing</h3>
 "That covers the essentials! Any questions, just text me - my number's right there in the app. Excited to see your business grow, [First Name]. Talk soon!"
 
 <hr>
 
-<h2>Integration with Pipeline</h2>
+<h2 id="integration-with-pipeline">Integration with Pipeline</h2>
 
 <table><thead><tr><th>Stage</th><th>Action</th></tr></thead><tbody><tr><td>Launch Scheduled</td><td>N/A</td></tr><tr><td><strong>Launch Complete</strong> →</td><td>Record + send video within 24h</td></tr><tr><td>Active</td><td>Video should be sent</td></tr></tbody></table>
 <hr>
@@ -350,7 +361,7 @@ Create a Loom folder: "Client Walkthroughs"
 <em>Version: 1.0 - Initial SOP</em>
 
         <footer>
-            <p>&copy; 2026 Slate Systems LLC. Internal use only.</p>
+            <p>&copy; 2026 Slate Systems Inc. Internal use only.</p>
         </footer>
     </div>
 </body>

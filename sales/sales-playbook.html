@@ -46,8 +46,19 @@
             padding: 1rem;
             border-radius: 8px;
             overflow-x: auto;
+            max-width: 100%;
             margin: 1rem 0;
             border: 1px solid #334155;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        @media (max-width: 768px) {
+            body { padding: 1rem; }
+            pre { font-size: 0.85em; padding: 0.75rem; }
+            table { font-size: 0.9em; display: block; overflow-x: auto; }
+            th, td { padding: 0.5rem; }
+            h1 { font-size: 1.5rem; }
+            h2 { font-size: 1.25rem; }
         }
         code {
             font-family: 'SF Mono', Monaco, monospace;
@@ -97,7 +108,7 @@
 <body>
     <div class="container">
         <a href="../index.html" class="back-link">← Back to Portal</a>
-        <h1>Slate Systems Sales Playbook v1.0</h1>
+        <h1 id="slate-systems-sales-playbook-v1-0">Slate Systems Sales Playbook v1.0</h1>
 
 <blockquote><strong>Source:</strong> Analysis of 25+ Kai/Stone Systems sales calls, Kai SOPs, and commentary videos</blockquote>
 <blockquote><strong>Product:</strong> $297/month GHL SaaS for local service businesses (contractors, plumbers, HVAC, etc.)</blockquote>
@@ -105,7 +116,7 @@
 
 <hr>
 
-<h2>THE 5 FEATURES WE SELL</h2>
+<h2 id="the-5-features-we-sell">THE 5 FEATURES WE SELL</h2>
 
 <table><thead><tr><th>Feature</th><th>What It Does</th><th>Outcome for Customer</th></tr></thead><tbody><tr><td><strong>Professional Website</strong></td><td>Fast, mobile-optimized, chat widget, quote form</td><td>Looks legit, captures every lead</td></tr><tr><td><strong>5-Star Review System</strong></td><td>Auto-request reviews, bad review protection</td><td>More reviews → higher ranking → more calls</td></tr><tr><td><strong>AI Review Responses</strong></td><td>AI automatically responds to Google reviews</td><td>Google rewards engagement, saves time</td></tr><tr><td><strong>Missed Call Text-Back</strong></td><td>Auto-texts when they miss a call</td><td>Never lose a lead to "next guy"</td></tr><tr><td><strong>1-Year Follow-Up</strong></td><td>Automated texts every 3 months</td><td>Repeat business, referrals on autopilot</td></tr></tbody></table>
 <strong>Always sell OUTCOMES, not features:</strong>
@@ -114,18 +125,18 @@
 </ul>
 <hr>
 
-<h2>THE NEW TIGHT SCRIPT (2026)</h2>
+<h2 id="the-new-tight-script-2026">THE NEW TIGHT SCRIPT (2026)</h2>
 
 <strong>Context:</strong> Kai closed 3 clients in 19 minutes (8 min, 7 min, 4 min). $234K MRR, 730 clients, signing ~9 clients/day.
 
-<h3>Pre-Call Requirements</h3>
+<h3 id="pre-call-requirements">Pre-Call Requirements</h3>
 
 <strong>CRITICAL: Send VSL Before Every Call</strong>
 <ul><li>5-6 minute video covering: what we do, how it makes them money, price ($297/month)</li>
 <li>Without VSL, you're speaking different languages</li>
 <li>If they haven't watched, make them watch ON THE CALL or reschedule</li>
 </ul>
-<h3>The Script Flow</h3>
+<h3 id="the-script-flow">The Script Flow</h3>
 
 <pre><code>1. OPENING (10 seconds)
    "Hey man, did you get a chance to watch that short video I sent over to you?"
@@ -133,7 +144,7 @@
 <p>   → YES: Continue<br>   → NO: "No worries, it's only 6 minutes. Let me send it to you now and you can watch it real quick."</p>
 
 <ol><li class="ordered">CONFIRM (5 seconds)</li>
-</ol>   "Awesome, you're the man. Well, that's exactly what we do."
+</ol>   "Awesome, appreciate you watching that. So yeah, that's exactly what we do."
 
 <ol><li class="ordered">THE QUESTION (5 seconds)</li>
 </ol>   "That being said, what questions do you have?"
@@ -158,7 +169,7 @@
    - CARD NUMBER LAST (always)
 </code></pre>
 
-<h3>Key Principles</h3>
+<h3 id="key-principles">Key Principles</h3>
 
 <strong>1. ASSUME THE CLOSE</strong>
 <ul><li>Don't ask permission, state what will happen</li>
@@ -190,16 +201,16 @@ Say things they've NEVER heard from a salesperson:
 </ul>
 <hr>
 
-<h2>OBJECTION HANDLING DATABASE</h2>
+<h2 id="objection-handling-database">OBJECTION HANDLING DATABASE</h2>
 
-<h3>Frequency Legend</h3>
+<h3 id="frequency-legend">Frequency Legend</h3>
 <ul><li>(HIGH) = Appears in 10+ calls</li>
 <li>(MED) = Appears in 5-9 calls</li>
 <li>(LOW) = Appears in 1-4 calls</li>
 </ul>
 <hr>
 
-<h3>OBJECTION: "I don't have a website" (HIGH)</h3>
+<h3 id="objection-i-don-t-have-a-website-high">OBJECTION: "I don't have a website" (HIGH)</h3>
 
 <strong>Response:</strong>
 <blockquote>"That's actually the best case scenario for us. Otherwise I have to convince you your website's shit and we should rebuild it. If you don't have anything, we just set it all up for you fresh."</blockquote>
@@ -208,7 +219,7 @@ Say things they've NEVER heard from a salesperson:
 
 <hr>
 
-<h3>OBJECTION: "Do you have contracts?" (HIGH)</h3>
+<h3 id="objection-do-you-have-contracts-high">OBJECTION: "Do you have contracts?" (HIGH)</h3>
 
 <strong>Response:</strong>
 <blockquote>"No, we don't do contracts. Contracts are literally just used to scare you into not canceling. Nobody's chasing you down for 300 bucks, bro."</blockquote>
@@ -217,7 +228,7 @@ Say things they've NEVER heard from a salesperson:
 
 <hr>
 
-<h3>OBJECTION: "I've been burned by 3 other companies" (HIGH)</h3>
+<h3 id="objection-i-ve-been-burned-by-3-other-companies-high">OBJECTION: "I've been burned by 3 other companies" (HIGH)</h3>
 
 <strong>Response:</strong>
 <blockquote>[Be different] "Look, I'm not going to sit here and promise you the world. What I can tell you is here's exactly what we do [point to video]. You either think it's worth $297 or you don't. I can't guarantee Susan's going to see your website and decide to give you $50,000. What I can guarantee is you'll have the systems in place that make that possible."</blockquote>
@@ -226,7 +237,7 @@ Say things they've NEVER heard from a salesperson:
 
 <hr>
 
-<h3>OBJECTION: "How many leads will I get?" / "When will I get leads?" (HIGH)</h3>
+<h3 id="objection-how-many-leads-will-i-get-when-will-i-get-leads-high">OBJECTION: "How many leads will I get?" / "When will I get leads?" (HIGH)</h3>
 
 <strong>Best Response (from Kai commentary):</strong>
 <blockquote>"I'm gonna be real with you. I cannot prove to you that in 2 months, Susan saw your Google reviews and your website and said 'holy shit these guys look professional' and decided to give you a $15,000 job. I can't prove that correlation. What I do know is the guys who have professional websites, tons of reviews, and fast follow-up are the ones winning. Does that make sense?"</blockquote>
@@ -235,7 +246,7 @@ Say things they've NEVER heard from a salesperson:
 
 <hr>
 
-<h3>OBJECTION: "It seems expensive" / "That's a lot" (MED)</h3>
+<h3 id="objection-it-seems-expensive-that-s-a-lot-med">OBJECTION: "It seems expensive" / "That's a lot" (MED)</h3>
 
 <strong>Response:</strong>
 <blockquote>"What's your average job ticket? $10K-$20K? So if you get ONE job off this system in an entire YEAR, you're still 3-6x'ing what you're paying us. It's $297 a month - one job pays for 3 years."</blockquote>
@@ -244,7 +255,7 @@ Say things they've NEVER heard from a salesperson:
 
 <hr>
 
-<h3>OBJECTION: "I need to think about it" (MED)</h3>
+<h3 id="objection-i-need-to-think-about-it-med">OBJECTION: "I need to think about it" (MED)</h3>
 
 <strong>Response:</strong>
 <blockquote>"For sure, man. Listen, I'm not here to pressure you. What specifically do you need to think about? Maybe I can help clarify something."</blockquote>
@@ -253,7 +264,7 @@ Say things they've NEVER heard from a salesperson:
 
 <hr>
 
-<h3>OBJECTION: "Let me talk to my partner/wife" (MED)</h3>
+<h3 id="objection-let-me-talk-to-my-partner-wife-med">OBJECTION: "Let me talk to my partner/wife" (MED)</h3>
 
 <strong>Response:</strong>
 <blockquote>"Totally get it. When do you think you'll have that conversation? Let's get something on the calendar so I can answer any questions they might have too."</blockquote>
@@ -262,80 +273,80 @@ Say things they've NEVER heard from a salesperson:
 
 <hr>
 
-<h3>OBJECTION: "I'm already working with someone for SEO/reviews" (MED)</h3>
+<h3 id="objection-i-m-already-working-with-someone-for-seo-reviews-med">OBJECTION: "I'm already working with someone for SEO/reviews" (MED)</h3>
 
 <strong>Response:</strong>
 <blockquote>"No problem. What are you paying? What results have you gotten? ... Look, 95% of companies are totally full of shit, honestly. If it's working for you, stick with it. But understand what we do is the foundation - website, reviews, missed call follow-up, remarketing. That's different from just SEO."</blockquote>
 
 <hr>
 
-<h3>OBJECTION: "Do you do lead generation?" (HIGH)</h3>
+<h3 id="objection-do-you-do-lead-generation-high">OBJECTION: "Do you do lead generation?" (HIGH)</h3>
 
 <strong>Response:</strong>
 <blockquote>"I hate marketing ourselves as a lead generation company. You're paying $297 for pre-built business SYSTEMS that I spent a long time creating. The leads come as a byproduct of having these systems in place - professional website, Google reviews, missed call follow-up. If you want direct lead gen, you need paid ads at $1,500-3,000/month. We don't even do that."</blockquote>
 
 <hr>
 
-<h3>OBJECTION: "What happens if I cancel? Do I keep the website?" (MED)</h3>
+<h3 id="objection-what-happens-if-i-cancel-do-i-keep-the-website-med">OBJECTION: "What happens if I cancel? Do I keep the website?" (MED)</h3>
 
 <strong>Response:</strong>
-<blockquote>"Yeah, if you cancel, there's a one-time buyout fee of $1,000 and everything transfers to you - the website, everything. What you lose access to is the automations - review sequences, auto call text back, remarketing campaigns. That's what you're paying us for."</blockquote>
+<blockquote>"If you cancel, the website goes down since it's hosted on our platform. What you'd lose is the automations - review sequences, auto call text back, follow-up campaigns. But honestly, there's no contracts, so you're never locked in. Most people who try it end up staying because it works."</blockquote>
 
 <hr>
 
-<h3>OBJECTION: "I can do this myself" (LOW)</h3>
+<h3 id="objection-i-can-do-this-myself-low">OBJECTION: "I can do this myself" (LOW)</h3>
 
 <strong>Response:</strong>
 <blockquote>"You absolutely can. Same way I could watch YouTube and figure out how to fix my own roof. But I'm gonna call a roofer because that's what he does every day. That's what we do - this is all we do, all day, every day. You should be out doing jobs, not messing with websites."</blockquote>
 
 <hr>
 
-<h3>OBJECTION: "I'm not tech savvy" (MED)</h3>
+<h3 id="objection-i-m-not-tech-savvy-med">OBJECTION: "I'm not tech savvy" (MED)</h3>
 
 <strong>Response:</strong>
 <blockquote>"Perfect. That's why we exist. We handle everything. All you do is fill out an onboarding form - basic business info, pictures, services. We build everything. You just approve it."</blockquote>
 
 <hr>
 
-<h3>OBJECTION: "I don't have a Google Business Page" (MED)</h3>
+<h3 id="objection-i-don-t-have-a-google-business-page-med">OBJECTION: "I don't have a Google Business Page" (MED)</h3>
 
 <strong>Response:</strong>
-<blockquote>"That's free to set up - takes about 5 days to verify. I'll send you a video showing exactly how to do it. If anyone tries to charge you for that, they're full of shit. While you're setting that up, we'll build your website. By the time you're verified, everything will be ready to connect."</blockquote>
+<blockquote>"That's free to set up - takes about 5 days to verify. Check out guides.slatesystems.io - we have a step-by-step guide that walks you through exactly how to do it. If anyone tries to charge you for that, they're full of shit. While you're setting that up, we'll build your website. By the time you're verified, everything will be ready to connect."</blockquote>
 
 <hr>
 
-<h3>OBJECTION: "My phone doesn't ring enough" / "I need work NOW" (MED)</h3>
+<h3 id="objection-my-phone-doesn-t-ring-enough-i-need-work-now-med">OBJECTION: "My phone doesn't ring enough" / "I need work NOW" (MED)</h3>
 
 <strong>Response:</strong>
 <blockquote>"I hear you. The website and reviews are the foundation - that's what we set up. That's how people find you organically on Google. If you need leads TODAY, that's paid ads - you're looking at $1,500-3,000/month with someone managing it plus ad spend. We don't do that. What we do is make sure when leads DO come, you capture them, follow up, and convert them."</blockquote>
 
 <hr>
 
-<h2>QUESTION DATABASE</h2>
+<h2 id="question-database">QUESTION DATABASE</h2>
 
-<h3>Q: "How does this work?" / "Walk me through it"</h3>
+<h3 id="q-how-does-this-work-walk-me-through-it">Q: "How does this work?" / "Walk me through it"</h3>
 <blockquote>"Did you watch the video? [Yes] Cool, that's literally it. Four systems: website, Google reviews, auto call text back, remarketing campaigns. What specific questions do you have about any of those?"</blockquote>
 
-<h3>Q: "How long does it take?"</h3>
+<h3 id="q-how-long-does-it-take">Q: "How long does it take?"</h3>
 <blockquote>"8-9 days from when you submit the onboarding form. You fill out the form, we build everything, then we hop on a launch call to go over it together."</blockquote>
 
-<h3>Q: "What do I need to do?"</h3>
+<h3 id="q-what-do-i-need-to-do">Q: "What do I need to do?"</h3>
 <blockquote>"Three things: Fill out the onboarding form (basic business info, services, pictures), connect your Google My Business page (I'll send you a video), and send us photos of your work. That's it."</blockquote>
 
-<h3>Q: "What about SEO?"</h3>
-<blockquote>"Everything we build is optimized for SEO - pages for each service, pages for each service area, proper keywords. The reviews are huge for SEO. If you want ADVANCED SEO - backlinks, weekly blog posts, keyword reports - that's our $997/month plan. But honestly, don't do that until you have 70+ reviews and we've been working together 3 months."</blockquote>
+<h3 id="q-what-about-seo">Q: "What about SEO?"</h3>
+<blockquote>"Everything we build is optimized for SEO - pages for each service, pages for each service area, proper keywords. The reviews are huge for SEO. The website structure alone handles 90% of what most people need. If you want something more advanced down the road, we can talk about that once you have 70+ reviews and we've been working together a few months."</blockquote>
 
-<h3>Q: "Can I make changes to the website?"</h3>
+<h3 id="q-can-i-make-changes-to-the-website">Q: "Can I make changes to the website?"</h3>
 <blockquote>"You can change wording and pictures, no problem. What I don't want you doing is messing with the structure or layout - there's custom code for speed optimization. If you want sections added or changed, just tell us and we'll do it."</blockquote>
 
-<h3>Q: "Do you do Facebook/Instagram ads?"</h3>
+<h3 id="q-do-you-do-facebook-instagram-ads">Q: "Do you do Facebook/Instagram ads?"</h3>
 <blockquote>"We're launching a self-serve ad platform soon where you can launch your own ads in 3 clicks. But traditional managed ads are $1,500-3,000/month. We don't do that currently."</blockquote>
 
 <hr>
 
-<h2>PAIN POINTS (What Prospects Actually Say)</h2>
+<h2 id="pain-points-what-prospects-actually-say">PAIN POINTS (What Prospects Actually Say)</h2>
 
-<h3>Business Pain (HIGH frequency)</h3>
+<h3 id="business-pain-high-frequency">Business Pain (HIGH frequency)</h3>
 <ul><li>"It's been peaks and valleys lately"</li>
 <li>"I'm not getting as many calls as I used to"</li>
 <li>"I'm losing jobs to guys with more reviews"</li>
@@ -343,14 +354,14 @@ Say things they've NEVER heard from a salesperson:
 <li>"I miss too many calls when I'm on jobs"</li>
 <li>"I don't have time for this marketing stuff"</li>
 </ul>
-<h3>Past Experience Pain (HIGH frequency)</h3>
+<h3 id="past-experience-pain-high-frequency">Past Experience Pain (HIGH frequency)</h3>
 <ul><li>"I've been burned by 3 companies"</li>
 <li>"Paid $1,500/month for SEO and got nothing"</li>
 <li>"Companies keep upselling me but nothing works"</li>
 <li>"I don't understand any of this tech stuff"</li>
 <li>"Everyone promises leads but nobody delivers"</li>
 </ul>
-<h3>Technical Pain (MED frequency)</h3>
+<h3 id="technical-pain-med-frequency">Technical Pain (MED frequency)</h3>
 <ul><li>"My website is old and doesn't work on phones"</li>
 <li>"I don't have a Google page set up"</li>
 <li>"I only have 8 reviews after 18 years"</li>
@@ -359,7 +370,7 @@ Say things they've NEVER heard from a salesperson:
 </ul>
 <hr>
 
-<h2>LIGHTBULB MOMENTS (What Makes Them Buy)</h2>
+<h2 id="lightbulb-moments-what-makes-them-buy">LIGHTBULB MOMENTS (What Makes Them Buy)</h2>
 
 <ol><li class="ordered"><strong>The Phone Number Test</strong></li>
 </ol>   > "See how your phone number isn't hyperlinked? My mom's in her 70s, has bad eyes - she can't read that small text. She's gonna leave your site. [They check their site] There should be a big CALL NOW button."
@@ -378,9 +389,9 @@ Say things they've NEVER heard from a salesperson:
 
 <hr>
 
-<h2>CLOSING SEQUENCES</h2>
+<h2 id="closing-sequences">CLOSING SEQUENCES</h2>
 
-<h3>Standard Close</h3>
+<h3 id="standard-close">Standard Close</h3>
 <pre><code>"Awesome, no more questions? Cool, let me get some info from you."
 "What's the official business name?"
 "And the address?"
@@ -388,44 +399,53 @@ Say things they've NEVER heard from a salesperson:
 [Always card LAST]
 </code></pre>
 
-<h3>The Soft Qualifier Close</h3>
+<h3 id="the-soft-qualifier-close">The Soft Qualifier Close</h3>
 <pre><code>"Look, I'm not here to convince you you need this. You either think it's worth $297 or you don't. If you want to grow and have these systems in place, we can help. If you're good with word of mouth and pen and paper, that's cool too. What do you want to do?"
 </code></pre>
 
-<h3>The Trial Close (for hesitant prospects)</h3>
-<pre><code>"Tell you what - let me start you on the $197 plan today. If in 3-4 months you're seeing the value, just be honest with me and we'll upgrade you to the full plan. Sound fair?"
+<h3 id="the-trial-close-for-hesitant-prospects">The Trial Close (for hesitant prospects)</h3>
+<pre><code>"Tell you what - I can do 50% off your first 3 months. That's $148.50 instead of $297. Gives you time to see it working without full commitment. Sound fair?"
 </code></pre>
+
+<strong>Note:</strong> This is the ONLY discount offer. 50% off first 3 months = $148.50/mo for months 1-3, then $297/mo.
 
 <hr>
 
-<h2>CALL STRUCTURE BY TYPE</h2>
+<h2 id="call-structure-by-type">CALL STRUCTURE BY TYPE</h2>
 
-<h3>The Pre-Sold Buyer (4-7 min)</h3>
+<h3 id="the-pre-sold-buyer-4-7-min">The Pre-Sold Buyer (4-7 min)</h3>
 <ul><li>Watched video</li>
 <li>No questions or minimal questions</li>
 <li>"When can we start?"</li>
 <li>JUST CLOSE. Don't oversell.</li>
 </ul>
-<h3>The Curious Skeptic (10-15 min)</h3>
+<h3 id="the-curious-skeptic-10-15-min">The Curious Skeptic (10-15 min)</h3>
 <ul><li>Watched video</li>
 <li>Has specific questions</li>
 <li>Been burned before</li>
 <li>ANSWER QUESTIONS → BUILD TRUST → CLOSE</li>
 </ul>
-<h3>The Talker (15-25 min)</h3>
+<h3 id="the-talker-15-25-min">The Talker (15-25 min)</h3>
 <ul><li>Wants to tell their life story</li>
 <li>Goes off on tangents</li>
 <li>Keep pulling back: "Cool, what other questions do you have?"</li>
 <li>DON'T LET THEM LEAVE "BUY MODE"</li>
 </ul>
-<h3>The Hasn't Watched Video</h3>
+<h3 id="the-hasn-t-watched-video">The Hasn't Watched Video</h3>
 <ul><li>Make them watch it</li>
+<li>Offer to screen share: "I can share my screen and walk you through it real quick if you want"</li>
 <li>Or reschedule</li>
 <li>DON'T try to sell without them seeing the video</li>
 </ul>
+<h3 id="they-re-driving">They're Driving</h3>
+<ul><li>Don't do the call</li>
+<li>"Safety first. Text me 'ready' when you're parked and I'll call you right back."</li>
+<li>Or offer: "When you get where you're going, I can screen share the video with you"</li>
+<li>Reschedule if needed</li>
+</ul>
 <hr>
 
-<h2>RED FLAGS (When to Disqualify)</h2>
+<h2 id="red-flags-when-to-disqualify">RED FLAGS (When to Disqualify)</h2>
 
 <ol><li class="ordered"><strong>No Google Business Page AND don't want to make one</strong></li>
 </ol>   > "Go make the Google page first. It's free. Call me back when it's verified."
@@ -441,7 +461,7 @@ Say things they've NEVER heard from a salesperson:
 
 <hr>
 
-<h2>Related SOPs</h2>
+<h2 id="related-sops">Related SOPs</h2>
 
 <ul><li><code>sales-sop.md</code> — Step-by-step call procedures</li>
 <li><code>show-rate-optimization.md</code> — Getting them to show up</li>
@@ -450,11 +470,24 @@ Say things they've NEVER heard from a salesperson:
 </ul>
 <hr>
 
-<em>Compiled from 25+ Kai/Stone Systems sales calls</em>
-<em>Updated: Feb 22, 2026</em>
+<h2 id="key-resources">KEY RESOURCES</h2>
+
+<table><thead><tr><th>Resource</th><th>URL</th><th>When to Use</th></tr></thead><tbody><tr><td>VSL</td><td>https://slatesystems.io/watch-this-616006</td><td>Send before every call</td></tr><tr><td>GMB Setup Guide</td><td>guides.slatesystems.io</td><td>When they need to set up Google Business</td></tr><tr><td>Help Center</td><td>help.slatesystems.io</td><td>Post-sale reference</td></tr><tr><td>Booking Calendar</td><td>Slate Systems Demo Calendar</td><td>All demos</td></tr><tr><td>Platform</td><td>Google Meet</td><td>Video calls</td></tr></tbody></table>
+<hr>
+
+<h2 id="only-discount-offer">ONLY DISCOUNT OFFER</h2>
+
+<strong>50% off first 3 months = $148.50/mo (instead of $297)</strong>
+
+<p>This is the ONLY approved discount. Found in SMS sequences at Long Term Nurture Day 28 and Cancelled sequence SMS 6.</p>
+
+<p>Never offer:<br><ul><li>❌ $97/mo (doesn't exist)</li><br><li>❌ $997/mo advanced tier (doesn't exist)</li><br><li>❌ Free trials</li><br><li>❌ Custom pricing</li><br></ul><br><hr></p>
+
+<em>Adapted from Stone Systems training, customized for Slate Systems</em>
+<em>Updated: Feb 23, 2026</em>
 
         <footer>
-            <p>&copy; 2026 Slate Systems LLC. Internal use only.</p>
+            <p>&copy; 2026 Slate Systems Inc. Internal use only.</p>
         </footer>
     </div>
 </body>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meta Ads SOP - Slate Systems SOP</title>
+    <title>Slate Systems Meta Ads SOP - Slate Systems SOP</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
@@ -46,8 +46,19 @@
             padding: 1rem;
             border-radius: 8px;
             overflow-x: auto;
+            max-width: 100%;
             margin: 1rem 0;
             border: 1px solid #334155;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        @media (max-width: 768px) {
+            body { padding: 1rem; }
+            pre { font-size: 0.85em; padding: 0.75rem; }
+            table { font-size: 0.9em; display: block; overflow-x: auto; }
+            th, td { padding: 0.5rem; }
+            h1 { font-size: 1.5rem; }
+            h2 { font-size: 1.25rem; }
         }
         code {
             font-family: 'SF Mono', Monaco, monospace;
@@ -97,427 +108,414 @@
 <body>
     <div class="container">
         <a href="../index.html" class="back-link">← Back to Portal</a>
-        <h1>Meta Ads SOP</h1>
+        <h1 id="slate-systems-meta-ads-sop">Slate Systems Meta Ads SOP</h1>
 
-<blockquote><strong>Role:</strong> Marketing / Founder</blockquote>
-<blockquote><strong>When:</strong> After organic methods (cold calling, email) producing consistent results</blockquote>
-<blockquote><strong>Source:</strong> Kai Stone Systems</blockquote>
-<blockquote><strong>Last Updated:</strong> Feb 22, 2026</blockquote>
+<blockquote><strong>Role:</strong> Founder</blockquote>
+<blockquote><strong>Status:</strong> Primary lead source</blockquote>
+<blockquote><strong>Last Updated:</strong> Feb 23, 2026</blockquote>
 
 <hr>
 
-<h2>When to Start Paid Ads</h2>
+<h2 id="current-slate-setup">CURRENT SLATE SETUP</h2>
 
-<strong>Prerequisites:</strong>
-<ul><li>500+ cold calls completed</li>
-<li>Know your script and objections cold</li>
-<li>Have 3-5 video testimonials</li>
-<li>Proven offer (5+ paying clients)</li>
-<li>Budget: $50-100/day minimum</li>
-</ul>
-<strong>Why wait:</strong>
-<ul><li>Ads amplify what works (and what doesn't)</li>
-<li>Need sales skills first</li>
-<li>Need proof/testimonials for creative</li>
-<li>Need cash flow to fund ads</li>
-</ul>
-<hr>
+<h3 id="pixel-tracking">Pixel & Tracking</h3>
 
-<h2>Account Setup</h2>
+<table><thead><tr><th>Asset</th><th>Value</th></tr></thead><tbody><tr><td><strong>Pixel ID / Dataset ID</strong></td><td><code>1942584659683034</code></td></tr><tr><td><strong>Access Token</strong></td><td>Configured in GHL</td></tr><tr><td><strong>Funnel</strong></td><td>"FB lead form ads - ADS FUNNEL"</td></tr></tbody></table>
+<h3 id="events-tracked">Events Tracked</h3>
 
-<h3>1. Business Manager</h3>
+<table><thead><tr><th>Event</th><th>When</th><th>Where Configured</th></tr></thead><tbody><tr><td><strong>PageView</strong></td><td>Any funnel page visit</td><td>Funnel → Events tab (browser + CAPI)</td></tr><tr><td><strong>Lead</strong></td><td>Submit Lead Opt-in Form</td><td>WF1: "Lead Form → New Opportunity"</td></tr><tr><td><strong>Schedule</strong></td><td>Book demo (FB leads only)</td><td>WF7: "Demo Booked → FB Conversion"</td></tr></tbody></table>
+<h3 id="lead-opt-in-form">Lead Opt-in Form</h3>
 
-<p>Create at: business.facebook.com</p>
+<strong>Form ID:</strong> <code>Alrsru8AqQTjvWWrTWEJ</code>
+<strong>Internal Name:</strong> "3. Lead Opt-in Form⭐"
+<strong>Location:</strong> FB funnel step 1
 
-<strong>Structure:</strong>
-<ul><li>Business Manager (company level)</li>
-<li class="nested">Ad Account (billing lives here)</li>
-<li class="nested">Facebook Page (for running ads)</li>
-<li class="nested">Instagram Account (optional)</li>
-<li class="nested">Pixel (tracking)</li>
-</ul>
-<h3>2. Payment Method</h3>
+<strong>Fields:</strong>
+<table><thead><tr><th>Field</th><th>Type</th><th>Why</th></tr></thead><tbody><tr><td>Business Name *</td><td>Text</td><td>Pre-qualify</td></tr><tr><td>Your Name *</td><td>Text</td><td>Personalization</td></tr><tr><td>Phone Number *</td><td>Phone</td><td>Primary contact</td></tr><tr><td>Monthly Revenue *</td><td>Radio</td><td>Qualify on call</td></tr></tbody></table>
+<strong>Revenue Options:</strong> $0-$10k, $10k-$25k, $25k-$50k, $50k+
 
-<ul><li>Add credit card to Ad Account</li>
-<li>Set spending limit initially ($500/month to start)</li>
-</ul>
-<h3>3. Facebook Pixel</h3>
+<strong>After Submit:</strong> Redirects to VSL page (5:36)
 
-<p>Create pixel in Events Manager:<br><ol><li class="ordered">Go to Events Manager</li><br><li class="ordered">Click "Connect Data Sources"</li><br><li class="ordered">Select "Web"</li><br><li class="ordered">Name it "[Business Name] Pixel"</li><br><li class="ordered">Install on landing page</li><br></ol><br><strong>For GHL pages:</strong><br><ul><li>Go to Sites → Settings → Tracking Code</li><br><li>Add pixel base code to header</li><br><li>Add event code for form submissions</li><br></ul><br><hr></p>
+<h3 id="tagging-flow">Tagging Flow</h3>
 
-<h2>Campaign Structure</h2>
-
-<h3>Naming Convention</h3>
-
-<pre><code>[Objective]_[Audience]_[Creative Type]_[Date]
-Example: LEADS_Homeowners_Video1_Feb2026
+<pre><code>Form Submit → WF1 adds tag: fb-lead
+                    ↓
+        Demo Booked? → WF7 checks for fb-lead tag
+                    ↓
+             YES → Fire Schedule event to Meta
+             NO → Skip (non-FB source)
 </code></pre>
 
-<h3>Structure</h3>
+<p>Why: Demo calendar used from FB funnel AND website. Only FB leads trigger conversion events.</p>
 
-<pre><code>Campaign: LEADS_Local_Feb2026
-├── Ad Set 1: Homeowners 25-65 [City]
-│   ├── Ad 1: Video testimonial
-│   ├── Ad 2: Before/after images
-│   └── Ad 3: Problem/solution
-└── Ad Set 2: Retargeting
+<hr>
+
+<h2 id="funnel-structure">FUNNEL STRUCTURE</h2>
+
+<pre><code>META AD
+    ↓
+LEAD OPT-IN PAGE (step 1)
+<ul><li>Business Name</li>
+<li>Your Name</li>
+<li>Phone</li>
+<li>Monthly Revenue</li>
+</ul>    ↓
+VSL PAGE (step 2)
+<ul><li>5:36 video sells the solution</li>
+<li>"Book Demo" button below</li>
+</ul>    ↓
+BOOKING PAGE (step 3)
+<ul><li>Calendar embed</li>
+<li>Form: Name, Phone, Email, "Will you attend?"</li>
+</ul>    ↓
+THANK YOU PAGE (step 4)
+<ul><li>Confirmation</li>
+<li>Reminder to check calendar</li>
+</ul></code></pre>
+
+<hr>
+
+<h2 id="target-audience">TARGET AUDIENCE</h2>
+
+<h3 id="who-we-re-selling-to">Who We're Selling To</h3>
+
+<strong>Primary:</strong> Local service business owners
+<ul><li>Contractors (general, painting, remodeling)</li>
+<li>Plumbers</li>
+<li>HVAC technicians</li>
+<li>Electricians</li>
+<li>Landscapers</li>
+<li>Roofers</li>
+<li>Pool service</li>
+</ul>
+<strong>Demographics:</strong>
+<ul><li>Age: 35-65 (business owners, not technicians)</li>
+<li>Male: 85%+</li>
+<li>US only</li>
+<li>Income: $75k+ (business owners, not employees)</li>
+<li>Decision maker or owner</li>
+</ul>
+<strong>Psychographics:</strong>
+<ul><li>Busy — no time for marketing</li>
+<li>Skeptical of agencies (burned before)</li>
+<li>Want leads, not "marketing"</li>
+<li>Price conscious but will pay for results</li>
+<li>Tech uncomfortable (need simple)</li>
+</ul>
+<h3 id="targeting-in-meta">Targeting in Meta</h3>
+
+<strong>Location:</strong> 25-50 mile radius OR specific ZIP codes
+
+<strong>Interests (layer these):</strong>
+<ul><li>Home improvement</li>
+<li>Small business owners</li>
+<li>Entrepreneurship</li>
+<li>Business page admins</li>
+<li>Construction equipment brands (Dewalt, Milwaukee)</li>
+<li>Industry publications</li>
+</ul>
+<strong>Behaviors:</strong>
+<ul><li>Small business owners</li>
+<li>Business page admins</li>
+<li>Engaged shoppers</li>
+</ul>
+<strong>Exclusions:</strong>
+<ul><li>Already leads (pixel custom audience)</li>
+<li>Employees of competitors</li>
+</ul>
+<hr>
+
+<h2 id="creative-strategy">CREATIVE STRATEGY</h2>
+
+<h3 id="what-works-for-contractors">What Works for Contractors</h3>
+
+<strong>1. UGC Talking Head (Best)</strong>
+<ul><li>Real person on camera</li>
+<li>Speaks directly to their pain</li>
+<li>15-30 seconds</li>
+<li>Vertical (9:16)</li>
+</ul>
+<strong>2. Before/After Results</strong>
+<ul><li>"Client went from X to Y leads/month"</li>
+<li>Screenshots of notifications</li>
+<li>Real numbers</li>
+</ul>
+<strong>3. Testimonial Clips</strong>
+<ul><li>Client speaking about results</li>
+<li>30 seconds max</li>
+<li>Caption: "Contractor gets 40 leads/month"</li>
+</ul>
+<strong>4. Problem/Agitate/Solution</strong>
+<ul><li>Hook: Call out the pain</li>
+<li>Agitate: "How many leads did you lose this week?"</li>
+<li>Solution: "We solve this in 10 days"</li>
+</ul>
+<h3 id="creative-production-options">Creative Production Options</h3>
+
+<strong>Option A: Self-Recorded</strong>
+<ul><li>iPhone vertical video</li>
+<li>Good lighting (window)</li>
+<li>Simple script</li>
+<li>Captions (80% watch muted)</li>
+</ul>
+<strong>Option B: Arcads/HeyGen ($49-99/mo)</strong>
+<ul><li>AI avatar library</li>
+<li>Script → video in minutes</li>
+<li>Consistent quality</li>
+<li>Easy A/B testing</li>
+</ul>
+<strong>Option C: Slate UGC Pipeline</strong>
+<ul><li>Custom character</li>
+<li>Veo 3.1 generation</li>
+<li>Full control over script</li>
+<li>See <code>slate-ugc-pipeline.md</code> for technical details</li>
+</ul>
+<h3 id="hook-examples">Hook Examples</h3>
+
+<pre><code>"Contractors: are you tired of paying for leads that never answer?"
+
+<p>"If you're a plumber doing over $25k/month, this is for you"</p>
+
+<p>"I help contractors get 20-40 extra leads every month. Here's how."</p>
+
+<p>"Most contractors lose 50% of their leads to competitors. Here's why."</p>
+
+<p>"Stop paying for leads. Start owning them."<br></code></pre></p>
+
+<h3 id="primary-text-template">Primary Text Template</h3>
+
+<pre><code>[Hook - call out contractors specifically]
+
+<p>[Problem - what they're dealing with]</p>
+
+<p>[Solution - what Slate does in one sentence]</p>
+
+<p>[Proof - one specific result or testimonial]</p>
+
+<p>[CTA - what to do next]<br></code></pre></p>
+
+<strong>Example:</strong>
+<pre><code>Contractors: tired of paying for leads that ghost you?
+
+<p>You're spending hundreds on HomeAdvisor, Angi, and Google Ads — and half of them never even answer the phone.</p>
+
+<p>We build you a system that captures leads from your own website, follows up automatically, and gets them to actually call YOU back.</p>
+
+<p>One of our clients went from 5 leads/month to 38 in the first 60 days.</p>
+
+<p>Click "Learn More" to see how it works (5 min video).<br></code></pre></p>
+
+<hr>
+
+<h2 id="campaign-structure">CAMPAIGN STRUCTURE</h2>
+
+<h3 id="naming-convention">Naming Convention</h3>
+
+<pre><code>SLATE_[Objective]_[Audience]_[Creative]_[Date]
+</code></pre>
+
+<p>Examples:<br><ul><li><code>SLATE_LEADS_Contractors_UGC1_Feb26</code></li><br><li><code>SLATE_LEADS_HVAC_Testimonial_Feb26</code></li><br><li><code>SLATE_RETARGET_Visitors_Feb26</code></li><br></ul><br><h3 id="structure">Structure</h3></p>
+
+<pre><code>Campaign: SLATE_LEADS_Feb26
+├── Ad Set: Contractors - Broad
+│   ├── Ad 1: UGC - Problem Hook
+│   ├── Ad 2: UGC - Results Hook
+│   └── Ad 3: Testimonial Clip
+├── Ad Set: HVAC Specific
+│   ├── Ad 1: UGC - HVAC Pain Points
+│   └── Ad 2: Before/After
+└── Ad Set: Retargeting (7 days)
     └── Ad 1: "Still thinking about it?"
 </code></pre>
 
 <hr>
 
-<h2>Targeting</h2>
+<h2 id="budget-scaling">BUDGET & SCALING</h2>
 
-<h3>Location</h3>
-
-<ul><li>Target 25-50 mile radius around service area</li>
-<li>Or target specific ZIP codes</li>
-<li>Exclude areas you don't serve</li>
+<h3 id="phase-1-testing-50-day">Phase 1: Testing ($50/day)</h3>
+<ul><li>Test 3-5 creatives</li>
+<li>Same audience</li>
+<li>Run 7 days</li>
+<li>Pick winner by CPL</li>
 </ul>
-<h3>Demographics</h3>
-
-<strong>Home services (plumber, HVAC, roofer):</strong>
-<ul><li>Age: 30-65</li>
-<li>Homeowners (select in detailed targeting)</li>
-<li>Income: Middle to upper</li>
+<h3 id="phase-2-audience-testing-75-day">Phase 2: Audience Testing ($75/day)</h3>
+<ul><li>Winning creative</li>
+<li>Test different interests</li>
+<li>Test different locations</li>
+<li>Run 7 days</li>
 </ul>
-<strong>B2B services:</strong>
-<ul><li>Age: 25-55</li>
-<li>Small business owners</li>
-<li>Interested in: Business, Entrepreneurship</li>
+<h3 id="phase-3-scaling-100-200-day">Phase 3: Scaling ($100-200/day)</h3>
+<ul><li>Winning creative + audience</li>
+<li>Increase budget 20% every 3 days</li>
+<li>Monitor frequency (<3)</li>
+<li>Add new creative before fatigue</li>
 </ul>
-<h3>Interests (Home Services Example)</h3>
+<h3 id="budget-rules">Budget Rules</h3>
 
-<ul><li>Home improvement</li>
-<li>Home & Garden</li>
-<li>DIY</li>
-<li>Recently moved</li>
-<li>Homeowners</li>
-<li>Property management</li>
-</ul>
-<h3>Audience Size</h3>
-
-<ul><li>Local market: 50,000 - 500,000</li>
-<li>Too small = expensive, limited reach</li>
-<li>Too large = less targeted</li>
+<ul><li>Never increase more than 20% at once</li>
+<li>Watch frequency — over 3 means fatigue</li>
+<li>Keep 70% on winners, 30% on testing</li>
+<li>Pause losers after 3 days if CPL >2x target</li>
 </ul>
 <hr>
 
-<h2>Creative Best Practices</h2>
+<h2 id="kpis-targets">KPIs & TARGETS</h2>
 
-<h3>Video Ads (Best Performing)</h3>
+<table><thead><tr><th>Metric</th><th>Target</th><th>Action if Off</th></tr></thead><tbody><tr><td>CPM</td><td><$20</td><td>Refresh creative</td></tr><tr><td>CTR</td><td>>1%</td><td>Hook not working</td></tr><tr><td>CPL</td><td><$50</td><td>Check landing page, offer</td></tr><tr><td>Show Rate</td><td>>60%</td><td>See show-rate-optimization.md</td></tr><tr><td>Close Rate</td><td>>20%</td><td>See sales-playbook.md</td></tr></tbody></table>
+<h3 id="unit-economics">Unit Economics</h3>
 
-<strong>Format:</strong>
-<ul><li>Vertical (9:16) for Stories/Reels</li>
-<li>Square (1:1) for Feed</li>
-<li>Length: 15-60 seconds</li>
-</ul>
-<strong>Structure:</strong>
-<ol><li class="ordered"><strong>Hook (0-3 sec):</strong> Stop the scroll</li>
-</ol>   - "If you're a homeowner in [City]..."
-   - "I just saved this family $2,000..."
-   - Show dramatic before/after
+<pre><code>Target CPL: $40
+Show rate: 70%
+Close rate: 25%
+LTV: $297/mo × 6 months = $1,782
 
-<ol><li class="ordered"><strong>Problem (3-10 sec):</strong> Agitate the pain</li>
-</ol>   - "Are you tired of..."
-   - "Most plumbers will..."
-
-<ol><li class="ordered"><strong>Solution (10-25 sec):</strong> Your offer</li>
-</ol>   - What you do differently
-   - Quick testimonial clip
-   - Show results
-
-<ol><li class="ordered"><strong>CTA (last 5 sec):</strong></li>
-</ol>   - "Click below to get a free quote"
-   - "Send us a message"
-   - "Book your free inspection"
-
-<h3>Image Ads</h3>
-
-<strong>What works:</strong>
-<ul><li>Before/after transformations</li>
-<li>Team photos (real people)</li>
-<li>5-star review screenshots</li>
-<li>Simple, clean graphics</li>
-</ul>
-<strong>Avoid:</strong>
-<ul><li>Stock photos</li>
-<li>Too much text (under 20% rule)</li>
-<li>Cluttered designs</li>
-</ul>
-<h3>Copy Structure</h3>
-
-<strong>Primary text (above the image/video):</strong>
-<pre><code>[Hook - call out your audience]
-
-<p>[Problem statement]</p>
-
-<p>[Solution - what you offer]</p>
-
-<p>[Social proof - testimonial or stat]</p>
-
-<p>[CTA]<br></code></pre></p>
-
-<strong>Example:</strong>
-<pre><code>Homeowners in San Diego 👇
-
-<p>Tired of calling plumbers who show up late, overcharge, and leave a mess?</p>
-
-<p>We guarantee same-day service, upfront pricing, and a clean workspace — or you don't pay.</p>
-
-<p>⭐️ "Best plumber I've ever used. Fixed my issue in 30 minutes." - Mike R.</p>
-
-<p>Click "Get Quote" below for a free estimate.<br></code></pre></p>
+<p>Cost per show: $40 / 0.70 = $57<br>Cost per close: $57 / 0.25 = $228<br>Profit per client: $1,782 - $228 = $1,554<br></code></pre></p>
 
 <hr>
 
-<h2>Landing Pages</h2>
+<h2 id="ghl-workflow-integration">GHL WORKFLOW INTEGRATION</h2>
 
-<h3>Must-Have Elements</h3>
+<h3 id="wf1-lead-form-new-opportunity">WF1: Lead Form → New Opportunity</h3>
 
-<ol><li class="ordered"><strong>Headline</strong> — Clear benefit</li>
-<li class="ordered"><strong>Trust badges</strong> — Google rating, BBB, etc.</li>
-<li class="ordered"><strong>Form</strong> — Name, phone, service needed</li>
-<li class="ordered"><strong>Social proof</strong> — Reviews, testimonials</li>
-<li class="ordered"><strong>CTA button</strong> — "Get Free Quote"</li>
-<li class="ordered"><strong>Contact info</strong> — Phone, address</li>
+<strong>Trigger:</strong> Form Submitted = Lead Opt-in Form
+
+<strong>Actions:</strong>
+<ol><li class="ordered">Meta Conversion API → Event: Lead</li>
+<li class="ordered">Add Tag → <code>fb-lead</code></li>
+<li class="ordered">Create Opportunity → Sales Pipeline</li>
+<li class="ordered">Send SMS confirmation</li>
+<li class="ordered">Internal notification</li>
 </ol>
-<h3>Form Fields</h3>
+<h3 id="wf7-demo-booked-fb-conversion">WF7: Demo Booked → FB Conversion</h3>
 
-<p>Keep it minimal:<br><ul><li>Name</li><br><li>Phone number</li><br><li>Service needed (dropdown)</li><br><li>Address (optional)</li><br></ul><br>More fields = fewer leads (but higher quality)</p>
+<strong>Trigger:</strong> Customer Booked Appointment (Demo calendar)
 
-<h3>Mobile Optimization</h3>
-
-<p>80%+ of traffic is mobile. Check:<br><ul><li>Fast load time (<3 seconds)</li><br><li>Tap targets large enough</li><br><li>Form fills easily on mobile</li><br><li>Click-to-call button works</li><br></ul><br><hr></p>
-
-<h2>Budget & Bidding</h2>
-
-<h3>Starting Budget</h3>
-
-<ul><li><strong>Testing phase:</strong> $20-50/day</li>
-<li><strong>Scaling phase:</strong> $50-200/day</li>
-<li><strong>Aggressive:</strong> $200+/day</li>
-</ul>
-<h3>Bid Strategy</h3>
-
-<strong>Start with:</strong>
-<ul><li>Lowest cost (let Facebook optimize)</li>
-<li>Conversions optimization (not link clicks)</li>
-</ul>
-<strong>Advanced:</strong>
-<ul><li>Cost cap (set max cost per lead)</li>
-<li>Bid cap (set max bid)</li>
-</ul>
-<h3>Budget Allocation</h3>
-
-<ul><li>70% to best-performing ad set</li>
-<li>30% to testing new creative</li>
-</ul>
-<hr>
-
-<h2>Campaign Types</h2>
-
-<h3>1. Lead Generation (Recommended to Start)</h3>
-
-<strong>Objective:</strong> Leads
-<strong>Optimization:</strong> Conversions
-<strong>Conversion Event:</strong> Form submission on landing page
-
-<strong>Flow:</strong>
-Ad → Landing page → Form → Thank you page → Lead in GHL
-
-<h3>2. Messages Campaign</h3>
-
-<strong>Objective:</strong> Messages
-<strong>Destination:</strong> Facebook Messenger or Instagram DM
-
-<strong>Best for:</strong>
-<ul><li>Quick response businesses</li>
-<li>Simple services</li>
-<li>When you can respond within 5 minutes</li>
-</ul>
-<h3>3. Retargeting</h3>
-
-<strong>Audience:</strong> People who visited your site but didn't convert
-
-<strong>Setup:</strong>
-<ol><li class="ordered">Create Custom Audience from pixel</li>
-<li class="ordered">Include: Website visitors last 30 days</li>
-<li class="ordered">Exclude: People who already converted</li>
+<strong>Actions:</strong>
+<ol><li class="ordered">IF/ELSE: Has tag <code>fb-lead</code>?</li>
+<li class="ordered">YES → Meta Conversion API → Event: Schedule</li>
+<li class="ordered">Update opportunity stage</li>
 </ol>
-<strong>Creative:</strong> "Still thinking about [service]? Here's 10% off this week."
+<h3 id="why-this-matters">Why This Matters</h3>
 
-<hr>
-
-<h2>Testing Framework</h2>
-
-<h3>Phase 1: Creative Testing (Week 1-2)</h3>
-
-<p>Run 3-5 different creatives to same audience:<br><ul><li>Different hooks</li><br><li>Video vs image</li><br><li>Different testimonials</li><br></ul><br><strong>Winner:</strong> Highest CTR + lowest CPL</p>
-
-<h3>Phase 2: Audience Testing (Week 2-3)</h3>
-
-<p>Test winning creative against different audiences:<br><ul><li>Different age ranges</li><br><li>Different interests</li><br><li>Different locations</li><br></ul><br><h3>Phase 3: Copy Testing (Week 3-4)</h3></p>
-
-<p>Test different headlines and primary text with winning creative + audience.</p>
-
-<h3>Phase 4: Scale (Week 4+)</h3>
-
-<p>Increase budget 20-30% every 3 days on winning combinations.</p>
-
-<hr>
-
-<h2>Key Metrics</h2>
-
-<h3>Monitor Daily</h3>
-
-<table><thead><tr><th>Metric</th><th>Good</th><th>Action if Bad</th></tr></thead><tbody><tr><td>CPM</td><td><$15</td><td>Creative fatigue, change ad</td></tr><tr><td>CTR</td><td>>1%</td><td>Hook not working</td></tr><tr><td>CPL</td><td><$50*</td><td>Improve targeting or offer</td></tr><tr><td>Lead quality</td><td>>50% qualified</td><td>Tighten targeting</td></tr></tbody></table>
-*CPL varies by industry. Home services: $20-75/lead typical.
-
-<h3>Weekly Review</h3>
-
-<ul><li>Which ad is winning?</li>
-<li>Which audience is cheapest?</li>
-<li>Are leads converting to calls?</li>
-<li>Are calls converting to sales?</li>
+<ul><li>Meta optimizes for conversions</li>
+<li>More data = better targeting</li>
+<li>Track true ROI (ad → close)</li>
+<li>Retarget non-bookers</li>
 </ul>
 <hr>
 
-<h2>Troubleshooting</h2>
+<h2 id="retargeting">RETARGETING</h2>
 
-<h3>High CPM (>$25)</h3>
+<h3 id="custom-audiences">Custom Audiences</h3>
 
-<ul><li>Audience too small</li>
-<li>Creative is getting flagged</li>
-<li>Competition is high</li>
-<li>Refresh creative</li>
+<strong>Website Visitors (7 days)</strong>
+<ul><li>Anyone who visited but didn't book</li>
+<li>Show: "Still thinking about it?"</li>
 </ul>
-<h3>Low CTR (<0.5%)</h3>
-
-<ul><li>Hook isn't grabbing attention</li>
-<li>Creative doesn't stand out</li>
-<li>Audience mismatch</li>
-<li>Try video instead of image</li>
+<strong>Video Viewers (25%)</strong>
+<ul><li>Watched 25%+ of VSL</li>
+<li>Already interested, just need push</li>
 </ul>
-<h3>High CPL (>$100)</h3>
-
-<ul><li>Landing page not converting</li>
-<li>Wrong audience</li>
-<li>Offer not compelling</li>
-<li>Form too long</li>
+<strong>Lead Form Abandonment</strong>
+<ul><li>Started form but didn't finish</li>
+<li>Show: "Let's finish what you started"</li>
 </ul>
-<h3>Leads Not Answering</h3>
+<h3 id="retargeting-creative">Retargeting Creative</h3>
 
-<ul><li>Call within 5 minutes</li>
-<li>Try text first</li>
-<li>Lead quality issue (refine targeting)</li>
-</ul>
-<hr>
+<p>Different angle than cold:<br><ul><li>Address objections directly</li><br><li>Show more social proof</li><br><li>Time-sensitive offers (if any)</li><br><li>"Other contractors asked..."</li><br></ul><br><hr></p>
 
-<h2>Ad Account Health</h2>
+<h2 id="creative-pipeline-future">CREATIVE PIPELINE (Future)</h2>
 
-<h3>Avoid Getting Banned</h3>
+<h3 id="arcads-integration-planned">Arcads Integration (Planned)</h3>
 
-<ul><li>Don't make false claims</li>
-<li>Don't guarantee results</li>
-<li>No before/after that looks "too good"</li>
-<li>Follow Facebook's ad policies</li>
-<li>Use a real business page (not personal)</li>
-</ul>
-<h3>If Restricted</h3>
+<p>For rapid creative testing:<br><ol><li class="ordered">Write 5 hook variations</li><br><li class="ordered">Generate 5 UGC videos in Arcads</li><br><li class="ordered">Test all against same audience</li><br><li class="ordered">Kill losers after 3 days</li><br><li class="ordered">Scale winners</li><br></ol><br>Cost: ~$10-15 per video</p>
 
-<ol><li class="ordered">Check what policy was violated</li>
-<li class="ordered">Appeal if unjust</li>
-<li class="ordered">Fix the issue</li>
-<li class="ordered">Request review</li>
+<h3 id="slate-ugc-pipeline-built">Slate UGC Pipeline (Built)</h3>
+
+<p>For custom branded content:<br><ul><li>Character: Jake (Rugged Trade Pro)</li><br><li>Template: Contractor leads script</li><br><li>Duration: 22-30 seconds</li><br><li>See <code>slate-ugc-pipeline.md</code></li><br></ul><br><hr></p>
+
+<h2 id="troubleshooting">TROUBLESHOOTING</h2>
+
+<h3 id="high-cpl-75">High CPL (>$75)</h3>
+
+<ol><li class="ordered">Check landing page conversion rate</li>
+<li class="ordered">Is hook relevant to audience?</li>
+<li class="ordered">Is offer clear in first 3 seconds?</li>
+<li class="ordered">Try different creative angle</li>
+<li class="ordered">Narrow audience (too broad?)</li>
+</ol>
+<h3 id="low-ctr-0-5">Low CTR (<0.5%)</h3>
+
+<ol><li class="ordered">Hook isn't stopping scroll</li>
+<li class="ordered">Thumbnail not compelling</li>
+<li class="ordered">Wrong audience targeting</li>
+<li class="ordered">Try video instead of image</li>
+<li class="ordered">Test different first frame</li>
+</ol>
+<h3 id="leads-not-answering">Leads Not Answering</h3>
+
+<ol><li class="ordered">Call within 5 minutes (WF handles this)</li>
+<li class="ordered">Check if phone is real (qualification issue)</li>
+<li class="ordered">SMS before calling</li>
+<li class="ordered">Leave voicemail + text follow-up</li>
+<li class="ordered">See <code>show-rate-optimization.md</code></li>
+</ol>
+<h3 id="account-restricted">Account Restricted</h3>
+
+<ol><li class="ordered">Check what policy violated</li>
+<li class="ordered">Appeal if legitimate</li>
+<li class="ordered">Common issues:</li>
+</ol>   - "Before/after" too dramatic
+   - Income claims without proof
+   - Misleading button text
+<ol><li class="ordered">Fix and request review</li>
 </ol>
 <hr>
 
-<h2>Daily Routine</h2>
+<h2 id="daily-weekly-routine">DAILY/WEEKLY ROUTINE</h2>
 
-<strong>Morning (15 min):</strong>
-<ul><li>Check overnight leads</li>
+<h3 id="daily-10-min">Daily (10 min)</h3>
+<ul><li>Check spend vs budget</li>
 <li>Note CPL trend</li>
-<li>Check for any ad issues</li>
+<li>Respond to any leads in queue</li>
+<li>Flag any anomalies</li>
 </ul>
-<strong>Midday:</strong>
-<ul><li>Respond to leads immediately</li>
-<li>Check message campaigns</li>
+<h3 id="weekly-30-min">Weekly (30 min)</h3>
+<ul><li>Review CPL by ad set</li>
+<li>Pause losers</li>
+<li>Plan new creative</li>
+<li>Check frequency on winners</li>
+<li>Calculate show rate and close rate</li>
 </ul>
-<strong>End of day (15 min):</strong>
-<ul><li>Review daily spend</li>
-<li>Note winning/losing ads</li>
-<li>Plan adjustments</li>
-</ul>
-<hr>
-
-<h2>Scaling Checklist</h2>
-
-<p>Before scaling budget:</p>
-
-<ul><li class="checkbox"><input type="checkbox" disabled> CPL is profitable (lead cost < 1/3 of LTV)</li>
-<li class="checkbox"><input type="checkbox" disabled> Lead quality is good (50%+ qualified)</li>
-<li class="checkbox"><input type="checkbox" disabled> Can handle more leads (sales capacity)</li>
-<li class="checkbox"><input type="checkbox" disabled> Creative isn't fatigued (frequency <3)</li>
-<li class="checkbox"><input type="checkbox" disabled> Landing page converts well (>20%)</li>
+<h3 id="monthly">Monthly</h3>
+<ul><li>Full funnel analysis (ad → close)</li>
+<li>Calculate true CAC</li>
+<li>Plan next month's creative</li>
+<li>Update audience exclusions</li>
 </ul>
 <hr>
 
-<h2>Tool Stack</h2>
+<h2 id="files-resources">FILES & RESOURCES</h2>
 
-<table><thead><tr><th>Purpose</th><th>Tool</th></tr></thead><tbody><tr><td>Ad management</td><td>Meta Ads Manager</td></tr><tr><td>Landing pages</td><td>GoHighLevel</td></tr><tr><td>Tracking</td><td>Facebook Pixel</td></tr><tr><td>Lead delivery</td><td>GHL webhook</td></tr><tr><td>CRM</td><td>GoHighLevel</td></tr><tr><td>Creative</td><td>Canva, CapCut</td></tr></tbody></table>
+<table><thead><tr><th>Resource</th><th>Location</th></tr></thead><tbody><tr><td>Pixel setup</td><td>GHL → FB funnel → Events</td></tr><tr><td>Lead form</td><td>GHL → Sites → Forms</td></tr><tr><td>VSL</td><td><code>slatesystems.io/watch-this-616006</code></td></tr><tr><td>Demo calendar</td><td>Slate Systems Demo Calendar</td></tr><tr><td>WF1 (Lead event)</td><td>GHL → Workflows</td></tr><tr><td>WF7 (Schedule event)</td><td>GHL → Workflows</td></tr><tr><td>UGC Pipeline</td><td><code>slate-ugc-pipeline.md</code></td></tr><tr><td>Show rate</td><td><code>sales/show-rate-optimization.md</code></td></tr><tr><td>Sales script</td><td><code>sales/sales-playbook.md</code></td></tr></tbody></table>
 <hr>
 
-<h2>Integration with GHL</h2>
+<h2 id="backlog">BACKLOG</h2>
 
-<h3>Lead Flow</h3>
-
-<ol><li class="ordered">Ad runs</li>
-<li class="ordered">User clicks → Landing page</li>
-<li class="ordered">Fills form → GHL captures lead</li>
-<li class="ordered">Automation triggers:</li>
-</ol>   - Instant text confirmation
-   - Email follow-up
-   - Team notification
-   - Pipeline card created
-
-<h3>Tracking Setup</h3>
-
-<p>In GHL landing page:<br><ul><li>Add pixel base code to tracking</li><br><li>Add conversion event on thank you page</li><br><li>Test with pixel helper extension</li><br></ul><br><hr></p>
-
-<h2>Creative Resources</h2>
-
-<h3>Video Recording Tips</h3>
-
-<ul><li>Film in good lighting (face a window)</li>
-<li>Use phone horizontally for feed, vertically for stories</li>
-<li>Keep background clean</li>
-<li>Speak clearly and naturally</li>
-<li>Use captions (80% watch muted)</li>
-</ul>
-<h3>B-Roll Ideas</h3>
-
-<ul><li>You working on a job</li>
-<li>Happy customer moments</li>
-<li>Before/after transformations</li>
-<li>Team intro clips</li>
+<ul><li class="checkbox"><input type="checkbox" disabled> Arcads account setup and first batch of UGC</li>
+<li class="checkbox"><input type="checkbox" disabled> Lookalike audience from closed clients</li>
+<li class="checkbox"><input type="checkbox" disabled> Catalog of 10+ proven hooks</li>
+<li class="checkbox"><input type="checkbox" disabled> Landing page A/B test</li>
+<li class="checkbox"><input type="checkbox" disabled> Niche-specific campaigns (HVAC, plumber, etc.)</li>
 </ul>
 <hr>
 
-<h2>Related SOPs</h2>
-
-<ul><li><code>cold-calling.md</code> — Master before ads</li>
-<li><code>cold-email-system.md</code> — Alternative to ads</li>
-<li><code>show-rate-optimization.md</code> — After leads book</li>
-<li><code>testimonial-collection.md</code> — For ad creative</li>
-</ul>
-<hr>
-
-<em>Source: Kai Stone Systems</em>
-<em>Last updated: Feb 22, 2026</em>
+<em>This SOP reflects actual Slate Systems setup, not generic advice.</em>
+<em>Source: slate-operations.md, slate-ugc-pipeline.md, live GHL config</em>
+<em>Last updated: Feb 23, 2026</em>
 
         <footer>
-            <p>&copy; 2026 Slate Systems LLC. Internal use only.</p>
+            <p>&copy; 2026 Slate Systems Inc. Internal use only.</p>
         </footer>
     </div>
 </body>

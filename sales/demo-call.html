@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo Call SOP - Slate Systems SOP</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0f172a;
+            color: #e2e8f0;
+            line-height: 1.7;
+            padding: 2rem;
+        }
+        .container { max-width: 900px; margin: 0 auto; }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #3b82f6;
+            text-decoration: none;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+        }
+        .back-link:hover { text-decoration: underline; }
+        h1 { font-size: 2rem; color: #f8fafc; margin-bottom: 0.5rem; border-bottom: 2px solid #3b82f6; padding-bottom: 0.5rem; }
+        h2 { font-size: 1.5rem; color: #f8fafc; margin: 2rem 0 1rem; padding-top: 1rem; border-top: 1px solid #334155; }
+        h3 { font-size: 1.2rem; color: #cbd5e1; margin: 1.5rem 0 0.75rem; }
+        p { margin-bottom: 1rem; }
+        ul, ol { margin: 1rem 0; padding-left: 2rem; }
+        li { margin-bottom: 0.5rem; }
+        li.nested { margin-left: 1.5rem; }
+        li.checkbox { list-style: none; margin-left: -1.5rem; }
+        li.checkbox input { margin-right: 0.5rem; }
+        blockquote {
+            background: #1e293b;
+            border-left: 4px solid #3b82f6;
+            padding: 1rem 1.5rem;
+            margin: 1rem 0;
+            border-radius: 0 8px 8px 0;
+            font-style: italic;
+        }
+        pre {
+            background: #1e293b;
+            padding: 1rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            max-width: 100%;
+            margin: 1rem 0;
+            border: 1px solid #334155;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        @media (max-width: 768px) {
+            body { padding: 1rem; }
+            pre { font-size: 0.85em; padding: 0.75rem; }
+            table { font-size: 0.9em; display: block; overflow-x: auto; }
+            th, td { padding: 0.5rem; }
+            h1 { font-size: 1.5rem; }
+            h2 { font-size: 1.25rem; }
+        }
+        code {
+            font-family: 'SF Mono', Monaco, monospace;
+            font-size: 0.9em;
+        }
+        :not(pre) > code {
+            background: #334155;
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            background: #1e293b;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        th, td {
+            padding: 0.75rem 1rem;
+            text-align: left;
+            border-bottom: 1px solid #334155;
+        }
+        th { background: #334155; color: #f8fafc; font-weight: 600; }
+        tr:last-child td { border-bottom: none; }
+        hr { border: none; border-top: 1px solid #334155; margin: 2rem 0; }
+        a { color: #3b82f6; }
+        strong { color: #f8fafc; }
+        .meta {
+            background: #1e293b;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            border-left: 4px solid #3b82f6;
+        }
+        .meta p { margin: 0.25rem 0; font-size: 0.9rem; color: #94a3b8; }
+        footer {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid #334155;
+            text-align: center;
+            color: #64748b;
+            font-size: 0.875rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../index.html" class="back-link">← Back to Portal</a>
+        <h1 id="demo-call-sop">Demo Call SOP</h1>
+
+<blockquote><strong>Role:</strong> Closer</blockquote>
+<blockquote><strong>When:</strong> Prospect booked from cold outreach or inbound</blockquote>
+<blockquote><strong>Duration:</strong> 5-15 minutes (if they watched VSL)</blockquote>
+<blockquote><strong>Calendar:</strong> Slate Systems Demo Calendar</blockquote>
+<blockquote><strong>Platform:</strong> Google Meet</blockquote>
+<blockquote><strong>VSL:</strong> https://slatesystems.io/watch-this-616006</blockquote>
+<blockquote><strong>Last Updated:</strong> Feb 23, 2026</blockquote>
+
+<hr>
+
+<h2 id="before-the-call">Before the Call</h2>
+
+<h3 id="1-confirm-vsl-was-sent">1. Confirm VSL Was Sent</h3>
+Check that prospect received:
+<ul><li>Initial VSL text (after booking)</li>
+<li>24hr reminder with VSL link</li>
+<li>2hr reminder with VSL link</li>
+</ul>
+<strong>If VSL wasn't sent:</strong> Send it NOW and note the gap.
+
+<h3 id="2-quick-research-2-min">2. Quick Research (2 min)</h3>
+Pull up:
+<ul><li>Their Google Business Profile (search "[business name] [city]")</li>
+<li>Their website (if they have one)</li>
+<li>Note: review count, website quality, obvious issues</li>
+</ul>
+<strong>What to look for:</strong>
+<ul><li>No website = "best case scenario" (Kai's line)</li>
+<li>Bad website = point out issues</li>
+<li>Few reviews = "8 reviews after 18 years?"</li>
+<li>Phone not clickable = accessibility issue</li>
+</ul>
+<hr>
+
+<h2 id="the-call-tight-script">The Call (Tight Script)</h2>
+
+<h3 id="phase-1-video-check-15-seconds">Phase 1: Video Check (15 seconds)</h3>
+
+<pre><code>"Hey [Name], how's it going?"
+[Let them respond]
+
+<p>"Quick question - did you get a chance to watch that short video I sent over?"<br></code></pre></p>
+
+<strong>If YES:</strong> → Go to Phase 2
+
+<strong>If NO:</strong> → Go to "They Didn't Watch" section below
+
+<hr>
+
+<h3 id="phase-2-open-for-questions-10-seconds">Phase 2: Open for Questions (10 seconds)</h3>
+
+<pre><code>"Perfect, appreciate you watching that. So yeah, that video is pretty much exactly what we do."
+
+<p>"That being said - what questions do you have?"<br></code></pre></p>
+
+<strong>If they have questions:</strong> Answer briefly (30-60 sec max), then:
+<pre><code>"Does that make sense? Cool. What OTHER questions do you have?"
+</code></pre>
+
+<strong>If no questions:</strong> They're ready to close → Go to Phase 4
+
+<hr>
+
+<h3 id="phase-3-answer-loop-1-5-minutes">Phase 3: Answer Loop (1-5 minutes)</h3>
+
+<p>Keep it tight:<br><ol><li class="ordered">Answer the question (30-60 seconds)</li><br><li class="ordered">"Does that make sense?"</li><br><li class="ordered">"What other questions do you have?"</li><br></ol><br><strong>The Hammer</strong> (use when they ramble):<br><pre><code>"Cool. What other questions do you have?"<br></code></pre></p>
+
+<p>This brings them back to buy mode.</p>
+
+<hr>
+
+<h3 id="phase-4-permission-to-close-10-seconds">Phase 4: Permission to Close (10 seconds)</h3>
+
+<pre><code>"Awesome. Any other questions before I get you going?"
+</code></pre>
+
+<strong>If "No":</strong> → Close
+<strong>If more questions:</strong> Answer, repeat Phase 4
+<strong>If objection:</strong> Handle it (see Objection Handling below), repeat Phase 4
+
+<hr>
+
+<h3 id="phase-5-close-1-2-minutes">Phase 5: Close (1-2 minutes)</h3>
+
+<pre><code>"Perfect. Let me grab some info from you real quick."
+
+<p>"What's the official business name?"<br>[Write it down]</p>
+
+<p>"And what's the best address for the business?"<br>[Write it down]</p>
+
+<p>"Cool. And what's the card number?"<br>[Enter into Stripe/GHL]</p>
+
+<p>"Expiration?"<br>"And the 3 digits on the back?"</p>
+
+<p>"Perfect, you're all set. You're gonna get a text from us in about 20 minutes with the onboarding form. Fill that out and we'll have everything built in about 8-9 days."<br></code></pre></p>
+
+<strong>CRITICAL:</strong> Card number is ALWAYS last. By then they've already committed.
+
+<hr>
+
+<h2 id="they-didn-t-watch-the-video">They Didn't Watch the Video</h2>
+
+<h3 id="option-a-watch-now">Option A: Watch Now</h3>
+<pre><code>"No worries at all. It's only about 5 minutes. You have a sec to watch it real quick? I can wait."
+
+<p>[If yes]<br>"Perfect. I just sent it to you again via text. Let me know when you've got it pulled up."</p>
+
+<p>[Mute yourself. Wait 5-6 minutes.]</p>
+
+<p>[When done]<br>"Cool, appreciate you taking the time. So that's pretty much exactly what we do. What questions do you have?"<br></code></pre></p>
+
+<h3 id="option-b-driving">Option B: Driving</h3>
+<pre><code>"No worries man, safety first. I'll shoot you the link right now, you watch it when you get where you're going, then just text me 'ready' and I'll call you right back. Sound good?"
+</code></pre>
+
+<strong>Alternative:</strong> If they'll be parked soon:
+<blockquote>"When you get where you're going, I can share my screen and walk you through the video together if that's easier."</blockquote>
+
+<h3 id="option-c-too-busy">Option C: Too Busy</h3>
+<pre><code>"I hear you, but honestly the video does a way better job than I can in 2 minutes. It shows real client results and exactly how everything works.
+
+<p>Tell you what - it's only 5 minutes. Watch it tonight and let's reschedule for tomorrow. What time works?"<br></code></pre></p>
+
+<h3 id="option-d-refuses">Option D: Refuses</h3>
+<pre><code>"We've found that guys who watch the video first have way better calls because we're on the same page. It's 5 minutes. Can you commit to watching it before we talk again?"
+
+<p>[If still no]<br>"No worries man, sounds like the timing might not be right. Feel free to book another call when you've got a few minutes to check it out."<br></code></pre></p>
+
+<strong>Don't waste time on people who won't invest 5 minutes. They won't be good clients.</strong>
+
+<hr>
+
+<h2 id="objection-handling">Objection Handling</h2>
+
+<h3 id="how-many-leads-will-i-get">"How many leads will I get?"</h3>
+<pre><code>"I'm gonna be straight with you - I can't tell you that Susan is gonna see your Google reviews and give you a $20K job. I can't prove that correlation.
+
+<p>What I do know is the contractors who have professional websites, tons of reviews, and fast follow-up are the ones winning. We give you all the systems to make that happen.</p>
+
+<p>You think it's worth $297 or you don't. But I'm not gonna promise you X leads per month because that would be bullshit."<br></code></pre></p>
+
+<h3 id="i-ve-been-burned-before">"I've been burned before"</h3>
+<pre><code>"I hear that a lot. Most marketing companies overpromise and underdeliver.
+
+<p>Here's how we're different - I'm not promising you leads. I'm giving you systems. The website, the reviews, the missed call follow-up. You saw it in the video.</p>
+
+<p>It either makes sense for $297 or it doesn't. No contracts, cancel anytime. What other questions do you have?"<br></code></pre></p>
+
+<h3 id="that-s-expensive">"That's expensive"</h3>
+<pre><code>"What's your average job ticket? $5K? $10K?
+
+<p>So if these systems help you land ONE extra job this year, you're 3-4x'ing what you paid us. One job.</p>
+
+<p>$297 is about what you'd spend taking your crew to lunch twice. What specifically do you need to think about?"<br></code></pre></p>
+
+<h3 id="no-contracts">"No contracts?"</h3>
+<pre><code>"Nope. No contracts. Those are just used to trap people who want to leave. We don't do that.
+
+<p>You can cancel anytime. If we're not delivering value, you shouldn't be paying us."<br></code></pre></p>
+
+<h3 id="let-me-talk-to-my-wife">"Let me talk to my wife"</h3>
+<pre><code>"Totally get it. When do you think you'll have that conversation?
+
+<p>[They give timeframe]</p>
+
+<p>Cool, let's get something on the calendar for [day after]. That way I can answer any questions they have too. What time works?"<br></code></pre></p>
+
+<h3 id="i-don-t-have-a-website">"I don't have a website"</h3>
+<pre><code>"That's actually perfect. Means we don't have to convince you your current website sucks. We just build you a good one from scratch.
+
+<p>What other questions do you have?"<br></code></pre></p>
+
+<h3 id="i-don-t-have-google-business">"I don't have Google Business"</h3>
+<pre><code>"That's free to set up. Takes about 5 days to verify. Check out guides.slatesystems.io - we have a step-by-step guide that walks you through exactly how to do it.
+
+<p>While you're getting that verified, we'll build your website. By the time it's approved, everything will be ready to connect."<br></code></pre></p>
+
+<hr>
+
+<h2 id="lightbulb-moments">Lightbulb Moments</h2>
+
+<p>Use these when the prospect needs convincing:</p>
+
+<h3 id="the-phone-number-test">The Phone Number Test</h3>
+<pre><code>"Pull up your website real quick. See how your phone number isn't clickable? My mom's in her 70s, has bad eyes - she can't read that small text. She's gonna leave and call the next guy."
+</code></pre>
+
+<h3 id="the-review-trap">The Review Trap</h3>
+<pre><code>"You have 8 reviews after 18 years. I KNOW you've served more than 8 people. You just don't ask. We automate that - every job done, review request goes out. They get reminded 4 times until they leave one."
+</code></pre>
+
+<h3 id="the-missed-call-reality">The Missed Call Reality</h3>
+<pre><code>"When you're on a roof or under a sink and miss a call, what happens? That person calls the next guy. With auto text back, they get 'Hey sorry, I'm with a customer, can I call you back in 20 min?' and they wait for YOU."
+</code></pre>
+
+<h3 id="the-susan-story">The Susan Story</h3>
+<pre><code>"Susan is shopping for a $50K kitchen remodel. She Googles you, sees 8 reviews and a janky website. She Googles your competitor, sees 150 reviews and a beautiful site. Who's she calling?"
+</code></pre>
+
+<hr>
+
+<h2 id="red-flags-when-to-disqualify">Red Flags (When to Disqualify)</h2>
+
+<ol><li class="ordered"><strong>No Google Business AND refuses to make one</strong></li>
+</ol>   - Tell them to make it first, call back when verified
+
+<ol><li class="ordered"><strong>Expects guaranteed leads</strong></li>
+</ol>   - Set expectations. If they push back, they'll be a problem.
+
+<ol><li class="ordered"><strong>$297 is a stretch for them</strong></li>
+</ol>   - If they can't afford $297/month, they're not doing enough business to benefit.
+
+<ol><li class="ordered"><strong>Decision maker isn't on the call</strong></li>
+</ol>   - Get both people on the next call or move on.
+
+<hr>
+
+<h2 id="after-the-close">After the Close</h2>
+
+<ol><li class="ordered"><strong>Move to pipeline stage:</strong> "Onboarding Form Sent"</li>
+</ol>
+<ol><li class="ordered"><strong>Send onboarding text:</strong></li>
+</ol><pre><code>"Hey [Name]! You're all set. Here's your onboarding form: [LINK]. Fill this out so we can build your website. Any questions, just text me here."
+</code></pre>
+
+<ol><li class="ordered"><strong>Send onboarding email</strong> (backup)</li>
+</ol>
+<ol><li class="ordered"><strong>Tell them:</strong> "8-9 business days" to complete build</li>
+</ol>
+<hr>
+
+<h2 id="getting-the-most-out-of-this-sop">Getting the Most Out of This SOP</h2>
+
+<h3 id="before-your-first-10-calls">Before Your First 10 Calls</h3>
+<ul><li>Memorize the video check question</li>
+<li>Memorize "What other questions do you have?"</li>
+<li>Practice the close sequence (name → address → card)</li>
+</ul>
+<h3 id="common-mistakes">Common Mistakes</h3>
+<ul><li>Talking too much after they say "no more questions" → JUST CLOSE</li>
+<li>Getting defensive at objections → Stay casual, same-side-of-table energy</li>
+<li>Asking for card first → ALWAYS last</li>
+<li>Trying to sell without VSL → They won't convert</li>
+</ul>
+<h3 id="the-mindset">The Mindset</h3>
+<ul><li>You're not convincing them across a table</li>
+<li>You're walking a friend through something</li>
+<li>Casual, cool, calm, collected</li>
+<li>"You either think it's worth $297 or you don't"</li>
+</ul>
+<hr>
+
+<h2 id="related-sops">Related SOPs</h2>
+
+<ul><li><code>sales-playbook.md</code> — Full objection database, lightbulb moments</li>
+<li><code>sales-sop.md</code> — Detailed script with VSL sequences</li>
+<li><code>show-rate-optimization.md</code> — Getting them to show up</li>
+</ul>
+<hr>
+
+<h2 id="key-resources">KEY RESOURCES</h2>
+
+<table><thead><tr><th>Resource</th><th>Value</th></tr></thead><tbody><tr><td>VSL</td><td>https://slatesystems.io/watch-this-616006</td></tr><tr><td>GMB Guide</td><td>guides.slatesystems.io</td></tr><tr><td>Help Center</td><td>help.slatesystems.io</td></tr><tr><td>Calendar</td><td>Slate Systems Demo Calendar</td></tr><tr><td>Platform</td><td>Google Meet</td></tr><tr><td>Only Discount</td><td>50% off first 3 months ($148.50/mo)</td></tr></tbody></table>
+<hr>
+
+<em>Last updated: Feb 23, 2026</em>
+
+        <footer>
+            <p>&copy; 2026 Slate Systems Inc. Internal use only.</p>
+        </footer>
+    </div>
+</body>
+</html>

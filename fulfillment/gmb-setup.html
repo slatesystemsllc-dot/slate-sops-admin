@@ -46,8 +46,19 @@
             padding: 1rem;
             border-radius: 8px;
             overflow-x: auto;
+            max-width: 100%;
             margin: 1rem 0;
             border: 1px solid #334155;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        @media (max-width: 768px) {
+            body { padding: 1rem; }
+            pre { font-size: 0.85em; padding: 0.75rem; }
+            table { font-size: 0.9em; display: block; overflow-x: auto; }
+            th, td { padding: 0.5rem; }
+            h1 { font-size: 1.5rem; }
+            h2 { font-size: 1.25rem; }
         }
         code {
             font-family: 'SF Mono', Monaco, monospace;
@@ -97,7 +108,7 @@
 <body>
     <div class="container">
         <a href="../index.html" class="back-link">← Back to Portal</a>
-        <h1>GMB Setup SOP</h1>
+        <h1 id="gmb-setup-sop">GMB Setup SOP</h1>
 
 <blockquote><strong>Role:</strong> Fulfillment Specialist</blockquote>
 <blockquote><strong>When:</strong> After client grants GMB access</blockquote>
@@ -107,7 +118,7 @@
 
 <hr>
 
-<h2>Overview</h2>
+<h2 id="overview">Overview</h2>
 
 <p>This SOP covers connecting and configuring a client's Google Business Profile (GMB) to their Slate Systems sub-account, plus all reputation management setup.</p>
 
@@ -118,15 +129,15 @@
 </ul>
 <hr>
 
-<h2>Step 1: Connect GMB to GHL (5 min)</h2>
+<h2 id="step-1-connect-gmb-to-ghl-5-min">Step 1: Connect GMB to GHL (5 min)</h2>
 
-<h3>Get Client Access</h3>
+<h3 id="get-client-access">Get Client Access</h3>
 
 <ol><li class="ordered"><strong>SMS sent automatically:</strong> WF-OB3 sends GMB access request with guides.slatesystems.io link</li>
 <li class="ordered"><strong>Client action:</strong> They follow guide to grant manager access to <code>hello@slatesystems.io</code></li>
 <li class="ordered"><strong>Verify:</strong> Check agency Gmail for invitation, accept it</li>
 </ol>
-<h3>Connect in GHL</h3>
+<h3 id="connect-in-ghl">Connect in GHL</h3>
 
 <ol><li class="ordered">Switch to client sub-account</li>
 <li class="ordered">Go to <strong>Settings</strong> → <strong>Integrations</strong></li>
@@ -142,49 +153,49 @@
 </ul>
 <hr>
 
-<h2>Step 2: Update GMB Profile (5 min)</h2>
+<h2 id="step-2-update-gmb-profile-5-min">Step 2: Update GMB Profile (5 min)</h2>
 
-<h3>Open Google Business Profile Manager</h3>
+<h3 id="open-google-business-profile-manager">Open Google Business Profile Manager</h3>
 
 <ol><li class="ordered">Go to <a href="https://business.google.com">business.google.com</a></li>
 <li class="ordered">Find client's business</li>
 <li class="ordered">Click <strong>Edit Profile</strong></li>
 </ol>
-<h3>Update Phone Number</h3>
+<h3 id="update-phone-number">Update Phone Number</h3>
 
 <ol><li class="ordered">Find <strong>Phone number</strong> section</li>
 <li class="ordered">Replace with toll-free number: <code>(XXX) XXX-XXXX</code></li>
 <li class="ordered">Remove any secondary numbers</li>
 </ol>
-<h3>Update Website</h3>
+<h3 id="update-website">Update Website</h3>
 
 <ol><li class="ordered">Find <strong>Website</strong> section</li>
 <li class="ordered">Enter: <code>https://www.[domain].com</code></li>
 <li class="ordered"><strong>Always include <code>www.</code> prefix</strong></li>
 <li class="ordered">Remove old website if present</li>
 </ol>
-<h3>Verify Business Hours</h3>
+<h3 id="verify-business-hours">Verify Business Hours</h3>
 
 <ol><li class="ordered">Check <strong>Business hours</strong> section</li>
 <li class="ordered">Compare with <code>client_hours</code> from onboarding form</li>
 <li class="ordered">Update if different</li>
 </ol>
-<h3>Save Changes</h3>
+<h3 id="save-changes">Save Changes</h3>
 
 <ol><li class="ordered">Click <strong>Save</strong></li>
 <li class="ordered">Changes may take 24-48 hours to appear publicly</li>
 </ol>
 <hr>
 
-<h2>Step 3: Get GMB Values for Custom Values (5 min)</h2>
+<h2 id="step-3-get-gmb-values-for-custom-values-5-min">Step 3: Get GMB Values for Custom Values (5 min)</h2>
 
-<h3>Company GMB Link</h3>
+<h3 id="company-gmb-link">Company GMB Link</h3>
 
 <ol><li class="ordered">In Business Profile Manager, view the business profile</li>
 <li class="ordered">Copy the full URL from browser address bar</li>
 <li class="ordered">Enter in sub-account: <strong>Settings</strong> → <strong>Custom Values</strong> → <code>company_gmb_link</code></li>
 </ol>
-<h3>GMB Review Link</h3>
+<h3 id="gmb-review-link">GMB Review Link</h3>
 
 <ol><li class="ordered">In Business Profile Manager, click <strong>Ask for reviews</strong></li>
 <li class="ordered">Copy the short link provided (looks like <code>https://g.page/r/[ID]/review</code>)</li>
@@ -195,7 +206,7 @@
 
 <blockquote><strong>WARNING:</strong> Must use the <code>g.page/r/.../review</code> format from "Ask for reviews". Do NOT use regular Google Maps links (<code>maps.app.goo.gl/...</code> or <code>google.com/maps/place/...</code>) — those just show the business page, not the review form. The <code>/review</code> suffix opens the review dialog directly.</blockquote>
 
-<h3>Google Map Embed</h3>
+<h3 id="google-map-embed">Google Map Embed</h3>
 
 <ol><li class="ordered">Go to <a href="https://maps.google.com">Google Maps</a></li>
 <li class="ordered">Search for client's business name</li>
@@ -206,7 +217,7 @@
 </ol>
 <hr>
 
-<h2>Step 4: Verify Reviews AI (3 min)</h2>
+<h2 id="step-4-verify-reviews-ai-3-min">Step 4: Verify Reviews AI (3 min)</h2>
 
 <blockquote><strong>Reference:</strong> See <code>slate-review-ai-agent.md</code> for full agent configuration</blockquote>
 
@@ -224,7 +235,7 @@
 
 <hr>
 
-<h2>Step 5: Configure Social Planner (3 min) — REQUIRED</h2>
+<h2 id="step-5-configure-social-planner-3-min-required">Step 5: Configure Social Planner (3 min) — REQUIRED</h2>
 
 <blockquote><strong>What this does:</strong> Automatically posts Google reviews AS Google Posts on the client's GMB profile. This helps with SEO and showcases best reviews directly on their Google listing.</blockquote>
 >
@@ -232,13 +243,13 @@
 
 <strong>Do this for every client with existing Google reviews.</strong>
 
-<h3>Navigation</h3>
+<h3 id="navigation">Navigation</h3>
 <ol><li class="ordered">Go to <strong>Marketing</strong> → <strong>Social Planner</strong></li>
 <li class="ordered">Click <strong>Content</strong> tab (NOT "Planner" tab)</li>
 <li class="ordered">Click <strong>Review</strong> button</li>
 <li class="ordered">Click <strong>New Post</strong></li>
 </ol>
-<h3>Configuration</h3>
+<h3 id="configuration">Configuration</h3>
 <ol><li class="ordered"><strong>Select Review Source:</strong></li>
 </ol>   - Source: Google (check)
    - Facebook: optional if client has FB page
@@ -263,7 +274,7 @@
 
 <ol><li class="ordered">Click <strong>Create Post</strong></li>
 </ol>
-<h3>Verify Setup</h3>
+<h3 id="verify-setup">Verify Setup</h3>
 <ul><li>Go to <strong>Social Planner</strong> → <strong>Scheduled</strong></li>
 <li>Confirm review posts are queued</li>
 <li>First posts will appear within 24-48 hours</li>
@@ -272,7 +283,7 @@
 
 <hr>
 
-<h2>Step 6: Create Review Widget (3 min) — REQUIRED</h2>
+<h2 id="step-6-create-review-widget-3-min-required">Step 6: Create Review Widget (3 min) — REQUIRED</h2>
 
 <ol><li class="ordered">Go to <strong>Reputation</strong> → <strong>Widgets</strong> → <strong>Create New</strong></li>
 <li class="ordered">Configure:</li>
@@ -293,7 +304,7 @@
 </ol>
 <hr>
 
-<h2>Step 7: Add Schema Markup (2 min) — REQUIRED</h2>
+<h2 id="step-7-add-schema-markup-2-min-required">Step 7: Add Schema Markup (2 min) — REQUIRED</h2>
 
 <ol><li class="ordered">Go to <strong>Sites</strong> → <strong>[Website]</strong> → <strong>Settings</strong></li>
 <li class="ordered">Find <strong>Head Tracking Code</strong> section</li>
@@ -321,37 +332,37 @@
 
 <hr>
 
-<h2>Verification Checklist</h2>
+<h2 id="verification-checklist">Verification Checklist</h2>
 
 <p>Before marking GMB setup complete:</p>
 
-<h3>GMB Connection</h3>
+<h3 id="gmb-connection">GMB Connection</h3>
 <ul><li class="checkbox"><input type="checkbox" disabled> GMB connected in GHL integrations</li>
 <li class="checkbox"><input type="checkbox" disabled> Phone number updated to toll-free</li>
 <li class="checkbox"><input type="checkbox" disabled> Website URL updated (with www.)</li>
 <li class="checkbox"><input type="checkbox" disabled> Business hours match form data</li>
 </ul>
-<h3>Custom Values</h3>
+<h3 id="custom-values">Custom Values</h3>
 <ul><li class="checkbox"><input type="checkbox" disabled> <code>company_gmb_link</code> filled</li>
 <li class="checkbox"><input type="checkbox" disabled> <code>company_google_review_link</code> filled</li>
 <li class="checkbox"><input type="checkbox" disabled> <code>review_request_link</code> filled (same as above)</li>
 <li class="checkbox"><input type="checkbox" disabled> <code>review_google_url</code> filled (same as above — powers Survey redirect)</li>
 <li class="checkbox"><input type="checkbox" disabled> <code>google_map_embed</code> filled (450x400 dimensions)</li>
 </ul>
-<h3>Reputation Features</h3>
+<h3 id="reputation-features">Reputation Features</h3>
 <ul><li class="checkbox"><input type="checkbox" disabled> Reviews AI agent configured</li>
 <li class="checkbox"><input type="checkbox" disabled> Social Planner configured (if client has reviews)</li>
 <li class="checkbox"><input type="checkbox" disabled> Review Widget created and embedded in homepage</li>
 </ul>
-<h3>Technical</h3>
+<h3 id="technical">Technical</h3>
 <ul><li class="checkbox"><input type="checkbox" disabled> Schema markup added to website head</li>
 <li class="checkbox"><input type="checkbox" disabled> Map embed displays correctly on website</li>
 </ul>
 <hr>
 
-<h2>Troubleshooting</h2>
+<h2 id="troubleshooting">Troubleshooting</h2>
 
-<h3>Client Doesn't Have GMB</h3>
+<h3 id="client-doesn-t-have-gmb">Client Doesn't Have GMB</h3>
 
 <ol><li class="ordered">Send them to guides.slatesystems.io → "Create Your Profile" section</li>
 <li class="ordered">Guide them through verification (video preferred for speed)</li>
@@ -359,7 +370,7 @@
 <li class="ordered">Note in pipeline: "Pending GMB Verification"</li>
 <li class="ordered">Continue build - GMB values can be added later</li>
 </ol>
-<h3>GMB Claimed by Someone Else</h3>
+<h3 id="gmb-claimed-by-someone-else">GMB Claimed by Someone Else</h3>
 
 <ol><li class="ordered">Ask client if they know who owns it</li>
 <li class="ordered">If not: Guide through Google's recovery process</li>
@@ -367,14 +378,14 @@
 <li class="ordered">Recovery takes 7+ days</li>
 <li class="ordered">Continue build without GMB</li>
 </ol>
-<h3>Map Embed Not Showing</h3>
+<h3 id="map-embed-not-showing">Map Embed Not Showing</h3>
 
 <ol><li class="ordered">Verify iframe code copied completely</li>
 <li class="ordered">Check dimensions are 450x400</li>
 <li class="ordered">Preview website to verify display</li>
 <li class="ordered">Try regenerating embed code from Google Maps</li>
 </ol>
-<h3>Social Planner Not Posting</h3>
+<h3 id="social-planner-not-posting">Social Planner Not Posting</h3>
 
 <ol><li class="ordered">Verify GMB account is connected</li>
 <li class="ordered">Check that client has 5-star reviews</li>
@@ -383,7 +394,7 @@
 </ol>
 <hr>
 
-<h2>Integration with Build Pipeline</h2>
+<h2 id="integration-with-build-pipeline">Integration with Build Pipeline</h2>
 
 <p>This SOP is part of <strong>Stage 4: Building</strong> in the client build process.</p>
 
@@ -400,18 +411,18 @@
 
 <hr>
 
-<h2>Appendix: Five-Star Review Funnel System</h2>
+<h2 id="appendix-five-star-review-funnel-system">Appendix: Five-Star Review Funnel System</h2>
 
 <blockquote><strong>Source:</strong> Kai's Product Deep Dive — "review protection" system</blockquote>
 
-<h3>Overview</h3>
+<h3 id="overview">Overview</h3>
 
 <p>The review funnel ensures clients ONLY get public Google reviews from happy customers. Unhappy customers vent privately.</p>
 
-<h3>Components</h3>
+<h3 id="components">Components</h3>
 
 <table><thead><tr><th>Component</th><th>Location</th><th>Purpose</th></tr></thead><tbody><tr><td><strong>Review Funnel Page</strong></td><td>Sites → Website → <code>/review-us</code></td><td>Star selector (1-5)</td></tr><tr><td><strong>Survey</strong></td><td>Sites → Surveys</td><td>Private feedback form (1-3 stars)</td></tr><tr><td><strong>Workflow</strong></td><td>Automations → "negative feedback received"</td><td>Notifies client of bad feedback</td></tr></tbody></table>
-<h3>How It Works</h3>
+<h3 id="how-it-works">How It Works</h3>
 
 <pre><code>[Customer receives review request SMS with link]
                     ↓
@@ -431,7 +442,7 @@
  via SMS]
 </code></pre>
 
-<h3>Setup Checklist</h3>
+<h3 id="setup-checklist">Setup Checklist</h3>
 
 <strong>Review Funnel Page:</strong>
 <ul><li class="checkbox"><input type="checkbox" disabled> Page exists at <code>/review-us</code> or <code>/leave-review</code></li>
@@ -451,7 +462,7 @@
 <li class="checkbox"><input type="checkbox" disabled> Sends SMS to client with feedback content</li>
 <li class="checkbox"><input type="checkbox" disabled> Does NOT post to Google</li>
 </ul>
-<h3>Verify in Carlsbad</h3>
+<h3 id="verify-in-carlsbad">Verify in Carlsbad</h3>
 
 <p>Before client launch, confirm:<br><ol><li class="ordered"><code>/review-us</code> page exists and star buttons work</li><br><li class="ordered">Survey form captures feedback</li><br><li class="ordered">Test 1-3 star flow → confirm client gets SMS</li><br><li class="ordered">Test 4-5 star flow → confirm redirect to Google</li><br></ol><br><hr></p>
 
@@ -459,7 +470,7 @@
 <em>Version: 2.1 — Added Social Planner detailed steps, Five-Star Review Funnel documentation</em>
 
         <footer>
-            <p>&copy; 2026 Slate Systems LLC. Internal use only.</p>
+            <p>&copy; 2026 Slate Systems Inc. Internal use only.</p>
         </footer>
     </div>
 </body>

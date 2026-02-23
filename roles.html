@@ -46,8 +46,19 @@
             padding: 1rem;
             border-radius: 8px;
             overflow-x: auto;
+            max-width: 100%;
             margin: 1rem 0;
             border: 1px solid #334155;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        @media (max-width: 768px) {
+            body { padding: 1rem; }
+            pre { font-size: 0.85em; padding: 0.75rem; }
+            table { font-size: 0.9em; display: block; overflow-x: auto; }
+            th, td { padding: 0.5rem; }
+            h1 { font-size: 1.5rem; }
+            h2 { font-size: 1.25rem; }
         }
         code {
             font-family: 'SF Mono', Monaco, monospace;
@@ -97,20 +108,20 @@
 <body>
     <div class="container">
         <a href="../index.html" class="back-link">← Back to Portal</a>
-        <h1>Slate Systems — Role Definitions</h1>
+        <h1 id="slate-systems-role-definitions">Slate Systems — Role Definitions</h1>
 
 <blockquote>Precise definitions for all roles. Absorbed by founders until hire trigger.</blockquote>
 <blockquote>Last updated: Feb 6, 2026</blockquote>
 
 <hr>
 
-<h2>Role 1: Founder</h2>
+<h2 id="role-1-founder">Role 1: Founder</h2>
 
 <strong>Type:</strong> Human
 <strong>Absorb Until:</strong> Never (always founder)
 <strong>Current Owner:</strong> Dan
 
-<h3>Duties</h3>
+<h3 id="duties">Duties</h3>
 <ol><li class="ordered">Set pricing and packaging decisions</li>
 <li class="ordered">Hire/fire team members</li>
 <li class="ordered">Approve refunds over $100</li>
@@ -122,55 +133,55 @@
 <li class="ordered">Approve marketing spend over $500</li>
 <li class="ordered">Negotiate vendor contracts</li>
 </ol>
-<h3>Triggers</h3>
+<h3 id="triggers">Triggers</h3>
 <ul><li>Escalation from any role that exceeds their authority</li>
 <li>Hiring need identified</li>
 <li>Pricing change requested</li>
 <li>Legal/compliance question</li>
 <li>Strategic decision needed</li>
 </ul>
-<h3>Inputs</h3>
+<h3 id="inputs">Inputs</h3>
 <ul><li>Escalation requests with context</li>
 <li>Financial reports</li>
 <li>Performance metrics from all roles</li>
 <li>Market feedback</li>
 </ul>
-<h3>Outputs</h3>
+<h3 id="outputs">Outputs</h3>
 <ul><li>Decisions (documented)</li>
 <li>Hired team members</li>
 <li>Strategic plans</li>
 <li>Approved budgets</li>
 </ul>
-<h3>Tools</h3>
+<h3 id="tools">Tools</h3>
 <ul><li>Bank accounts</li>
 <li>Stripe dashboard</li>
 <li>GHL agency admin</li>
 <li>Hiring platforms (OnlineJobs.ph, etc.)</li>
 </ul>
-<h3>Handoffs</h3>
+<h3 id="handoffs">Handoffs</h3>
 <table><thead><tr><th>From</th><th>To Founder</th><th>Trigger</th></tr></thead><tbody><tr><td>Closer</td><td>Pricing exception request</td><td>Client wants custom deal</td></tr><tr><td>Closer</td><td>Refund request >$100</td><td>Client demands refund</td></tr><tr><td>Fulfillment</td><td>Unresolvable issue</td><td>A2P permanently rejected, etc.</td></tr><tr><td>Any</td><td>Legal question</td><td>Compliance, contracts</td></tr></tbody></table>
-<h3>KPIs</h3>
+<h3 id="kpis">KPIs</h3>
 <ul><li>MRR growth</li>
 <li>Profit margin</li>
 <li>Team retention</li>
 <li>Client churn rate</li>
 </ul>
-<h3>Decision Authority</h3>
+<h3 id="decision-authority">Decision Authority</h3>
 <ul><li>ALL decisions not delegated to other roles</li>
 <li>Can override any other role's decision</li>
 </ul>
-<h3>Escalation</h3>
+<h3 id="escalation">Escalation</h3>
 <ul><li>N/A (final escalation point)</li>
 </ul>
 <hr>
 
-<h2>Role 2: Closer</h2>
+<h2 id="role-2-closer">Role 2: Closer</h2>
 
 <strong>Type:</strong> Human
 <strong>Absorb Until:</strong> $25K MRR
 <strong>Current Owner:</strong> Dan
 
-<h3>Duties</h3>
+<h3 id="duties">Duties</h3>
 <ol><li class="ordered">Run demo calls (30 min)</li>
 <li class="ordered">Handle objections and close deals</li>
 <li class="ordered">Run launch calls (30-45 min)</li>
@@ -181,16 +192,16 @@
 <li class="ordered">Re-engage lost deals (manual, high-value)</li>
 <li class="ordered">Handle cancellation save attempts</li>
 </ol>
-<h3>Triggers</h3>
+<h3 id="triggers">Triggers</h3>
 <table><thead><tr><th>Trigger</th><th>Action</th></tr></thead><tbody><tr><td>Demo booked</td><td>Prep + run demo</td></tr><tr><td>Demo completed, not closed</td><td>Follow up sequence</td></tr><tr><td>Deal won</td><td>Hand off to Fulfillment</td></tr><tr><td>Launch call booked</td><td>Prep + run launch call</td></tr><tr><td>Cancellation request</td><td>Save attempt call</td></tr></tbody></table>
-<h3>Inputs</h3>
+<h3 id="inputs">Inputs</h3>
 <ul><li>Booked demo (from GHL calendar)</li>
 <li>Lead info (from GHL contact)</li>
 <li>Qualification notes (from Sales Assistant agent)</li>
 <li>QA-ready client (from Fulfillment)</li>
 <li>Cancellation request (from client)</li>
 </ul>
-<h3>Outputs</h3>
+<h3 id="outputs">Outputs</h3>
 <ul><li>Won deal (payment taken)</li>
 <li>Lost deal (reason documented)</li>
 <li>Launched client (moved to Active)</li>
@@ -198,31 +209,31 @@
 <li>Testimonial collected</li>
 <li>Referral collected</li>
 </ul>
-<h3>Tools</h3>
+<h3 id="tools">Tools</h3>
 <ul><li>GHL (contacts, opportunities, calendar)</li>
 <li>Google Meet</li>
 <li>Stripe (payment links)</li>
 <li>Loom (for async follow-ups if needed)</li>
 </ul>
-<h3>Handoffs</h3>
+<h3 id="handoffs">Handoffs</h3>
 <table><thead><tr><th>From</th><th>To Closer</th><th>Deliverable</th></tr></thead><tbody><tr><td>Sales Assistant Agent</td><td>Qualified lead</td><td>Contact with qualification notes</td></tr><tr><td>GHL Workflow</td><td>Booked demo</td><td>Calendar event + contact</td></tr><tr><td>Fulfillment</td><td>QA-ready client</td><td>Client ready for launch call</td></tr></tbody></table>
 <table><thead><tr><th>From Closer</th><th>To</th><th>Deliverable</th></tr></thead><tbody><tr><td>Won deal</td><td>Fulfillment</td><td>Contact in "Onboarding Form Sent" stage</td></tr><tr><td>Launched client</td><td>Support Agent</td><td>Active client</td></tr></tbody></table>
-<h3>KPIs</h3>
+<h3 id="kpis">KPIs</h3>
 <table><thead><tr><th>Metric</th><th>Target</th></tr></thead><tbody><tr><td>Demo show rate</td><td>>60%</td></tr><tr><td>Demo → close rate</td><td>>30%</td></tr><tr><td>Launch call completion</td><td>>95%</td></tr><tr><td>Testimonial collection</td><td>>50% of launches</td></tr><tr><td>Cancellation save rate</td><td>>30%</td></tr></tbody></table>
-<h3>Decision Authority</h3>
+<h3 id="decision-authority">Decision Authority</h3>
 <table><thead><tr><th>Can Decide</th><th>Cannot Decide (Escalate)</th></tr></thead><tbody><tr><td>Discount up to 50% off first 3 months</td><td>Discount beyond 50%</td></tr><tr><td>Push back billing up to 14 days</td><td>Push back beyond 14 days</td></tr><tr><td>Waive setup fee</td><td>Refund over $100</td></tr><tr><td>Reschedule calls</td><td>Custom pricing</td></tr></tbody></table>
-<h3>Escalation</h3>
+<h3 id="escalation">Escalation</h3>
 <ul><li>To Founder: Refund >$100, custom pricing, unresolvable objection</li>
 </ul>
 <hr>
 
-<h2>Role 3: Fulfillment Specialist</h2>
+<h2 id="role-3-fulfillment-specialist">Role 3: Fulfillment Specialist</h2>
 
 <strong>Type:</strong> Human
 <strong>Absorb Until:</strong> $10K MRR
 <strong>Current Owner:</strong> Dan
 
-<h3>Duties</h3>
+<h3 id="duties">Duties</h3>
 <ol><li class="ordered">Monitor new won deals daily</li>
 <li class="ordered">Buy toll-free number for client</li>
 <li class="ordered">Submit A2P verification</li>
@@ -237,9 +248,9 @@
 <li class="ordered">Handle GMB issues (verification, recovery)</li>
 <li class="ordered">Coordinate with Content Generator agent output</li>
 </ol>
-<h3>Triggers</h3>
+<h3 id="triggers">Triggers</h3>
 <table><thead><tr><th>Trigger</th><th>Action</th></tr></thead><tbody><tr><td>Deal won (Onboarding Form Sent)</td><td>Monitor for form submission</td></tr><tr><td>Form submitted (Form Received)</td><td>Start build process</td></tr><tr><td>A2P rejected</td><td>Resubmit with fixes</td></tr><tr><td>GMB issue reported</td><td>Troubleshoot/escalate</td></tr><tr><td>QA checklist complete</td><td>Move to Launch Scheduled</td></tr></tbody></table>
-<h3>Inputs</h3>
+<h3 id="inputs">Inputs</h3>
 <ul><li>Won deal notification</li>
 <li>Completed onboarding form (contact custom fields)</li>
 <li>Content Generator agent output (generated content)</li>
@@ -247,7 +258,7 @@
 <li>GMB access grant from client</li>
 <li>QA checklist</li>
 </ul>
-<h3>Outputs</h3>
+<h3 id="outputs">Outputs</h3>
 <ul><li>Toll-free number purchased</li>
 <li>A2P submitted/approved</li>
 <li>GMB connected</li>
@@ -255,31 +266,31 @@
 <li>Website QA'd and ready</li>
 <li>Client in "Launch Scheduled" stage</li>
 </ul>
-<h3>Tools</h3>
+<h3 id="tools">Tools</h3>
 <ul><li>GHL (sub-accounts, phone numbers, custom values)</li>
 <li>Google Business Profile Manager</li>
 <li>imgBB (for A2P screenshots)</li>
 <li>Slack/communication tool (for client questions)</li>
 </ul>
-<h3>Handoffs</h3>
+<h3 id="handoffs">Handoffs</h3>
 <table><thead><tr><th>From</th><th>To Fulfillment</th><th>Deliverable</th></tr></thead><tbody><tr><td>Closer</td><td>Won deal</td><td>Contact in pipeline</td></tr><tr><td>Content Generator Agent</td><td>Generated content</td><td>JSON with website content</td></tr><tr><td>Client</td><td>GMB access</td><td>Manager access granted</td></tr></tbody></table>
 <table><thead><tr><th>From Fulfillment</th><th>To</th><th>Deliverable</th></tr></thead><tbody><tr><td>QA complete</td><td>Closer</td><td>Client ready for launch call</td></tr><tr><td>Unresolvable issue</td><td>Founder</td><td>Escalation with context</td></tr></tbody></table>
-<h3>KPIs</h3>
+<h3 id="kpis">KPIs</h3>
 <table><thead><tr><th>Metric</th><th>Target</th></tr></thead><tbody><tr><td>Form → QA ready</td><td><10 days</td></tr><tr><td>A2P approval rate</td><td>>85%</td></tr><tr><td>QA pass rate (first time)</td><td>>90%</td></tr><tr><td>Client wait time (won → launch)</td><td><14 days</td></tr></tbody></table>
-<h3>Decision Authority</h3>
+<h3 id="decision-authority">Decision Authority</h3>
 <table><thead><tr><th>Can Decide</th><th>Cannot Decide (Escalate)</th></tr></thead><tbody><tr><td>Resubmit A2P with corrections</td><td>Permanently rejected A2P</td></tr><tr><td>Push client for GMB access</td><td>GMB claimed by someone else</td></tr><tr><td>Minor website fixes</td><td>Major rebuild requests</td></tr><tr><td>Standard custom value population</td><td>Custom design requests</td></tr></tbody></table>
-<h3>Escalation</h3>
+<h3 id="escalation">Escalation</h3>
 <ul><li>To Founder: A2P permanently rejected, GMB unrecoverable, client demanding custom work outside scope</li>
 </ul>
 <hr>
 
-<h2>Role 4: Content Generator Agent</h2>
+<h2 id="role-4-content-generator-agent">Role 4: Content Generator Agent</h2>
 
 <strong>Type:</strong> AI Agent (OpenClaw)
 <strong>Absorb Until:</strong> N/A (always agent)
 <strong>GHL Integration:</strong> <code>openclaw-content-generator</code>
 
-<h3>Duties</h3>
+<h3 id="duties">Duties</h3>
 <ol><li class="ordered">Read client onboarding form data</li>
 <li class="ordered">Generate expanded "About Us" content</li>
 <li class="ordered">Generate service descriptions</li>
@@ -287,9 +298,9 @@
 <li class="ordered">Generate service area content</li>
 <li class="ordered">Output structured JSON for n8n to write</li>
 </ol>
-<h3>Triggers</h3>
+<h3 id="triggers">Triggers</h3>
 <table><thead><tr><th>Trigger</th><th>Action</th></tr></thead><tbody><tr><td>Form submitted webhook</td><td>Generate content</td></tr></tbody></table>
-<h3>Inputs</h3>
+<h3 id="inputs">Inputs</h3>
 <ul><li>Contact ID</li>
 <li>Contact custom fields:</li>
 <li class="nested">Business name</li>
@@ -299,7 +310,7 @@
 <li class="nested">What makes them special</li>
 <li class="nested">Hours of operation</li>
 </ul>
-<h3>Outputs</h3>
+<h3 id="outputs">Outputs</h3>
 JSON with:
 <pre><code>{
   "about_us_expanded": "...",
@@ -311,22 +322,22 @@ JSON with:
 }
 </code></pre>
 
-<h3>Tools</h3>
+<h3 id="tools">Tools</h3>
 <ul><li>GHL API (contacts.readonly)</li>
 <li>Claude model (via OpenClaw)</li>
 </ul>
-<h3>Handoffs</h3>
+<h3 id="handoffs">Handoffs</h3>
 <table><thead><tr><th>From</th><th>To Agent</th><th>Deliverable</th></tr></thead><tbody><tr><td>n8n webhook</td><td>Agent</td><td>Contact ID + trigger</td></tr></tbody></table>
 <table><thead><tr><th>From Agent</th><th>To</th><th>Deliverable</th></tr></thead><tbody><tr><td>Generated content</td><td>n8n workflow</td><td>JSON output</td></tr><tr><td>n8n workflow</td><td>Client sub-account</td><td>Custom values written</td></tr></tbody></table>
-<h3>KPIs</h3>
+<h3 id="kpis">KPIs</h3>
 <table><thead><tr><th>Metric</th><th>Target</th></tr></thead><tbody><tr><td>Generation success rate</td><td>>99%</td></tr><tr><td>Content quality (human review)</td><td>>90% acceptable</td></tr><tr><td>Processing time</td><td><60 seconds</td></tr></tbody></table>
-<h3>Decision Authority</h3>
+<h3 id="decision-authority">Decision Authority</h3>
 <ul><li>None (generates content, does not decide)</li>
 </ul>
-<h3>Escalation</h3>
+<h3 id="escalation">Escalation</h3>
 <ul><li>To Fulfillment Specialist: Generation failed, content unacceptable</li>
 </ul>
-<h3>Scopes Needed</h3>
+<h3 id="scopes-needed">Scopes Needed</h3>
 <ul><li><code>contacts.readonly</code></li>
 <li><code>locations/customFields.readonly</code></li>
 </ul>
@@ -334,38 +345,38 @@ JSON with:
 
 <hr>
 
-<h2>Role 5: Support Agent</h2>
+<h2 id="role-5-support-agent">Role 5: Support Agent</h2>
 
 <strong>Type:</strong> AI Agent (OpenClaw)
 <strong>Absorb Until:</strong> $25K MRR (then human backup)
 <strong>GHL Integration:</strong> <code>openclaw-support</code>
 
-<h3>Duties</h3>
+<h3 id="duties">Duties</h3>
 <ol><li class="ordered">Monitor incoming client messages</li>
 <li class="ordered">Answer routine questions</li>
 <li class="ordered">Provide how-to guidance</li>
 <li class="ordered">Tag contacts needing human help</li>
 <li class="ordered">Notify team of escalations</li>
 </ol>
-<h3>Triggers</h3>
+<h3 id="triggers">Triggers</h3>
 <table><thead><tr><th>Trigger</th><th>Action</th></tr></thead><tbody><tr><td>Incoming message from active client</td><td>Evaluate + respond or escalate</td></tr></tbody></table>
-<h3>Inputs</h3>
+<h3 id="inputs">Inputs</h3>
 <ul><li>Incoming message content</li>
 <li>Contact info (name, business)</li>
 <li>Contact tags (currentclient, etc.)</li>
 <li>Message history (if available via scope)</li>
 </ul>
-<h3>Outputs</h3>
+<h3 id="outputs">Outputs</h3>
 <ul><li>Response message (via SMS)</li>
 <li>Tag added (<code>needs-human</code>) if escalating</li>
 <li>Notification to team (via n8n)</li>
 </ul>
-<h3>Tools</h3>
+<h3 id="tools">Tools</h3>
 <ul><li>GHL API (conversations/message.write, contacts.write)</li>
 <li>Claude model (via OpenClaw)</li>
 <li>Knowledge base (FAQ, how-tos)</li>
 </ul>
-<h3>Knowledge Base (Agent Must Know)</h3>
+<h3 id="knowledge-base-agent-must-know">Knowledge Base (Agent Must Know)</h3>
 <ol><li class="ordered">How to check messages in Lead Connector app</li>
 <li class="ordered">How to use marketing form for reviews</li>
 <li class="ordered">What the review system does</li>
@@ -375,32 +386,32 @@ JSON with:
 <li class="ordered">A2P wait times</li>
 <li class="ordered">GMB verification process</li>
 </ol>
-<h3>Handoffs</h3>
+<h3 id="handoffs">Handoffs</h3>
 <table><thead><tr><th>From</th><th>To Agent</th><th>Deliverable</th></tr></thead><tbody><tr><td>Client</td><td>Agent</td><td>Incoming message</td></tr></tbody></table>
 <table><thead><tr><th>From Agent</th><th>To</th><th>Deliverable</th></tr></thead><tbody><tr><td>Answered</td><td>Client</td><td>Response sent</td></tr><tr><td>Escalated</td><td>Founder/Closer</td><td>Tagged contact + notification</td></tr></tbody></table>
-<h3>KPIs</h3>
+<h3 id="kpis">KPIs</h3>
 <table><thead><tr><th>Metric</th><th>Target</th></tr></thead><tbody><tr><td>Auto-resolution rate</td><td>>70%</td></tr><tr><td>Response time</td><td><5 minutes</td></tr><tr><td>Escalation rate</td><td><30%</td></tr><tr><td>Client satisfaction</td><td>No complaints</td></tr></tbody></table>
-<h3>Decision Authority</h3>
+<h3 id="decision-authority">Decision Authority</h3>
 <table><thead><tr><th>Can Decide</th><th>Cannot Decide (Escalate)</th></tr></thead><tbody><tr><td>Answer how-to questions</td><td>Billing questions</td></tr><tr><td>Explain features</td><td>Refund requests</td></tr><tr><td>Reset guidance</td><td>Technical bugs</td></tr><tr><td>Standard troubleshooting</td><td>Custom requests</td></tr></tbody></table>
-<h3>Escalation</h3>
+<h3 id="escalation">Escalation</h3>
 <ul><li>Tag <code>needs-human</code> + notify via n8n</li>
 <li>To Founder: Billing, refunds, complaints</li>
 <li>To Fulfillment: Technical issues, bugs</li>
 </ul>
-<h3>Scopes Needed</h3>
+<h3 id="scopes-needed">Scopes Needed</h3>
 <ul><li><code>contacts.readonly</code></li>
 <li><code>contacts.write</code></li>
 <li><code>conversations/message.write</code></li>
 </ul>
 <hr>
 
-<h2>Role 6: Sales Assistant Agent</h2>
+<h2 id="role-6-sales-assistant-agent">Role 6: Sales Assistant Agent</h2>
 
 <strong>Type:</strong> AI Agent (OpenClaw)
 <strong>Absorb Until:</strong> $25K MRR (then human SDR backup)
 <strong>GHL Integration:</strong> <code>openclaw-sales</code>
 
-<h3>Duties</h3>
+<h3 id="duties">Duties</h3>
 <ol><li class="ordered">Respond to inbound lead inquiries</li>
 <li class="ordered">Qualify leads via conversation</li>
 <li class="ordered">Answer pre-sale questions</li>
@@ -408,15 +419,15 @@ JSON with:
 <li class="ordered">Update contact fields with qualification data</li>
 <li class="ordered">Tag leads appropriately</li>
 </ol>
-<h3>Triggers</h3>
+<h3 id="triggers">Triggers</h3>
 <table><thead><tr><th>Trigger</th><th>Action</th></tr></thead><tbody><tr><td>Lead replies to sequence</td><td>Engage + qualify</td></tr><tr><td>Lead in Follow-Up stage</td><td>Engage + qualify</td></tr><tr><td>Lead asks question</td><td>Answer + qualify</td></tr></tbody></table>
-<h3>Inputs</h3>
+<h3 id="inputs">Inputs</h3>
 <ul><li>Incoming message from lead</li>
 <li>Contact info (name, business, source)</li>
 <li>Contact tags</li>
 <li>Lead source (FB ad, referral, etc.)</li>
 </ul>
-<h3>Outputs</h3>
+<h3 id="outputs">Outputs</h3>
 <ul><li>Response messages (via SMS)</li>
 <li>Updated contact fields:</li>
 <li class="nested">Qualification notes</li>
@@ -429,32 +440,32 @@ JSON with:
 <li class="nested"><code>not-qualified</code> (doesn't fit)</li>
 <li>Calendar link sent (when qualified)</li>
 </ul>
-<h3>Tools</h3>
+<h3 id="tools">Tools</h3>
 <ul><li>GHL API (contacts.write, conversations/message.write)</li>
 <li>Claude model (via OpenClaw)</li>
 <li>Calendar link (custom value)</li>
 </ul>
-<h3>Qualification Criteria</h3>
+<h3 id="qualification-criteria">Qualification Criteria</h3>
 <table><thead><tr><th>Qualified</th><th>Not Qualified</th></tr></thead><tbody><tr><td>Local service business</td><td>E-commerce, SaaS</td></tr><tr><td>Has or wants GMB</td><td>No local presence</td></tr><tr><td>$10K+/month revenue</td><td>Startup, no revenue</td></tr><tr><td>Decision maker</td><td>Employee, researcher</td></tr><tr><td>Ready in <30 days</td><td>"Just looking"</td></tr></tbody></table>
-<h3>Handoffs</h3>
+<h3 id="handoffs">Handoffs</h3>
 <table><thead><tr><th>From</th><th>To Agent</th><th>Deliverable</th></tr></thead><tbody><tr><td>GHL workflow</td><td>Agent</td><td>Lead reply notification</td></tr><tr><td>FB ad</td><td>Agent</td><td>New lead</td></tr></tbody></table>
 <table><thead><tr><th>From Agent</th><th>To</th><th>Deliverable</th></tr></thead><tbody><tr><td>Qualified lead</td><td>Closer</td><td>Booked demo or warm handoff</td></tr><tr><td>Not qualified</td><td>GHL workflow</td><td>Move to Long Term Nurture</td></tr></tbody></table>
-<h3>KPIs</h3>
+<h3 id="kpis">KPIs</h3>
 <table><thead><tr><th>Metric</th><th>Target</th></tr></thead><tbody><tr><td>Response time</td><td><5 minutes</td></tr><tr><td>Qualification rate</td><td>>40% of engaged leads</td></tr><tr><td>Demo book rate</td><td>>20% of qualified</td></tr><tr><td>Conversation quality</td><td>No complaints</td></tr></tbody></table>
-<h3>Decision Authority</h3>
+<h3 id="decision-authority">Decision Authority</h3>
 <table><thead><tr><th>Can Decide</th><th>Cannot Decide (Escalate)</th></tr></thead><tbody><tr><td>Send calendar link</td><td>Custom pricing</td></tr><tr><td>Qualify/disqualify</td><td>Discount offers</td></tr><tr><td>Answer product questions</td><td>Contract terms</td></tr><tr><td>Move to nurture</td><td>Complex objections</td></tr></tbody></table>
-<h3>Escalation</h3>
+<h3 id="escalation">Escalation</h3>
 <ul><li>To Closer: Complex objections, pricing questions, hot lead wanting immediate call</li>
 <li>Tag <code>needs-human</code> for Closer attention</li>
 </ul>
-<h3>Scopes Needed</h3>
+<h3 id="scopes-needed">Scopes Needed</h3>
 <ul><li><code>contacts.readonly</code></li>
 <li><code>contacts.write</code></li>
 <li><code>conversations/message.write</code></li>
 </ul>
 <hr>
 
-<h2>Role Interaction Map</h2>
+<h2 id="role-interaction-map">Role Interaction Map</h2>
 
 <pre><code>                    ┌─────────────┐
                     │   FOUNDER   │
@@ -500,7 +511,7 @@ JSON with:
 <em>Last updated: Feb 6, 2026</em>
 
         <footer>
-            <p>&copy; 2026 Slate Systems LLC. Internal use only.</p>
+            <p>&copy; 2026 Slate Systems Inc. Internal use only.</p>
         </footer>
     </div>
 </body>

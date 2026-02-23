@@ -46,8 +46,19 @@
             padding: 1rem;
             border-radius: 8px;
             overflow-x: auto;
+            max-width: 100%;
             margin: 1rem 0;
             border: 1px solid #334155;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        @media (max-width: 768px) {
+            body { padding: 1rem; }
+            pre { font-size: 0.85em; padding: 0.75rem; }
+            table { font-size: 0.9em; display: block; overflow-x: auto; }
+            th, td { padding: 0.5rem; }
+            h1 { font-size: 1.5rem; }
+            h2 { font-size: 1.25rem; }
         }
         code {
             font-family: 'SF Mono', Monaco, monospace;
@@ -97,38 +108,40 @@
 <body>
     <div class="container">
         <a href="../index.html" class="back-link">← Back to Portal</a>
-        <h1>Support Agent Specification</h1>
+        <h1 id="support-agent-specification">Support Agent Specification</h1>
 
 <blockquote><strong>Role:</strong> Support Agent</blockquote>
-<blockquote><strong>Type:</strong> AI Agent (GHL Conversations AI / n8n + OpenClaw)</blockquote>
-<blockquote><strong>Status:</strong> SPEC - Ready for Implementation</blockquote>
+<blockquote><strong>Type:</strong> AI Agent (n8n + Claude API)</blockquote>
+<blockquote><strong>Status:</strong> LIVE - Workflow Built</blockquote>
+<blockquote><strong>Workflow ID:</strong> pY9srGq9t6CmkbD7</blockquote>
+<blockquote><strong>Webhook URL:</strong> https://n8n.slatesystems.io/webhook/support-agent</blockquote>
 
 <hr>
 
-<h2>Purpose</h2>
+<h2 id="purpose">Purpose</h2>
 
 <p>Handle routine post-launch client support questions automatically, freeing human time for complex issues. Acts as first-line support, escalating when necessary.</p>
 
 <hr>
 
-<h2>Trigger Channels</h2>
+<h2 id="trigger-channels">Trigger Channels</h2>
 
 <table><thead><tr><th>Channel</th><th>Trigger</th><th>Context</th></tr></thead><tbody><tr><td>SMS</td><td>Client texts support number</td><td>Tagged <code>currentclient</code></td></tr><tr><td>Email</td><td>Client emails support@</td><td>Forward to GHL</td></tr><tr><td>Chat Widget</td><td>Message from client dashboard</td><td>Via GHL inbox</td></tr></tbody></table>
 <hr>
 
-<h2>Response Scope</h2>
+<h2 id="response-scope">Response Scope</h2>
 
-<h3>Agent CAN Handle (Tier 1)</h3>
+<h3 id="agent-can-handle-tier-1">Agent CAN Handle (Tier 1)</h3>
 
 <table><thead><tr><th>Category</th><th>Example Questions</th><th>Response Type</th></tr></thead><tbody><tr><td><strong>Website</strong></td><td>"How do I update my phone number?"</td><td>Guide to custom values</td></tr><tr><td>"Where can I see my website?"</td><td>Send website URL</td></tr><tr><td>"My website shows wrong hours"</td><td>Log for fix, confirm ETA</td></tr><tr><td><strong>App</strong></td><td>"How do I download the app?"</td><td>Send app store links</td></tr><tr><td>"I can't log in to my dashboard"</td><td>Password reset guide</td></tr><tr><td>"How do I see my leads?"</td><td>Navigation guide</td></tr><tr><td><strong>Reviews</strong></td><td>"How do I get more reviews?"</td><td>Explain review funnel</td></tr><tr><td>"Where do I send customers to review?"</td><td>Send GMB review link</td></tr><tr><td>"Can I respond to reviews?"</td><td>Guide to reputation tab</td></tr><tr><td><strong>Leads</strong></td><td>"I got a lead, what do I do?"</td><td>Standard lead process</td></tr><tr><td>"My lead notifications aren't working"</td><td>Check settings, escalate if broken</td></tr><tr><td>"How do I export my contacts?"</td><td>Navigation guide</td></tr><tr><td><strong>Chat Widget</strong></td><td>"How do I change the chat message?"</td><td>Guide to widget settings</td></tr><tr><td>"People can't find the chat"</td><td>Check placement, suggest test</td></tr><tr><td><strong>Billing</strong></td><td>"When is my next payment?"</td><td>Check and respond</td></tr><tr><td>"How do I update my card?"</td><td>Guide to billing portal</td></tr><tr><td><strong>General</strong></td><td>"What does [X feature] do?"</td><td>Feature explanation</td></tr><tr><td>"Thank you!"</td><td>Acknowledge</td></tr></tbody></table>
-<h3>Agent MUST Escalate (Tier 2)</h3>
+<h3 id="agent-must-escalate-tier-2">Agent MUST Escalate (Tier 2)</h3>
 
 <table><thead><tr><th>Category</th><th>Example</th><th>Escalation Reason</th></tr></thead><tbody><tr><td><strong>Cancellation</strong></td><td>"I want to cancel"</td><td>Retention conversation needed</td></tr><tr><td><strong>Complaints</strong></td><td>"This isn't working" / "I'm frustrated"</td><td>Human empathy needed</td></tr><tr><td><strong>Technical Bugs</strong></td><td>"Website is broken"</td><td>Requires investigation</td></tr><tr><td><strong>Billing Issues</strong></td><td>"I was charged wrong"</td><td>Requires account check</td></tr><tr><td><strong>Custom Requests</strong></td><td>"Can you add a new page?"</td><td>Scope change</td></tr><tr><td><strong>A2P Issues</strong></td><td>"My texts aren't sending"</td><td>Complex troubleshooting</td></tr><tr><td><strong>GMB Issues</strong></td><td>"My GMB says wrong info"</td><td>Manual GMB work</td></tr><tr><td><strong>Unknown</strong></td><td>Anything unclear</td><td>Better safe than sorry</td></tr></tbody></table>
 <hr>
 
-<h2>Knowledge Base</h2>
+<h2 id="knowledge-base">Knowledge Base</h2>
 
-<h3>Static Knowledge (Embedded in Prompt)</h3>
+<h3 id="static-knowledge-embedded-in-prompt">Static Knowledge (Embedded in Prompt)</h3>
 
 <pre><code>COMPANY INFO:
 <ul><li>Company: Slate Systems LLC</li>
@@ -153,14 +166,14 @@ REVIEW FUNNEL:
 <li class="ordered">3-star or below → private feedback form</li>
 </ol></code></pre>
 
-<h3>Dynamic Knowledge (Retrieved Per-Client)</h3>
+<h3 id="dynamic-knowledge-retrieved-per-client">Dynamic Knowledge (Retrieved Per-Client)</h3>
 
 <table><thead><tr><th>Data Point</th><th>Source</th><th>Use Case</th></tr></thead><tbody><tr><td>Client name</td><td>Contact record</td><td>Personalization</td></tr><tr><td>Website URL</td><td>Custom value <code>company_website_link</code></td><td>Website questions</td></tr><tr><td>Review link</td><td>Custom value <code>gmb_review_link</code></td><td>Review questions</td></tr><tr><td>Next billing date</td><td>Payment record</td><td>Billing questions</td></tr><tr><td>A2P status</td><td>Tag check</td><td>Texting questions</td></tr><tr><td>Service areas</td><td>Custom values <code>biz_area_*</code></td><td>Coverage questions</td></tr></tbody></table>
 <hr>
 
-<h2>Conversation Flow</h2>
+<h2 id="conversation-flow">Conversation Flow</h2>
 
-<h3>Opening</h3>
+<h3 id="opening">Opening</h3>
 
 <p>When client sends first message:</p>
 
@@ -169,7 +182,7 @@ REVIEW FUNNEL:
 <li class="ordered"><strong>Load context</strong> - Retrieve client custom values</li>
 <li class="ordered"><strong>Respond</strong> - Acknowledge and address question</li>
 </ol>
-<h3>Standard Response Format</h3>
+<h3 id="standard-response-format">Standard Response Format</h3>
 
 <pre><code>Hey [First Name]!
 
@@ -181,7 +194,7 @@ REVIEW FUNNEL:
 
 <p>Let me know if you have any other questions!<br></code></pre></p>
 
-<h3>Escalation Format</h3>
+<h3 id="escalation-format">Escalation Format</h3>
 
 <pre><code>Hey [First Name]!
 
@@ -191,51 +204,48 @@ REVIEW FUNNEL:
 
 <hr>
 
-<h2>Technical Implementation</h2>
+<h2 id="technical-implementation-live">Technical Implementation (LIVE)</h2>
 
-<h3>Option A: GHL Conversations AI (Simpler)</h3>
+<h3 id="n8n-workflow-slate-support-ai-agent">n8n Workflow: SLATE - Support AI Agent</h3>
 
-<ol><li class="ordered"><strong>Setup:</strong> Settings → Conversations AI → Enable</li>
-<li class="ordered"><strong>Knowledge Base:</strong> Upload static knowledge doc</li>
-<li class="ordered"><strong>Escalation:</strong> Configure auto-tag when AI marks uncertain</li>
-<li class="ordered"><strong>Limitations:</strong></li>
-</ol>   - Less control over dynamic data access
-   - Can't call external APIs
-   - Good for MVP
+<strong>Workflow ID:</strong> <code>pY9srGq9t6CmkbD7</code>
+<strong>Server:</strong> 5.161.87.81 (Slate n8n)
+<strong>Webhook:</strong> <code>POST https://n8n.slatesystems.io/webhook/support-agent</code>
 
-<h3>Option B: n8n + OpenClaw (More Powerful)</h3>
+<pre><code>┌─────────────────────────────────────────────────────────────────────┐
+│                     SUPPORT AI AGENT FLOW                           │
+└─────────────────────────────────────────────────────────────────────┘
 
-<pre><code>Inbound SMS/Email
-       │
-       ▼
-┌─────────────────────┐
-│ GHL Workflow        │
-│ • Check currentclient│
-│ • Extract question  │
-│ • Send to n8n       │
-└─────────────────────┘
-       │
-       ▼
-┌─────────────────────┐
-│ n8n Workflow        │
-│ • Fetch client data │
-│ • Call OpenClaw     │
-│ • Parse response    │
-│ • Send reply        │
-└─────────────────────┘
-       │
-       ▼
-┌─────────────────────┐
-│ OpenClaw Agent      │
-│ • Classify intent   │
-│ • Generate response │
-│ • Flag escalations  │
-└─────────────────────┘
+<p>GHL Inbound Message<br>       │<br>       ▼<br>┌─────────────────────┐<br>│ Support Webhook     │ ← POST from GHL workflow<br>│ (n8n webhook)       │<br>└─────────────────────┘<br>       │<br>       ▼<br>┌─────────────────────┐<br>│ Extract Request     │ ← Validates: contactId, message<br>│ Data                │<br>└─────────────────────┘<br>       │<br>       ▼<br>┌─────────────────────┐<br>│ Fetch Client Data   │ ← GET /contacts/{id} from GHL API<br>│ (HTTP Request)      │<br>└─────────────────────┘<br>       │<br>       ▼<br>┌─────────────────────┐<br>│ Prepare AI Context  │ ← Extracts custom values, tags<br>│                     │<br>└─────────────────────┘<br>       │<br>       ▼<br>┌─────────────────────┐<br>│ Generate AI         │ ← Claude API (claude-sonnet-4-20250514)<br>│ Response            │   max_tokens: 500<br>└─────────────────────┘<br>       │<br>       ▼<br>┌─────────────────────┐<br>│ Parse AI Response   │ ← Extracts: response, escalate, category<br>│                     │<br>└─────────────────────┘<br>       │<br>       ▼<br>┌─────────────────────┐<br>│ Check Escalation    │ ← IF escalate === true<br>│ (IF Node)           │<br>└─────────────────────┘<br>       │                        │<br>       ▼ (FALSE)                ▼ (TRUE)<br>┌─────────────────────┐  ┌─────────────────────┐<br>│ Send Reply          │  │ Add Escalation Tag  │<br>│ (via GHL API)       │  │ (support-escalation)│<br>└─────────────────────┘  └─────────────────────┘<br>       │                        │<br>       ▼                        ▼<br>┌─────────────────────┐  ┌─────────────────────┐<br>│ Respond Success     │  │ Prepare Notification│<br>│ (webhook response)  │  │ (for Slack/SMS)     │<br>└─────────────────────┘  └─────────────────────┘<br>                                │<br>                                ▼<br>                         ┌─────────────────────┐<br>                         │ Respond Escalated   │<br>                         │ (webhook response)  │<br>                         └─────────────────────┘<br></code></pre></p>
+
+<h3 id="webhook-payload-from-ghl">Webhook Payload (from GHL)</h3>
+
+<pre><code>{
+  "contactId": "abc123",
+  "message": "How do I download the app?",
+  "firstName": "John",
+  "phone": "+15551234567",
+  "email": "john@example.com"
+}
 </code></pre>
+
+<h3 id="credentials-configured">Credentials (CONFIGURED)</h3>
+
+<table><thead><tr><th>Node</th><th>API</th><th>Key</th></tr></thead><tbody><tr><td>Generate AI Response</td><td>OpenRouter</td><td><code>sk-or-v1-ae43...</code> (from Baserow T.932)</td></tr><tr><td>Fetch Client Data</td><td>GHL</td><td><code>pit-d22e09d1-...</code> (Slate sub-account)</td></tr><tr><td>Send Reply</td><td>GHL</td><td>Same</td></tr><tr><td>Add Escalation Tag</td><td>GHL</td><td>Same</td></tr></tbody></table>
+<h3 id="to-activate">To Activate</h3>
+
+<ol><li class="ordered">Open n8n: https://n8n.slatesystems.io</li>
+<li class="ordered">Find workflow: "SLATE - Support AI Agent" (ID: <code>pY9srGq9t6CmkbD7</code>)</li>
+<li class="ordered">Toggle workflow to <strong>Active</strong></li>
+<li class="ordered">Create GHL workflow to trigger webhook on inbound client messages</li>
+</ol>
+<h3 id="ghl-workflow-setup-you-need-to-create">GHL Workflow Setup (you need to create)</h3>
+
+<p>In GHL Carlsbad, create workflow:<br><ul><li><strong>Trigger:</strong> Inbound message received</li><br><li><strong>Filter:</strong> Contact has tag <code>currentclient</code></li><br><li><strong>Action:</strong> Webhook POST to <code>https://n8n.slatesystems.io/webhook/support-agent</code></li><br><li><strong>Body:</strong></li><br></ul><pre><code>{<br>  "contactId": "{{contact.id}}",<br>  "message": "{{message.body}}",<br>  "firstName": "{{contact.first_name}}",<br>  "phone": "{{contact.phone}}"<br>}<br></code></pre></p>
 
 <hr>
 
-<h2>Agent Prompt (OpenClaw)</h2>
+<h2 id="agent-prompt-openclaw">Agent Prompt (OpenClaw)</h2>
 
 <pre><code>You are the support agent for Slate Systems, a web design and automation company for local service businesses.
 
@@ -247,7 +257,7 @@ REVIEW FUNNEL:
 
 <hr>
 
-<h2>Escalation Workflow</h2>
+<h2 id="escalation-workflow">Escalation Workflow</h2>
 
 <p>When agent marks <code>escalate: true</code>:</p>
 
@@ -256,31 +266,31 @@ REVIEW FUNNEL:
 <li class="ordered"><strong>Notify:</strong> SMS/Slack to support person</li>
 <li class="ordered"><strong>Log:</strong> Record conversation summary</li>
 </ol>
-<h3>Human Response Time SLAs</h3>
+<h3 id="human-response-time-slas">Human Response Time SLAs</h3>
 
 <table><thead><tr><th>Priority</th><th>Criteria</th><th>Response Time</th></tr></thead><tbody><tr><td>Urgent</td><td>Website down, billing error</td><td>2 hours</td></tr><tr><td>High</td><td>Complaint, cancellation risk</td><td>4 hours</td></tr><tr><td>Normal</td><td>Feature questions, bugs</td><td>24 hours</td></tr><tr><td>Low</td><td>Nice-to-have requests</td><td>48 hours</td></tr></tbody></table>
 <hr>
 
-<h2>Success Metrics</h2>
+<h2 id="success-metrics">Success Metrics</h2>
 
 <table><thead><tr><th>Metric</th><th>Target</th><th>Tracking</th></tr></thead><tbody><tr><td>Auto-resolution rate</td><td>>60%</td><td>Conversations without escalation</td></tr><tr><td>Response time</td><td><5 min</td><td>Time to first response</td></tr><tr><td>Client satisfaction</td><td>>90%</td><td>Post-conversation survey (future)</td></tr><tr><td>Escalation accuracy</td><td>>95%</td><td>Human review of escalations</td></tr></tbody></table>
 <hr>
 
-<h2>MVP Implementation Plan</h2>
+<h2 id="mvp-implementation-plan">MVP Implementation Plan</h2>
 
-<h3>Phase 1: GHL Conversations AI (Week 1)</h3>
+<h3 id="phase-1-ghl-conversations-ai-week-1">Phase 1: GHL Conversations AI (Week 1)</h3>
 <ul><li>Enable Conversations AI in sub-accounts</li>
 <li>Upload basic knowledge base</li>
 <li>Test with internal messages</li>
 <li>Monitor for 1 week</li>
 </ul>
-<h3>Phase 2: Custom n8n Integration (Week 2-3)</h3>
+<h3 id="phase-2-custom-n8n-integration-week-2-3">Phase 2: Custom n8n Integration (Week 2-3)</h3>
 <ul><li>Build n8n workflow for support routing</li>
 <li>Connect to OpenClaw for smart responses</li>
 <li>Add dynamic client data retrieval</li>
 <li>Implement escalation workflow</li>
 </ul>
-<h3>Phase 3: Optimization (Ongoing)</h3>
+<h3 id="phase-3-optimization-ongoing">Phase 3: Optimization (Ongoing)</h3>
 <ul><li>Review escalated conversations weekly</li>
 <li>Add common questions to knowledge base</li>
 <li>Fine-tune prompt based on failures</li>
@@ -288,24 +298,51 @@ REVIEW FUNNEL:
 </ul>
 <hr>
 
-<h2>Integration Points</h2>
+<h2 id="integration-points">Integration Points</h2>
 
 <table><thead><tr><th>System</th><th>Integration</th><th>Purpose</th></tr></thead><tbody><tr><td>GHL</td><td>Conversations AI / Workflow</td><td>Trigger + reply</td></tr><tr><td>n8n</td><td>Webhook receiver</td><td>Process messages</td></tr><tr><td>OpenClaw</td><td>API call</td><td>Generate responses</td></tr><tr><td>Baserow</td><td>Data lookup</td><td>Client history</td></tr><tr><td>Slack</td><td>Notification</td><td>Escalation alerts</td></tr></tbody></table>
 <hr>
 
-<h2>Files & References</h2>
+<h2 id="getting-the-most-out-of-this-agent">Getting the Most Out of This Agent</h2>
 
-<ul><li>Client custom values: <code>slate-content-generator-v2.md</code></li>
+<h3 id="before-going-live">Before Going Live</h3>
+
+<ol><li class="ordered"><strong>Test with real questions</strong> — Send sample messages through the webhook manually</li>
+<li class="ordered"><strong>Review AI responses</strong> — Check that escalations trigger correctly</li>
+<li class="ordered"><strong>Set up notifications</strong> — Connect Prepare Notification node to Slack or SMS</li>
+</ol>
+<h3 id="ongoing-optimization">Ongoing Optimization</h3>
+
+<ul><li><strong>Weekly review:</strong> Look at escalated conversations, identify patterns</li>
+<li><strong>Add to prompt:</strong> If AI keeps escalating the same type of question, add answer to prompt</li>
+<li><strong>Track metrics:</strong> Monitor auto-resolution rate (target: >60%)</li>
+<li><strong>Client feedback:</strong> If clients complain about AI responses, review and adjust</li>
+</ul>
+<h3 id="common-adjustments">Common Adjustments</h3>
+
+<table><thead><tr><th>Issue</th><th>Fix</th></tr></thead><tbody><tr><td>AI too verbose</td><td>Reduce max_tokens (currently 500)</td></tr><tr><td>AI escalates too much</td><td>Add more examples to "COMMON ANSWERS" in prompt</td></tr><tr><td>AI doesn't escalate enough</td><td>Add keywords to escalation rules in prompt</td></tr><tr><td>Wrong tone</td><td>Adjust ROLE section in prompt</td></tr></tbody></table>
+<h3 id="troubleshooting">Troubleshooting</h3>
+
+<ol><li class="ordered"><strong>No response sent:</strong> Check GHL API credentials, verify contactId exists</li>
+<li class="ordered"><strong>AI errors:</strong> Check ANTHROPIC_API_KEY env var, verify API quota</li>
+<li class="ordered"><strong>Wrong client data:</strong> Check custom field keys match GHL setup</li>
+</ol>
+<hr>
+
+<h2 id="files-references">Files & References</h2>
+
+<ul><li>Support FAQ: <code>support/support-faq.md</code></li>
+<li>Escalation Rules: <code>support/escalation-rules.md</code></li>
+<li>Client custom values: <code>slate-content-generator-v2.md</code></li>
 <li>GHL workflow patterns: <code>slate-operations.md</code></li>
-<li>OpenClaw setup: <code>~/mcp-servers/contexts/openclaw.md</code></li>
 </ul>
 <hr>
 
-<em>Last updated: Feb 16, 2026</em>
-<em>Version: 1.0 - Initial Specification</em>
+<em>Last updated: Feb 22, 2026</em>
+<em>Version: 2.0 - n8n Workflow Built</em>
 
         <footer>
-            <p>&copy; 2026 Slate Systems LLC. Internal use only.</p>
+            <p>&copy; 2026 Slate Systems Inc. Internal use only.</p>
         </footer>
     </div>
 </body>

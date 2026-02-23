@@ -46,8 +46,19 @@
             padding: 1rem;
             border-radius: 8px;
             overflow-x: auto;
+            max-width: 100%;
             margin: 1rem 0;
             border: 1px solid #334155;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        @media (max-width: 768px) {
+            body { padding: 1rem; }
+            pre { font-size: 0.85em; padding: 0.75rem; }
+            table { font-size: 0.9em; display: block; overflow-x: auto; }
+            th, td { padding: 0.5rem; }
+            h1 { font-size: 1.5rem; }
+            h2 { font-size: 1.25rem; }
         }
         code {
             font-family: 'SF Mono', Monaco, monospace;
@@ -97,52 +108,76 @@
 <body>
     <div class="container">
         <a href="../index.html" class="back-link">← Back to Portal</a>
-        <h1>Support FAQ — Common Questions & Answers</h1>
+        <h1 id="support-faq-common-questions-answers">Support FAQ — Common Questions & Answers</h1>
 
 <blockquote><strong>Role:</strong> Support / VA / Anyone handling client questions</blockquote>
 <blockquote><strong>Purpose:</strong> Standard answers to common client questions</blockquote>
-<blockquote><strong>Last Updated:</strong> Feb 22, 2026</blockquote>
+<blockquote><strong>Last Updated:</strong> Feb 23, 2026</blockquote>
 
 <hr>
 
-<h2>How to Use This Document</h2>
+<h2 id="ai-agent-handles-tier-1-automatically">AI Agent Handles Tier 1 Automatically</h2>
+
+<strong>Most routine questions are handled by the Support AI Agent automatically.</strong>
+
+<table><thead><tr><th>Component</th><th>Value</th></tr></thead><tbody><tr><td>Workflow</td><td>SLATE - Support AI Agent</td></tr><tr><td>n8n ID</td><td><code>pY9srGq9t6CmkbD7</code></td></tr><tr><td>Webhook</td><td><code>https://n8n.slatesystems.io/webhook/support-agent</code></td></tr><tr><td>Status</td><td>Active (needs GHL trigger workflow)</td></tr></tbody></table>
+<strong>What the AI handles:</strong>
+<ul><li>How-to questions (app, website, reviews)</li>
+<li>Password reset guidance</li>
+<li>Review link requests</li>
+<li>Feature explanations</li>
+<li>Basic troubleshooting</li>
+</ul>
+<strong>What the AI escalates:</strong> (adds <code>support-escalation</code> tag)
+<ul><li>Cancellation requests</li>
+<li>Complaints / frustration</li>
+<li>Billing issues</li>
+<li>Technical bugs</li>
+<li>Custom requests</li>
+<li>Anything unclear</li>
+</ul>
+See <code>agents/support-agent.md</code> for full specification.
+
+<hr>
+
+<h2 id="how-to-use-this-document">How to Use This Document</h2>
 
 <ol><li class="ordered">Client asks a question</li>
-<li class="ordered">Find it in this FAQ</li>
-<li class="ordered">Use the answer (customize with their name/details)</li>
+<li class="ordered"><strong>Check if AI already responded</strong> (look in conversation history)</li>
+<li class="ordered">If AI escalated or didn't respond, use this FAQ</li>
 <li class="ordered">If not found → escalate per <code>escalation-rules.md</code></li>
 </ol>
 <hr>
 
-<h2>CATEGORY: WEBSITE</h2>
+<h2 id="category-website">CATEGORY: WEBSITE</h2>
 
-<h3>"How do I see my website?"</h3>
+<h3 id="how-do-i-see-my-website">"How do I see my website?"</h3>
 
 <strong>Answer:</strong>
 <blockquote>Your website is at [their domain]. You can also find it on your quick links page at [their domain]/my-links.</blockquote>
 
-<h3>"How do I update my phone number on the website?"</h3>
+<h3 id="how-do-i-update-my-phone-number-on-the-website">"How do I update my phone number on the website?"</h3>
 
 <strong>Answer:</strong>
 <blockquote>Let us know the new number and we'll update it for you within 24 hours. Reply with the new number and we'll take care of it.</blockquote>
 
 <strong>Note:</strong> Update custom values: <code>company_phone__aesthetic_</code>, <code>company_phone__functional_</code>, <code>company_twilio_phone</code>
 
-<h3>"Can I change the text/images on my website?"</h3>
+<h3 id="can-i-change-the-text-images-on-my-website">"Can I change the text/images on my website?"</h3>
 
 <strong>Answer:</strong>
 <blockquote>Yes! For text changes, just tell us what you'd like changed and where. For images, send us the new images and we'll swap them out.</blockquote>
 
 <strong>Note:</strong> Fulfillment handles this. Create task in pipeline.
 
-<h3>"My website isn't loading"</h3>
+<h3 id="my-website-isn-t-loading">"My website isn't loading"</h3>
 
 <strong>Answer:</strong>
 <blockquote>I'll check on that right now. Can you tell me what you see when you try to visit it? Also, try clearing your browser cache or using a different browser.</blockquote>
 
 <strong>Note:</strong> Check: Domain DNS, SSL certificate, GHL site status. If actual issue → escalate to Fulfillment.
 
-<h3>"The chat widget isn't working"</h3>
+<h3 id="the-chat-widget-isn-t-working">"The chat widget isn't working"</h3>
 
 <strong>Answer:</strong>
 <blockquote>Let me check on that. Can you tell me what happens when you try to use it? I'll look into it right now.</blockquote>
@@ -151,9 +186,9 @@
 
 <hr>
 
-<h2>CATEGORY: APP / LEAD CONNECTOR</h2>
+<h2 id="category-app-lead-connector">CATEGORY: APP / LEAD CONNECTOR</h2>
 
-<h3>"How do I download the app?"</h3>
+<h3 id="how-do-i-download-the-app">"How do I download the app?"</h3>
 
 <strong>Answer:</strong>
 <blockquote>Here are the links:</blockquote>
@@ -162,43 +197,43 @@
 >
 <blockquote>After downloading, use your email and the password we set up. Let me know if you need help logging in.</blockquote>
 
-<h3>"I can't log in to the app"</h3>
+<h3 id="i-can-t-log-in-to-the-app">"I can't log in to the app"</h3>
 
 <strong>Answer:</strong>
 <blockquote>No problem! I'll reset your password right now. Make sure the new password has at least one special character (like ! or @). I'll text you the new password in a moment.</blockquote>
 
 <strong>Note:</strong> Reset in GHL: Sub-account → Team → User → Reset password
 
-<h3>"Where do I see my leads?"</h3>
+<h3 id="where-do-i-see-my-leads">"Where do I see my leads?"</h3>
 
 <strong>Answer:</strong>
 <blockquote>In the app, tap "Conversations" at the bottom. All your leads show up there. You can also tap "Contacts" to see everyone in your system.</blockquote>
 
-<h3>"How do I respond to leads?"</h3>
+<h3 id="how-do-i-respond-to-leads">"How do I respond to leads?"</h3>
 
 <strong>Answer:</strong>
 <blockquote>In the app, tap "Conversations", then tap on the lead's name. You can text them right from there. Just type your message and hit send.</blockquote>
 
-<h3>"I'm not getting notifications"</h3>
+<h3 id="i-m-not-getting-notifications">"I'm not getting notifications"</h3>
 
 <strong>Answer:</strong>
 <blockquote>Let's fix that. Go to your phone's Settings → Notifications → Lead Connector (or HighLevel). Make sure notifications are turned ON. Also check that "Do Not Disturb" isn't enabled.</blockquote>
 
 <hr>
 
-<h2>CATEGORY: REVIEWS</h2>
+<h2 id="category-reviews">CATEGORY: REVIEWS</h2>
 
-<h3>"How do I get more reviews?"</h3>
+<h3 id="how-do-i-get-more-reviews">"How do I get more reviews?"</h3>
 
 <strong>Answer:</strong>
 <blockquote>Use the marketing form in your app! Go to Marketing → Forms → "Request Review". Enter your customer's name and phone, hit send, and they'll get a link to leave a review. We recommend doing this right after you finish a job.</blockquote>
 
-<h3>"Where do I find my review link?"</h3>
+<h3 id="where-do-i-find-my-review-link">"Where do I find my review link?"</h3>
 
 <strong>Answer:</strong>
 <blockquote>Your Google review link is on your quick links page: [their domain]/my-links. You can also copy it and text it directly to customers.</blockquote>
 
-<h3>"How does the review system work?"</h3>
+<h3 id="how-does-the-review-system-work">"How does the review system work?"</h3>
 
 <strong>Answer:</strong>
 <blockquote>When a customer clicks your review link:</blockquote>
@@ -207,12 +242,12 @@
 >
 <blockquote>This protects your Google rating while still getting feedback from unhappy customers.</blockquote>
 
-<h3>"Can I respond to Google reviews?"</h3>
+<h3 id="can-i-respond-to-google-reviews">"Can I respond to Google reviews?"</h3>
 
 <strong>Answer:</strong>
 <blockquote>Yes! Our system automatically responds to positive reviews (4-5 stars) for you. If you want to respond to one personally, you can do that in your Google Business Profile.</blockquote>
 
-<h3>"I got a negative review"</h3>
+<h3 id="i-got-a-negative-review">"I got a negative review"</h3>
 
 <strong>Answer:</strong>
 <blockquote>Sorry to hear that. If it's from a real customer, the best approach is to respond professionally and try to make it right. Would you like some help crafting a response?</blockquote>
@@ -221,56 +256,56 @@
 
 <hr>
 
-<h2>CATEGORY: PHONE / SMS</h2>
+<h2 id="category-phone-sms">CATEGORY: PHONE / SMS</h2>
 
-<h3>"My phone number isn't working"</h3>
+<h3 id="my-phone-number-isn-t-working">"My phone number isn't working"</h3>
 
 <strong>Answer:</strong>
 <blockquote>Let me check on that. Can you tell me what's happening? Are calls not coming through, or is it texts?</blockquote>
 
 <strong>Note:</strong> Check: Phone forwarding config, A2P status, number not suspended
 
-<h3>"Texts aren't sending"</h3>
+<h3 id="texts-aren-t-sending">"Texts aren't sending"</h3>
 
 <strong>Answer:</strong>
 <blockquote>This could be related to your A2P verification. Let me check the status. It usually takes 5-7 business days to get approved after we submit.</blockquote>
 
 <strong>Note:</strong> Check A2P status. If rejected → see a2p-submission.md
 
-<h3>"What's A2P?"</h3>
+<h3 id="what-s-a2p">"What's A2P?"</h3>
 
 <strong>Answer:</strong>
 <blockquote>A2P stands for Application-to-Person. It's a verification process required by phone carriers to send automated texts. We submit this for you, and it usually takes 5-7 business days to get approved.</blockquote>
 
-<h3>"I'm getting spam calls"</h3>
+<h3 id="i-m-getting-spam-calls">"I'm getting spam calls"</h3>
 
 <strong>Answer:</strong>
 <blockquote>Unfortunately, spam calls are an industry-wide issue. Your toll-free number is new, so it may get fewer spam calls than your personal number. You can also block specific numbers in the app.</blockquote>
 
 <hr>
 
-<h2>CATEGORY: BILLING</h2>
+<h2 id="category-billing">CATEGORY: BILLING</h2>
 
-<h3>"When is my next payment?"</h3>
+<h3 id="when-is-my-next-payment">"When is my next payment?"</h3>
 
 <strong>Answer:</strong>
 <blockquote>Let me check that for you. [Check Stripe] Your next payment is on [date].</blockquote>
 
-<h3>"How do I update my credit card?"</h3>
+<h3 id="how-do-i-update-my-credit-card">"How do I update my credit card?"</h3>
 
 <strong>Answer:</strong>
 <blockquote>I'll send you a link to your billing portal where you can update your card securely.</blockquote>
 
 <strong>Note:</strong> Send billing portal link from Stripe
 
-<h3>"Can I get a receipt?"</h3>
+<h3 id="can-i-get-a-receipt">"Can I get a receipt?"</h3>
 
 <strong>Answer:</strong>
 <blockquote>Of course! I'll email you a receipt right now. What email should I send it to?</blockquote>
 
 <strong>Note:</strong> Generate invoice/receipt in Stripe → Email to client
 
-<h3>"I was charged wrong"</h3>
+<h3 id="i-was-charged-wrong">"I was charged wrong"</h3>
 
 <strong>Note:</strong> ESCALATE to Founder. Do not handle billing disputes directly.
 
@@ -279,7 +314,7 @@
 
 <hr>
 
-<h2>CATEGORY: CANCELLATION</h2>
+<h2 id="category-cancellation">CATEGORY: CANCELLATION</h2>
 
 <strong>Note:</strong> ALL cancellation requests → ESCALATE to Closer/Founder per cancellation-saves.md
 
@@ -290,30 +325,30 @@
 
 <hr>
 
-<h2>CATEGORY: TECHNICAL</h2>
+<h2 id="category-technical">CATEGORY: TECHNICAL</h2>
 
-<h3>"Something on my website looks wrong"</h3>
+<h3 id="something-on-my-website-looks-wrong">"Something on my website looks wrong"</h3>
 
 <strong>Answer:</strong>
 <blockquote>Can you send me a screenshot of what you're seeing? I'll take a look and get it fixed.</blockquote>
 
 <strong>Note:</strong> Create task for Fulfillment
 
-<h3>"My form isn't working"</h3>
+<h3 id="my-form-isn-t-working">"My form isn't working"</h3>
 
 <strong>Answer:</strong>
 <blockquote>Let me test it right now. I'll submit a test and see if it comes through. One moment.</blockquote>
 
 <strong>Note:</strong> Test the form. If broken → escalate to Fulfillment.
 
-<h3>"Links aren't working"</h3>
+<h3 id="links-aren-t-working">"Links aren't working"</h3>
 
 <strong>Answer:</strong>
 <blockquote>Can you tell me which link isn't working? I'll check it out and fix it.</blockquote>
 
 <hr>
 
-<h2>Response Tone Guidelines</h2>
+<h2 id="response-tone-guidelines">Response Tone Guidelines</h2>
 
 <strong>DO:</strong>
 <ul><li>Use their first name</li>
@@ -331,23 +366,23 @@
 </ul>
 <hr>
 
-<h2>Quick Templates</h2>
+<h2 id="quick-templates">Quick Templates</h2>
 
-<h3>Acknowledging question</h3>
+<h3 id="acknowledging-question">Acknowledging question</h3>
 <blockquote>"Hey [Name]! Good question. [Answer]"</blockquote>
 
-<h3>Need to check something</h3>
+<h3 id="need-to-check-something">Need to check something</h3>
 <blockquote>"Let me look into that real quick. I'll get back to you shortly."</blockquote>
 
-<h3>Fixed the issue</h3>
+<h3 id="fixed-the-issue">Fixed the issue</h3>
 <blockquote>"All fixed! [Explain what was done]. Let me know if you need anything else."</blockquote>
 
-<h3>Escalating</h3>
+<h3 id="escalating">Escalating</h3>
 <blockquote>"I want to make sure this is handled right. Let me have [Name] take a look and get back to you today."</blockquote>
 
 <hr>
 
-<h2>Related SOPs</h2>
+<h2 id="related-sops">Related SOPs</h2>
 
 <ul><li><code>escalation-rules.md</code> — When to escalate</li>
 <li><code>app-guide.md</code> — Lead Connector details</li>
@@ -358,7 +393,7 @@
 <em>Last updated: Feb 22, 2026</em>
 
         <footer>
-            <p>&copy; 2026 Slate Systems LLC. Internal use only.</p>
+            <p>&copy; 2026 Slate Systems Inc. Internal use only.</p>
         </footer>
     </div>
 </body>

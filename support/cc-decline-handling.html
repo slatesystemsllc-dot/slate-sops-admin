@@ -46,8 +46,19 @@
             padding: 1rem;
             border-radius: 8px;
             overflow-x: auto;
+            max-width: 100%;
             margin: 1rem 0;
             border: 1px solid #334155;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        @media (max-width: 768px) {
+            body { padding: 1rem; }
+            pre { font-size: 0.85em; padding: 0.75rem; }
+            table { font-size: 0.9em; display: block; overflow-x: auto; }
+            th, td { padding: 0.5rem; }
+            h1 { font-size: 1.5rem; }
+            h2 { font-size: 1.25rem; }
         }
         code {
             font-family: 'SF Mono', Monaco, monospace;
@@ -97,7 +108,7 @@
 <body>
     <div class="container">
         <a href="../index.html" class="back-link">← Back to Portal</a>
-        <h1>Credit Card Decline Handling SOP</h1>
+        <h1 id="credit-card-decline-handling-sop">Credit Card Decline Handling SOP</h1>
 
 <blockquote><strong>Role:</strong> Founder / Account Manager</blockquote>
 <blockquote><strong>When:</strong> Payment fails in Stripe</blockquote>
@@ -107,22 +118,22 @@
 
 <hr>
 
-<h2>Why This Matters</h2>
+<h2 id="why-this-matters">Why This Matters</h2>
 
 <p>Credit card declines are:<br><ol><li class="ordered">An opportunity to check in on client satisfaction</li><br><li class="ordered">A chance to prevent churn before it happens</li><br><li class="ordered">Revenue that will be lost if not handled</li><br></ol><br><strong>Never let a decline sit.</strong> Handle within 24-48 hours.</p>
 
 <hr>
 
-<h2>The Process</h2>
+<h2 id="the-process">The Process</h2>
 
-<h3>Step 1: Check Stripe Weekly</h3>
+<h3 id="step-1-check-stripe-weekly">Step 1: Check Stripe Weekly</h3>
 
 <ol><li class="ordered">Go to Stripe Dashboard → Payments</li>
 <li class="ordered">Filter by "Failed"</li>
 <li class="ordered">Note all declined payments</li>
 <li class="ordered">Add to your call list</li>
 </ol>
-<h3>Step 2: Call Them (Don't Just Text)</h3>
+<h3 id="step-2-call-them-don-t-just-text">Step 2: Call Them (Don't Just Text)</h3>
 
 <strong>Why call:</strong>
 <ul><li>Texts feel impersonal for billing issues</li>
@@ -138,7 +149,7 @@
 
 <strong>Key:</strong> Lead with concern, not "you owe us money."
 
-<h3>Step 3: Update Payment Method</h3>
+<h3 id="step-3-update-payment-method">Step 3: Update Payment Method</h3>
 
 <strong>If they have a new card:</strong>
 <ol><li class="ordered">Go to Stripe → Customers → [Their Name]</li>
@@ -151,13 +162,13 @@
 <ul><li>Send them the billing portal link</li>
 <li>Walk them through it on the call if needed</li>
 </ul>
-<h3>Step 4: Use as Check-In Opportunity</h3>
+<h3 id="step-4-use-as-check-in-opportunity">Step 4: Use as Check-In Opportunity</h3>
 
 <p>While you have them:<br><ul><li>"How's the website working out?"</li><br><li>"Getting any leads from it?"</li><br><li>"Anything I can help with?"</li><br></ul><br>This turns a billing call into a retention call.</p>
 
 <hr>
 
-<h2>What If They Want to Cancel?</h2>
+<h2 id="what-if-they-want-to-cancel">What If They Want to Cancel?</h2>
 
 <strong>Don't just let them go.</strong> Get feedback:
 
@@ -170,7 +181,7 @@
 
 <hr>
 
-<h2>Stripe Manual Charge Process</h2>
+<h2 id="stripe-manual-charge-process">Stripe Manual Charge Process</h2>
 
 <p>If auto-retry has exhausted (usually 4 attempts over 3-4 weeks):</p>
 
@@ -183,7 +194,7 @@
 </ol>
 <hr>
 
-<h2>Prevention: Reduce Future Declines</h2>
+<h2 id="prevention-reduce-future-declines">Prevention: Reduce Future Declines</h2>
 
 <ol><li class="ordered"><strong>Collect backup payment method</strong> during onboarding</li>
 <li class="ordered"><strong>Send payment reminder</strong> 3 days before billing date</li>
@@ -192,7 +203,7 @@
 </ol>
 <hr>
 
-<h2>Decline Tracking</h2>
+<h2 id="decline-tracking">Decline Tracking</h2>
 
 <p>Keep a simple log:</p>
 
@@ -201,32 +212,32 @@ Review monthly to identify patterns.
 
 <hr>
 
-<h2>Scripts</h2>
+<h2 id="scripts">Scripts</h2>
 
-<h3>Initial Call</h3>
+<h3 id="initial-call">Initial Call</h3>
 <blockquote>"Hey [Name], it's [Your Name] from Slate Systems. How's it going? I wanted to check in and make sure everything's running smoothly for you."</blockquote>
 
-<h3>If They Ask About Payment</h3>
+<h3 id="if-they-ask-about-payment">If They Ask About Payment</h3>
 <blockquote>"Yeah, I did notice there might've been a small hiccup with the payment. Did you happen to get a new card recently? No big deal either way, just want to make sure we get it sorted."</blockquote>
 
-<h3>Asking for New Card</h3>
+<h3 id="asking-for-new-card">Asking for New Card</h3>
 <blockquote>"Would you mind giving me the new card number? I can update it right here and we'll be all set."</blockquote>
 
-<h3>If No Answer (Voicemail)</h3>
+<h3 id="if-no-answer-voicemail">If No Answer (Voicemail)</h3>
 <blockquote>"Hey [Name], it's [Your Name] from Slate Systems. Just checking in to make sure everything's going well. Give me a call back when you get a chance — [your number]. Talk soon!"</blockquote>
 
-<h3>Text Follow-Up (If No Call Back)</h3>
+<h3 id="text-follow-up-if-no-call-back">Text Follow-Up (If No Call Back)</h3>
 <blockquote>"Hey [Name]! Just checking in. Is everything okay? Noticed a small issue with the account and wanted to make sure you're all set. Let me know!"</blockquote>
 
 <hr>
 
-<h2>Escalation</h2>
+<h2 id="escalation">Escalation</h2>
 
 <p>If after 7 days:<br><ul><li>3 call attempts</li><br><li>2 text attempts</li><br><li>No response</li><br></ul><br>→ Send final email explaining service will be paused<br>→ Pause automations (don't delete account)<br>→ Try one more time in 2 weeks before canceling</p>
 
 <hr>
 
-<h2>Related SOPs</h2>
+<h2 id="related-sops">Related SOPs</h2>
 
 <ul><li><code>cancellation-saves.md</code> — Full cancellation save process</li>
 <li><code>support-faq.md</code> — Common client questions</li>
@@ -237,7 +248,7 @@ Review monthly to identify patterns.
 <em>Last updated: Feb 22, 2026</em>
 
         <footer>
-            <p>&copy; 2026 Slate Systems LLC. Internal use only.</p>
+            <p>&copy; 2026 Slate Systems Inc. Internal use only.</p>
         </footer>
     </div>
 </body>

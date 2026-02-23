@@ -165,6 +165,133 @@
         </header>
 
         <main>
+            <!-- Client Journey Overview -->
+            <section class="section">
+                <h2 class="section-title">Client Journey Overview</h2>
+                <div style="background: #1e293b; border-radius: 12px; padding: 1.5rem; border: 1px solid #334155; overflow-x: auto;">
+                    <pre style="font-family: 'SF Mono', Monaco, monospace; font-size: 0.75rem; line-height: 1.4; color: #94a3b8; margin: 0; white-space: pre; overflow-x: auto;"><code>
+═══════════════════════════════════════════════════════════════════════════════
+                              LEAD ACQUISITION
+═══════════════════════════════════════════════════════════════════════════════
+
+     [Meta Ad]                                           [Website]
+         │                                                   │
+         ▼                                                   ▼
+┌─────────────────┐                               ┌─────────────────┐
+│   Lead Form     │                               │   Contact Page  │
+│   (FB Funnel)   │                               │   (slatesystems)│
+└────────┬────────┘                               └────────┬────────┘
+         │                                                  │
+         │ 🤖 WF1: Create Opportunity                       │
+         │ 🤖 WF1: Meta Lead Event                          │
+         │ 🤖 WF1: Tag fb-lead                              │
+         ▼                                                  │
+┌─────────────────────────────────────────────────────────────┐
+│                    SALES PIPELINE                            │
+│                 Stage: NEW LEAD                              │
+└─────────────────────────────────┬───────────────────────────┘
+                                  │
+          ┌───────────────────────┴───────────────────────┐
+          │                                               │
+          ▼                                               ▼
+┌─────────────────┐                             ┌─────────────────┐
+│   BOOKS DEMO    │                             │  DOESN'T BOOK   │
+│   (Calendar)    │                             │                 │
+└────────┬────────┘                             └────────┬────────┘
+         │                                               │
+         │ 🤖 WF0: Confirmations                         │ 🤖 Move to Non-Booker stage
+         │ 🤖 WF7: FB Schedule Event                     │ 🤖 WF2: SMS Sequence
+         │                                               │
+         │                                               │ ⭐ PLANNED: AI SETTER CALL
+         │                                               │    (10-15 min after form)
+         ▼                                               │
+┌─────────────────┐                                      │
+│  Stage: CALL    │◄─────────────────────────────────────┘
+│     BOOKED      │        (if AI books them)
+└────────┬────────┘
+         │
+         │ 🤖 SMS reminders (24hr, 2hr, 10min)
+         │ 👤 Confirmation calls (morning of)
+         │
+          ┌───────────────────────┴───────────────────────┐
+          │                                               │
+          ▼                                               ▼
+┌─────────────────┐                             ┌─────────────────┐
+│    SHOWS UP     │                             │    NO-SHOW      │
+└────────┬────────┘                             └────────┬────────┘
+         │                                               │
+         │ 👤 Demo Call (5-10 min)                       │ 🤖 WF4: SMS Sequence
+         │                                               │ ⭐ PLANNED: AI RESCHEDULE CALL
+         ▼                                               │
+┌─────────────────┐                                      │
+│  CALL COMPLETED │                                      │
+└────────┬────────┘                                      │
+         │                                               ▼
+ ┌───────┴───────┐                              ┌─────────────────┐
+ │               │                              │  Long Term      │
+ ▼               ▼                              │  Nurture        │
+┌──────┐      ┌──────┐                          └─────────────────┘
+│ WON  │      │ LOST │
+└──┬───┘      └──────┘
+   │
+═══╪══════════════════════════════════════════════════════════════════════════════
+   │                        CLIENT DELIVERY
+═══╪══════════════════════════════════════════════════════════════════════════════
+   │
+   │ 🤖 WF6: Move to Project Management
+   │ 🤖 WF-OB1: Send Onboarding Form + Tag
+   ▼
+┌─────────────────┐
+│ ONBOARDING FORM │────► 🤖 WF-OB2: Form Reminders (48hr loop)
+│     SENT        │
+└────────┬────────┘
+         │
+         │ Client fills form
+         ▼
+┌─────────────────┐
+│  FORM RECEIVED  │────► 🤖 WF-OB3: GMB Access Request
+└────────┬────────┘
+         │
+         │ 👤 Start Website Build
+         │ 👤 A2P Submission
+         ▼
+┌─────────────────┐
+│ A2P IN PROGRESS │────► 🤖 WF-OB4: Build Check-ins (Days 1,2,4,6,7)
+│   (Building)    │
+└────────┬────────┘
+         │
+         │ 👤 Website Build (8-10 days)
+         │ 👤 QA Review
+         ▼
+┌─────────────────┐
+│LAUNCH SCHEDULED │────► 🤖 WF-OB5: Launch Call Reminders
+└────────┬────────┘
+         │
+         │ 👤 Launch Call (30-45 min)
+         ▼
+┌─────────────────┐
+│     ACTIVE      │────► 🤖 WF-OB6: Tutorial + Check-ins
+│                 │      🤖 Tag: currentclient
+└────────┬────────┘
+         │
+═══════════╪══════════════════════════════════════════════════════════════════════
+           │                     ONGOING SUCCESS
+═══════════╪══════════════════════════════════════════════════════════════════════
+           │
+           │ 🤖 Monthly check-ins (planned)
+           │ 👤 Support tickets
+           │ 👤 Cancellation saves
+           ▼
+      [HAPPY CLIENT]
+                    </code></pre>
+                    <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #334155; display: flex; gap: 2rem; font-size: 0.8rem;">
+                        <span><span style="color: #22c55e;">🤖</span> Automated (GHL Workflow)</span>
+                        <span><span style="color: #3b82f6;">👤</span> Human action required</span>
+                        <span><span style="color: #eab308;">⭐</span> Planned (AI Setter)</span>
+                    </div>
+                </div>
+            </section>
+
             <section class="section">
                 <h2 class="section-title">Sales</h2>
                 <div class="card-grid">
@@ -367,32 +494,12 @@
                 <h2 class="section-title">Marketing</h2>
                 <div class="card-grid">
                     <div class="card">
-                        <a href="marketing/cold-calling.html">
-                            <div class="card-title">Cold Calling</div>
-                            <div class="card-description">Julie Becker script and objection handling</div>
-                            <div class="card-meta">
-                                <span class="card-role">Sales / Setter</span>
-                                <span>v1.0</span>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="card">
-                        <a href="marketing/cold-email-system.html">
-                            <div class="card-title">Cold Email System</div>
-                            <div class="card-description">Email infrastructure, sequences, and tracking</div>
-                            <div class="card-meta">
-                                <span class="card-role">Sales / Setter</span>
-                                <span>v1.0</span>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="card">
                         <a href="marketing/meta-ads.html">
                             <div class="card-title">Meta Ads</div>
-                            <div class="card-description">Facebook/Instagram ad campaigns</div>
+                            <div class="card-description">Facebook/Instagram paid acquisition system</div>
                             <div class="card-meta">
                                 <span class="card-role">Marketing / Founder</span>
-                                <span>v1.0</span>
+                                <span>v2.0</span>
                             </div>
                         </a>
                     </div>
@@ -445,6 +552,16 @@
                 <h2 class="section-title">Reference</h2>
                 <div class="card-grid">
                     <div class="card">
+                        <a href="README.html">
+                            <div class="card-title">Master Index</div>
+                            <div class="card-description">Complete SOP index, workflows, and key resources</div>
+                            <div class="card-meta">
+                                <span class="card-role">Admin</span>
+                                <span>v1.0</span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="card">
                         <a href="glossary.html">
                             <div class="card-title">Glossary</div>
                             <div class="card-description">Terms and definitions</div>
@@ -466,11 +583,54 @@
                     </div>
                 </div>
             </section>
+
+            <!-- Backlog Section -->
+            <section class="section">
+                <h2 class="section-title">Backlog & Planned</h2>
+                <div style="background: #1e293b; border-radius: 12px; padding: 1.5rem; border: 1px solid #334155;">
+                    <table style="width: 100%; border-collapse: collapse; font-size: 0.9rem;">
+                        <thead>
+                            <tr style="border-bottom: 1px solid #334155;">
+                                <th style="text-align: left; padding: 0.75rem; color: #f8fafc;">Item</th>
+                                <th style="text-align: left; padding: 0.75rem; color: #f8fafc;">Priority</th>
+                                <th style="text-align: left; padding: 0.75rem; color: #f8fafc;">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="border-bottom: 1px solid #334155;">
+                                <td style="padding: 0.75rem; color: #e2e8f0;">AI Setter (outbound calls to non-bookers)</td>
+                                <td style="padding: 0.75rem;"><span style="background: #dc2626; color: white; padding: 0.2rem 0.5rem; border-radius: 4px; font-size: 0.75rem;">HIGH</span></td>
+                                <td style="padding: 0.75rem; color: #eab308;">In Progress</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #334155;">
+                                <td style="padding: 0.75rem; color: #e2e8f0;">Signal House for e2e A2P test</td>
+                                <td style="padding: 0.75rem;"><span style="background: #dc2626; color: white; padding: 0.2rem 0.5rem; border-radius: 4px; font-size: 0.75rem;">HIGH</span></td>
+                                <td style="padding: 0.75rem; color: #22c55e;">Ready</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #334155;">
+                                <td style="padding: 0.75rem; color: #e2e8f0;">A2P automation with Claude</td>
+                                <td style="padding: 0.75rem;"><span style="background: #f59e0b; color: black; padding: 0.2rem 0.5rem; border-radius: 4px; font-size: 0.75rem;">MEDIUM</span></td>
+                                <td style="padding: 0.75rem; color: #94a3b8;">Backlogged</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #334155;">
+                                <td style="padding: 0.75rem; color: #e2e8f0;">Video Testimonials feature</td>
+                                <td style="padding: 0.75rem;"><span style="background: #f59e0b; color: black; padding: 0.2rem 0.5rem; border-radius: 4px; font-size: 0.75rem;">MEDIUM</span></td>
+                                <td style="padding: 0.75rem; color: #94a3b8;">Backlogged</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 0.75rem; color: #e2e8f0;">SaaS Configurator auto sub-account</td>
+                                <td style="padding: 0.75rem;"><span style="background: #f59e0b; color: black; padding: 0.2rem 0.5rem; border-radius: 4px; font-size: 0.75rem;">MEDIUM</span></td>
+                                <td style="padding: 0.75rem; color: #94a3b8;">Backlogged</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
         </main>
 
         <footer>
-            <p>&copy; 2026 Slate Systems LLC. Internal use only.</p>
-            <p style="margin-top: 0.5rem;">Last updated: February 22, 2026</p>
+            <p>&copy; 2026 Slate Systems Inc. Internal use only.</p>
+            <p style="margin-top: 0.5rem;">Last updated: February 23, 2026</p>
         </footer>
     </div>
 </body>

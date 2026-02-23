@@ -46,8 +46,19 @@
             padding: 1rem;
             border-radius: 8px;
             overflow-x: auto;
+            max-width: 100%;
             margin: 1rem 0;
             border: 1px solid #334155;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        @media (max-width: 768px) {
+            body { padding: 1rem; }
+            pre { font-size: 0.85em; padding: 0.75rem; }
+            table { font-size: 0.9em; display: block; overflow-x: auto; }
+            th, td { padding: 0.5rem; }
+            h1 { font-size: 1.5rem; }
+            h2 { font-size: 1.25rem; }
         }
         code {
             font-family: 'SF Mono', Monaco, monospace;
@@ -97,7 +108,7 @@
 <body>
     <div class="container">
         <a href="../index.html" class="back-link">← Back to Portal</a>
-        <h1>Launch Call Checklist</h1>
+        <h1 id="launch-call-checklist">Launch Call Checklist</h1>
 
 <blockquote><strong>Role:</strong> Closer</blockquote>
 <blockquote><strong>Duration:</strong> 30-45 minutes</blockquote>
@@ -105,7 +116,7 @@
 
 <hr>
 
-<h2>Pre-Call Prep (Before Client Joins)</h2>
+<h2 id="pre-call-prep-before-client-joins">Pre-Call Prep (Before Client Joins)</h2>
 
 <strong>Verify in GHL:</strong>
 <ul><li class="checkbox"><input type="checkbox" disabled> Website live and loading</li>
@@ -123,15 +134,15 @@
 </ul>
 <hr>
 
-<h2>Call Flow</h2>
+<h2 id="call-flow">Call Flow</h2>
 
-<h3>1. Open (2 min)</h3>
+<h3 id="1-open-2-min">1. Open (2 min)</h3>
 <blockquote>"Everything's done, just want to show you what we built"</blockquote>
 
 <ul><li>Address blockers upfront if any</li>
 <li>Set expectation: 30 min walkthrough</li>
 </ul>
-<h3>2. App Setup (5 min)</h3>
+<h3 id="2-app-setup-5-min">2. App Setup (5 min)</h3>
 
 <strong>Check:</strong>
 <ul><li class="checkbox"><input type="checkbox" disabled> Lead Connector app downloaded?</li>
@@ -144,9 +155,9 @@
 <strong>Key message:</strong>
 <blockquote>"You'll never have to use the app besides seeing conversations"</blockquote>
 
-<h3>3. Website Walkthrough (10 min)</h3>
+<h3 id="3-website-walkthrough-10-min">3. Website Walkthrough (10 min)</h3>
 
-<p>Walk through in this order:<br><ul><li class="checkbox"><input type="checkbox" disabled> Homepage + quote form</li><br><li class="checkbox"><input type="checkbox" disabled> Chat widget (test it live)</li><br><li class="checkbox"><input type="checkbox" disabled> Service pages (explain SEO value)</li><br><li class="checkbox"><input type="checkbox" disabled> Service area pages (explain SEO value)</li><br><li class="checkbox"><input type="checkbox" disabled> Contact page</li><br><li class="checkbox"><input type="checkbox" disabled> Reviews section (auto-populates from Google)</li><br><li class="checkbox"><input type="checkbox" disabled> About Us (collect photo if missing)</li><br><li class="checkbox"><input type="checkbox" disabled> Privacy policy + terms (compliance)</li><br></ul><br><h3>4. Review System Demo (10 min)</h3></p>
+<p>Walk through in this order:<br><ul><li class="checkbox"><input type="checkbox" disabled> Homepage + quote form</li><br><li class="checkbox"><input type="checkbox" disabled> Chat widget (test it live)</li><br><li class="checkbox"><input type="checkbox" disabled> Service pages (explain SEO value)</li><br><li class="checkbox"><input type="checkbox" disabled> Service area pages (explain SEO value)</li><br><li class="checkbox"><input type="checkbox" disabled> Contact page</li><br><li class="checkbox"><input type="checkbox" disabled> Reviews section (auto-populates from Google)</li><br><li class="checkbox"><input type="checkbox" disabled> About Us (collect photo if missing)</li><br><li class="checkbox"><input type="checkbox" disabled> Privacy policy + terms (compliance)</li><br></ul><br><h3 id="4-review-system-demo-10-min">4. Review System Demo (10 min)</h3></p>
 
 <strong>This is their favorite feature. Spend time here.</strong>
 
@@ -163,13 +174,13 @@
 <li>1-year follow-up sequence</li>
 <li>Limit: 70-80 people/day max</li>
 </ul>
-<h3>5. Auto Call Text-Back Demo (5 min)</h3>
+<h3 id="5-auto-call-text-back-demo-5-min">5. Auto Call Text-Back Demo (5 min)</h3>
 
 <ul><li class="checkbox"><input type="checkbox" disabled> Test phone number forwarding (call their toll-free)</li>
 <li class="checkbox"><input type="checkbox" disabled> Show missed call workflow</li>
 <li class="checkbox"><input type="checkbox" disabled> Explain misspelling trick (seems human)</li>
 </ul>
-<h3>6. Dream Outcome (5 min)</h3>
+<h3 id="6-dream-outcome-5-min">6. Dream Outcome (5 min)</h3>
 
 <strong>Show example results:</strong>
 <ul><li>300+ reviews</li>
@@ -182,7 +193,7 @@
 <strong>Key message:</strong>
 <blockquote>"These are high-intent leads coming directly to you, not being sold to 10 people at once"</blockquote>
 
-<h3>7. Wrap-up (5 min)</h3>
+<h3 id="7-wrap-up-5-min">7. Wrap-up (5 min)</h3>
 
 <strong>Send via SMS during call:</strong>
 <ul><li class="checkbox"><input type="checkbox" disabled> Website URL</li>
@@ -204,30 +215,30 @@
 
 <hr>
 
-<h2>Post-Call Actions</h2>
+<h2 id="post-call-actions">Post-Call Actions</h2>
 
 <p>In GHL:<br><ul><li class="checkbox"><input type="checkbox" disabled> Move opportunity to "Active" stage</li><br><li class="checkbox"><input type="checkbox" disabled> Verify <code>currentclient</code> tag added (WF-OB6 does this)</li><br></ul><br>Send within 24 hours:<br><ul><li class="checkbox"><input type="checkbox" disabled> Post-launch Loom video (see <code>post-launch-video.md</code>)</li><br><li class="checkbox"><input type="checkbox" disabled> Reference help.slatesystems.io in video</li><br><li class="checkbox"><input type="checkbox" disabled> Reference their /my-links page for quick access</li><br></ul><br>In Slack/Notes:<br><ul><li class="checkbox"><input type="checkbox" disabled> Log any issues or follow-ups needed</li><br><li class="checkbox"><input type="checkbox" disabled> Note if testimonial/referral was requested</li><br></ul><br><hr></p>
 
-<h2>Common Blockers + Scripts</h2>
+<h2 id="common-blockers-scripts">Common Blockers + Scripts</h2>
 
-<h3>A2P Registration Pending</h3>
+<h3 id="a2p-registration-pending">A2P Registration Pending</h3>
 <blockquote>"Your phone number is in the verification queue. Takes 5-7 business days. You can still receive calls, but automated texts won't go out until approved. I'll let you know as soon as it's live."</blockquote>
 
-<h3>A2P Rejected</h3>
+<h3 id="a2p-rejected">A2P Rejected</h3>
 <blockquote>"The carrier rejected the first submission. We're resubmitting with corrections. I'll push back your billing until it's resolved."</blockquote>
 
-<h3>GMB Not Verified</h3>
+<h3 id="gmb-not-verified">GMB Not Verified</h3>
 <blockquote>"Google needs to verify your business. You'll get a postcard in 5-7 days with a code. As soon as you get it, text me the code and I'll enter it."</blockquote>
 
-<h3>GMB Claimed by Someone Else</h3>
+<h3 id="gmb-claimed-by-someone-else">GMB Claimed by Someone Else</h3>
 <blockquote>"Looks like someone else claimed your Google listing. We need to request access or recover it. I'll send you the steps."</blockquote>
 
-<h3>Missing About Us Photo</h3>
+<h3 id="missing-about-us-photo">Missing About Us Photo</h3>
 <blockquote>"Can you send me a photo of yourself or your team? Doesn't have to be professional - just something real. Makes a big difference for trust."</blockquote>
 
 <hr>
 
-<h2>Billing Adjustment Rule</h2>
+<h2 id="billing-adjustment-rule">Billing Adjustment Rule</h2>
 
 <blockquote>"If we promised 14 days and it's not done, push back billing by however many days it takes."</blockquote>
 
@@ -238,7 +249,7 @@
 <em>Last updated: Feb 22, 2026 — Added help.slatesystems.io and /my-links references</em>
 
         <footer>
-            <p>&copy; 2026 Slate Systems LLC. Internal use only.</p>
+            <p>&copy; 2026 Slate Systems Inc. Internal use only.</p>
         </footer>
     </div>
 </body>
