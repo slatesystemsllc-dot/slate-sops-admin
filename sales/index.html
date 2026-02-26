@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sales Portal - Slate Systems</title>
+    <style>
+        :root { --navy: #152a45; --gray: #525c69; --orange: #ee7000; --white: #ffffff; --dark-bg: #0d1a2d; --card-bg: #1a2d47; --border: #2a4060; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--dark-bg); color: var(--white); line-height: 1.6; }
+
+        /* Single Line Nav */
+        .top-nav {
+            background: var(--navy);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 2px solid var(--orange);
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+        .top-nav::-webkit-scrollbar { display: none; }
+        .nav-container {
+            display: flex;
+            align-items: center;
+            min-width: max-content;
+            padding: 0 1rem;
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            flex-shrink: 0;
+            padding: 0.6rem 0;
+        }
+        .nav-logo { height: 28px; width: auto; }
+        .nav-subtitle {
+            background: var(--orange);
+            color: var(--white);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+        .nav-links { display: flex; gap: 0; }
+        .nav-link {
+            color: var(--white);
+            text-decoration: none;
+            padding: 0.75rem 0.9rem;
+            font-size: 0.8rem;
+            white-space: nowrap;
+            border-bottom: 2px solid transparent;
+            margin-bottom: -2px;
+            transition: all 0.2s;
+            opacity: 0.7;
+        }
+        .nav-link:hover { opacity: 1; background: rgba(255,255,255,0.05); }
+        .nav-link.active { opacity: 1; border-bottom-color: var(--orange); }
+
+        /* Main Content */
+        .main { max-width: 900px; margin: 0 auto; padding: 1.5rem 1rem; }
+
+        .section { margin-bottom: 2rem; scroll-margin-top: 70px; }
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--orange);
+            color: var(--orange);
+        }
+
+        .links-list { display: flex; flex-direction: column; gap: 0.5rem; }
+        .links-list a {
+            background: var(--card-bg);
+            padding: 1rem;
+            border-radius: 8px;
+            text-decoration: none;
+            color: var(--white);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid var(--border);
+            transition: border-color 0.2s;
+        }
+        .links-list a:hover { border-color: var(--orange); }
+        .link-content { flex: 1; }
+        .link-title { font-weight: 600; font-size: 0.95rem; margin-bottom: 0.25rem; }
+        .link-desc { font-size: 0.8rem; color: var(--gray); }
+        .arrow { color: var(--orange); font-size: 1.2rem; margin-left: 1rem; }
+
+        .badge {
+            display: inline-block;
+            padding: 0.15rem 0.4rem;
+            border-radius: 4px;
+            font-size: 0.65rem;
+            font-weight: 600;
+            margin-left: 0.5rem;
+        }
+        .badge-essential { background: var(--orange); color: white; }
+        .badge-priority { background: #dc2626; color: white; }
+
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            color: var(--gray);
+            font-size: 0.8rem;
+            border-top: 1px solid var(--border);
+            margin-top: 2rem;
+        }
+        footer a { color: var(--orange); }
+    </style>
+</head>
+<body>
+    <nav class="top-nav">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <img src="assets/Slate_Systems_Logo_White.png" alt="Slate" class="nav-logo">
+                <span class="nav-subtitle">SALES</span>
+            </div>
+            <div class="nav-links">
+                <a href="#essentials" class="nav-link active">Essentials</a>
+                <a href="#calls" class="nav-link">Demo Calls</a>
+                <a href="#post-sale" class="nav-link">Post-Sale</a>
+                <a href="#retention" class="nav-link">Retention</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main">
+        <section class="section" id="essentials">
+            <h2 class="section-title">Essentials - Read First</h2>
+            <div class="links-list">
+                <a href="sales-playbook.html">
+                    <div class="link-content">
+                        <div class="link-title">Sales Playbook <span class="badge badge-essential">Essential</span></div>
+                        <div class="link-desc">Complete script, objection handling, lightbulb moments, closing sequences</div>
+                    </div>
+                    <span class="arrow">→</span>
+                </a>
+                <a href="sales-sop.html">
+                    <div class="link-content">
+                        <div class="link-title">Sales SOP <span class="badge badge-essential">Essential</span></div>
+                        <div class="link-desc">Step-by-step call procedures, VSL requirement, post-call handoff</div>
+                    </div>
+                    <span class="arrow">→</span>
+                </a>
+            </div>
+        </section>
+
+        <section class="section" id="calls">
+            <h2 class="section-title">Demo Calls</h2>
+            <div class="links-list">
+                <a href="demo-call.html">
+                    <div class="link-content">
+                        <div class="link-title">Demo Call Script</div>
+                        <div class="link-desc">5-10 min tight script, VSL check, question loop, close</div>
+                    </div>
+                    <span class="arrow">→</span>
+                </a>
+                <a href="show-rate-optimization.html">
+                    <div class="link-content">
+                        <div class="link-title">Show Rate Optimization <span class="badge badge-priority">Priority</span></div>
+                        <div class="link-desc">3 fast wins + levers to maximize show rates (40% → 60%+)</div>
+                    </div>
+                    <span class="arrow">→</span>
+                </a>
+            </div>
+        </section>
+
+        <section class="section" id="post-sale">
+            <h2 class="section-title">Post-Sale</h2>
+            <div class="links-list">
+                <a href="launch-call.html">
+                    <div class="link-content">
+                        <div class="link-title">Launch Call Checklist</div>
+                        <div class="link-desc">30-45 min onboarding: app setup, website walkthrough, review demo</div>
+                    </div>
+                    <span class="arrow">→</span>
+                </a>
+                <a href="post-launch-video.html">
+                    <div class="link-content">
+                        <div class="link-title">Post-Launch Video</div>
+                        <div class="link-desc">Personalized Loom walkthrough within 24 hours</div>
+                    </div>
+                    <span class="arrow">→</span>
+                </a>
+                <a href="testimonial-collection.html">
+                    <div class="link-content">
+                        <div class="link-title">Testimonial Collection</div>
+                        <div class="link-desc">When and how to collect video testimonials at peak happiness</div>
+                    </div>
+                    <span class="arrow">→</span>
+                </a>
+            </div>
+        </section>
+
+        <section class="section" id="retention">
+            <h2 class="section-title">Retention</h2>
+            <div class="links-list">
+                <a href="cancellation-saves.html">
+                    <div class="link-content">
+                        <div class="link-title">Cancellation Saves <span class="badge badge-priority">Priority</span></div>
+                        <div class="link-desc">Scripts and strategies for saving churning clients (30%+ save rate)</div>
+                    </div>
+                    <span class="arrow">→</span>
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>© 2026 Slate Systems | <a href="https://sops.slatesystems.io">Admin Portal</a></footer>
+
+    <script>
+        document.querySelectorAll('.nav-link[href^="#"]').forEach(link => {
+            link.addEventListener('click', e => {
+                e.preventDefault();
+                document.querySelector(link.getAttribute('href'))?.scrollIntoView({behavior:'smooth'});
+                document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+                link.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>
