@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <link rel="icon" type="image/png" href="/favicon.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>E2E Test Plan - Slate Systems</title>
+    <title>E2E Testing - Slate Systems</title>
     <style>
         :root {
             --navy: #152a45;
@@ -14,6 +14,9 @@
             --dark-bg: #0d1a2d;
             --card-bg: #1a2d47;
             --border: #2a4060;
+            --green: #22c55e;
+            --red: #ef4444;
+            --yellow: #eab308;
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
@@ -28,15 +31,10 @@
             top: 0;
             z-index: 100;
             border-bottom: 2px solid var(--orange);
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-            scrollbar-width: none;
         }
-        .top-nav::-webkit-scrollbar { display: none; }
         .nav-container {
             display: flex;
             align-items: center;
-            min-width: max-content;
             padding: 0 1rem;
             gap: 1.5rem;
             max-width: 1200px;
@@ -46,7 +44,6 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            flex-shrink: 0;
             padding: 0.6rem 0;
         }
         .nav-logo { height: 28px; width: auto; }
@@ -57,7 +54,6 @@
             border-radius: 4px;
             font-size: 0.65rem;
             font-weight: 700;
-            letter-spacing: 0.5px;
         }
         .nav-links { display: flex; gap: 0; }
         .nav-link {
@@ -65,15 +61,11 @@
             text-decoration: none;
             padding: 0.75rem 0.9rem;
             font-size: 0.8rem;
-            white-space: nowrap;
-            border-bottom: 2px solid transparent;
-            margin-bottom: -2px;
-            transition: all 0.2s;
             opacity: 0.7;
         }
-        .nav-link:hover { opacity: 1; background: rgba(255,255,255,0.05); }
-        .nav-link.active { opacity: 1; border-bottom-color: var(--orange); }
-        .main { max-width: 1200px; margin: 0 auto; padding: 1.5rem 1rem; }
+        .nav-link:hover { opacity: 1; }
+        .main { max-width: 900px; margin: 0 auto; padding: 1.5rem 1rem; }
+
         .back-link {
             display: inline-flex;
             align-items: center;
@@ -83,106 +75,196 @@
             font-size: 0.85rem;
             margin-bottom: 1rem;
         }
-        .back-link:hover { text-decoration: underline; }
-        h1 { font-size: 1.75rem; margin-bottom: 0.5rem; }
-        .meta { color: var(--gray); font-size: 0.85rem; margin-bottom: 1.5rem; }
-        .section { margin-bottom: 2rem; }
-        .section-title {
-            font-size: 1.1rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 2px solid var(--orange);
-        }
-        .card {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 1.25rem;
-            margin-bottom: 1rem;
-        }
-        .card-title {
-            font-weight: 600;
-            font-size: 1rem;
-            margin-bottom: 0.5rem;
-            color: var(--orange);
-        }
-        .flow-box {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 8px;
+
+        h1 { font-size: 1.5rem; margin-bottom: 0.25rem; }
+        .subtitle { color: var(--gray); margin-bottom: 1.5rem; }
+
+        /* Quick Links Bar */
+        .quick-links {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
             padding: 1rem;
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-        }
-        .flow-box pre {
-            font-family: 'SF Mono', Monaco, monospace;
-            font-size: 0.65rem;
-            line-height: 1.4;
-            white-space: pre;
-            color: #a0aec0;
-        }
-        @media (min-width: 768px) {
-            .flow-box pre { font-size: 0.75rem; }
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
             background: var(--card-bg);
             border-radius: 8px;
-            overflow: hidden;
-            margin-bottom: 1rem;
+            border: 1px solid var(--border);
         }
-        th, td {
-            padding: 0.75rem;
-            text-align: left;
-            border-bottom: 1px solid var(--border);
-            font-size: 0.85rem;
-        }
-        th {
+        .quick-link {
             background: var(--navy);
-            font-weight: 600;
+            color: var(--white);
+            padding: 0.4rem 0.75rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 0.8rem;
+            border: 1px solid var(--border);
+        }
+        .quick-link:hover { border-color: var(--orange); }
+
+        /* Test Section */
+        .test-section {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+        .test-header {
+            background: var(--navy);
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+        .test-header h2 {
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .test-header .arrow { transition: transform 0.2s; }
+        .test-section.open .test-header .arrow { transform: rotate(90deg); }
+        .test-body { padding: 1rem; display: none; }
+        .test-section.open .test-body { display: block; }
+
+        /* Checklist */
+        .checklist { list-style: none; }
+        .checklist li {
+            padding: 0.75rem;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+        }
+        .checklist li:last-child { border-bottom: none; }
+        .checklist input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            margin-top: 2px;
+            cursor: pointer;
+            accent-color: var(--green);
+        }
+        .checklist .step-content { flex: 1; }
+        .checklist .step-num {
+            background: var(--orange);
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             font-size: 0.75rem;
-            text-transform: uppercase;
+            font-weight: 700;
+            flex-shrink: 0;
         }
-        tr:last-child td { border-bottom: none; }
-        .badge {
+        .checklist .step-title { font-weight: 600; margin-bottom: 0.25rem; }
+        .checklist .step-detail { font-size: 0.85rem; color: var(--gray); }
+        .checklist .step-link {
             display: inline-block;
-            padding: 0.15rem 0.4rem;
-            border-radius: 4px;
-            font-size: 0.65rem;
-            font-weight: 600;
-        }
-        .badge-ready { background: #22c55e; color: white; }
-        .badge-progress { background: #eab308; color: black; }
-        .badge-passed { background: #22c55e; color: white; }
-        .badge-fixed { background: #3b82f6; color: white; }
-        code {
-            background: var(--dark-bg);
-            padding: 0.2rem 0.4rem;
-            border-radius: 4px;
-            font-family: 'SF Mono', Monaco, monospace;
+            margin-top: 0.5rem;
+            color: var(--orange);
+            text-decoration: none;
             font-size: 0.8rem;
         }
-        .code-block {
+        .checklist .step-link:hover { text-decoration: underline; }
+
+        /* Expected Result */
+        .expected {
+            background: var(--dark-bg);
+            padding: 0.75rem 1rem;
+            border-radius: 6px;
+            margin-top: 1rem;
+            border-left: 3px solid var(--green);
+        }
+        .expected-title {
+            font-size: 0.75rem;
+            color: var(--green);
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+        .expected-content { font-size: 0.85rem; }
+
+        /* Result Buttons */
+        .result-buttons {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border);
+        }
+        .result-btn {
+            padding: 0.5rem 1.5rem;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 0.85rem;
+        }
+        .result-btn.pass { background: var(--green); color: white; }
+        .result-btn.fail { background: var(--red); color: white; }
+        .result-btn.skip { background: var(--gray); color: white; }
+
+        /* Reference Box */
+        .ref-box {
             background: var(--dark-bg);
             padding: 1rem;
             border-radius: 6px;
-            overflow-x: auto;
-            margin: 0.5rem 0;
+            margin-top: 1rem;
         }
-        .code-block code {
-            background: none;
-            padding: 0;
+        .ref-box h4 {
+            font-size: 0.8rem;
+            color: var(--orange);
+            margin-bottom: 0.5rem;
         }
-        ul, ol { margin-left: 1.5rem; margin-bottom: 1rem; }
-        li { margin-bottom: 0.25rem; font-size: 0.9rem; }
+        .ref-box code {
+            background: var(--card-bg);
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 0.8rem;
+        }
+        .ref-box a {
+            color: var(--orange);
+            text-decoration: none;
+        }
+
+        /* Progress Bar */
+        .progress-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--navy);
+            padding: 0.75rem 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            border-top: 2px solid var(--border);
+        }
+        .progress-bar .stat {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.85rem;
+        }
+        .progress-bar .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        .progress-bar .dot.green { background: var(--green); }
+        .progress-bar .dot.red { background: var(--red); }
+        .progress-bar .dot.gray { background: var(--gray); }
+
         footer {
             text-align: center;
             padding: 1.5rem;
+            padding-bottom: 4rem;
             color: var(--gray);
             font-size: 0.8rem;
-            border-top: 1px solid var(--border);
         }
     </style>
 </head>
@@ -191,387 +273,539 @@
         <div class="nav-container">
             <div class="nav-brand">
                 <img src="assets/Slate_Systems_Logo_White.png" alt="Slate Systems" class="nav-logo">
-                <span class="nav-subtitle">ADMIN</span>
+                <span class="nav-subtitle">E2E TESTING</span>
             </div>
             <div class="nav-links">
-                <a href="index.html" class="nav-link">Dashboard</a>
-                <a href="index.html#journey" class="nav-link">Journey</a>
-                <a href="index.html#portals" class="nav-link">Portals</a>
-                <a href="index.html#agents" class="nav-link">AI Agents</a>
-                <a href="index.html#sops" class="nav-link">All SOPs</a>
-                <a href="glossary.html" class="nav-link">Glossary</a>
+                <a href="index.html" class="nav-link">Admin</a>
+                <a href="fulfillment/client-build.html" class="nav-link">Client Build SOP</a>
+                <a href="agents/content-generator.html" class="nav-link">Content Gen Docs</a>
             </div>
         </div>
     </nav>
 
     <main class="main">
-        <a href="index.html" class="back-link">< Back to Admin</a>
+        <a href="index.html" class="back-link">← Back to Admin</a>
 
-        <h1>Content Generator - E2E Test Plan</h1>
-        <p class="meta">Status: <span class="badge badge-ready">READY FOR TESTING</span> | Last Updated: Feb 13, 2026</p>
+        <h1>Content Generator E2E Testing</h1>
+        <p class="subtitle">Run through with Ricardo to validate full pipeline</p>
 
-        <!-- System Overview -->
-        <section class="section">
-            <h2 class="section-title">System Overview</h2>
+        <div class="quick-links">
+            <span style="color: var(--gray); font-size: 0.8rem; margin-right: 0.5rem;">Jump to:</span>
+            <a href="#test-1" class="quick-link">1. Onboarding Form</a>
+            <a href="#test-2" class="quick-link">2. Build Notes</a>
+            <a href="#test-3" class="quick-link">3. Content Check</a>
+            <a href="#test-4" class="quick-link">4. Images Check</a>
+            <a href="#test-5" class="quick-link">5. GHL Values</a>
+            <a href="#test-6" class="quick-link">6. Email</a>
+        </div>
 
-            <div class="card">
-                <div class="card-title">Workflows</div>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Name</th>
-                            <th>Purpose</th>
-                            <th>Trigger</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><code>dGQwIMyZImbYwucC</code></td>
-                            <td>Content Generator</td>
-                            <td>Save onboarding + scrape website</td>
-                            <td>GHL Form Submit</td>
-                        </tr>
-                        <tr>
-                            <td><code>4BaNEGdjuP5EsLUy</code></td>
-                            <td>Build Notes Trigger</td>
-                            <td>Generate content + push to GHL</td>
-                            <td>GHL Form Submit</td>
-                        </tr>
-                        <tr>
-                            <td><code>WrMcZYiQtYHXi9yG</code></td>
-                            <td>Image Uploader</td>
-                            <td>Convert HTTP to HTTPS images</td>
-                            <td>Called by Build Notes</td>
-                        </tr>
-                    </tbody>
-                </table>
+        <!-- TEST 1: Onboarding Form -->
+        <div class="test-section open" id="test-1">
+            <div class="test-header" onclick="toggleSection(this)">
+                <h2><span class="arrow">▶</span> Test 1: Onboarding Form Submission</h2>
             </div>
-
-            <div class="flow-box">
-                <pre>
-WORKFLOW 1: Content Generator (dGQwIMyZImbYwucC)
-[GHL Onboarding Form] -> Webhook -> Parse Form -> Log to Baserow
-                                                        |
-                                            Scrape Client Website
-                                                        |
-                                            Save Scraped Data -> Respond
-                                                        |
-                                            Status: awaiting_notes
-                                                    |
-                                        [GHL Build Notes Form]
-                                                    |
-WORKFLOW 2: Build Notes Trigger (4BaNEGdjuP5EsLUy)
-Webhook -> Parse Build Notes -> Fetch Onboarding Data -> Prepare Agent Prompt
-                                                                |
-    Call OpenClaw Agent -> Process Response -> Search Images (v5.3)
-                                                        |
-                                        Upload Images to GHL (Workflow 3)
-                                                        |
-                                        Update GHL Values (v2.8)
-                                                        |
-                                        Update Baserow -> Send Email -> Respond
-
-WORKFLOW 3: Image Uploader to GHL (WrMcZYiQtYHXi9yG)
-Webhook -> Prepare Images -> Loop Images -> Download -> Upload to GHL
-                                    |
-                            Collect Results -> Respond
-                                    |
-                    Returns: {url_mapping: {key: https_url}}
-                </pre>
-            </div>
-        </section>
-
-        <!-- Node Versions -->
-        <section class="section">
-            <h2 class="section-title">Node Versions (Current)</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Workflow</th>
-                        <th>Node</th>
-                        <th>Version</th>
-                        <th>Last Updated</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr><td>Build Notes Trigger</td><td>Prepare Agent Prompt</td><td>v7.0</td><td>Feb 13, 2026</td></tr>
-                    <tr><td>Build Notes Trigger</td><td>Process Response</td><td>v1.3</td><td>Feb 13, 2026</td></tr>
-                    <tr><td>Build Notes Trigger</td><td>Search Images</td><td>v5.3</td><td>Feb 12, 2026</td></tr>
-                    <tr><td>Build Notes Trigger</td><td>Upload Images to GHL</td><td>v2.1</td><td>Feb 12, 2026</td></tr>
-                    <tr><td>Build Notes Trigger</td><td>Update GHL Values</td><td>v2.8</td><td>Feb 13, 2026</td></tr>
-                    <tr><td>Build Notes Trigger</td><td>Update Baserow Generated</td><td>v1.4</td><td>Feb 12, 2026</td></tr>
-                    <tr><td>Build Notes Trigger</td><td>Send Ideogram Email</td><td>v2.4</td><td>Feb 13, 2026</td></tr>
-                    <tr><td>Build Notes Trigger</td><td>Call OpenClaw Agent</td><td>+max_tokens</td><td>Feb 13, 2026</td></tr>
-                </tbody>
-            </table>
-        </section>
-
-        <!-- Recent Fixes -->
-        <section class="section">
-            <h2 class="section-title">Recent Fixes (Feb 13, 2026)</h2>
-
-            <div class="card">
-                <div class="card-title">1. Email Empty/Wrong Data <span class="badge badge-fixed">FIXED v2.4</span></div>
-                <p><strong>Problem:</strong> Email showed "Unknown Company", Services (0), empty AI observations</p>
-                <p><strong>Root Cause:</strong> Reading from wrong nodes, wrong field names</p>
-                <p><strong>Fix:</strong></p>
-                <ul>
-                    <li>Read from <code>Process Response</code> (not raw OpenClaw output)</li>
-                    <li>Parse <code>form_data</code> JSON string from Baserow</li>
-                    <li>Use <code>business_name</code> (not <code>company_name</code>)</li>
-                    <li>Email now shows: company info, services list, areas list, AI observations, Ideogram prompt</li>
+            <div class="test-body">
+                <ul class="checklist">
+                    <li>
+                        <input type="checkbox" id="t1-1">
+                        <span class="step-num">1</span>
+                        <div class="step-content">
+                            <div class="step-title">Open Carlsbad sub-account in GHL</div>
+                            <div class="step-detail">Go to Forms → Client Onboarding Form</div>
+                            <a href="https://app.gohighlevel.com" target="_blank" class="step-link">Open GHL →</a>
+                        </div>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="t1-2">
+                        <span class="step-num">2</span>
+                        <div class="step-content">
+                            <div class="step-title">Fill test data</div>
+                            <div class="step-detail">
+                                <strong>Business:</strong> Test Painting Co<br>
+                                <strong>Trade:</strong> Painter<br>
+                                <strong>Services:</strong> 6 services (Interior, Exterior, Cabinet, etc.)<br>
+                                <strong>Areas:</strong> 8 areas (Carlsbad, Encinitas, etc.)
+                            </div>
+                            <a href="fulfillment/client-build.html#onboarding" class="step-link">See required fields →</a>
+                        </div>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="t1-3">
+                        <span class="step-num">3</span>
+                        <div class="step-content">
+                            <div class="step-title">Submit form</div>
+                            <div class="step-detail">Click submit and note the time</div>
+                        </div>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="t1-4">
+                        <span class="step-num">4</span>
+                        <div class="step-content">
+                            <div class="step-title">Verify Baserow row created</div>
+                            <div class="step-detail">Check table 946 (Content Generator) for new row with status "awaiting_notes"</div>
+                            <a href="https://baserow.io" target="_blank" class="step-link">Open Baserow →</a>
+                        </div>
+                    </li>
                 </ul>
-            </div>
 
-            <div class="card">
-                <div class="card-title">2. JSON Parse Failures <span class="badge badge-fixed">FIXED v1.3</span></div>
-                <p><strong>Problem:</strong> AI output had malformed JSON with extra <code>}}</code></p>
-                <p><strong>Root Cause:</strong> AI sometimes outputs <code>}}</code> at end of JSON</p>
-                <p><strong>Fix:</strong> Added brace balancing and markdown fence removal in Process Response</p>
-            </div>
+                <div class="expected">
+                    <div class="expected-title">✓ EXPECTED RESULT</div>
+                    <div class="expected-content">
+                        Row in Baserow with all form data, status = "awaiting_notes", scrape completed if website provided
+                    </div>
+                </div>
 
-            <div class="card">
-                <div class="card-title">3. Hero Image Not Updating <span class="badge badge-fixed">FIXED v2.8</span></div>
-                <p><strong>Problem:</strong> <code>hero_image_url</code> had OLD value while <code>hero_image_option_1</code> was updated</p>
-                <p><strong>Root Cause:</strong> Duplicate MinIO URLs in url_mapping causing key collision</p>
-                <p><strong>Fix:</strong> Added sync at start of Update GHL Values:</p>
-                <div class="code-block">
-                    <code>images.hero_image_url = images.hero_image_option_1;
-images.reviews_background_image_url = images.reviews_bg_option_1;
-images.quote_background_image_url = images.quote_bg_option_1;</code>
+                <div class="ref-box">
+                    <h4>Quick Reference</h4>
+                    <p>Workflow: <code>dGQwIMyZImbYwucC</code> (Content Generator)</p>
+                    <p>Baserow Table: <code>946</code></p>
+                </div>
+
+                <div class="result-buttons">
+                    <button class="result-btn pass" onclick="markResult('test-1', 'pass')">✓ Pass</button>
+                    <button class="result-btn fail" onclick="markResult('test-1', 'fail')">✗ Fail</button>
+                    <button class="result-btn skip" onclick="markResult('test-1', 'skip')">Skip</button>
                 </div>
             </div>
+        </div>
 
-            <div class="card">
-                <div class="card-title">4. OpenClaw Rate Limit <span class="badge badge-fixed">FIXED</span></div>
-                <p><strong>Problem:</strong> "all profiles unavailable" error despite $10 balance</p>
-                <p><strong>Root Cause:</strong> Billing cooldown cached in auth-profiles.json</p>
-                <p><strong>Fix:</strong> Cleared <code>usageStats</code> in auth-profiles.json, restarted service</p>
+        <!-- TEST 2: Build Notes -->
+        <div class="test-section" id="test-2">
+            <div class="test-header" onclick="toggleSection(this)">
+                <h2><span class="arrow">▶</span> Test 2: Build Notes Submission</h2>
             </div>
-
-            <div class="card">
-                <div class="card-title">5. OpenClaw Token Limit Added</div>
-                <p><strong>Problem:</strong> No max_tokens set = unlimited costs</p>
-                <p><strong>Fix:</strong> Added <code>max_tokens: 8000</code> to Call OpenClaw Agent</p>
-            </div>
-        </section>
-
-        <!-- Integration Tests -->
-        <section class="section">
-            <h2 class="section-title">Integration Tests (E2E)</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Scenario</th>
-                        <th>Steps</th>
-                        <th>Expected</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>INT-01</td>
-                        <td>Happy path - Painter</td>
-                        <td>Submit onboarding (painter, 6 services, 8 areas) -> Submit build notes -> Check GHL</td>
-                        <td>All values populated, HTTPS images</td>
-                        <td><span class="badge badge-passed">PASSED (18063)</span></td>
-                    </tr>
-                    <tr>
-                        <td>INT-02</td>
-                        <td>Happy path - Electrician</td>
-                        <td>Same as INT-01 with electrician</td>
-                        <td>Blue color scheme</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>INT-03</td>
-                        <td>Minimal data</td>
-                        <td>Only required fields</td>
-                        <td>Content with defaults</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>INT-04</td>
-                        <td>No website</td>
-                        <td>No existing_website_url</td>
-                        <td>Generate without scrape</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>INT-05</td>
-                        <td>3 services only</td>
-                        <td>Submit with 3 services</td>
-                        <td>Services 4-12 = [UNUSED]</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>INT-06</td>
-                        <td>20 areas</td>
-                        <td>Submit with 20 areas</td>
-                        <td>Only first 14 used</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>INT-07</td>
-                        <td>Re-generation</td>
-                        <td>Generate twice same location</td>
-                        <td>Second overwrites first</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>INT-08</td>
-                        <td>Color override</td>
-                        <td>Painter + "blue" preference</td>
-                        <td>ai_observations explains</td>
-                        <td></td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
-
-        <!-- Modular Tests -->
-        <section class="section">
-            <h2 class="section-title">Modular Tests (Individual Nodes)</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Node</th>
-                        <th>Test</th>
-                        <th>Input</th>
-                        <th>Expected</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr><td>M01</td><td>Parse Form Data</td><td>Valid form</td><td>GHL form JSON</td><td>All fields extracted</td></tr>
-                    <tr><td>M02</td><td>Parse Form Data</td><td>Missing fields</td><td>Partial JSON</td><td>Graceful handling</td></tr>
-                    <tr><td>M03</td><td>Log to Baserow</td><td>Create row</td><td>Form data</td><td>Row ID returned</td></tr>
-                    <tr><td>M04</td><td>Scrape Client Website</td><td>Valid URL</td><td>https://...</td><td>Content + images</td></tr>
-                    <tr><td>M05</td><td>Scrape Client Website</td><td>No URL</td><td>Empty</td><td>Skip gracefully</td></tr>
-                    <tr><td>M06</td><td>Scrape Client Website</td><td>Blocked site</td><td>URL</td><td>Timeout/error handled</td></tr>
-                    <tr><td>M09</td><td>Call OpenClaw</td><td>Valid prompt</td><td>Prompt string</td><td>JSON content</td></tr>
-                    <tr><td>M10</td><td>Process Response</td><td>Valid JSON</td><td>AI response</td><td>Parsed content</td></tr>
-                    <tr><td>M11</td><td>Process Response</td><td>Invalid JSON</td><td>Malformed</td><td>Error recovery v1.3</td></tr>
-                    <tr><td>M12</td><td>Search Images</td><td>Known trade</td><td>"painter"</td><td>96+ images</td></tr>
-                    <tr><td>M13</td><td>Search Images</td><td>Unknown trade</td><td>"xyz"</td><td>general_contractor fallback</td></tr>
-                    <tr><td>M15</td><td>Upload Images</td><td>Valid URLs</td><td>HTTP URLs</td><td>HTTPS URLs returned</td></tr>
-                    <tr><td>M16</td><td>Upload Images</td><td>Invalid URL</td><td>404 URL</td><td>Skip + continue</td></tr>
-                    <tr><td>M17</td><td>Update GHL Values</td><td>Full content</td><td>270+ values</td><td>All updated</td></tr>
-                </tbody>
-            </table>
-        </section>
-
-        <!-- Content Quality Tests -->
-        <section class="section">
-            <h2 class="section-title">Content Quality Tests</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Test</th>
-                        <th>Check</th>
-                        <th>Expected</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr><td>Q01</td><td>Service names</td><td>Case format</td><td>Title Case (not UPPERCASE)</td></tr>
-                    <tr><td>Q02</td><td>Area names</td><td>Case format</td><td>Title Case</td></tr>
-                    <tr><td>Q03</td><td>Service descriptions</td><td>Length</td><td>Max 20 words, 2 sentences</td></tr>
-                    <tr><td>Q04</td><td>Blog titles</td><td>Format</td><td>Title Case, SEO-friendly</td></tr>
-                    <tr><td>Q05</td><td>Blog descriptions</td><td>Length</td><td>~50 words</td></tr>
-                    <tr><td>Q06</td><td>Blog content</td><td>Structure</td><td>Intro + 3 benefits + Conclusion</td></tr>
-                    <tr><td>Q07</td><td>Operating hours</td><td>Parse</td><td>7 separate day values</td></tr>
-                    <tr><td>Q08</td><td>FAQ answers</td><td>Quality</td><td>Relevant to trade</td></tr>
-                    <tr><td>Q09</td><td>Hero images</td><td>Quality</td><td>hero_suitable=true only</td></tr>
-                    <tr><td>Q10</td><td>Image duplicates</td><td>Check</td><td>No duplicate URLs</td></tr>
-                </tbody>
-            </table>
-        </section>
-
-        <!-- Custom Values Count -->
-        <section class="section">
-            <h2 class="section-title">Custom Values Count (~268 Total)</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Category</th>
-                        <th>Count</th>
-                        <th>Notes</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr><td>Company Info</td><td>9</td><td>name, owner, email, hours, phones, etc.</td></tr>
-                    <tr><td>Colors</td><td>2</td><td>primary, secondary</td></tr>
-                    <tr><td>Links</td><td>5</td><td>social, GMB</td></tr>
-                    <tr><td>Marketing</td><td>4</td><td>broad_service, headline, about, discount</td></tr>
-                    <tr><td>Hero</td><td>2</td><td>description, image</td></tr>
-                    <tr><td>Stats</td><td>8</td><td>4 numbers + 4 labels</td></tr>
-                    <tr><td>FAQ</td><td>4</td><td>answers 1-4</td></tr>
-                    <tr><td>Operating Hours</td><td>7</td><td>sun-sat</td></tr>
-                    <tr><td>Blog</td><td>18</td><td>6 x (title + description + content)</td></tr>
-                    <tr><td>Services</td><td>24</td><td>12 x (name + description)</td></tr>
-                    <tr><td>Service Pages</td><td>36</td><td>12 x (what_is + when_necessary + what_required)</td></tr>
-                    <tr><td>Service Images</td><td>48</td><td>12 x (image + backup + hero + hero_backup)</td></tr>
-                    <tr><td>Areas</td><td>14</td><td>names</td></tr>
-                    <tr><td>Area Pages</td><td>42</td><td>14 x (our_story + services_offered + why_choose_us)</td></tr>
-                    <tr><td>Gallery</td><td>29</td><td>24 images + 5 backups</td></tr>
-                    <tr><td>Hero Options</td><td>11</td><td>5 hero + 3 reviews + 3 quote</td></tr>
-                </tbody>
-            </table>
-        </section>
-
-        <!-- Last Execution -->
-        <section class="section">
-            <h2 class="section-title">Last Successful Execution</h2>
-            <div class="card">
-                <div class="card-title">Execution 18063 (Feb 13, 2026 22:19 UTC)</div>
-                <ul>
-                    <li><strong>Status:</strong> SUCCESS</li>
-                    <li><strong>Duration:</strong> 259.7s (~4.3 min)</li>
-                    <li><strong>Content:</strong> 182 text values updated</li>
-                    <li><strong>Images:</strong> 49 images uploaded (73 processed, some duplicates)</li>
-                    <li><strong>Total:</strong> 231 GHL values updated</li>
-                    <li><strong>Email:</strong> Sent successfully via Resend</li>
+            <div class="test-body">
+                <ul class="checklist">
+                    <li>
+                        <input type="checkbox" id="t2-1">
+                        <span class="step-num">1</span>
+                        <div class="step-content">
+                            <div class="step-title">Open Build Notes form in GHL</div>
+                            <div class="step-detail">Forms → Build Notes Form</div>
+                        </div>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="t2-2">
+                        <span class="step-num">2</span>
+                        <div class="step-content">
+                            <div class="step-title">Fill build notes</div>
+                            <div class="step-detail">
+                                <strong>Client ID:</strong> (from Baserow row)<br>
+                                <strong>Color preference:</strong> "Navy and orange"<br>
+                                <strong>Notes:</strong> "Family business since 1995"
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="t2-3">
+                        <span class="step-num">3</span>
+                        <div class="step-content">
+                            <div class="step-title">Submit and wait</div>
+                            <div class="step-detail">Generation takes ~4-5 minutes. Watch n8n execution.</div>
+                            <a href="https://n8n.slatesystems.io" target="_blank" class="step-link">Open n8n →</a>
+                        </div>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="t2-4">
+                        <span class="step-num">4</span>
+                        <div class="step-content">
+                            <div class="step-title">Check n8n execution succeeded</div>
+                            <div class="step-detail">Workflow 4BaNEGdjuP5EsLUy should show green checkmark</div>
+                        </div>
+                    </li>
                 </ul>
-            </div>
-        </section>
 
-        <!-- Webhook URLs -->
-        <section class="section">
-            <h2 class="section-title">Webhook URLs for Testing</h2>
-            <div class="card">
-                <div class="card-title">Content Generator (Workflow 1)</div>
-                <div class="code-block"><code>POST https://n8n.slatesystems.io/webhook/content-generator</code></div>
-            </div>
-            <div class="card">
-                <div class="card-title">Build Notes Trigger (Workflow 2)</div>
-                <div class="code-block"><code>POST https://n8n.slatesystems.io/webhook/build-notes</code></div>
-            </div>
-        </section>
+                <div class="expected">
+                    <div class="expected-title">✓ EXPECTED RESULT</div>
+                    <div class="expected-content">
+                        n8n execution completes successfully in ~4-5 min. No red error nodes.
+                    </div>
+                </div>
 
-        <!-- Recovery Notes -->
-        <section class="section">
-            <h2 class="section-title">Recovery Notes</h2>
-            <div class="card">
-                <p>If context compacts:</p>
-                <ol>
-                    <li>Read this file for test plan</li>
-                    <li>Main workflow: Build Notes Trigger (<code>4BaNEGdjuP5EsLUy</code>)</li>
-                    <li>Carlsbad Location ID: <code>eGWfd8H3OfMWqLENVKzW</code></li>
-                    <li>Baserow tables: 946 (content), 947 (images), 948 (build notes), 949 (test tracking)</li>
-                    <li>Email: WORKING via Resend (content@updates.slatesystems.io -> slatesystemsgmb@gmail.com)</li>
-                    <li>Area hero URLs: DELETED (14 values removed from GHL)</li>
-                    <li>OpenClaw server: 178.156.233.54, API key in auth-profiles.json</li>
-                </ol>
-            </div>
-        </section>
+                <div class="ref-box">
+                    <h4>Quick Reference</h4>
+                    <p>Workflow: <code>4BaNEGdjuP5EsLUy</code> (Build Notes Trigger)</p>
+                    <p>OpenClaw limit: <code>8000 tokens</code></p>
+                </div>
 
+                <div class="result-buttons">
+                    <button class="result-btn pass" onclick="markResult('test-2', 'pass')">✓ Pass</button>
+                    <button class="result-btn fail" onclick="markResult('test-2', 'fail')">✗ Fail</button>
+                    <button class="result-btn skip" onclick="markResult('test-2', 'skip')">Skip</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- TEST 3: Content Quality -->
+        <div class="test-section" id="test-3">
+            <div class="test-header" onclick="toggleSection(this)">
+                <h2><span class="arrow">▶</span> Test 3: Content Quality Check</h2>
+            </div>
+            <div class="test-body">
+                <ul class="checklist">
+                    <li>
+                        <input type="checkbox" id="t3-1">
+                        <span class="step-num">1</span>
+                        <div class="step-content">
+                            <div class="step-title">Check service names are Title Case</div>
+                            <div class="step-detail">NOT "INTERIOR PAINTING" but "Interior Painting"</div>
+                        </div>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="t3-2">
+                        <span class="step-num">2</span>
+                        <div class="step-content">
+                            <div class="step-title">Check service descriptions</div>
+                            <div class="step-detail">Max 20 words, 2 sentences, benefit-focused</div>
+                        </div>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="t3-3">
+                        <span class="step-num">3</span>
+                        <div class="step-content">
+                            <div class="step-title">Check blog posts</div>
+                            <div class="step-detail">6 posts, each with title + description (~50 words) + content (intro + 3 benefits + conclusion)</div>
+                        </div>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="t3-4">
+                        <span class="step-num">4</span>
+                        <div class="step-content">
+                            <div class="step-title">Check operating hours</div>
+                            <div class="step-detail">7 separate day values (Mon-Sun)</div>
+                        </div>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="t3-5">
+                        <span class="step-num">5</span>
+                        <div class="step-content">
+                            <div class="step-title">Check unused services marked</div>
+                            <div class="step-detail">If only 6 services, services 7-12 should be "[UNUSED]"</div>
+                        </div>
+                    </li>
+                </ul>
+
+                <div class="expected">
+                    <div class="expected-title">✓ EXPECTED RESULT</div>
+                    <div class="expected-content">
+                        All content follows style guide. No ALL CAPS. No placeholder text. Professional quality.
+                    </div>
+                </div>
+
+                <div class="result-buttons">
+                    <button class="result-btn pass" onclick="markResult('test-3', 'pass')">✓ Pass</button>
+                    <button class="result-btn fail" onclick="markResult('test-3', 'fail')">✗ Fail</button>
+                    <button class="result-btn skip" onclick="markResult('test-3', 'skip')">Skip</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- TEST 4: Images -->
+        <div class="test-section" id="test-4">
+            <div class="test-header" onclick="toggleSection(this)">
+                <h2><span class="arrow">▶</span> Test 4: Images Check</h2>
+            </div>
+            <div class="test-body">
+                <ul class="checklist">
+                    <li>
+                        <input type="checkbox" id="t4-1">
+                        <span class="step-num">1</span>
+                        <div class="step-content">
+                            <div class="step-title">All images are HTTPS (not HTTP or MinIO)</div>
+                            <div class="step-detail">URLs should start with https://services.leadconnectorhq.com</div>
+                        </div>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="t4-2">
+                        <span class="step-num">2</span>
+                        <div class="step-content">
+                            <div class="step-title">Hero images load correctly</div>
+                            <div class="step-detail">hero_image_url, hero_image_option_1-5 all valid</div>
+                        </div>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="t4-3">
+                        <span class="step-num">3</span>
+                        <div class="step-content">
+                            <div class="step-title">Service images match services</div>
+                            <div class="step-detail">Painter should have painting images, not plumbing</div>
+                        </div>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="t4-4">
+                        <span class="step-num">4</span>
+                        <div class="step-content">
+                            <div class="step-title">No duplicate images</div>
+                            <div class="step-detail">Each image URL should be unique</div>
+                        </div>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="t4-5">
+                        <span class="step-num">5</span>
+                        <div class="step-content">
+                            <div class="step-title">Gallery has 24+ images</div>
+                            <div class="step-detail">gallery_image_1 through gallery_image_24</div>
+                        </div>
+                    </li>
+                </ul>
+
+                <div class="expected">
+                    <div class="expected-title">✓ EXPECTED RESULT</div>
+                    <div class="expected-content">
+                        ~49 images uploaded, all HTTPS, no duplicates, trade-appropriate
+                    </div>
+                </div>
+
+                <div class="ref-box">
+                    <h4>Quick Reference</h4>
+                    <p>Image Uploader Workflow: <code>WrMcZYiQtYHXi9yG</code></p>
+                </div>
+
+                <div class="result-buttons">
+                    <button class="result-btn pass" onclick="markResult('test-4', 'pass')">✓ Pass</button>
+                    <button class="result-btn fail" onclick="markResult('test-4', 'fail')">✗ Fail</button>
+                    <button class="result-btn skip" onclick="markResult('test-4', 'skip')">Skip</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- TEST 5: GHL Values -->
+        <div class="test-section" id="test-5">
+            <div class="test-header" onclick="toggleSection(this)">
+                <h2><span class="arrow">▶</span> Test 5: GHL Custom Values</h2>
+            </div>
+            <div class="test-body">
+                <ul class="checklist">
+                    <li>
+                        <input type="checkbox" id="t5-1">
+                        <span class="step-num">1</span>
+                        <div class="step-content">
+                            <div class="step-title">Open GHL → Settings → Custom Values</div>
+                            <div class="step-detail">Check Carlsbad sub-account</div>
+                        </div>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="t5-2">
+                        <span class="step-num">2</span>
+                        <div class="step-content">
+                            <div class="step-title">Verify company info populated</div>
+                            <div class="step-detail">business_name, owner_name, phone, email, address</div>
+                        </div>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="t5-3">
+                        <span class="step-num">3</span>
+                        <div class="step-content">
+                            <div class="step-title">Verify colors set</div>
+                            <div class="step-detail">primary_color, secondary_color (should be hex values)</div>
+                        </div>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="t5-4">
+                        <span class="step-num">4</span>
+                        <div class="step-content">
+                            <div class="step-title">Verify all 12 services</div>
+                            <div class="step-detail">service_1_name through service_12_name (unused = "[UNUSED]")</div>
+                        </div>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="t5-5">
+                        <span class="step-num">5</span>
+                        <div class="step-content">
+                            <div class="step-title">Verify all 14 areas</div>
+                            <div class="step-detail">area_1_name through area_14_name</div>
+                        </div>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="t5-6">
+                        <span class="step-num">6</span>
+                        <div class="step-content">
+                            <div class="step-title">Spot check 5 random values</div>
+                            <div class="step-detail">Open any 5 values and verify content makes sense</div>
+                        </div>
+                    </li>
+                </ul>
+
+                <div class="expected">
+                    <div class="expected-title">✓ EXPECTED RESULT</div>
+                    <div class="expected-content">
+                        ~268 custom values populated. No empty required fields. No placeholder text.
+                    </div>
+                </div>
+
+                <div class="ref-box">
+                    <h4>Value Count by Category</h4>
+                    <p>Company: 9 | Colors: 2 | Services: 24 | Service Pages: 36 | Service Images: 48</p>
+                    <p>Areas: 14 | Area Pages: 42 | Blog: 18 | Gallery: 29 | Hero: 11 | Other: 45</p>
+                </div>
+
+                <div class="result-buttons">
+                    <button class="result-btn pass" onclick="markResult('test-5', 'pass')">✓ Pass</button>
+                    <button class="result-btn fail" onclick="markResult('test-5', 'fail')">✗ Fail</button>
+                    <button class="result-btn skip" onclick="markResult('test-5', 'skip')">Skip</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- TEST 6: Email -->
+        <div class="test-section" id="test-6">
+            <div class="test-header" onclick="toggleSection(this)">
+                <h2><span class="arrow">▶</span> Test 6: Notification Email</h2>
+            </div>
+            <div class="test-body">
+                <ul class="checklist">
+                    <li>
+                        <input type="checkbox" id="t6-1">
+                        <span class="step-num">1</span>
+                        <div class="step-content">
+                            <div class="step-title">Check slatesystemsgmb@gmail.com inbox</div>
+                            <div class="step-detail">Should receive email within 5 min of completion</div>
+                        </div>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="t6-2">
+                        <span class="step-num">2</span>
+                        <div class="step-content">
+                            <div class="step-title">Email shows correct company name</div>
+                            <div class="step-detail">NOT "Unknown Company"</div>
+                        </div>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="t6-3">
+                        <span class="step-num">3</span>
+                        <div class="step-content">
+                            <div class="step-title">Email lists services</div>
+                            <div class="step-detail">Should show count and list of services generated</div>
+                        </div>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="t6-4">
+                        <span class="step-num">4</span>
+                        <div class="step-content">
+                            <div class="step-title">Email includes Ideogram prompt</div>
+                            <div class="step-detail">AI-generated prompt for hero image creation</div>
+                        </div>
+                    </li>
+                </ul>
+
+                <div class="expected">
+                    <div class="expected-title">✓ EXPECTED RESULT</div>
+                    <div class="expected-content">
+                        Email received with company info, services, areas, AI observations, Ideogram prompt
+                    </div>
+                </div>
+
+                <div class="ref-box">
+                    <h4>Quick Reference</h4>
+                    <p>Sender: <code>content@updates.slatesystems.io</code> (via Resend)</p>
+                    <p>Recipient: <code>slatesystemsgmb@gmail.com</code></p>
+                </div>
+
+                <div class="result-buttons">
+                    <button class="result-btn pass" onclick="markResult('test-6', 'pass')">✓ Pass</button>
+                    <button class="result-btn fail" onclick="markResult('test-6', 'fail')">✗ Fail</button>
+                    <button class="result-btn skip" onclick="markResult('test-6', 'skip')">Skip</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- COMMON ISSUES -->
+        <div class="test-section" id="issues">
+            <div class="test-header" onclick="toggleSection(this)">
+                <h2><span class="arrow">▶</span> Common Issues & Fixes</h2>
+            </div>
+            <div class="test-body">
+                <div class="ref-box" style="margin-top: 0;">
+                    <h4>OpenClaw "all profiles unavailable"</h4>
+                    <p>Clear usageStats in <code>/home/claude/.openclaw/agents/slate-content/agent/auth-profiles.json</code></p>
+                    <p>Then restart: <code>systemctl restart openclaw</code></p>
+                </div>
+
+                <div class="ref-box">
+                    <h4>JSON Parse Error in n8n</h4>
+                    <p>AI output malformed. Check Process Response node (v1.3) has brace balancing.</p>
+                </div>
+
+                <div class="ref-box">
+                    <h4>Images Still HTTP</h4>
+                    <p>Image Uploader workflow failed. Check WrMcZYiQtYHXi9yG execution.</p>
+                </div>
+
+                <div class="ref-box">
+                    <h4>Email Shows "Unknown Company"</h4>
+                    <p>Send Ideogram Email node reading wrong field. Should use <code>business_name</code> from Process Response.</p>
+                </div>
+
+                <div class="ref-box">
+                    <h4>Hero Image Not Updated</h4>
+                    <p>Sync missing in Update GHL Values. First lines should sync hero_image_url = hero_image_option_1</p>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>Last successful run: Execution 18063 (Feb 13, 2026) - 231 values updated in 4.3 min</p>
+            <p>© 2026 Slate Systems Inc.</p>
+        </footer>
     </main>
 
-    <footer>
-        © 2026 Slate Systems Inc. Internal use only.
-    </footer>
+    <!-- Progress Bar -->
+    <div class="progress-bar">
+        <div class="stat"><span class="dot green"></span> Pass: <span id="pass-count">0</span></div>
+        <div class="stat"><span class="dot red"></span> Fail: <span id="fail-count">0</span></div>
+        <div class="stat"><span class="dot gray"></span> Skip: <span id="skip-count">0</span></div>
+        <button onclick="resetAll()" style="background: var(--border); border: none; color: white; padding: 0.4rem 0.75rem; border-radius: 4px; cursor: pointer; font-size: 0.8rem;">Reset All</button>
+    </div>
+
+    <script>
+        // Toggle sections
+        function toggleSection(header) {
+            header.parentElement.classList.toggle('open');
+        }
+
+        // Track results
+        let results = { pass: 0, fail: 0, skip: 0 };
+
+        function markResult(testId, result) {
+            const section = document.getElementById(testId);
+            section.classList.remove('open');
+
+            // Update header with result indicator
+            const header = section.querySelector('.test-header h2');
+            header.innerHTML = header.innerHTML.replace(/ [✓✗⊘]$/, '');
+            if (result === 'pass') header.innerHTML += ' ✓';
+            if (result === 'fail') header.innerHTML += ' ✗';
+            if (result === 'skip') header.innerHTML += ' ⊘';
+
+            // Update counts
+            results[result]++;
+            document.getElementById('pass-count').textContent = results.pass;
+            document.getElementById('fail-count').textContent = results.fail;
+            document.getElementById('skip-count').textContent = results.skip;
+
+            // Open next section
+            const next = section.nextElementSibling;
+            if (next && next.classList.contains('test-section')) {
+                next.classList.add('open');
+                next.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        function resetAll() {
+            results = { pass: 0, fail: 0, skip: 0 };
+            document.getElementById('pass-count').textContent = '0';
+            document.getElementById('fail-count').textContent = '0';
+            document.getElementById('skip-count').textContent = '0';
+
+            document.querySelectorAll('.test-section').forEach((section, i) => {
+                const header = section.querySelector('.test-header h2');
+                header.innerHTML = header.innerHTML.replace(/ [✓✗⊘]$/, '');
+                section.classList.remove('open');
+                if (i === 0) section.classList.add('open');
+            });
+
+            document.querySelectorAll('.checklist input').forEach(cb => cb.checked = false);
+        }
+    </script>
 </body>
 </html>
