@@ -297,6 +297,8 @@
             <a href="#test-4" class="quick-link">4. Images Check</a>
             <a href="#test-5" class="quick-link">5. GHL Values</a>
             <a href="#test-6" class="quick-link">6. Email</a>
+            <a href="#test-7" class="quick-link">7. SMS Fail Notify</a>
+            <a href="#test-8" class="quick-link">8. Form Confirm</a>
         </div>
 
         <!-- TEST 1: Onboarding Form -->
@@ -705,6 +707,123 @@
                     <button class="result-btn pass" onclick="markResult('test-6', 'pass')">✓ Pass</button>
                     <button class="result-btn fail" onclick="markResult('test-6', 'fail')">✗ Fail</button>
                     <button class="result-btn skip" onclick="markResult('test-6', 'skip')">Skip</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- TEST 7: SMS Delivery Failure Notification -->
+        <div class="test-section" id="test-7">
+            <div class="test-header" onclick="toggleSection(this)">
+                <h2><span class="arrow">▶</span> Test 7: SMS Delivery Failure Notification (WF-17)</h2>
+            </div>
+            <div class="test-body">
+                <ul class="checklist">
+                    <li>
+                        <input type="checkbox" id="t7-1">
+                        <span class="step-num">1</span>
+                        <div class="step-content">
+                            <div class="step-title">Trigger SMS to invalid number</div>
+                            <div class="step-detail">Send test SMS to number that will fail (e.g., disconnected number). Error codes: 30003, 30005, 30006</div>
+                        </div>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="t7-2">
+                        <span class="step-num">2</span>
+                        <div class="step-content">
+                            <div class="step-title">Wait 1 minute (minimum workflow wait)</div>
+                            <div class="step-detail">GHL workflow minimum wait is 1 minute, not 5 seconds</div>
+                        </div>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="t7-3">
+                        <span class="step-num">3</span>
+                        <div class="step-content">
+                            <div class="step-title">Check client received notification SMS</div>
+                            <div class="step-detail">Client should get SMS: "Heads up: The phone number for [Customer] didn't work..."</div>
+                        </div>
+                    </li>
+                </ul>
+
+                <div class="expected">
+                    <div class="expected-title">✓ EXPECTED RESULT</div>
+                    <div class="expected-content">
+                        Client receives SMS notification about failed delivery within 2 minutes of failure
+                    </div>
+                </div>
+
+                <div class="ref-box">
+                    <h4>Quick Reference</h4>
+                    <p>Workflow: <code>WF-17: Review SMS Failed → Notify Client</code></p>
+                    <p>Triggers on: SMS Error codes 30003, 30005, 30006</p>
+                </div>
+
+                <div class="result-buttons">
+                    <button class="result-btn pass" onclick="markResult('test-7', 'pass')">✓ Pass</button>
+                    <button class="result-btn fail" onclick="markResult('test-7', 'fail')">✗ Fail</button>
+                    <button class="result-btn skip" onclick="markResult('test-7', 'skip')">Skip</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- TEST 8: Marketing Form Confirmation -->
+        <div class="test-section" id="test-8">
+            <div class="test-header" onclick="toggleSection(this)">
+                <h2><span class="arrow">▶</span> Test 8: Marketing Form Confirmation (WF-18)</h2>
+            </div>
+            <div class="test-body">
+                <ul class="checklist">
+                    <li>
+                        <input type="checkbox" id="t8-1">
+                        <span class="step-num">1</span>
+                        <div class="step-content">
+                            <div class="step-title">Open /marketing-form page</div>
+                            <div class="step-detail">Go to client website → /marketing-form (review funnel submission form)</div>
+                        </div>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="t8-2">
+                        <span class="step-num">2</span>
+                        <div class="step-content">
+                            <div class="step-title">Submit test customer</div>
+                            <div class="step-detail">Enter: First name, Last name, Phone, Email (any of these)</div>
+                        </div>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="t8-3">
+                        <span class="step-num">3</span>
+                        <div class="step-content">
+                            <div class="step-title">Wait 1 minute (minimum workflow wait)</div>
+                            <div class="step-detail">GHL workflow minimum wait is 1 minute</div>
+                        </div>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="t8-4">
+                        <span class="step-num">4</span>
+                        <div class="step-content">
+                            <div class="step-title">Check client received confirmation SMS</div>
+                            <div class="step-detail">Client should get SMS: "Got it! [Customer] has been added to the review system..."</div>
+                        </div>
+                    </li>
+                </ul>
+
+                <div class="expected">
+                    <div class="expected-title">✓ EXPECTED RESULT</div>
+                    <div class="expected-content">
+                        Client receives confirmation SMS within 2 minutes of form submission
+                    </div>
+                </div>
+
+                <div class="ref-box">
+                    <h4>Quick Reference</h4>
+                    <p>Workflow: <code>WF-18: Marketing Form → Confirm to Client</code></p>
+                    <p>Triggers on: Marketing Form submission</p>
+                    <p>Wait time: 1 minute (GHL minimum)</p>
+                </div>
+
+                <div class="result-buttons">
+                    <button class="result-btn pass" onclick="markResult('test-8', 'pass')">✓ Pass</button>
+                    <button class="result-btn fail" onclick="markResult('test-8', 'fail')">✗ Fail</button>
+                    <button class="result-btn skip" onclick="markResult('test-8', 'skip')">Skip</button>
                 </div>
             </div>
         </div>
