@@ -2,255 +2,406 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Credit Card Decline Handling SOP - Slate Systems SOP</title>
+    <title>Credit Card Decline Handling - Slate Systems SOP</title>
     <style>
+        :root { --navy: #152a45; --gray: #525c69; --orange: #ee7000; --white: #ffffff; --dark-bg: #0d1a2d; --card-bg: #1a2d47; --border: #2a4060; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: #0f172a;
-            color: #e2e8f0;
-            line-height: 1.7;
-            padding: 2rem;
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--dark-bg); color: var(--white); line-height: 1.7; }
+
+        .top-nav {
+            background: var(--navy);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 2px solid var(--orange);
         }
-        .container { max-width: 900px; margin: 0 auto; }
-        .back-link {
-            display: inline-flex;
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 1.5rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.6rem 0;
+            text-decoration: none;
+        }
+        .nav-logo { height: 28px; width: auto; }
+        .nav-subtitle {
+            background: var(--orange);
+            color: var(--white);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+        .nav-back {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 0.85rem;
+            opacity: 0.8;
+            transition: opacity 0.2s;
+        }
+        .nav-back:hover { opacity: 1; }
+
+        .container { max-width: 900px; margin: 0 auto; padding: 2rem 1.5rem; }
+
+        .toc-toggle {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            color: var(--white);
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+            display: flex;
             align-items: center;
             gap: 0.5rem;
-            color: #3b82f6;
-            text-decoration: none;
-            margin-bottom: 2rem;
-            font-size: 0.9rem;
+            width: 100%;
+            justify-content: space-between;
         }
-        .back-link:hover { text-decoration: underline; }
-        h1 { font-size: 2rem; color: #f8fafc; margin-bottom: 0.5rem; border-bottom: 2px solid #3b82f6; padding-bottom: 0.5rem; }
-        h2 { font-size: 1.5rem; color: #f8fafc; margin: 2rem 0 1rem; padding-top: 1rem; border-top: 1px solid #334155; }
+        .toc-toggle:hover { border-color: var(--orange); }
+        .toc-toggle .arrow { transition: transform 0.2s; }
+        .toc-toggle.open .arrow { transform: rotate(180deg); }
+
+        .toc {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1rem 1.5rem;
+            margin-bottom: 2rem;
+            display: none;
+        }
+        .toc.open { display: block; }
+        .toc-title { font-weight: 600; margin-bottom: 0.75rem; color: var(--orange); }
+        .toc ul { list-style: none; }
+        .toc li { margin-bottom: 0.4rem; }
+        .toc a { color: var(--white); text-decoration: none; font-size: 0.9rem; opacity: 0.8; }
+        .toc a:hover { opacity: 1; color: var(--orange); }
+
+        h1 { font-size: 2rem; color: var(--white); margin-bottom: 0.5rem; border-bottom: 2px solid var(--orange); padding-bottom: 0.75rem; }
+        h2 { font-size: 1.5rem; color: var(--white); margin: 2.5rem 0 1rem; padding-top: 1.5rem; border-top: 1px solid var(--border); scroll-margin-top: 80px; }
         h3 { font-size: 1.2rem; color: #cbd5e1; margin: 1.5rem 0 0.75rem; }
+        h4 { font-size: 1rem; color: #94a3b8; margin: 1.25rem 0 0.5rem; }
         p { margin-bottom: 1rem; }
         ul, ol { margin: 1rem 0; padding-left: 2rem; }
         li { margin-bottom: 0.5rem; }
-        li.nested { margin-left: 1.5rem; }
-        li.checkbox { list-style: none; margin-left: -1.5rem; }
-        li.checkbox input { margin-right: 0.5rem; }
+
+        .meta-box {
+            background: var(--card-bg);
+            border-left: 4px solid var(--orange);
+            padding: 1rem 1.25rem;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 1.5rem;
+        }
+        .meta-box p { margin: 0.25rem 0; font-size: 0.9rem; }
+        .meta-box strong { color: var(--orange); }
+
         blockquote {
-            background: #1e293b;
-            border-left: 4px solid #3b82f6;
+            background: var(--card-bg);
+            border-left: 4px solid var(--orange);
             padding: 1rem 1.5rem;
             margin: 1rem 0;
             border-radius: 0 8px 8px 0;
-            font-style: italic;
         }
+
         pre {
-            background: #1e293b;
+            background: var(--card-bg);
             padding: 1rem;
             border-radius: 8px;
             overflow-x: auto;
-            max-width: 100%;
             margin: 1rem 0;
-            border: 1px solid #334155;
-            white-space: pre-wrap;
-            word-wrap: break-word;
-        }
-        @media (max-width: 768px) {
-            body { padding: 1rem; }
-            pre { font-size: 0.85em; padding: 0.75rem; }
-            table { font-size: 0.9em; display: block; overflow-x: auto; }
-            th, td { padding: 0.5rem; }
-            h1 { font-size: 1.5rem; }
-            h2 { font-size: 1.25rem; }
+            border: 1px solid var(--border);
+            font-size: 0.85rem;
         }
         code {
             font-family: 'SF Mono', Monaco, monospace;
             font-size: 0.9em;
         }
         :not(pre) > code {
-            background: #334155;
+            background: var(--border);
             padding: 0.2rem 0.4rem;
             border-radius: 4px;
         }
+
         table {
             width: 100%;
             border-collapse: collapse;
             margin: 1rem 0;
-            background: #1e293b;
+            background: var(--card-bg);
             border-radius: 8px;
             overflow: hidden;
         }
         th, td {
             padding: 0.75rem 1rem;
             text-align: left;
-            border-bottom: 1px solid #334155;
+            border-bottom: 1px solid var(--border);
         }
-        th { background: #334155; color: #f8fafc; font-weight: 600; }
+        th { background: var(--border); color: var(--white); font-weight: 600; }
         tr:last-child td { border-bottom: none; }
-        hr { border: none; border-top: 1px solid #334155; margin: 2rem 0; }
-        a { color: #3b82f6; }
-        strong { color: #f8fafc; }
-        .meta {
-            background: #1e293b;
-            padding: 1rem;
-            border-radius: 8px;
-            margin-bottom: 2rem;
-            border-left: 4px solid #3b82f6;
-        }
-        .meta p { margin: 0.25rem 0; font-size: 0.9rem; color: #94a3b8; }
-        footer {
+
+        hr { border: none; border-top: 1px solid var(--border); margin: 2rem 0; }
+        a { color: var(--orange); }
+        strong { color: var(--white); }
+
+        .page-nav {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
             margin-top: 3rem;
             padding-top: 2rem;
-            border-top: 1px solid #334155;
-            text-align: center;
-            color: #64748b;
-            font-size: 0.875rem;
+            border-top: 1px solid var(--border);
         }
+        .page-nav a {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            color: var(--white);
+            transition: border-color 0.2s;
+            flex: 1;
+            max-width: 45%;
+        }
+        .page-nav a:hover { border-color: var(--orange); }
+        .page-nav .prev { text-align: left; }
+        .page-nav .next { text-align: right; margin-left: auto; }
+        .page-nav .label { font-size: 0.75rem; color: var(--gray); margin-bottom: 0.25rem; }
+        .page-nav .title { font-weight: 600; color: var(--orange); }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--gray);
+            font-size: 0.85rem;
+            border-top: 1px solid var(--border);
+            margin-top: 3rem;
+        }
+        footer a { color: var(--orange); }
     </style>
 </head>
 <body>
+    <nav class="top-nav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-brand">
+                <img src="assets/Slate_Systems_Logo_White.png" alt="Slate" class="nav-logo">
+                <span class="nav-subtitle">SUPPORT</span>
+            </a>
+            <a href="index.html" class="nav-back">Back to Portal</a>
+        </div>
+    </nav>
+
     <div class="container">
-        <a href="../index.html" class="back-link">← Back to Portal</a>
-        <h1 id="credit-card-decline-handling-sop">Credit Card Decline Handling SOP</h1>
+        <h1>Credit Card Decline Handling SOP</h1>
 
-<blockquote><strong>Role:</strong> Founder / Account Manager</blockquote>
-<blockquote><strong>When:</strong> Payment fails in Stripe</blockquote>
-<blockquote><strong>Goal:</strong> Recover payment while maintaining relationship</blockquote>
-<blockquote><strong>Source:</strong> Kai Stone Systems Extra Useful Trainings</blockquote>
-<blockquote><strong>Last Updated:</strong> Feb 22, 2026</blockquote>
+        <div class="meta-box">
+            <p><strong>Role:</strong> Founder / Account Manager</p>
+            <p><strong>When:</strong> Payment fails in Stripe</p>
+            <p><strong>Goal:</strong> Recover payment while maintaining relationship</p>
+            <p><strong>Source:</strong> Slate Systems Training Library</p>
+            <p><strong>Last Updated:</strong> Feb 22, 2026</p>
+        </div>
 
-<hr>
+        <button class="toc-toggle" onclick="toggleToc()">
+            <span>Table of Contents</span>
+            <span class="arrow">&#9660;</span>
+        </button>
 
-<h2 id="why-this-matters">Why This Matters</h2>
+        <div class="toc" id="toc">
+            <div class="toc-title">Contents</div>
+            <ul>
+                <li><a href="#why">Why This Matters</a></li>
+                <li><a href="#process">The Process</a></li>
+                <li><a href="#cancel">What If They Want to Cancel?</a></li>
+                <li><a href="#stripe">Stripe Manual Charge Process</a></li>
+                <li><a href="#prevention">Prevention</a></li>
+                <li><a href="#tracking">Decline Tracking</a></li>
+                <li><a href="#scripts">Scripts</a></li>
+                <li><a href="#escalation">Escalation</a></li>
+                <li><a href="#related">Related SOPs</a></li>
+            </ul>
+        </div>
 
-<p>Credit card declines are:<br><ol><li class="ordered">An opportunity to check in on client satisfaction</li><br><li class="ordered">A chance to prevent churn before it happens</li><br><li class="ordered">Revenue that will be lost if not handled</li><br></ol><br><strong>Never let a decline sit.</strong> Handle within 24-48 hours.</p>
+        <h2 id="why">Why This Matters</h2>
+        <p>Credit card declines are:</p>
+        <ol>
+            <li>An opportunity to check in on client satisfaction</li>
+            <li>A chance to prevent churn before it happens</li>
+            <li>Revenue that will be lost if not handled</li>
+        </ol>
+        <p><strong>Never let a decline sit.</strong> Handle within 24-48 hours.</p>
 
-<hr>
+        <h2 id="process">The Process</h2>
 
-<h2 id="the-process">The Process</h2>
+        <h3>Step 1: Check Stripe Weekly</h3>
+        <ol>
+            <li>Go to Stripe Dashboard > Payments</li>
+            <li>Filter by "Failed"</li>
+            <li>Note all declined payments</li>
+            <li>Add to your call list</li>
+        </ol>
 
-<h3 id="step-1-check-stripe-weekly">Step 1: Check Stripe Weekly</h3>
+        <h3>Step 2: Call Them (Don't Just Text)</h3>
+        <p><strong>Why call:</strong></p>
+        <ul>
+            <li>Texts feel impersonal for billing issues</li>
+            <li>Call shows you care</li>
+            <li>Can gauge their satisfaction</li>
+            <li>Harder to ignore</li>
+        </ul>
 
-<ol><li class="ordered">Go to Stripe Dashboard → Payments</li>
-<li class="ordered">Filter by "Failed"</li>
-<li class="ordered">Note all declined payments</li>
-<li class="ordered">Add to your call list</li>
-</ol>
-<h3 id="step-2-call-them-don-t-just-text">Step 2: Call Them (Don't Just Text)</h3>
+        <p><strong>Opening (Concerned, Not Accusatory):</strong></p>
+        <blockquote>"Hey [Name], it's [Your Name] from Slate Systems. How's everything going? I just wanted to check in - is everything okay on your end?"</blockquote>
 
-<strong>Why call:</strong>
-<ul><li>Texts feel impersonal for billing issues</li>
-<li>Call shows you care</li>
-<li>Can gauge their satisfaction</li>
-<li>Harder to ignore</li>
-</ul>
-<strong>Opening (Concerned, Not Accusatory):</strong>
-<blockquote>"Hey [Name], it's [Your Name] from Slate Systems. How's everything going? I just wanted to check in — is everything okay on your end?"</blockquote>
+        <p><strong>If they ask why:</strong></p>
+        <blockquote>"I noticed there might have been an issue with your payment, and I wanted to make sure everything's good with your account. Did you recently get a new card or anything like that?"</blockquote>
 
-<strong>If they ask why:</strong>
-<blockquote>"I noticed there might have been an issue with your payment, and I wanted to make sure everything's good with your account. Did you recently get a new card or anything like that?"</blockquote>
+        <p><strong>Key:</strong> Lead with concern, not "you owe us money."</p>
 
-<strong>Key:</strong> Lead with concern, not "you owe us money."
+        <h3>Step 3: Update Payment Method</h3>
+        <p><strong>If they have a new card:</strong></p>
+        <ol>
+            <li>Go to Stripe > Customers > [Their Name]</li>
+            <li>Click Payment Methods</li>
+            <li>Click "+ Add" or update existing</li>
+            <li>Enter new card details</li>
+            <li>Manually charge if auto-retry exhausted</li>
+        </ol>
 
-<h3 id="step-3-update-payment-method">Step 3: Update Payment Method</h3>
+        <p><strong>If they need to update themselves:</strong></p>
+        <ul>
+            <li>Send them the billing portal link</li>
+            <li>Walk them through it on the call if needed</li>
+        </ul>
 
-<strong>If they have a new card:</strong>
-<ol><li class="ordered">Go to Stripe → Customers → [Their Name]</li>
-<li class="ordered">Click Payment Methods</li>
-<li class="ordered">Click "+ Add" or update existing</li>
-<li class="ordered">Enter new card details</li>
-<li class="ordered">Manually charge if auto-retry exhausted</li>
-</ol>
-<strong>If they need to update themselves:</strong>
-<ul><li>Send them the billing portal link</li>
-<li>Walk them through it on the call if needed</li>
-</ul>
-<h3 id="step-4-use-as-check-in-opportunity">Step 4: Use as Check-In Opportunity</h3>
+        <h3>Step 4: Use as Check-In Opportunity</h3>
+        <p>While you have them:</p>
+        <ul>
+            <li>"How's the website working out?"</li>
+            <li>"Getting any leads from it?"</li>
+            <li>"Anything I can help with?"</li>
+        </ul>
+        <p>This turns a billing call into a retention call.</p>
 
-<p>While you have them:<br><ul><li>"How's the website working out?"</li><br><li>"Getting any leads from it?"</li><br><li>"Anything I can help with?"</li><br></ul><br>This turns a billing call into a retention call.</p>
+        <h2 id="cancel">What If They Want to Cancel?</h2>
+        <p><strong>Don't just let them go.</strong> Get feedback:</p>
+        <blockquote>"No problem at all. Before I process that, can I ask what's not working for you? I want to make sure we're doing right by our clients."</blockquote>
 
-<hr>
+        <p><strong>Common reasons and responses:</strong></p>
+        <table>
+            <thead>
+                <tr><th>Reason</th><th>Response</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>"Not getting leads"</td><td>"Let's look at your Google reviews and website together. Sometimes small tweaks help."</td></tr>
+                <tr><td>"Can't afford it"</td><td>"I understand. Want to pause for a month instead of canceling completely?"</td></tr>
+                <tr><td>"Not using it"</td><td>"What if I showed you how to use the review system? That's where most clients see value."</td></tr>
+                <tr><td>"Going a different direction"</td><td>"Totally respect that. Mind if I ask what you're switching to?"</td></tr>
+            </tbody>
+        </table>
+        <p><strong>If they still want to cancel:</strong> Process it gracefully. Don't burn the bridge.</p>
 
-<h2 id="what-if-they-want-to-cancel">What If They Want to Cancel?</h2>
+        <h2 id="stripe">Stripe Manual Charge Process</h2>
+        <p>If auto-retry has exhausted (usually 4 attempts over 3-4 weeks):</p>
+        <ol>
+            <li>Stripe > Customers > [Customer]</li>
+            <li>Verify correct payment method is on file</li>
+            <li>Click "Create payment"</li>
+            <li>Enter amount</li>
+            <li>Select payment method</li>
+            <li>Click "Charge"</li>
+        </ol>
 
-<strong>Don't just let them go.</strong> Get feedback:
+        <h2 id="prevention">Prevention: Reduce Future Declines</h2>
+        <ol>
+            <li><strong>Collect backup payment method</strong> during onboarding</li>
+            <li><strong>Send payment reminder</strong> 3 days before billing date</li>
+            <li><strong>Use Stripe's Smart Retries</strong> (enabled by default)</li>
+            <li><strong>Update cards proactively</strong> - when card expires in 30 days, reach out</li>
+        </ol>
 
-<blockquote>"No problem at all. Before I process that, can I ask what's not working for you? I want to make sure we're doing right by our clients."</blockquote>
+        <h2 id="tracking">Decline Tracking</h2>
+        <p>Keep a simple log:</p>
+        <table>
+            <thead>
+                <tr><th>Date</th><th>Client</th><th>Reason</th><th>Outcome</th></tr>
+            </thead>
+            <tbody>
+                <tr><td colspan="4" style="text-align: center; color: var(--gray);">Track declines here</td></tr>
+            </tbody>
+        </table>
+        <p>Review monthly to identify patterns.</p>
 
-<strong>Common reasons and responses:</strong>
+        <h2 id="scripts">Scripts</h2>
 
-<table><thead><tr><th>Reason</th><th>Response</th></tr></thead><tbody><tr><td>"Not getting leads"</td><td>"Let's look at your Google reviews and website together. Sometimes small tweaks help."</td></tr><tr><td>"Can't afford it"</td><td>"I understand. Want to pause for a month instead of canceling completely?"</td></tr><tr><td>"Not using it"</td><td>"What if I showed you how to use the review system? That's where most clients see value."</td></tr><tr><td>"Going a different direction"</td><td>"Totally respect that. Mind if I ask what you're switching to?"</td></tr></tbody></table>
-<strong>If they still want to cancel:</strong> Process it gracefully. Don't burn the bridge.
+        <h3>Initial Call</h3>
+        <blockquote>"Hey [Name], it's [Your Name] from Slate Systems. How's it going? I wanted to check in and make sure everything's running smoothly for you."</blockquote>
 
-<hr>
+        <h3>If They Ask About Payment</h3>
+        <blockquote>"Yeah, I did notice there might've been a small hiccup with the payment. Did you happen to get a new card recently? No big deal either way, just want to make sure we get it sorted."</blockquote>
 
-<h2 id="stripe-manual-charge-process">Stripe Manual Charge Process</h2>
+        <h3>Asking for New Card</h3>
+        <blockquote>"Would you mind giving me the new card number? I can update it right here and we'll be all set."</blockquote>
 
-<p>If auto-retry has exhausted (usually 4 attempts over 3-4 weeks):</p>
+        <h3>If No Answer (Voicemail)</h3>
+        <blockquote>"Hey [Name], it's [Your Name] from Slate Systems. Just checking in to make sure everything's going well. Give me a call back when you get a chance - [your number]. Talk soon!"</blockquote>
 
-<ol><li class="ordered">Stripe → Customers → [Customer]</li>
-<li class="ordered">Verify correct payment method is on file</li>
-<li class="ordered">Click "Create payment"</li>
-<li class="ordered">Enter amount</li>
-<li class="ordered">Select payment method</li>
-<li class="ordered">Click "Charge"</li>
-</ol>
-<hr>
+        <h3>Text Follow-Up (If No Call Back)</h3>
+        <blockquote>"Hey [Name]! Just checking in. Is everything okay? Noticed a small issue with the account and wanted to make sure you're all set. Let me know!"</blockquote>
 
-<h2 id="prevention-reduce-future-declines">Prevention: Reduce Future Declines</h2>
+        <h2 id="escalation">Escalation</h2>
+        <p>If after 7 days:</p>
+        <ul>
+            <li>3 call attempts</li>
+            <li>2 text attempts</li>
+            <li>No response</li>
+        </ul>
+        <p>Then:</p>
+        <ul>
+            <li>Send final email explaining service will be paused</li>
+            <li>Pause automations (don't delete account)</li>
+            <li>Try one more time in 2 weeks before canceling</li>
+        </ul>
 
-<ol><li class="ordered"><strong>Collect backup payment method</strong> during onboarding</li>
-<li class="ordered"><strong>Send payment reminder</strong> 3 days before billing date</li>
-<li class="ordered"><strong>Use Stripe's Smart Retries</strong> (enabled by default)</li>
-<li class="ordered"><strong>Update cards proactively</strong> — when card expires in 30 days, reach out</li>
-</ol>
-<hr>
+        <h2 id="related">Related SOPs</h2>
+        <ul>
+            <li><a href="support-faq.html">Support FAQ</a> - Common client questions</li>
+            <li><a href="escalation-rules.html">Escalation Rules</a> - When to escalate</li>
+        </ul>
 
-<h2 id="decline-tracking">Decline Tracking</h2>
+        <p><em>Source: Slate Systems Training</em><br>
+        <em>Last updated: Feb 22, 2026</em></p>
 
-<p>Keep a simple log:</p>
-
-<table><thead><tr><th>Date</th><th>Client</th><th>Reason</th><th>Outcome</th></tr></thead><tbody><tr></tr></tbody></table>
-Review monthly to identify patterns.
-
-<hr>
-
-<h2 id="scripts">Scripts</h2>
-
-<h3 id="initial-call">Initial Call</h3>
-<blockquote>"Hey [Name], it's [Your Name] from Slate Systems. How's it going? I wanted to check in and make sure everything's running smoothly for you."</blockquote>
-
-<h3 id="if-they-ask-about-payment">If They Ask About Payment</h3>
-<blockquote>"Yeah, I did notice there might've been a small hiccup with the payment. Did you happen to get a new card recently? No big deal either way, just want to make sure we get it sorted."</blockquote>
-
-<h3 id="asking-for-new-card">Asking for New Card</h3>
-<blockquote>"Would you mind giving me the new card number? I can update it right here and we'll be all set."</blockquote>
-
-<h3 id="if-no-answer-voicemail">If No Answer (Voicemail)</h3>
-<blockquote>"Hey [Name], it's [Your Name] from Slate Systems. Just checking in to make sure everything's going well. Give me a call back when you get a chance — [your number]. Talk soon!"</blockquote>
-
-<h3 id="text-follow-up-if-no-call-back">Text Follow-Up (If No Call Back)</h3>
-<blockquote>"Hey [Name]! Just checking in. Is everything okay? Noticed a small issue with the account and wanted to make sure you're all set. Let me know!"</blockquote>
-
-<hr>
-
-<h2 id="escalation">Escalation</h2>
-
-<p>If after 7 days:<br><ul><li>3 call attempts</li><br><li>2 text attempts</li><br><li>No response</li><br></ul><br>→ Send final email explaining service will be paused<br>→ Pause automations (don't delete account)<br>→ Try one more time in 2 weeks before canceling</p>
-
-<hr>
-
-<h2 id="related-sops">Related SOPs</h2>
-
-<ul><li><code>cancellation-saves.md</code> — Full cancellation save process</li>
-<li><code>support-faq.md</code> — Common client questions</li>
-</ul>
-<hr>
-
-<em>Source: Kai Stone Systems Training</em>
-<em>Last updated: Feb 22, 2026</em>
-
-        <footer>
-            <p>&copy; 2026 Slate Systems Inc. Internal use only.</p>
-        </footer>
+        <div class="page-nav">
+            <a href="app-guide.html" class="prev">
+                <div class="label">Previous</div>
+                <div class="title">App Guide</div>
+            </a>
+            <a href="escalation-rules.html" class="next">
+                <div class="label">Next</div>
+                <div class="title">Escalation Rules</div>
+            </a>
+        </div>
     </div>
+
+    <footer>
+        &copy; 2026 Slate Systems LLC | <a href="index.html">Support Portal</a>
+    </footer>
+
+    <script>
+        function toggleToc() {
+            const toc = document.getElementById('toc');
+            const btn = document.querySelector('.toc-toggle');
+            toc.classList.toggle('open');
+            btn.classList.toggle('open');
+        }
+    </script>
 </body>
 </html>

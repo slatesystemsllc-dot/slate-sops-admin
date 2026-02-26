@@ -2,256 +2,291 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Launch Call Checklist - Slate Systems SOP</title>
+    <title>Launch Call Checklist - Slate Systems</title>
     <style>
+        :root { --navy: #152a45; --gray: #525c69; --orange: #ee7000; --white: #ffffff; --dark-bg: #0d1a2d; --card-bg: #1a2d47; --border: #2a4060; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: #0f172a;
-            color: #e2e8f0;
-            line-height: 1.7;
-            padding: 2rem;
-        }
-        .container { max-width: 900px; margin: 0 auto; }
-        .back-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: #3b82f6;
-            text-decoration: none;
-            margin-bottom: 2rem;
-            font-size: 0.9rem;
-        }
-        .back-link:hover { text-decoration: underline; }
-        h1 { font-size: 2rem; color: #f8fafc; margin-bottom: 0.5rem; border-bottom: 2px solid #3b82f6; padding-bottom: 0.5rem; }
-        h2 { font-size: 1.5rem; color: #f8fafc; margin: 2rem 0 1rem; padding-top: 1rem; border-top: 1px solid #334155; }
-        h3 { font-size: 1.2rem; color: #cbd5e1; margin: 1.5rem 0 0.75rem; }
-        p { margin-bottom: 1rem; }
-        ul, ol { margin: 1rem 0; padding-left: 2rem; }
-        li { margin-bottom: 0.5rem; }
-        li.nested { margin-left: 1.5rem; }
-        li.checkbox { list-style: none; margin-left: -1.5rem; }
-        li.checkbox input { margin-right: 0.5rem; }
-        blockquote {
-            background: #1e293b;
-            border-left: 4px solid #3b82f6;
-            padding: 1rem 1.5rem;
-            margin: 1rem 0;
-            border-radius: 0 8px 8px 0;
-            font-style: italic;
-        }
-        pre {
-            background: #1e293b;
-            padding: 1rem;
-            border-radius: 8px;
-            overflow-x: auto;
-            max-width: 100%;
-            margin: 1rem 0;
-            border: 1px solid #334155;
-            white-space: pre-wrap;
-            word-wrap: break-word;
-        }
-        @media (max-width: 768px) {
-            body { padding: 1rem; }
-            pre { font-size: 0.85em; padding: 0.75rem; }
-            table { font-size: 0.9em; display: block; overflow-x: auto; }
-            th, td { padding: 0.5rem; }
-            h1 { font-size: 1.5rem; }
-            h2 { font-size: 1.25rem; }
-        }
-        code {
-            font-family: 'SF Mono', Monaco, monospace;
-            font-size: 0.9em;
-        }
-        :not(pre) > code {
-            background: #334155;
-            padding: 0.2rem 0.4rem;
-            border-radius: 4px;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 1rem 0;
-            background: #1e293b;
-            border-radius: 8px;
-            overflow: hidden;
-        }
-        th, td {
-            padding: 0.75rem 1rem;
-            text-align: left;
-            border-bottom: 1px solid #334155;
-        }
-        th { background: #334155; color: #f8fafc; font-weight: 600; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--dark-bg); color: var(--white); line-height: 1.6; }
+        .top-nav { background: var(--navy); padding: 0.75rem 1rem; position: sticky; top: 0; z-index: 100; border-bottom: 2px solid var(--orange); }
+        .nav-container { max-width: 1000px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; }
+        .nav-brand { display: flex; align-items: center; gap: 0.5rem; }
+        .nav-logo { height: 28px; }
+        .breadcrumb { font-size: 0.8rem; color: var(--gray); }
+        .breadcrumb a { color: var(--orange); text-decoration: none; }
+        .nav-actions { display: flex; gap: 0.5rem; }
+        .nav-btn { background: rgba(255,255,255,0.1); color: var(--white); text-decoration: none; padding: 0.4rem 0.75rem; border-radius: 4px; font-size: 0.8rem; }
+        .nav-btn:hover { background: var(--orange); }
+        .toc-toggle { background: var(--card-bg); border: 1px solid var(--border); color: var(--white); padding: 0.75rem 1rem; width: 100%; text-align: left; cursor: pointer; font-size: 0.9rem; border-radius: 8px; margin-bottom: 1rem; display: flex; justify-content: space-between; }
+        .toc-toggle:after { content: '▼'; font-size: 0.7rem; }
+        .toc-toggle.open:after { content: '▲'; }
+        .toc { background: var(--card-bg); border: 1px solid var(--border); border-radius: 8px; padding: 1rem; margin-bottom: 1.5rem; display: none; }
+        .toc.open { display: block; }
+        .toc-list { list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 0.25rem; }
+        .toc-list a { color: var(--white); text-decoration: none; font-size: 0.85rem; padding: 0.35rem 0.5rem; display: block; border-left: 2px solid transparent; }
+        .toc-list a:hover { color: var(--orange); border-left-color: var(--orange); }
+        .main { max-width: 900px; margin: 0 auto; padding: 1.5rem 1rem; }
+        .page-header { margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 2px solid var(--orange); }
+        .page-header h1 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+        .meta-row { display: flex; flex-wrap: wrap; gap: 1rem; font-size: 0.8rem; color: var(--gray); }
+        .section { margin-bottom: 2rem; scroll-margin-top: 80px; }
+        .section h2 { font-size: 1.1rem; font-weight: 600; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border); color: var(--orange); }
+        p { margin-bottom: 0.75rem; font-size: 0.95rem; }
+        .callout { background: var(--card-bg); border-left: 3px solid var(--orange); padding: 0.75rem 1rem; margin: 0.75rem 0; border-radius: 0 6px 6px 0; font-size: 0.9rem; }
+        .script-box { background: var(--navy); border: 1px solid var(--border); border-radius: 8px; padding: 1rem; margin: 0.75rem 0; font-family: 'SF Mono', Monaco, monospace; font-size: 0.8rem; white-space: pre-wrap; overflow-x: auto; line-height: 1.5; }
+        table { width: 100%; border-collapse: collapse; margin: 0.75rem 0; font-size: 0.9rem; background: var(--card-bg); border-radius: 8px; overflow: hidden; }
+        th, td { padding: 0.6rem 0.75rem; text-align: left; border-bottom: 1px solid var(--border); }
+        th { background: var(--navy); font-weight: 600; font-size: 0.8rem; }
         tr:last-child td { border-bottom: none; }
-        hr { border: none; border-top: 1px solid #334155; margin: 2rem 0; }
-        a { color: #3b82f6; }
-        strong { color: #f8fafc; }
-        .meta {
-            background: #1e293b;
-            padding: 1rem;
-            border-radius: 8px;
-            margin-bottom: 2rem;
-            border-left: 4px solid #3b82f6;
-        }
-        .meta p { margin: 0.25rem 0; font-size: 0.9rem; color: #94a3b8; }
-        footer {
-            margin-top: 3rem;
-            padding-top: 2rem;
-            border-top: 1px solid #334155;
-            text-align: center;
-            color: #64748b;
-            font-size: 0.875rem;
-        }
+        ul, ol { margin: 0.5rem 0 0.75rem 1.25rem; font-size: 0.9rem; }
+        li { margin-bottom: 0.35rem; }
+        h3 { color: var(--orange); margin: 1rem 0 0.5rem; font-size: 1rem; }
+        .checklist { list-style: none; margin-left: 0; }
+        .checklist li { padding-left: 1.5rem; position: relative; }
+        .checklist li:before { content: '☐'; position: absolute; left: 0; }
+        .page-nav { display: flex; justify-content: space-between; gap: 1rem; margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+        .page-nav a { background: var(--card-bg); padding: 0.75rem 1rem; border-radius: 8px; text-decoration: none; color: var(--white); font-size: 0.85rem; border: 1px solid var(--border); flex: 1; max-width: 45%; }
+        .page-nav a:hover { border-color: var(--orange); }
+        .page-nav .next { text-align: right; }
+        .page-nav .label { font-size: 0.7rem; color: var(--gray); display: block; margin-bottom: 0.25rem; }
+        footer { text-align: center; padding: 1.5rem; color: var(--gray); font-size: 0.8rem; border-top: 1px solid var(--border); margin-top: 2rem; }
+        footer a { color: var(--orange); }
+        .back-top { position: fixed; bottom: 1rem; right: 1rem; background: var(--orange); color: var(--white); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 1.2rem; opacity: 0; transition: opacity 0.2s; }
+        .back-top.visible { opacity: 1; }
     </style>
 </head>
 <body>
-    <div class="container">
-        <a href="../index.html" class="back-link">← Back to Portal</a>
-        <h1 id="launch-call-checklist">Launch Call Checklist</h1>
+    <nav class="top-nav">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <img src="../assets/Slate_Systems_Logo_White.png" alt="Slate" class="nav-logo">
+                <span class="breadcrumb"><a href="../index.html">Admin</a> / <a href="../index.html#sales-sops">Sales</a> / Launch Call</span>
+            </div>
+            <div class="nav-actions">
+                <a href="../glossary.html" class="nav-btn">Glossary</a>
+                <a href="../index.html" class="nav-btn">← Portal</a>
+            </div>
+        </div>
+    </nav>
 
-<blockquote><strong>Role:</strong> Closer</blockquote>
-<blockquote><strong>Duration:</strong> 30-45 minutes</blockquote>
-<blockquote><strong>Platform:</strong> Google Meet</blockquote>
+    <main class="main">
+        <header class="page-header">
+            <h1>🚀 Launch Call Checklist</h1>
+            <div class="meta-row">
+                <span>⏱️ 30-45 min</span>
+                <span>📍 Google Meet</span>
+                <span>📅 Feb 23, 2026</span>
+            </div>
+        </header>
 
-<hr>
+        <button class="toc-toggle" onclick="this.classList.toggle('open'); document.querySelector('.toc').classList.toggle('open');">📑 Table of Contents</button>
+        <nav class="toc">
+            <ul class="toc-list">
+                <li><a href="#pre-call">Pre-Call Prep</a></li>
+                <li><a href="#open">1. Open</a></li>
+                <li><a href="#app">2. App Setup</a></li>
+                <li><a href="#website">3. Website Walkthrough</a></li>
+                <li><a href="#reviews">4. Review System</a></li>
+                <li><a href="#textback">5. Auto Text-Back</a></li>
+                <li><a href="#dream">6. Dream Outcome</a></li>
+                <li><a href="#wrap">7. Wrap-up</a></li>
+                <li><a href="#post-call">Post-Call Actions</a></li>
+                <li><a href="#blockers">Common Blockers</a></li>
+            </ul>
+        </nav>
 
-<h2 id="pre-call-prep-before-client-joins">Pre-Call Prep (Before Client Joins)</h2>
+        <section class="section" id="pre-call">
+            <h2>Pre-Call Prep (Before Client Joins)</h2>
 
-<strong>Verify in GHL:</strong>
-<ul><li class="checkbox"><input type="checkbox" disabled> Website live and loading</li>
-<li class="checkbox"><input type="checkbox" disabled> All automations configured</li>
-<li class="checkbox"><input type="checkbox" disabled> Phone number provisioned (or status known)</li>
-<li class="checkbox"><input type="checkbox" disabled> Review funnel tested</li>
-<li class="checkbox"><input type="checkbox" disabled> Chat widget working</li>
-<li class="checkbox"><input type="checkbox" disabled> Quote form tested</li>
-<li class="checkbox"><input type="checkbox" disabled> Client's sub-account credentials ready</li>
-</ul>
-<strong>Know These Blockers:</strong>
-<ul><li>A2P status (pending = explain 5-7 day wait)</li>
-<li>GMB status (connected or needs client action)</li>
-<li>Missing assets (photos, social links)</li>
-</ul>
-<hr>
+            <h3>Verify in GHL:</h3>
+            <ul class="checklist">
+                <li>Website live and loading</li>
+                <li>All automations configured</li>
+                <li>Phone number provisioned (or status known)</li>
+                <li>Review funnel tested</li>
+                <li>Chat widget working</li>
+                <li>Quote form tested</li>
+                <li>Client's sub-account credentials ready</li>
+            </ul>
 
-<h2 id="call-flow">Call Flow</h2>
+            <h3>Know These Blockers:</h3>
+            <ul>
+                <li>A2P status (pending = explain 5-7 day wait)</li>
+                <li>GMB status (connected or needs client action)</li>
+                <li>Missing assets (photos, social links)</li>
+            </ul>
+        </section>
 
-<h3 id="1-open-2-min">1. Open (2 min)</h3>
-<blockquote>"Everything's done, just want to show you what we built"</blockquote>
+        <section class="section" id="open">
+            <h2>1. Open (2 min)</h2>
+            <div class="script-box">"Everything's done, just want to show you what we built"</div>
+            <ul>
+                <li>Address blockers upfront if any</li>
+                <li>Set expectation: 30 min walkthrough</li>
+            </ul>
+        </section>
 
-<ul><li>Address blockers upfront if any</li>
-<li>Set expectation: 30 min walkthrough</li>
-</ul>
-<h3 id="2-app-setup-5-min">2. App Setup (5 min)</h3>
+        <section class="section" id="app">
+            <h2>2. App Setup (5 min)</h2>
 
-<strong>Check:</strong>
-<ul><li class="checkbox"><input type="checkbox" disabled> Lead Connector app downloaded?</li>
-<li class="checkbox"><input type="checkbox" disabled> If not, guide them: iPhone / Android links</li>
-</ul>
-<strong>If login issues:</strong>
-<ul><li>Reset password (must include special character)</li>
-<li>Show inbox view</li>
-</ul>
-<strong>Key message:</strong>
-<blockquote>"You'll never have to use the app besides seeing conversations"</blockquote>
+            <h3>Check:</h3>
+            <ul class="checklist">
+                <li>Lead Connector app downloaded?</li>
+                <li>If not, guide them: iPhone / Android links</li>
+            </ul>
 
-<h3 id="3-website-walkthrough-10-min">3. Website Walkthrough (10 min)</h3>
+            <h3>If login issues:</h3>
+            <ul>
+                <li>Reset password (must include special character)</li>
+                <li>Show inbox view</li>
+            </ul>
 
-<p>Walk through in this order:<br><ul><li class="checkbox"><input type="checkbox" disabled> Homepage + quote form</li><br><li class="checkbox"><input type="checkbox" disabled> Chat widget (test it live)</li><br><li class="checkbox"><input type="checkbox" disabled> Service pages (explain SEO value)</li><br><li class="checkbox"><input type="checkbox" disabled> Service area pages (explain SEO value)</li><br><li class="checkbox"><input type="checkbox" disabled> Contact page</li><br><li class="checkbox"><input type="checkbox" disabled> Reviews section (auto-populates from Google)</li><br><li class="checkbox"><input type="checkbox" disabled> About Us (collect photo if missing)</li><br><li class="checkbox"><input type="checkbox" disabled> Privacy policy + terms (compliance)</li><br></ul><br><h3 id="4-review-system-demo-10-min">4. Review System Demo (10 min)</h3></p>
+            <div class="callout">
+                <strong>Key message:</strong> "You'll never have to use the app besides seeing conversations"
+            </div>
+        </section>
 
-<strong>This is their favorite feature. Spend time here.</strong>
+        <section class="section" id="website">
+            <h2>3. Website Walkthrough (10 min)</h2>
+            <p>Walk through in this order:</p>
+            <ul class="checklist">
+                <li>Homepage + quote form</li>
+                <li>Chat widget (test it live)</li>
+                <li>Service pages (explain SEO value)</li>
+                <li>Service area pages (explain SEO value)</li>
+                <li>Contact page</li>
+                <li>Reviews section (auto-populates from Google)</li>
+                <li>About Us (collect photo if missing)</li>
+                <li>Privacy policy + terms (compliance)</li>
+            </ul>
+        </section>
 
-<ul><li class="checkbox"><input type="checkbox" disabled> Show 5-star funnel live</li>
-<li class="checkbox"><input type="checkbox" disabled> Explain: 4-5 stars → Google, 1-3 stars → private feedback</li>
-<li class="checkbox"><input type="checkbox" disabled> Show the marketing form in app</li>
-<li class="checkbox"><input type="checkbox" disabled> Demo: enter a test customer</li>
-</ul>
-<strong>Key message:</strong>
-<blockquote>"This is literally the only thing you'll ever have to do"</blockquote>
+        <section class="section" id="reviews">
+            <h2>4. Review System Demo (10 min)</h2>
+            <div class="callout"><strong>This is their favorite feature. Spend time here.</strong></div>
 
-<strong>Explain the automation:</strong>
-<ul><li>5 reminders over 4 weeks</li>
-<li>1-year follow-up sequence</li>
-<li>Limit: 70-80 people/day max</li>
-</ul>
-<h3 id="5-auto-call-text-back-demo-5-min">5. Auto Call Text-Back Demo (5 min)</h3>
+            <ul class="checklist">
+                <li>Show 5-star funnel live</li>
+                <li>Explain: 4-5 stars → Google, 1-3 stars → private feedback</li>
+                <li>Show the marketing form in app</li>
+                <li>Demo: enter a test customer</li>
+            </ul>
 
-<ul><li class="checkbox"><input type="checkbox" disabled> Test phone number forwarding (call their toll-free)</li>
-<li class="checkbox"><input type="checkbox" disabled> Show missed call workflow</li>
-<li class="checkbox"><input type="checkbox" disabled> Explain misspelling trick (seems human)</li>
-</ul>
-<h3 id="6-dream-outcome-5-min">6. Dream Outcome (5 min)</h3>
+            <div class="script-box">"This is literally the only thing you'll ever have to do"</div>
 
-<strong>Show example results:</strong>
-<ul><li>300+ reviews</li>
-<li>800+ customer interactions</li>
-<li>Zero paid ads for organic traffic</li>
-</ul>
-<strong>Set goal:</strong>
-<blockquote>"At 6-8 months: 70+ reviews, Google becomes your organic acquisition system"</blockquote>
+            <h3>Explain the automation:</h3>
+            <ul>
+                <li>5 reminders over 4 weeks</li>
+                <li>1-year follow-up sequence</li>
+                <li>Limit: 70-80 people/day max</li>
+            </ul>
+        </section>
 
-<strong>Key message:</strong>
-<blockquote>"These are high-intent leads coming directly to you, not being sold to 10 people at once"</blockquote>
+        <section class="section" id="textback">
+            <h2>5. Auto Call Text-Back Demo (5 min)</h2>
+            <ul class="checklist">
+                <li>Test phone number forwarding (call their toll-free)</li>
+                <li>Show missed call workflow</li>
+                <li>Explain misspelling trick (seems human)</li>
+            </ul>
+        </section>
 
-<h3 id="7-wrap-up-5-min">7. Wrap-up (5 min)</h3>
+        <section class="section" id="dream">
+            <h2>6. Dream Outcome (5 min)</h2>
+            <h3>Show example results:</h3>
+            <ul>
+                <li>300+ reviews</li>
+                <li>800+ customer interactions</li>
+                <li>Zero paid ads for organic traffic</li>
+            </ul>
 
-<strong>Send via SMS during call:</strong>
-<ul><li class="checkbox"><input type="checkbox" disabled> Website URL</li>
-<li class="checkbox"><input type="checkbox" disabled> Their quick links page: <code>[their-site]/my-links</code></li>
-<li class="checkbox"><input type="checkbox" disabled> Help center: <code>help.slatesystems.io</code></li>
-</ul>
-<strong>Tell them:</strong>
-<blockquote>"Bookmark your quick links page — that's where you'll find your website URL, review link, and phone number anytime you need them. And if you ever forget how something works, help.slatesystems.io has guides for everything."</blockquote>
+            <div class="script-box">"At 6-8 months: 70+ reviews, Google becomes your organic acquisition system"</div>
 
-<strong>Collect if missing:</strong>
-<ul><li class="checkbox"><input type="checkbox" disabled> About Us photo</li>
-<li class="checkbox"><input type="checkbox" disabled> Social media links</li>
-</ul>
-<strong>Offer:</strong>
-<ul><li>Business cards (~$20)</li>
-</ul>
-<strong>Set expectation:</strong>
-<blockquote>"Check back in 2-3 months for SEO discussion"</blockquote>
+            <div class="callout">
+                <strong>Key message:</strong> "These are high-intent leads coming directly to you, not being sold to 10 people at once"
+            </div>
+        </section>
 
-<hr>
+        <section class="section" id="wrap">
+            <h2>7. Wrap-up (5 min)</h2>
 
-<h2 id="post-call-actions">Post-Call Actions</h2>
+            <h3>Send via SMS during call:</h3>
+            <ul class="checklist">
+                <li>Website URL</li>
+                <li>Their quick links page: <code>[their-site]/my-links</code></li>
+                <li>Help center: <code>help.slatesystems.io</code></li>
+            </ul>
 
-<p>In GHL:<br><ul><li class="checkbox"><input type="checkbox" disabled> Move opportunity to "Active" stage</li><br><li class="checkbox"><input type="checkbox" disabled> Verify <code>currentclient</code> tag added (WF-OB6 does this)</li><br></ul><br>Send within 24 hours:<br><ul><li class="checkbox"><input type="checkbox" disabled> Post-launch Loom video (see <code>post-launch-video.md</code>)</li><br><li class="checkbox"><input type="checkbox" disabled> Reference help.slatesystems.io in video</li><br><li class="checkbox"><input type="checkbox" disabled> Reference their /my-links page for quick access</li><br></ul><br>In Slack/Notes:<br><ul><li class="checkbox"><input type="checkbox" disabled> Log any issues or follow-ups needed</li><br><li class="checkbox"><input type="checkbox" disabled> Note if testimonial/referral was requested</li><br></ul><br><hr></p>
+            <div class="script-box">"Bookmark your quick links page — that's where you'll find your website URL, review link, and phone number anytime you need them. And if you ever forget how something works, help.slatesystems.io has guides for everything."</div>
 
-<h2 id="common-blockers-scripts">Common Blockers + Scripts</h2>
+            <h3>Collect if missing:</h3>
+            <ul class="checklist">
+                <li>About Us photo</li>
+                <li>Social media links</li>
+            </ul>
 
-<h3 id="a2p-registration-pending">A2P Registration Pending</h3>
-<blockquote>"Your phone number is in the verification queue. Takes 5-7 business days. You can still receive calls, but automated texts won't go out until approved. I'll let you know as soon as it's live."</blockquote>
+            <h3>Offer:</h3>
+            <ul>
+                <li>Business cards (~$20)</li>
+            </ul>
 
-<h3 id="a2p-rejected">A2P Rejected</h3>
-<blockquote>"The carrier rejected the first submission. We're resubmitting with corrections. I'll push back your billing until it's resolved."</blockquote>
+            <div class="script-box">"Check back in 2-3 months for SEO discussion"</div>
+        </section>
 
-<h3 id="gmb-not-verified">GMB Not Verified</h3>
-<blockquote>"Google needs to verify your business. You'll get a postcard in 5-7 days with a code. As soon as you get it, text me the code and I'll enter it."</blockquote>
+        <section class="section" id="post-call">
+            <h2>Post-Call Actions</h2>
 
-<h3 id="gmb-claimed-by-someone-else">GMB Claimed by Someone Else</h3>
-<blockquote>"Looks like someone else claimed your Google listing. We need to request access or recover it. I'll send you the steps."</blockquote>
+            <h3>In GHL:</h3>
+            <ul class="checklist">
+                <li>Move opportunity to "Active" stage</li>
+                <li>Verify <code>currentclient</code> tag added (WF-OB6 does this)</li>
+            </ul>
 
-<h3 id="missing-about-us-photo">Missing About Us Photo</h3>
-<blockquote>"Can you send me a photo of yourself or your team? Doesn't have to be professional - just something real. Makes a big difference for trust."</blockquote>
+            <h3>Send within 24 hours:</h3>
+            <ul class="checklist">
+                <li>Post-launch Loom video (see Post-Launch Video SOP)</li>
+                <li>Reference help.slatesystems.io in video</li>
+                <li>Reference their /my-links page for quick access</li>
+            </ul>
 
-<hr>
+            <h3>In Slack/Notes:</h3>
+            <ul class="checklist">
+                <li>Log any issues or follow-ups needed</li>
+                <li>Note if testimonial/referral was requested</li>
+            </ul>
+        </section>
 
-<h2 id="billing-adjustment-rule">Billing Adjustment Rule</h2>
+        <section class="section" id="blockers">
+            <h2>Common Blockers + Scripts</h2>
 
-<blockquote>"If we promised 14 days and it's not done, push back billing by however many days it takes."</blockquote>
+            <h3>A2P Registration Pending</h3>
+            <div class="script-box">"Your phone number is in the verification queue. Takes 5-7 business days. You can still receive calls, but automated texts won't go out until approved. I'll let you know as soon as it's live."</div>
 
-<p>Document any billing adjustments in client notes.</p>
+            <h3>A2P Rejected</h3>
+            <div class="script-box">"The carrier rejected the first submission. We're resubmitting with corrections. I'll push back your billing until it's resolved."</div>
 
-<hr>
+            <h3>GMB Not Verified</h3>
+            <div class="script-box">"Google needs to verify your business. You'll get a postcard in 5-7 days with a code. As soon as you get it, text me the code and I'll enter it."</div>
 
-<em>Last updated: Feb 22, 2026 — Added help.slatesystems.io and /my-links references</em>
+            <h3>GMB Claimed by Someone Else</h3>
+            <div class="script-box">"Looks like someone else claimed your Google listing. We need to request access or recover it. I'll send you the steps."</div>
 
-        <footer>
-            <p>&copy; 2026 Slate Systems Inc. Internal use only.</p>
-        </footer>
-    </div>
+            <h3>Missing About Us Photo</h3>
+            <div class="script-box">"Can you send me a photo of yourself or your team? Doesn't have to be professional - just something real. Makes a big difference for trust."</div>
+
+            <div class="callout" style="margin-top: 1.5rem;">
+                <strong>Billing Adjustment Rule:</strong> "If we promised 14 days and it's not done, push back billing by however many days it takes." Document any billing adjustments in client notes.
+            </div>
+        </section>
+
+        <nav class="page-nav">
+            <a href="show-rate-optimization.html"><span class="label">← Previous</span>Show Rate</a>
+            <a href="cancellation-saves.html" class="next"><span class="label">Next →</span>Cancellation Saves</a>
+        </nav>
+    </main>
+
+    <footer>© 2026 Slate Systems | <a href="../glossary.html">Glossary</a> | <a href="../index.html">Portal</a></footer>
+    <a href="#" class="back-top" id="backTop">↑</a>
+    <script>window.addEventListener('scroll', () => { document.getElementById('backTop').classList.toggle('visible', window.scrollY > 500); });</script>
 </body>
 </html>

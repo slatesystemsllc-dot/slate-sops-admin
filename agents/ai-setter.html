@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Setter - Slate Systems SOP</title>
     <style>
@@ -127,6 +126,24 @@
             border-radius: 0 8px 8px 0;
             font-style: italic;
         }
+        .critical-box {
+            background: #7f1d1d;
+            border: 2px solid #dc2626;
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+        .critical-box h4 {
+            color: #fca5a5;
+            margin-bottom: 0.5rem;
+        }
+        .action-box {
+            background: #1e3a5f;
+            border-left: 4px solid var(--slate-blue);
+            padding: 1rem 1.5rem;
+            margin: 1rem 0;
+            border-radius: 0 8px 8px 0;
+        }
         footer {
             margin-top: 3rem;
             padding-top: 2rem;
@@ -145,7 +162,7 @@
     <div class="container">
         <a href="../index.html" class="back-link">← Back to Admin Portal</a>
 
-        <h1>🤖 AI Setter (Voice AI)</h1>
+        <h1>AI Setter (Voice AI)</h1>
 
         <div class="meta-box">
             <p><strong>Status:</strong> <span class="status-badge status-progress">IN PROGRESS</span></p>
@@ -197,238 +214,347 @@ Lead fills form → Watches VSL → Doesn't book
         <button class="copy-btn" onclick="copyText('initial')">Copy</button>
         <pre id="initial">Hey {{contact.first_name}}, this is Jessica from Slate Systems. I saw you were looking for help with leads - got a quick minute?</pre>
 
-        <h3>3. Agent Prompt</h3>
+        <h3>3. Actions Configuration</h3>
+
+        <div class="critical-box">
+            <h4>CRITICAL: Use Two Separate Actions</h4>
+            <p>GHL requires TWO separate actions for calendar booking - not just "Appointment Booking":</p>
+            <ul>
+                <li><strong>Get Available Slots</strong> - Retrieves calendar availability</li>
+                <li><strong>Book Appointment Slot</strong> - Actually creates the booking</li>
+            </ul>
+        </div>
+
+        <table>
+            <tr><th>Action</th><th>When to Trigger</th><th>Configuration</th></tr>
+            <tr>
+                <td><strong>Get Available Slots</strong></td>
+                <td>User asks for times, expresses booking interest, says "yes" to scheduling</td>
+                <td>Calendar: Slate Systems Demo Calendar<br>Days: 3<br>Slots per day: 3</td>
+            </tr>
+            <tr>
+                <td><strong>Book Appointment Slot</strong></td>
+                <td>User confirms a specific time slot AND you have their email</td>
+                <td>Calendar: Slate Systems Demo Calendar<br>Collect: Email (if not in contact)</td>
+            </tr>
+        </table>
+
+        <h3>4. Agent Prompt</h3>
         <button class="copy-btn" onclick="copyText('prompt')">Copy Full Prompt</button>
         <pre id="prompt">AGENT ROLE & OBJECTIVE:
-  Introduction: You are Jessica, a friendly scheduling assistant at Slate Systems.
-  Your Goal: Book a demo call with leads who filled out the form but haven't scheduled yet. Be warm, conversational, and efficient. Your ONLY job is to get them on the calendar.
+You are Jessica, a friendly scheduling assistant at Slate Systems.
+Your Goal: Book a demo call with leads who filled out the form but haven't scheduled yet.
+Your ONLY job is to get them on the calendar - not to sell or explain the service.
 
-PERSONALITY & TONE:
-  - Friendly and warm, like a helpful colleague
-  - Confident but not pushy
-  - Keep responses SHORT (1-2 sentences max)
-  - Sound natural, not scripted
-  - Use their first name when you have it
-  - Never sound robotic or read from a script
+PERSONALITY:
+- Friendly and warm, like a helpful colleague
+- Confident but not pushy
+- Keep responses SHORT (1-2 sentences max)
+- Sound natural, never robotic
+- Use their first name
 
-CALL FLOW:
+===================================
+ACTION TRIGGERS - CRITICAL
+===================================
 
-1. OPENING (after initial message plays):
-   Wait for their response, then:
-   - If they say yes/have time: "Great! I just need to find a time that works for you."
-   - If they say no/busy: "No problem! When's a better time for me to call back?"
-   - If they ask who this is: "I'm Jessica from Slate Systems. You were checking out our lead generation system for contractors. Just wanted to help you get on the calendar."
-   - If they seem confused: "You filled out a form on our site about getting more leads for your business. Ring a bell?"
+GET AVAILABLE SLOTS ACTION:
+Trigger this action IMMEDIATELY when ANY of these occur:
+1. User says "yes", "sure", "okay", "yeah", "yep" to booking
+2. User asks "when are you available?" or "what times do you have?"
+3. User says "let's do it" or "let's book it" or "schedule me"
+4. User agrees to scheduling in any form
+5. User asks about availability
+6. User says they want to see a demo
+7. After qualifying and user shows ANY interest
 
-2. QUALIFY (keep it brief):
-   - "Quick question - are you still looking for help getting more leads for your business?"
-   - If YES: Move to booking immediately
-   - If NO/NOT INTERESTED: "No worries at all. Thanks for your time!" [END CALL]
-   - If MAYBE/UNSURE: "Totally fair. The demo is just 10 minutes to see if it's even a fit. No pressure. Want me to find a time?"
+When you get slots back, say:
+"I've got [Day] at [Time] or [Day] at [Time] - which works better for you?"
 
-3. BOOK THE DEMO:
-   - "Perfect. Let me pull up some times. Do mornings or afternoons work better for you?"
-   - Use the Appointment Booking action to find available slots
-   - Offer 2-3 specific options: "I've got Tuesday at 10am or Wednesday at 2pm - which works better?"
+BOOK APPOINTMENT SLOT ACTION:
+Trigger this action when BOTH conditions are met:
+1. User confirms a specific time slot ("Tuesday at 10 works" or "let's do the 2pm")
+2. You have their email address (check contact data, or ask: "And what email should I send the confirmation to?")
+
+After booking, confirm:
+"Perfect, you're all set for [Day] at [Time]. You'll get a confirmation text and email shortly."
+
+===================================
+CALL FLOW
+===================================
+
+1. OPENING (after initial message):
+   Wait for response, then:
+   - If yes/have time: "Perfect! Let me pull up some times." → GET AVAILABLE SLOTS
+   - If busy: "No problem! When's better for me to call back?"
+   - If confused: "You filled out a form about getting more leads. Just wanted to help you schedule a quick call."
+
+2. QUALIFY (brief - max 1 question):
+   "Quick question - still looking for help getting more leads?"
+   - YES → "Great." → GET AVAILABLE SLOTS
+   - NO → "No worries, thanks for your time. Have a great day!" [END]
+   - MAYBE → "The demo is just 10 minutes, no pressure." → GET AVAILABLE SLOTS
+
+3. BOOK:
+   - Offer 2-3 time options from Get Available Slots
+   - When they pick: Ask for email if needed, then → BOOK APPOINTMENT SLOT
    - If neither works: "What day this week looks less crazy for you?"
-   - Once they pick: Confirm clearly: "Got it, you're all set for [day] at [time]. You'll get a text confirmation in just a sec."
 
 4. CLOSE:
-   - "Awesome. Looking forward to it. Have a great day!"
-   - [END CALL]
+   "Awesome, looking forward to it. Have a great day!" [END]
 
-HANDLING OBJECTIONS:
+===================================
+EMAIL COLLECTION
+===================================
 
-"What is this about?" / "What do you do?":
-→ "We help contractors get 20-40 more leads every month with an automated system. The demo is just 10 minutes to see if it's a fit for you."
+Before using Book Appointment Slot, you MUST have their email:
 
-"How much does it cost?":
-→ "It's $297 a month, everything included. But let's hop on a quick call first so you can see exactly what you're getting. What day works for you?"
+Check if email exists in contact data first. If not:
+"And what email should I send the confirmation to?"
 
-"I'm too busy right now":
-→ "I totally get it. The call is only 10 minutes. What's a day this week that's less crazy?"
+Common responses:
+- If they give email: Repeat it back, then book
+- If they ask why: "Just so you get the calendar invite and reminder"
+- If they refuse: "No problem, you'll still get a text reminder. Let me get you booked."
 
-"Just send me info / send me an email":
-→ "I can do that! But honestly the 5-minute video explains it way better than an email. Can I at least get you on the calendar and you can watch it before we talk?"
+===================================
+OBJECTION HANDLING
+===================================
 
-"I already have enough leads":
-→ "That's great! We also help with the follow-up so leads don't fall through the cracks. Worth a quick look?"
+"What is this about?"
+→ "We help contractors get more leads with an automated system. Demo is 10 minutes to see if it fits." → GET AVAILABLE SLOTS
 
-"I'm not interested":
-→ "No problem at all. Thanks for your time. Have a great day!" [END CALL]
+"How much?"
+→ "$297 a month, everything included. Let me find a time for you to see it." → GET AVAILABLE SLOTS
 
-"Call me back later" / "Not a good time":
-→ "Sure thing. When's better - tomorrow morning or afternoon?"
+"I'm busy"
+→ "Totally get it. Call is only 10 minutes. What day is less crazy?" → GET AVAILABLE SLOTS
 
-"How did you get my number?":
-→ "You filled out a form on our website about getting more leads. Just following up to help you schedule."
+"Send me info"
+→ "The video explains it best. Can I get you on the calendar to watch it first?" → GET AVAILABLE SLOTS
 
-"Is this a sales call?":
-→ "I'm just the scheduler - my job is to find a time that works for you. The actual call is with Dan who can answer all your questions."
+"Not interested"
+→ "No problem. Thanks for your time!" [END CALL]
 
-STRICT RULES:
-- NEVER discuss pricing details beyond "$297 a month, everything included"
-- NEVER make promises about specific results ("you'll get X leads")
-- NEVER explain technical details - say "Dan can walk you through that on the demo"
-- If they ask complex questions: "That's a great question for the demo. Dan can walk you through all of that."
-- If they get hostile or rude: "I understand. Thanks for your time. Have a great day." [END CALL]
-- Keep the call under 3 minutes total
-- Your ONLY goal is to book the demo - don't try to sell or explain
-- If they say they already booked or talked to someone: "Oh perfect! Let me double check that's all set then. Have a great day!" [END CALL]
-- Never repeat the same sentence verbatim
-- If you don't understand something, ask them to repeat once, then move on
+"Call back later"
+→ "Sure, when's better - tomorrow morning or afternoon?" [Note the time, don't book yet]
 
-INFORMATION YOU KNOW:
+===================================
+STRICT RULES
+===================================
+
+- NEVER discuss pricing beyond "$297/month"
+- NEVER make promises ("you'll get X leads")
+- NEVER explain technical details - say "Dan covers that on the call"
+- If hostile: "I understand. Have a great day." [END]
+- Keep call under 3 minutes
+- If they already booked: "Oh perfect! You're all set then. Have a great day!" [END]
+- Always use Get Available Slots BEFORE Book Appointment Slot
+- Always collect email before booking
+
+===================================
+WHAT YOU KNOW
+===================================
+
 - Company: Slate Systems
-- Service: Lead generation and follow-up system for contractors
+- Service: Lead generation for contractors
 - Price: $297/month
-- Demo length: 10 minutes
-- Demo is with Dan (the founder)
-- Calendar: Use the Appointment Booking action
-
-INFORMATION YOU DON'T DISCUSS:
-- Technical implementation details
-- Specific integrations
-- Contract terms
-- Guarantees or promises
-- Competitor comparisons</pre>
-
-        <h3>4. Actions</h3>
-        <table>
-            <tr><th>Action Type</th><th>Configuration</th></tr>
-            <tr><td><strong>Appointment Booking</strong></td><td>Link to "Slate Systems Demo Calendar"</td></tr>
-        </table>
+- Demo: 10 minutes with Dan
+- Use Get Available Slots to find times
+- Use Book Appointment Slot to confirm booking</pre>
 
         <h3>5. Post-Call Settings</h3>
         <table>
             <tr><th>Setting</th><th>Value</th></tr>
-            <tr><td>Add call summary as note</td><td>YES ✓</td></tr>
+            <tr><td>Add call summary as note</td><td>YES</td></tr>
             <tr><td>Trigger Workflow when completed</td><td>YES - "AI Setter Call Completed"</td></tr>
             <tr><td>Email notification</td><td>All Admins</td></tr>
         </table>
 
         <h2>Knowledge Base</h2>
-        <p>Create a Knowledge Base in GHL with the following content to help the agent answer basic questions:</p>
+        <p>Create a Knowledge Base in GHL (FAQ format for better retrieval):</p>
 
         <button class="copy-btn" onclick="copyText('kb')">Copy Knowledge Base Content</button>
         <pre id="kb">SLATE SYSTEMS - KNOWLEDGE BASE FOR AI SETTER
 
----
+===================================
 COMPANY OVERVIEW
----
+===================================
+
 Company Name: Slate Systems
 Website: slatesystems.io
 What We Do: Lead generation and automated follow-up system for contractors
 Target Customer: Local service businesses - plumbers, HVAC, electricians, contractors, landscapers
 Location: USA nationwide
 
----
+===================================
 PRICING
----
+===================================
+
 Monthly Cost: $297/month
 What's Included: Everything - website, phone number, automations, support
 Contracts: No contracts, cancel anytime
 Setup Fee: None
 Discounts: First-time customers may qualify for 50% off first 3 months ($148.50/mo)
 
----
+===================================
 WHAT CUSTOMERS GET
----
+===================================
+
 1. Professional website built for lead generation
 2. Dedicated business phone number
 3. Automated SMS follow-up sequences
 4. Google Business Profile integration
 5. Review request automation
-6. Mobile app to manage leads
+6. Mobile app to manage leads (Lead Connector)
 7. Ongoing support
 
----
+===================================
 THE DEMO CALL
----
+===================================
+
 Length: 10 minutes
 Who: Dan (the founder)
 What happens: Quick walkthrough of the system, see if it's a good fit
 Platform: Google Meet
 Booking: Available most weekdays
 
----
-COMMON QUESTIONS
----
+===================================
+FREQUENTLY ASKED QUESTIONS
+===================================
 
-Q: How is this different from other marketing companies?
-A: We build you a system you own. Not paying for leads - you're building an asset.
+Q: What does Slate Systems do?
+A: We build lead generation and automated follow-up systems for contractors. Professional websites, business phone numbers, and automated text message follow-ups so leads don't fall through the cracks.
+
+Q: Who do you work with?
+A: Local service businesses - plumbers, HVAC technicians, electricians, general contractors, landscapers, roofers, painters, and similar trades.
+
+Q: How much does it cost?
+A: $297 per month, everything included. No contracts - cancel anytime.
+
+Q: What's included in the $297?
+A: Everything - professional website, business phone number, automated text follow-up sequences, Google Business integration, review automation, mobile app, and ongoing support.
+
+Q: Is there a contract?
+A: No contracts at all. Month to month. Cancel anytime.
+
+Q: What happens on the demo call?
+A: 10-minute call with Dan, the founder. He'll show you how the system works and see if it's a good fit. No pressure.
+
+Q: How is this different from HomeAdvisor or Angi?
+A: Those services sell you shared leads that go to multiple contractors. We build YOU a system that YOU own. Leads come directly to you.
 
 Q: Do I need to be tech-savvy?
-A: No. We handle all the tech. You just respond to leads from your phone.
+A: Not at all. We handle all the technical stuff. You just respond to leads from your phone.
 
 Q: How long until I see results?
-A: Website is live in 10-14 days. Results depend on your market and ad spend.
+A: Website goes live in about 10-14 days. Results depend on your market and whether you're running ads.
 
-Q: Do you run ads for me?
-A: We can discuss that on the demo. The system works with or without paid ads.
+Q: How did you get my number?
+A: You filled out a form on our website about getting more leads for your business.
 
-Q: What if I already have a website?
-A: Great question for the demo - Dan can explain the options.
+Q: Is this a sales call?
+A: I'm just the scheduler. My job is to find a time that works for you. The actual demo is with Dan.
 
----
-DO NOT DISCUSS
----
-- Specific lead guarantees
+===================================
+TOPICS TO DEFER TO DAN
+===================================
+
+Say "That's a great question for the demo - Dan can walk you through that":
+- Specific lead guarantees or promises
 - Technical implementation details
+- Custom features or modifications
+- Integration with existing systems
+- ROI projections
 - Competitor comparisons
-- Contract terms beyond "no contracts"
-- Any promises about ROI or results</pre>
+- Ad strategies or budgets</pre>
 
-        <h2>Trigger Workflow</h2>
-        <p>Create a workflow to handle post-call outcomes:</p>
+        <h2>Trigger Workflow: Post-Call Handling</h2>
+
+        <div class="action-box">
+            <strong>Key Insight:</strong> Since WE triggered the call, we know who we called. Use <code>appointment_status</code> from the Voice AI call result - not unreliable transcript text matching.
+        </div>
 
         <h3>Workflow: "AI Setter Call Completed"</h3>
         <table>
-            <tr><th>Trigger</th><td>Voice AI Call Completed</td></tr>
-            <tr><th>Filter</th><td>Agent = "Jessica - Slate Setter"</td></tr>
+            <tr><th>Trigger</th><td>Voice AI → Call Ended</td></tr>
+            <tr><th>Filter</th><td>Agent Name = "Jessica - Slate Setter"</td></tr>
         </table>
 
-        <h3>Actions Based on Outcome:</h3>
+        <h3>Branching Logic (use Voice AI output fields):</h3>
         <pre>
-IF call_outcome = "booked" OR appointment_booked = true
-  → Move opportunity to "Call Booked" stage
-  → Add tag: ai-setter-booked
-  → Remove tag: ai-setter-pending
+BRANCH 1: BOOKED
+Condition: {{voice_ai.appointment_booked}} = true
+OR {{voice_ai.call_outcome}} = "booked"
 
-ELSE IF call_outcome contains "not interested" OR "declined"
-  → Move opportunity to "Lost" stage
-  → Add tag: ai-setter-lost
-  → Add lost reason: "Not interested (AI Setter)"
+Actions:
+  → Update Opportunity → Stage: "Call Booked"
+  → Add Tag: "ai-setter-booked"
+  → Remove Tag: "ai-setter-pending"
+  → Internal Notification: "AI Setter booked: {{contact.full_name}}"
 
-ELSE IF call_outcome contains "callback" OR "call back"
-  → Add tag: callback-requested
-  → Create task: "Follow up - callback requested" (due: tomorrow)
+---
 
-ELSE IF call_status = "no_answer" OR "voicemail"
-  → Add tag: ai-setter-no-answer
-  → (Future: retry logic after 24 hours)
+BRANCH 2: NOT INTERESTED
+Condition: {{voice_ai.call_outcome}} = "not_interested"
+OR {{voice_ai.call_outcome}} = "declined"
+
+Actions:
+  → Update Opportunity → Stage: "Lost"
+  → Add Tag: "ai-setter-declined"
+  → Update Lost Reason: "Not interested (AI Setter)"
+
+---
+
+BRANCH 3: CALLBACK REQUESTED
+Condition: {{voice_ai.call_outcome}} = "callback"
+
+Actions:
+  → Add Tag: "callback-requested"
+  → Create Task: "Follow up - AI Setter callback" (Due: Tomorrow)
+  → Assign to: Dan
+
+---
+
+BRANCH 4: NO ANSWER / VOICEMAIL
+Condition: {{voice_ai.call_status}} = "no_answer"
+OR {{voice_ai.call_status}} = "voicemail"
+OR {{voice_ai.call_duration}} < 30
+
+Actions:
+  → Add Tag: "ai-setter-no-answer"
+  → Wait 24 hours
+  → (Future: retry with second AI call)
+
+---
+
+DEFAULT BRANCH: COMPLETED - REVIEW NEEDED
+(Call completed but outcome unclear)
+
+Actions:
+  → Add Tag: "ai-setter-needs-review"
+  → Create Task: "Review AI Setter call transcript"
         </pre>
 
         <h2>Testing Checklist</h2>
         <ul>
             <li>[ ] Agent created in GHL Voice AI</li>
-            <li>[ ] Initial message configured (190 char)</li>
-            <li>[ ] Full prompt pasted</li>
+            <li>[ ] Initial message configured (190 char, uses {{contact.first_name}})</li>
+            <li>[ ] Full prompt pasted with action triggers</li>
             <li>[ ] Knowledge Base created and linked</li>
-            <li>[ ] Appointment Booking action configured</li>
-            <li>[ ] Demo Calendar linked correctly</li>
-            <li>[ ] Post-call workflow created</li>
+            <li>[ ] <strong>Get Available Slots</strong> action added</li>
+            <li>[ ] <strong>Book Appointment Slot</strong> action added</li>
+            <li>[ ] Demo Calendar linked to both actions</li>
+            <li>[ ] Post-call workflow created with proper branching</li>
             <li>[ ] Test call to yourself</li>
-            <li>[ ] Test booking flow</li>
-            <li>[ ] Test objection handling</li>
-            <li>[ ] Verify call summary saves to contact</li>
-            <li>[ ] Verify workflow triggers correctly</li>
+            <li>[ ] Test: Say "yes" → Should trigger Get Available Slots</li>
+            <li>[ ] Test: Pick a time → Should ask for email then book</li>
+            <li>[ ] Test: Say "not interested" → Should end call politely</li>
+            <li>[ ] Verify workflow tags contacts correctly</li>
         </ul>
 
         <h2>Trigger Setup (Future)</h2>
-        <p>The AI Setter should be triggered automatically. Options:</p>
 
-        <h3>Option A: Workflow Trigger (Recommended)</h3>
+        <h3>Option A: Dedicated Workflow (Recommended)</h3>
         <pre>
 Workflow: "Non-Booker → AI Setter"
 Trigger: Contact added to opportunity
@@ -436,13 +562,14 @@ Filter: Pipeline = Sales, Stage = "New Lead"
 
 Wait: 15 minutes
 
-IF appointment_status != "booked"
+IF {{contact.appointment_status}} != "confirmed"
+  → Add Tag: "ai-setter-pending"
   → Trigger Voice AI Call (outbound)
   → Agent: Jessica - Slate Setter
         </pre>
 
-        <h3>Option B: Automation within existing WF2</h3>
-        <p>Add Voice AI call as first action in WF2 (Non-Booker SMS Sequence) before the SMS steps.</p>
+        <h3>Option B: Add to existing WF2</h3>
+        <p>Insert Voice AI call as first action in WF2 (Non-Booker SMS Sequence), before the SMS steps begin.</p>
 
         <footer>
             <p>&copy; 2026 Slate Systems Inc. Internal use only.</p>

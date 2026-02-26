@@ -2,271 +2,264 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cancellation Save SOP - Slate Systems SOP</title>
+    <title>Cancellation Save SOP - Slate Systems</title>
     <style>
+        :root { --navy: #152a45; --gray: #525c69; --orange: #ee7000; --white: #ffffff; --dark-bg: #0d1a2d; --card-bg: #1a2d47; --border: #2a4060; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: #0f172a;
-            color: #e2e8f0;
-            line-height: 1.7;
-            padding: 2rem;
-        }
-        .container { max-width: 900px; margin: 0 auto; }
-        .back-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: #3b82f6;
-            text-decoration: none;
-            margin-bottom: 2rem;
-            font-size: 0.9rem;
-        }
-        .back-link:hover { text-decoration: underline; }
-        h1 { font-size: 2rem; color: #f8fafc; margin-bottom: 0.5rem; border-bottom: 2px solid #3b82f6; padding-bottom: 0.5rem; }
-        h2 { font-size: 1.5rem; color: #f8fafc; margin: 2rem 0 1rem; padding-top: 1rem; border-top: 1px solid #334155; }
-        h3 { font-size: 1.2rem; color: #cbd5e1; margin: 1.5rem 0 0.75rem; }
-        p { margin-bottom: 1rem; }
-        ul, ol { margin: 1rem 0; padding-left: 2rem; }
-        li { margin-bottom: 0.5rem; }
-        li.nested { margin-left: 1.5rem; }
-        li.checkbox { list-style: none; margin-left: -1.5rem; }
-        li.checkbox input { margin-right: 0.5rem; }
-        blockquote {
-            background: #1e293b;
-            border-left: 4px solid #3b82f6;
-            padding: 1rem 1.5rem;
-            margin: 1rem 0;
-            border-radius: 0 8px 8px 0;
-            font-style: italic;
-        }
-        pre {
-            background: #1e293b;
-            padding: 1rem;
-            border-radius: 8px;
-            overflow-x: auto;
-            max-width: 100%;
-            margin: 1rem 0;
-            border: 1px solid #334155;
-            white-space: pre-wrap;
-            word-wrap: break-word;
-        }
-        @media (max-width: 768px) {
-            body { padding: 1rem; }
-            pre { font-size: 0.85em; padding: 0.75rem; }
-            table { font-size: 0.9em; display: block; overflow-x: auto; }
-            th, td { padding: 0.5rem; }
-            h1 { font-size: 1.5rem; }
-            h2 { font-size: 1.25rem; }
-        }
-        code {
-            font-family: 'SF Mono', Monaco, monospace;
-            font-size: 0.9em;
-        }
-        :not(pre) > code {
-            background: #334155;
-            padding: 0.2rem 0.4rem;
-            border-radius: 4px;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 1rem 0;
-            background: #1e293b;
-            border-radius: 8px;
-            overflow: hidden;
-        }
-        th, td {
-            padding: 0.75rem 1rem;
-            text-align: left;
-            border-bottom: 1px solid #334155;
-        }
-        th { background: #334155; color: #f8fafc; font-weight: 600; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--dark-bg); color: var(--white); line-height: 1.6; }
+        .top-nav { background: var(--navy); padding: 0.75rem 1rem; position: sticky; top: 0; z-index: 100; border-bottom: 2px solid var(--orange); }
+        .nav-container { max-width: 1000px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; }
+        .nav-brand { display: flex; align-items: center; gap: 0.5rem; }
+        .nav-logo { height: 28px; }
+        .breadcrumb { font-size: 0.8rem; color: var(--gray); }
+        .breadcrumb a { color: var(--orange); text-decoration: none; }
+        .nav-actions { display: flex; gap: 0.5rem; }
+        .nav-btn { background: rgba(255,255,255,0.1); color: var(--white); text-decoration: none; padding: 0.4rem 0.75rem; border-radius: 4px; font-size: 0.8rem; }
+        .nav-btn:hover { background: var(--orange); }
+        .toc-toggle { background: var(--card-bg); border: 1px solid var(--border); color: var(--white); padding: 0.75rem 1rem; width: 100%; text-align: left; cursor: pointer; font-size: 0.9rem; border-radius: 8px; margin-bottom: 1rem; display: flex; justify-content: space-between; }
+        .toc-toggle:after { content: '▼'; font-size: 0.7rem; }
+        .toc-toggle.open:after { content: '▲'; }
+        .toc { background: var(--card-bg); border: 1px solid var(--border); border-radius: 8px; padding: 1rem; margin-bottom: 1.5rem; display: none; }
+        .toc.open { display: block; }
+        .toc-list { list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 0.25rem; }
+        .toc-list a { color: var(--white); text-decoration: none; font-size: 0.85rem; padding: 0.35rem 0.5rem; display: block; border-left: 2px solid transparent; }
+        .toc-list a:hover { color: var(--orange); border-left-color: var(--orange); }
+        .main { max-width: 900px; margin: 0 auto; padding: 1.5rem 1rem; }
+        .page-header { margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 2px solid var(--orange); }
+        .page-header h1 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+        .meta-row { display: flex; flex-wrap: wrap; gap: 1rem; font-size: 0.8rem; color: var(--gray); }
+        .section { margin-bottom: 2rem; scroll-margin-top: 80px; }
+        .section h2 { font-size: 1.1rem; font-weight: 600; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border); color: var(--orange); }
+        p { margin-bottom: 0.75rem; font-size: 0.95rem; }
+        .callout { background: var(--card-bg); border-left: 3px solid var(--orange); padding: 0.75rem 1rem; margin: 0.75rem 0; border-radius: 0 6px 6px 0; font-size: 0.9rem; }
+        .callout.warning { border-left-color: #dc2626; }
+        .script-box { background: var(--navy); border: 1px solid var(--border); border-radius: 8px; padding: 1rem; margin: 0.75rem 0; font-family: 'SF Mono', Monaco, monospace; font-size: 0.8rem; white-space: pre-wrap; overflow-x: auto; line-height: 1.5; }
+        table { width: 100%; border-collapse: collapse; margin: 0.75rem 0; font-size: 0.9rem; background: var(--card-bg); border-radius: 8px; overflow: hidden; }
+        th, td { padding: 0.6rem 0.75rem; text-align: left; border-bottom: 1px solid var(--border); }
+        th { background: var(--navy); font-weight: 600; font-size: 0.8rem; }
         tr:last-child td { border-bottom: none; }
-        hr { border: none; border-top: 1px solid #334155; margin: 2rem 0; }
-        a { color: #3b82f6; }
-        strong { color: #f8fafc; }
-        .meta {
-            background: #1e293b;
-            padding: 1rem;
-            border-radius: 8px;
-            margin-bottom: 2rem;
-            border-left: 4px solid #3b82f6;
-        }
-        .meta p { margin: 0.25rem 0; font-size: 0.9rem; color: #94a3b8; }
-        footer {
-            margin-top: 3rem;
-            padding-top: 2rem;
-            border-top: 1px solid #334155;
-            text-align: center;
-            color: #64748b;
-            font-size: 0.875rem;
-        }
+        ul, ol { margin: 0.5rem 0 0.75rem 1.25rem; font-size: 0.9rem; }
+        li { margin-bottom: 0.35rem; }
+        h3 { color: var(--orange); margin: 1rem 0 0.5rem; font-size: 1rem; }
+        .page-nav { display: flex; justify-content: space-between; gap: 1rem; margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+        .page-nav a { background: var(--card-bg); padding: 0.75rem 1rem; border-radius: 8px; text-decoration: none; color: var(--white); font-size: 0.85rem; border: 1px solid var(--border); flex: 1; max-width: 45%; }
+        .page-nav a:hover { border-color: var(--orange); }
+        .page-nav .next { text-align: right; }
+        .page-nav .label { font-size: 0.7rem; color: var(--gray); display: block; margin-bottom: 0.25rem; }
+        footer { text-align: center; padding: 1.5rem; color: var(--gray); font-size: 0.8rem; border-top: 1px solid var(--border); margin-top: 2rem; }
+        footer a { color: var(--orange); }
+        .back-top { position: fixed; bottom: 1rem; right: 1rem; background: var(--orange); color: var(--white); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 1.2rem; opacity: 0; transition: opacity 0.2s; }
+        .back-top.visible { opacity: 1; }
     </style>
 </head>
 <body>
-    <div class="container">
-        <a href="../index.html" class="back-link">← Back to Portal</a>
-        <h1 id="cancellation-save-sop">Cancellation Save SOP</h1>
+    <nav class="top-nav">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <img src="../assets/Slate_Systems_Logo_White.png" alt="Slate" class="nav-logo">
+                <span class="breadcrumb"><a href="../index.html">Admin</a> / <a href="../index.html#sales-sops">Sales</a> / Cancellation Saves</span>
+            </div>
+            <div class="nav-actions">
+                <a href="../glossary.html" class="nav-btn">Glossary</a>
+                <a href="../index.html" class="nav-btn">← Portal</a>
+            </div>
+        </div>
+    </nav>
 
-<blockquote><strong>Role:</strong> Closer / Founder</blockquote>
-<blockquote><strong>When:</strong> Client requests to cancel</blockquote>
-<blockquote><strong>Goal:</strong> Retain client or learn why they're leaving</blockquote>
-<blockquote><strong>Last Updated:</strong> Feb 22, 2026</blockquote>
+    <main class="main">
+        <header class="page-header">
+            <h1>🛟 Cancellation Save SOP</h1>
+            <div class="meta-row">
+                <span>🎯 Goal: 30%+ save rate</span>
+                <span>👤 Role: Closer / Founder</span>
+                <span>📅 Feb 23, 2026</span>
+            </div>
+        </header>
 
-<hr>
+        <button class="toc-toggle" onclick="this.classList.toggle('open'); document.querySelector('.toc').classList.toggle('open');">📑 Table of Contents</button>
+        <nav class="toc">
+            <ul class="toc-list">
+                <li><a href="#mindset">Mindset</a></li>
+                <li><a href="#process">The Process</a></li>
+                <li><a href="#responses">Response by Reason</a></li>
+                <li><a href="#offers">Save Offers Toolkit</a></li>
+                <li><a href="#after">After the Call</a></li>
+                <li><a href="#scripts">Scripts</a></li>
+                <li><a href="#red-flags">Red Flags</a></li>
+                <li><a href="#winback">Win-Back Sequence</a></li>
+            </ul>
+        </nav>
 
-<h2 id="mindset">Mindset</h2>
+        <section class="section" id="mindset">
+            <h2>Mindset</h2>
+            <p>Every cancellation request is:</p>
+            <ol>
+                <li>An opportunity to fix a problem</li>
+                <li>A chance to learn what's not working</li>
+                <li>A potential save if handled right</li>
+            </ol>
+            <div class="callout warning"><strong>Never process a cancellation without a conversation.</strong></div>
+        </section>
 
-<p>Every cancellation request is:<br><ol><li class="ordered">An opportunity to fix a problem</li><br><li class="ordered">A chance to learn what's not working</li><br><li class="ordered">A potential save if handled right</li><br></ol><br><strong>Never process a cancellation without a conversation.</strong></p>
+        <section class="section" id="process">
+            <h2>The Process</h2>
 
-<hr>
+            <h3>Step 1: Call Them (Don't Text/Email)</h3>
+            <p>When you get a cancellation request:</p>
+            <ol>
+                <li>Call them within 2 hours</li>
+                <li>Don't process the cancellation yet</li>
+                <li>If no answer, try 2 more times same day</li>
+            </ol>
+            <div class="callout">Text makes it easy to dismiss. Phone creates obligation and lets you address concerns.</div>
 
-<h2 id="the-process">The Process</h2>
+            <h3>Step 2: Opening (No Pressure)</h3>
+            <div class="script-box">"Hey [Name], it's [Your Name] from Slate Systems. I got your message about canceling. No pressure at all — I just wanted to understand what's going on. Is everything okay?"</div>
+            <p><strong>Key:</strong> Come from a place of service, not desperation.</p>
 
-<h3 id="step-1-call-them-don-t-text-email">Step 1: Call Them (Don't Text/Email)</h3>
+            <h3>Step 3: Listen & Understand</h3>
+            <p>Let them talk. Take notes on:</p>
+            <ul>
+                <li>Specific complaints</li>
+                <li>What's not working</li>
+                <li>External factors (business slow, personal issues)</li>
+                <li>Competitor mentions</li>
+            </ul>
+            <div class="callout"><strong>Don't interrupt or defend.</strong> Just listen.</div>
+        </section>
 
-<p>When you get a cancellation request:<br><ol><li class="ordered">Call them within 2 hours</li><br><li class="ordered">Don't process the cancellation yet</li><br><li class="ordered">If no answer, try 2 more times same day</li><br></ol><br><strong>Why call:</strong> Text makes it easy to dismiss. Phone creates obligation and lets you address concerns.</p>
+        <section class="section" id="responses">
+            <h2>Response by Reason</h2>
+            <table>
+                <thead><tr><th>Reason</th><th>Response</th></tr></thead>
+                <tbody>
+                    <tr>
+                        <td><strong>"Not getting leads"</strong></td>
+                        <td>"Can we hop on a quick call and look at your Google together? Sometimes small tweaks can make a big difference. Would you give me 15 minutes?"</td>
+                    </tr>
+                    <tr>
+                        <td><strong>"Can't afford it"</strong></td>
+                        <td>"What if we paused your account for a month or two instead of canceling? Your website stays up and you can pick back up when things improve."</td>
+                    </tr>
+                    <tr>
+                        <td><strong>"Not using it / Too busy"</strong></td>
+                        <td>"What if I showed you just the review piece? It takes 30 seconds. That alone can bring in more jobs. Can I walk you through it?"</td>
+                    </tr>
+                    <tr>
+                        <td><strong>"Going with someone else"</strong></td>
+                        <td>"Respect that. Mind if I ask what they're offering? Just want to understand what we could've done better."</td>
+                    </tr>
+                    <tr>
+                        <td><strong>"Bad experience"</strong></td>
+                        <td>"I'm really sorry to hear that. Can you tell me more about what happened? I want to make it right if I can."</td>
+                    </tr>
+                    <tr>
+                        <td><strong>"Business closing"</strong></td>
+                        <td>Accept gracefully. Ask for referrals.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
 
-<h3 id="step-2-opening-no-pressure">Step 2: Opening (No Pressure)</h3>
+        <section class="section" id="offers">
+            <h2>Save Offers Toolkit</h2>
+            <table>
+                <thead><tr><th>Offer</th><th>When to Use</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>Pause (1-2 months)</strong></td><td>Temporary financial issues, business slow</td></tr>
+                    <tr><td><strong>One free month</strong></td><td>Want to give it another shot</td></tr>
+                    <tr><td><strong>50% off 3 months ($148.50/mo)</strong></td><td>Price concern but sees value</td></tr>
+                    <tr><td><strong>Training call</strong></td><td>Not using features</td></tr>
+                    <tr><td><strong>Audit + improvements</strong></td><td>Not seeing results</td></tr>
+                    <tr><td><strong>Feature simplification</strong></td><td>Overwhelmed by complexity</td></tr>
+                </tbody>
+            </table>
 
-<blockquote>"Hey [Name], it's [Your Name] from Slate Systems. I got your message about canceling. No pressure at all — I just wanted to understand what's going on. Is everything okay?"</blockquote>
+            <h3>Authority Limits:</h3>
+            <ul>
+                <li>Pause: Can do immediately</li>
+                <li>One free month: Can do immediately</li>
+                <li>50% off: Can do immediately</li>
+                <li>Refunds >$100: Escalate to Founder</li>
+            </ul>
+            <div class="callout warning"><strong>NOTE:</strong> No $97 tier exists. Only $297/mo or 50% off first 3 months ($148.50/mo).</div>
+        </section>
 
-<strong>Key:</strong> Come from a place of service, not desperation.
+        <section class="section" id="after">
+            <h2>After the Call</h2>
 
-<h3 id="step-3-listen-understand">Step 3: Listen & Understand</h3>
+            <h3>If Saved:</h3>
+            <ul>
+                <li>Add tag: <code>save-attempt-won</code></li>
+                <li>Note what offer/promise was made</li>
+                <li>Set reminder to follow up in 14 days</li>
+                <li>Deliver on whatever you promised</li>
+            </ul>
 
-<p>Let them talk. Take notes on:<br><ul><li>Specific complaints</li><br><li>What's not working</li><br><li>External factors (business slow, personal issues)</li><br><li>Competitor mentions</li><br></ul><br><strong>Don't interrupt or defend.</strong> Just listen.</p>
+            <h3>If Canceled:</h3>
+            <ul>
+                <li>Process cancellation in GHL</li>
+                <li>Add tag: <code>churned</code></li>
+                <li>Note reason in contact record</li>
+                <li>Add to "win-back" sequence (90 days)</li>
+            </ul>
+        </section>
 
-<h3 id="step-4-respond-based-on-reason">Step 4: Respond Based on Reason</h3>
+        <section class="section" id="scripts">
+            <h2>Scripts</h2>
 
-<table><thead><tr><th>Reason</th><th>Response</th></tr></thead><tbody><tr><td><strong>"Not getting leads"</strong></td><td>"I hear you. Can we hop on a quick call and look at your Google together? Sometimes small tweaks — like updating your GMB description or getting a few more reviews — can make a big difference. Would you give me 15 minutes to see if we can turn it around?"</td></tr><tr><td><strong>"Can't afford it right now"</strong></td><td>"I totally understand. What if we paused your account for a month or two instead of canceling? That way your website stays up and you can pick back up when things improve."</td></tr><tr><td><strong>"Not using it / Too busy"</strong></td><td>"Makes sense — you're running a business. What if I showed you just the review piece? It takes 30 seconds to send a review request. That alone can bring in more jobs. Can I walk you through it real quick?"</td></tr><tr><td><strong>"Going with someone else"</strong></td><td>"Respect that. Mind if I ask what they're offering? Not trying to change your mind, just want to understand what we could've done better."</td></tr><tr><td><strong>"Bad experience / Frustrated"</strong></td><td>"I'm really sorry to hear that. Can you tell me more about what happened? I want to make it right if I can."</td></tr><tr><td><strong>"Business is closing / Retiring"</strong></td><td>Accept gracefully. Ask for referrals.</td></tr></tbody></table>
-<h3 id="step-5-make-an-offer-if-appropriate">Step 5: Make an Offer (If Appropriate)</h3>
+            <h3>Opening</h3>
+            <div class="script-box">"Hey [Name], I got your message. No pressure at all — I just wanted to understand what's happening. Is everything okay?"</div>
 
-<p>Based on the conversation:</p>
+            <h3>Pause Offer</h3>
+            <div class="script-box">"What if we paused your account for a month? No charge, website stays up, and you can pick back up when things settle down."</div>
 
-<strong>For price concerns:</strong>
-<ul><li>Pause account (1-2 months, no charge, site stays up)</li>
-<li>One free month to "try one more time"</li>
-<li>50% off next 3 months ($148.50/mo) — this is the ONLY discount we offer</li>
-</ul>
-<strong>For usage concerns:</strong>
-<ul><li>Offer 15-minute training call</li>
-<li>Send Loom walkthrough of specific feature</li>
-<li>Simplify focus to just reviews (their favorite feature)</li>
-</ul>
-<strong>For results concerns:</strong>
-<ul><li>Offer audit call to look at their setup</li>
-<li>Make specific improvements</li>
-<li>Set 30-day check-in</li>
-</ul>
-<strong>NOTE:</strong> There is NO $97 tier. The only pricing is $297/mo full price or 50% off first 3 months ($148.50/mo).
+            <h3>Training Offer</h3>
+            <div class="script-box">"Can I hop on a 15-minute call and show you the one thing that makes the biggest difference? I think if you just use the review system, you'll start seeing results."</div>
 
-<h3 id="step-6-if-they-still-want-to-cancel">Step 6: If They Still Want to Cancel</h3>
+            <h3>Accepting Cancellation</h3>
+            <div class="script-box">"I totally respect that. I'll get that processed. Thanks for being a client — if things change, we'd love to have you back."</div>
 
-<blockquote>"I totally respect that. I'll process the cancellation. Before I do — would you mind if I asked one more question? What would we have needed to do differently to keep you?"</blockquote>
+            <h3>Final Question</h3>
+            <div class="script-box">"Before I do — would you mind if I asked one more question? What would we have needed to do differently to keep you?"</div>
+        </section>
 
-<p>Take the feedback. Thank them. Don't burn the bridge.</p>
+        <section class="section" id="red-flags">
+            <h2>Red Flags (Can't Save)</h2>
+            <p>Some cancellations aren't worth fighting:</p>
+            <ul>
+                <li>Business closing / retiring</li>
+                <li>Competitor poached with impossible offer</li>
+                <li>Completely unresponsive (ghosting)</li>
+                <li>Hostile / threatening</li>
+            </ul>
+            <p>Let these go gracefully.</p>
+        </section>
 
-<blockquote>"Thanks for being a client. If things change down the road, we'd love to have you back."</blockquote>
+        <section class="section" id="winback">
+            <h2>Win-Back Sequence</h2>
+            <p>For churned clients, after 90 days:</p>
+            <div class="script-box">"Hey [Name]! It's [Your Name] from Slate Systems. Hope you're doing well. Just checking in — things have been going great on our end and we've added some new features. If you ever want to pick back up, just let me know. No pressure!"</div>
+            <p>Some clients return when their situation changes.</p>
 
-<hr>
+            <h3>Metrics to Track:</h3>
+            <ul>
+                <li>Total cancellation requests</li>
+                <li>Saves vs churned</li>
+                <li>Save rate % (goal: 30%+)</li>
+                <li>Top cancellation reasons</li>
+            </ul>
+        </section>
 
-<h2 id="save-offers-toolkit">Save Offers Toolkit</h2>
+        <nav class="page-nav">
+            <a href="launch-call.html"><span class="label">← Previous</span>Launch Call</a>
+            <a href="post-launch-video.html" class="next"><span class="label">Next →</span>Post-Launch Video</a>
+        </nav>
+    </main>
 
-<table><thead><tr><th>Offer</th><th>When to Use</th></tr></thead><tbody><tr><td><strong>Pause (1-2 months)</strong></td><td>Temporary financial issues, business slow</td></tr><tr><td><strong>One free month</strong></td><td>Want to give it another shot</td></tr><tr><td><strong>50% off next 3 months ($148.50/mo)</strong></td><td>Price concern but sees value</td></tr><tr><td><strong>Training call</strong></td><td>Not using features</td></tr><tr><td><strong>Audit + improvements</strong></td><td>Not seeing results</td></tr><tr><td><strong>Feature simplification</strong></td><td>Overwhelmed by complexity</td></tr></tbody></table>
-<strong>Authority limits:</strong>
-<ul><li>Pause: Can do immediately</li>
-<li>One free month: Can do immediately</li>
-<li>50% off: Can do immediately</li>
-<li>Refunds >$100: Escalate to Founder</li>
-</ul>
-<strong>NOTE:</strong> No $97 tier exists. Don't promise pricing that doesn't exist.
-
-<hr>
-
-<h2 id="after-the-call">After the Call</h2>
-
-<strong>If saved:</strong>
-<ul><li>Add tag: <code>save-attempt-won</code></li>
-<li>Note what offer/promise was made</li>
-<li>Set reminder to follow up in 14 days</li>
-<li>Deliver on whatever you promised</li>
-</ul>
-<strong>If canceled:</strong>
-<ul><li>Process cancellation in GHL</li>
-<li>Add tag: <code>churned</code></li>
-<li>Note reason in contact record</li>
-<li>Add to "win-back" sequence (90 days)</li>
-</ul>
-<hr>
-
-<h2 id="cancellation-reasons-tracking">Cancellation Reasons Tracking</h2>
-
-<p>Log every cancellation:</p>
-
-<table><thead><tr><th>Date</th><th>Client</th><th>Reason</th><th>Saved?</th><th>Notes</th></tr></thead><tbody><tr></tr></tbody></table>
-Review monthly to identify patterns.
-
-<hr>
-
-<h2 id="red-flags-can-t-save">Red Flags (Can't Save)</h2>
-
-<p>Some cancellations aren't worth fighting:</p>
-
-<ul><li>Business closing / retiring</li>
-<li>Competitor poached with impossible offer</li>
-<li>Completely unresponsive (ghosting)</li>
-<li>Hostile / threatening</li>
-</ul>
-Let these go gracefully.
-
-<hr>
-
-<h2 id="win-back-sequence">Win-Back Sequence</h2>
-
-<p>For churned clients, after 90 days:</p>
-
-<blockquote>"Hey [Name]! It's [Your Name] from Slate Systems. Hope you're doing well. Just checking in — things have been going great on our end and we've added some new features. If you ever want to pick back up, just let me know. No pressure!"</blockquote>
-
-<p>Some clients return when their situation changes.</p>
-
-<hr>
-
-<h2 id="scripts">Scripts</h2>
-
-<h3 id="opening">Opening</h3>
-<blockquote>"Hey [Name], I got your message. No pressure at all — I just wanted to understand what's happening. Is everything okay?"</blockquote>
-
-<h3 id="pause-offer">Pause Offer</h3>
-<blockquote>"What if we paused your account for a month? No charge, website stays up, and you can pick back up when things settle down."</blockquote>
-
-<h3 id="training-offer">Training Offer</h3>
-<blockquote>"Can I hop on a 15-minute call and show you the one thing that makes the biggest difference? I think if you just use the review system, you'll start seeing results."</blockquote>
-
-<h3 id="accepting-cancellation">Accepting Cancellation</h3>
-<blockquote>"I totally respect that. I'll get that processed. Thanks for being a client — if things change, we'd love to have you back."</blockquote>
-
-<hr>
-
-<h2 id="metrics">Metrics</h2>
-
-<p>Track monthly:<br><ul><li>Total cancellation requests</li><br><li>Saves vs churned</li><br><li>Save rate % (goal: 30%+)</li><br><li>Top cancellation reasons</li><br></ul><br><hr></p>
-
-<h2 id="related-sops">Related SOPs</h2>
-
-<ul><li><code>cc-decline-handling.md</code> — Often leads to cancellation</li>
-<li><code>support-faq.md</code> — Prevent cancellations with good support</li>
-</ul>
-<hr>
-
-<em>Last updated: Feb 23, 2026</em>
-
-        <footer>
-            <p>&copy; 2026 Slate Systems Inc. Internal use only.</p>
-        </footer>
-    </div>
+    <footer>© 2026 Slate Systems | <a href="../glossary.html">Glossary</a> | <a href="../index.html">Portal</a></footer>
+    <a href="#" class="back-top" id="backTop">↑</a>
+    <script>window.addEventListener('scroll', () => { document.getElementById('backTop').classList.toggle('visible', window.scrollY > 500); });</script>
 </body>
 </html>

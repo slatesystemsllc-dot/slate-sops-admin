@@ -2,299 +2,243 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Show Rate Optimization SOP - Slate Systems SOP</title>
+    <title>Show Rate Optimization - Slate Systems</title>
     <style>
+        :root { --navy: #152a45; --gray: #525c69; --orange: #ee7000; --white: #ffffff; --dark-bg: #0d1a2d; --card-bg: #1a2d47; --border: #2a4060; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: #0f172a;
-            color: #e2e8f0;
-            line-height: 1.7;
-            padding: 2rem;
-        }
-        .container { max-width: 900px; margin: 0 auto; }
-        .back-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: #3b82f6;
-            text-decoration: none;
-            margin-bottom: 2rem;
-            font-size: 0.9rem;
-        }
-        .back-link:hover { text-decoration: underline; }
-        h1 { font-size: 2rem; color: #f8fafc; margin-bottom: 0.5rem; border-bottom: 2px solid #3b82f6; padding-bottom: 0.5rem; }
-        h2 { font-size: 1.5rem; color: #f8fafc; margin: 2rem 0 1rem; padding-top: 1rem; border-top: 1px solid #334155; }
-        h3 { font-size: 1.2rem; color: #cbd5e1; margin: 1.5rem 0 0.75rem; }
-        p { margin-bottom: 1rem; }
-        ul, ol { margin: 1rem 0; padding-left: 2rem; }
-        li { margin-bottom: 0.5rem; }
-        li.nested { margin-left: 1.5rem; }
-        li.checkbox { list-style: none; margin-left: -1.5rem; }
-        li.checkbox input { margin-right: 0.5rem; }
-        blockquote {
-            background: #1e293b;
-            border-left: 4px solid #3b82f6;
-            padding: 1rem 1.5rem;
-            margin: 1rem 0;
-            border-radius: 0 8px 8px 0;
-            font-style: italic;
-        }
-        pre {
-            background: #1e293b;
-            padding: 1rem;
-            border-radius: 8px;
-            overflow-x: auto;
-            max-width: 100%;
-            margin: 1rem 0;
-            border: 1px solid #334155;
-            white-space: pre-wrap;
-            word-wrap: break-word;
-        }
-        @media (max-width: 768px) {
-            body { padding: 1rem; }
-            pre { font-size: 0.85em; padding: 0.75rem; }
-            table { font-size: 0.9em; display: block; overflow-x: auto; }
-            th, td { padding: 0.5rem; }
-            h1 { font-size: 1.5rem; }
-            h2 { font-size: 1.25rem; }
-        }
-        code {
-            font-family: 'SF Mono', Monaco, monospace;
-            font-size: 0.9em;
-        }
-        :not(pre) > code {
-            background: #334155;
-            padding: 0.2rem 0.4rem;
-            border-radius: 4px;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 1rem 0;
-            background: #1e293b;
-            border-radius: 8px;
-            overflow: hidden;
-        }
-        th, td {
-            padding: 0.75rem 1rem;
-            text-align: left;
-            border-bottom: 1px solid #334155;
-        }
-        th { background: #334155; color: #f8fafc; font-weight: 600; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--dark-bg); color: var(--white); line-height: 1.6; }
+        .top-nav { background: var(--navy); padding: 0.75rem 1rem; position: sticky; top: 0; z-index: 100; border-bottom: 2px solid var(--orange); }
+        .nav-container { max-width: 1000px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; }
+        .nav-brand { display: flex; align-items: center; gap: 0.5rem; }
+        .nav-logo { height: 28px; }
+        .breadcrumb { font-size: 0.8rem; color: var(--gray); }
+        .breadcrumb a { color: var(--orange); text-decoration: none; }
+        .nav-actions { display: flex; gap: 0.5rem; }
+        .nav-btn { background: rgba(255,255,255,0.1); color: var(--white); text-decoration: none; padding: 0.4rem 0.75rem; border-radius: 4px; font-size: 0.8rem; }
+        .nav-btn:hover { background: var(--orange); }
+        .toc-toggle { background: var(--card-bg); border: 1px solid var(--border); color: var(--white); padding: 0.75rem 1rem; width: 100%; text-align: left; cursor: pointer; font-size: 0.9rem; border-radius: 8px; margin-bottom: 1rem; display: flex; justify-content: space-between; }
+        .toc-toggle:after { content: '▼'; font-size: 0.7rem; }
+        .toc-toggle.open:after { content: '▲'; }
+        .toc { background: var(--card-bg); border: 1px solid var(--border); border-radius: 8px; padding: 1rem; margin-bottom: 1.5rem; display: none; }
+        .toc.open { display: block; }
+        .toc-list { list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 0.25rem; }
+        .toc-list a { color: var(--white); text-decoration: none; font-size: 0.85rem; padding: 0.35rem 0.5rem; display: block; border-left: 2px solid transparent; }
+        .toc-list a:hover { color: var(--orange); border-left-color: var(--orange); }
+        .main { max-width: 900px; margin: 0 auto; padding: 1.5rem 1rem; }
+        .page-header { margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 2px solid var(--orange); }
+        .page-header h1 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+        .meta-row { display: flex; flex-wrap: wrap; gap: 1rem; font-size: 0.8rem; color: var(--gray); }
+        .section { margin-bottom: 2rem; scroll-margin-top: 80px; }
+        .section h2 { font-size: 1.1rem; font-weight: 600; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border); color: var(--orange); }
+        p { margin-bottom: 0.75rem; font-size: 0.95rem; }
+        .callout { background: var(--card-bg); border-left: 3px solid var(--orange); padding: 0.75rem 1rem; margin: 0.75rem 0; border-radius: 0 6px 6px 0; font-size: 0.9rem; }
+        table { width: 100%; border-collapse: collapse; margin: 0.75rem 0; font-size: 0.9rem; background: var(--card-bg); border-radius: 8px; overflow: hidden; }
+        th, td { padding: 0.6rem 0.75rem; text-align: left; border-bottom: 1px solid var(--border); }
+        th { background: var(--navy); font-weight: 600; font-size: 0.8rem; }
         tr:last-child td { border-bottom: none; }
-        hr { border: none; border-top: 1px solid #334155; margin: 2rem 0; }
-        a { color: #3b82f6; }
-        strong { color: #f8fafc; }
-        .meta {
-            background: #1e293b;
-            padding: 1rem;
-            border-radius: 8px;
-            margin-bottom: 2rem;
-            border-left: 4px solid #3b82f6;
-        }
-        .meta p { margin: 0.25rem 0; font-size: 0.9rem; color: #94a3b8; }
-        footer {
-            margin-top: 3rem;
-            padding-top: 2rem;
-            border-top: 1px solid #334155;
-            text-align: center;
-            color: #64748b;
-            font-size: 0.875rem;
-        }
+        ul, ol { margin: 0.5rem 0 0.75rem 1.25rem; font-size: 0.9rem; }
+        li { margin-bottom: 0.35rem; }
+        h3 { color: var(--orange); margin: 1rem 0 0.5rem; font-size: 1rem; }
+        .checklist { list-style: none; margin-left: 0; }
+        .checklist li { padding-left: 1.5rem; position: relative; }
+        .checklist li:before { content: '☐'; position: absolute; left: 0; }
+        .page-nav { display: flex; justify-content: space-between; gap: 1rem; margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+        .page-nav a { background: var(--card-bg); padding: 0.75rem 1rem; border-radius: 8px; text-decoration: none; color: var(--white); font-size: 0.85rem; border: 1px solid var(--border); flex: 1; max-width: 45%; }
+        .page-nav a:hover { border-color: var(--orange); }
+        .page-nav .next { text-align: right; }
+        .page-nav .label { font-size: 0.7rem; color: var(--gray); display: block; margin-bottom: 0.25rem; }
+        footer { text-align: center; padding: 1.5rem; color: var(--gray); font-size: 0.8rem; border-top: 1px solid var(--border); margin-top: 2rem; }
+        footer a { color: var(--orange); }
+        .back-top { position: fixed; bottom: 1rem; right: 1rem; background: var(--orange); color: var(--white); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 1.2rem; opacity: 0; transition: opacity 0.2s; }
+        .back-top.visible { opacity: 1; }
     </style>
 </head>
 <body>
-    <div class="container">
-        <a href="../index.html" class="back-link">← Back to Portal</a>
-        <h1 id="show-rate-optimization-sop">Show Rate Optimization SOP</h1>
+    <nav class="top-nav">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <img src="assets/Slate_Systems_Logo_White.png" alt="Slate" class="nav-logo">
+                <span class="breadcrumb"><a href="index.html">Sales</a> / Show Rate</span>
+            </div>
+            <div class="nav-actions">
+                
+                <a href="../index.html" class="nav-btn">← Portal</a>
+            </div>
+        </div>
+    </nav>
 
-<blockquote><strong>Role:</strong> Closer / Sales</blockquote>
-<blockquote><strong>Goal:</strong> Increase show rate from ~40% to 60%+</blockquote>
-<blockquote><strong>Source:</strong> Kai Stone Systems Show Rate Secrets</blockquote>
-<blockquote><strong>Last Updated:</strong> Feb 22, 2026</blockquote>
+    <main class="main">
+        <header class="page-header">
+            <h1>📈 Show Rate Optimization</h1>
+            <div class="meta-row">
+                <span>🎯 Goal: 40% → 60%+</span>
+                <span>📄 Proven Strategies</span>
+                <span>📅 Feb 22, 2026</span>
+            </div>
+        </header>
 
-<hr>
+        <button class="toc-toggle" onclick="this.classList.toggle('open'); document.querySelector('.toc').classList.toggle('open');">📑 Table of Contents</button>
+        <nav class="toc">
+            <ul class="toc-list">
+                <li><a href="#why">Why This Matters</a></li>
+                <li><a href="#fast-wins">3 Fast Wins</a></li>
+                <li><a href="#levers">All Levers</a></li>
+                <li><a href="#checklist">New Appointment Flow</a></li>
+                <li><a href="#benchmarks">Benchmarks</a></li>
+                <li><a href="#killers">Common Killers</a></li>
+            </ul>
+        </nav>
 
-<h2 id="why-this-matters">Why This Matters</h2>
+        <section class="section" id="why">
+            <h2>Why This Matters</h2>
+            <p>More shows = more conversations = more closes.</p>
+            <div class="callout">
+                <strong>Math:</strong> If you book 20 calls/week:<br>
+                • 40% show rate = 8 conversations<br>
+                • 60% show rate = 12 conversations<br>
+                • That's <strong>50% more opportunities</strong> to close
+            </div>
+            <p><strong>Before fixing anything else in sales, fix show rate.</strong></p>
+        </section>
 
-<p>More shows = more conversations = more closes.</p>
+        <section class="section" id="fast-wins">
+            <h2>3 Fast Wins (Do These First)</h2>
 
-<strong>Math:</strong> If you book 20 calls/week:
-<ul><li>40% show rate = 8 conversations</li>
-<li>60% show rate = 12 conversations</li>
-<li>That's 50% more opportunities to close</li>
-</ul>
-Before fixing anything else in sales, fix show rate.
+            <h3>1. Tighten Booking Window</h3>
+            <p><strong>Problem:</strong> Prospects who book a week out forget, lose interest.</p>
+            <p><strong>Fix:</strong> Cap scheduling to 48-72 hours maximum.</p>
+            <ul>
+                <li>Set "Days in advance" to 2-3 days max</li>
+                <li>Remove availability beyond 72 hours</li>
+                <li>The closer to now, the higher the show</li>
+            </ul>
 
-<hr>
+            <h3>2. Call Every Appointment</h3>
+            <p><strong>When they book:</strong></p>
+            <ol>
+                <li>Call within 5 minutes</li>
+                <li>Confirm the time</li>
+                <li>Try to pull meeting forward</li>
+                <li>Build rapport (they show for people they've talked to)</li>
+            </ol>
+            <p><strong>Morning of:</strong></p>
+            <ol>
+                <li>Call to confirm</li>
+                <li>"Hey, just confirming we're still on for [time]"</li>
+                <li>If voicemail, text them</li>
+            </ol>
+            <div class="callout"><strong>This single habit dramatically increases shows.</strong></div>
 
-<h2 id="3-fast-wins-do-these-first">3 Fast Wins (Do These First)</h2>
+            <h3>3. Upgrade Thank You Page</h3>
+            <p>After they book, add:</p>
+            <ol>
+                <li><strong>Short video</strong> (30-60 sec) - "Here's what we'll cover..."</li>
+                <li><strong>Big "Add to Calendar" button</strong> - Google + iCal</li>
+                <li><strong>Commitment checkbox</strong> - "Is there any reason you wouldn't show?"</li>
+            </ol>
+        </section>
 
-<h3 id="1-tighten-booking-window">1. Tighten Booking Window</h3>
+        <section class="section" id="levers">
+            <h2>All Levers</h2>
 
-<strong>Problem:</strong> Prospects who book a week out forget, lose interest, or get busy.
+            <h3>Lever 1: Expand Calendar Availability</h3>
+            <ul>
+                <li>Minimum 6-8 slots per day</li>
+                <li>Shorten duration if needed (45 min → 30 min)</li>
+                <li>Offer varied times: early morning, lunch, evening</li>
+            </ul>
 
-<strong>Fix:</strong> Cap scheduling to 48-72 hours maximum.
+            <h3>Lever 2: Multi-Touch Confirmation</h3>
+            <p><strong>Calls:</strong></p>
+            <ol>
+                <li>Immediately after booking</li>
+                <li>60 minutes later if no answer</li>
+                <li>24 hours before</li>
+                <li>Morning of</li>
+                <li>1 hour before</li>
+                <li>10 minutes before</li>
+            </ol>
+            <p><strong>Texts:</strong> Confirmation, 24hr reminder, 1hr reminder with link</p>
 
-<p>In your calendar settings:<br><ul><li>Set "Days in advance" to 2-3 days max</li><br><li>Remove availability beyond 72 hours</li><br><li>The closer the booking to now, the higher the show</li><br></ul><br><h3 id="2-call-every-appointment-immediately-morning-of">2. Call Every Appointment Immediately + Morning Of</h3></p>
+            <h3>Lever 3: Reframe Call Value</h3>
+            <p><strong>Don't say:</strong> "Demo", "Quick chat", "Let's talk"</p>
+            <p><strong>Do say:</strong> "Strategy session", "I'll Google your business and show quick wins"</p>
 
-<strong>When they book:</strong>
-<ol><li class="ordered">Call them within 5 minutes</li>
-<li class="ordered">Confirm the time</li>
-<li class="ordered">Try to pull the meeting forward if slots available</li>
-<li class="ordered">Build rapport (they're more likely to show for someone they've talked to)</li>
-</ol>
-<strong>Morning of the call:</strong>
-<ol><li class="ordered">Call them to confirm</li>
-<li class="ordered">"Hey, just confirming we're still on for [time] today"</li>
-<li class="ordered">If voicemail, text them</li>
-</ol>
-<strong>This single habit dramatically increases shows.</strong>
+            <h3>Lever 4: Speed to Lead</h3>
+            <ul>
+                <li>Call leads within 30 seconds</li>
+                <li>4,000% increase vs waiting 5 minutes</li>
+                <li>First to call usually wins</li>
+            </ul>
 
-<h3 id="3-upgrade-your-thank-you-page">3. Upgrade Your Thank You Page</h3>
+            <h3>Lever 5: Double Booking</h3>
+            <p>When you have excess leads:</p>
+            <ol>
+                <li>Book 2 people in same slot</li>
+                <li>Call both 10-15 min before</li>
+                <li>Most ready → video call</li>
+                <li>Less ready → close on phone or rebook</li>
+            </ol>
+        </section>
 
-<p>After they book, they land on your thank you page. Add:</p>
+        <section class="section" id="checklist">
+            <h2>New Appointment Flow</h2>
+            <h3>When someone books:</h3>
+            <ul class="checklist">
+                <li>Call within 5 minutes</li>
+                <li>Try to pull meeting forward</li>
+                <li>If no answer, text confirmation</li>
+                <li>Ensure they're in reminder sequence</li>
+                <li>Check if VSL watched (send reminder if not)</li>
+            </ul>
 
-<ol><li class="ordered"><strong>Short video</strong> (30-60 seconds)</li>
-</ol>   - "Hey, excited to chat! Here's what we'll cover..."
-   - Sets expectations, builds anticipation
+            <h3>Day of:</h3>
+            <ul class="checklist">
+                <li>Morning call to confirm</li>
+                <li>1-hour reminder (call or text)</li>
+                <li>10-minute reminder with link</li>
+                <li>If no show in 5 min, call them</li>
+            </ul>
+        </section>
 
-<ol><li class="ordered"><strong>Big "Add to Calendar" button</strong></li>
-</ol>   - Google Calendar + iCal options
-   - Anchors them to the commitment
+        <section class="section" id="benchmarks">
+            <h2>Show Rate Benchmarks</h2>
+            <table>
+                <thead><tr><th>Rate</th><th>Assessment</th></tr></thead>
+                <tbody>
+                    <tr><td>&lt;40%</td><td>Critical - fix immediately</td></tr>
+                    <tr><td>40-50%</td><td>Below average - implement all levers</td></tr>
+                    <tr><td>50-60%</td><td>Average for contractors</td></tr>
+                    <tr><td>60-70%</td><td>Good - keep optimizing</td></tr>
+                    <tr><td>70%+</td><td>Excellent - maintain</td></tr>
+                </tbody>
+            </table>
+        </section>
 
-<ol><li class="ordered"><strong>Commitment checkbox</strong> (optional but powerful)</li>
-</ol>   - "Is there any reason besides the world ending you wouldn't show up?"
-   - Psychological commitment device
+        <section class="section" id="killers">
+            <h2>Common Show Rate Killers</h2>
+            <table>
+                <thead><tr><th>Problem</th><th>Fix</th></tr></thead>
+                <tbody>
+                    <tr><td>Booking too far out</td><td>48-72 hour max window</td></tr>
+                    <tr><td>No confirmation calls</td><td>Call same day + morning of</td></tr>
+                    <tr><td>Generic thank you page</td><td>Add video + calendar button</td></tr>
+                    <tr><td>No value framing</td><td>"Strategy session" not "demo"</td></tr>
+                    <tr><td>Slow lead response</td><td>Call within 30 seconds</td></tr>
+                    <tr><td>Limited calendar slots</td><td>Expand to 6-8+ per day</td></tr>
+                </tbody>
+            </table>
+        </section>
 
-<hr>
+        <nav class="page-nav">
+            <a href="demo-call.html"><span class="label">← Previous</span>Demo Call</a>
+            <a href="launch-call.html" class="next"><span class="label">Next →</span>Launch Call</a>
+        </nav>
+    </main>
 
-<h2 id="expanded-show-rate-levers">Expanded Show Rate Levers</h2>
-
-<h3 id="lever-1-expand-calendar-availability">Lever 1: Expand Calendar Availability</h3>
-
-<strong>Problem:</strong> Leads book inconvenient times because nothing else was available.
-
-<strong>Fix:</strong>
-<ul><li>Minimum 6-8 slots per day</li>
-<li>Shorten appointment duration if needed (45 min → 30 min)</li>
-<li>Offer varied times:</li>
-<li class="nested">Early morning (7-9 AM) for 9-5 employees</li>
-<li class="nested">Lunch (12-1 PM)</li>
-<li class="nested">Evening (6-8 PM)</li>
-<li class="nested">Mid-morning (10-11 AM) for entrepreneurs</li>
-</ul>
-Match availability to your market.
-
-<h3 id="lever-2-multi-touch-confirmation-sequence">Lever 2: Multi-Touch Confirmation Sequence</h3>
-
-<strong>Call schedule:</strong>
-<ol><li class="ordered">Immediately after booking</li>
-<li class="ordered">60 minutes later if no answer</li>
-<li class="ordered">24 hours before</li>
-<li class="ordered">Morning of</li>
-<li class="ordered">1 hour before</li>
-<li class="ordered">10 minutes before</li>
-</ol>
-<strong>Text sequence:</strong>
-<ul><li>Booking confirmation (immediate)</li>
-<li>24-hour reminder</li>
-<li>1-hour reminder with meeting link</li>
-</ul>
-<h3 id="lever-3-reframe-the-call-value">Lever 3: Reframe the Call Value</h3>
-
-<strong>Don't say:</strong>
-<ul><li>"Demo"</li>
-<li>"Quick chat"</li>
-<li>"Let's talk"</li>
-</ul>
-<strong>Do say:</strong>
-<ul><li>"Strategy session"</li>
-<li>"I'll Google your business and show you quick wins"</li>
-<li>"I'll pull up your competitors and show you what they're doing"</li>
-</ul>
-Give them a reason to show up beyond being sold.
-
-<h3 id="lever-4-speed-to-lead">Lever 4: Speed to Lead</h3>
-
-<strong>If you have 10+ leads/day:</strong>
-<ul><li>Call leads within 30 seconds of form submission</li>
-<li>4,000% increase in close rate vs waiting even 5 minutes</li>
-<li>First to call usually wins</li>
-</ul>
-<strong>Set up instant notification:</strong>
-<ul><li>Slack/SMS alert on new lead</li>
-<li>Call immediately, every time</li>
-</ul>
-<h3 id="lever-5-double-booking-strategy">Lever 5: Double Booking Strategy</h3>
-
-<strong>When you have excess leads:</strong>
-<ol><li class="ordered">Book 2 people in the same slot</li>
-<li class="ordered">Call both 10-15 minutes before</li>
-<li class="ordered">Most qualified/ready → confirm for video call</li>
-<li class="ordered">Less qualified → try to close on phone or rebook</li>
-</ol>
-<strong>Why this works:</strong>
-<ul><li>You never have empty slots</li>
-<li>Maximizes your calendar efficiency</li>
-<li>Not unethical — staying broke is</li>
-</ul>
-<hr>
-
-<h2 id="platform-google-meet-zoom">Platform: Google Meet > Zoom</h2>
-
-<ul><li>Contractors are more familiar with Google</li>
-<li>One less friction point</li>
-<li>No "download Zoom" barrier</li>
-<li>If they can't do video, close on phone</li>
-</ul>
-<hr>
-
-<h2 id="checklist-new-appointment-flow">Checklist: New Appointment Flow</h2>
-
-<p>When someone books:</p>
-
-<ul><li class="checkbox"><input type="checkbox" disabled> Call them within 5 minutes</li>
-<li class="checkbox"><input type="checkbox" disabled> Try to pull meeting forward if earlier slot available</li>
-<li class="checkbox"><input type="checkbox" disabled> If no answer, text: "Hey [Name], just confirming our call at [time]. Looking forward to it!"</li>
-<li class="checkbox"><input type="checkbox" disabled> Ensure they're added to reminder sequence</li>
-<li class="checkbox"><input type="checkbox" disabled> Check if they watched VSL (if not, send reminder)</li>
-</ul>
-Day of:
-
-<ul><li class="checkbox"><input type="checkbox" disabled> Morning call to confirm</li>
-<li class="checkbox"><input type="checkbox" disabled> 1-hour reminder (call or text)</li>
-<li class="checkbox"><input type="checkbox" disabled> 10-minute reminder with link</li>
-<li class="checkbox"><input type="checkbox" disabled> If they don't show in 5 min, call them</li>
-</ul>
-<hr>
-
-<h2 id="show-rate-benchmarks">Show Rate Benchmarks</h2>
-
-<table><thead><tr><th>Rate</th><th>Assessment</th></tr></thead><tbody><tr><td><40%</td><td>Critical problem — fix immediately</td></tr><tr><td>40-50%</td><td>Below average — implement all levers</td></tr><tr><td>50-60%</td><td>Average for contractors</td></tr><tr><td>60-70%</td><td>Good — keep optimizing</td></tr><tr><td>70%+</td><td>Excellent — maintain current system</td></tr></tbody></table>
-<hr>
-
-<h2 id="common-show-rate-killers">Common Show Rate Killers</h2>
-
-<table><thead><tr><th>Problem</th><th>Fix</th></tr></thead><tbody><tr><td>Booking too far out</td><td>48-72 hour max window</td></tr><tr><td>No confirmation calls</td><td>Call same day + morning of</td></tr><tr><td>Generic thank you page</td><td>Add video + calendar button</td></tr><tr><td>No value framing</td><td>"Strategy session" not "demo"</td></tr><tr><td>Slow lead response</td><td>Call within 30 seconds</td></tr><tr><td>Limited calendar slots</td><td>Expand to 6-8+ per day</td></tr></tbody></table>
-<hr>
-
-<h2 id="related-sops">Related SOPs</h2>
-
-<ul><li><code>sales-sop.md</code> — Full sales process</li>
-<li><code>sales-playbook.md</code> — Scripts and objections</li>
-</ul>
-<hr>
-
-<em>Source: Kai Stone Systems Show Rate Secrets</em>
-<em>Last updated: Feb 22, 2026</em>
-
-        <footer>
-            <p>&copy; 2026 Slate Systems Inc. Internal use only.</p>
-        </footer>
-    </div>
+    <footer>© 2026 Slate Systems | <a href="index.html">Sales Portal</a></footer>
+    <a href="#" class="back-top" id="backTop">↑</a>
+    <script>window.addEventListener('scroll', () => { document.getElementById('backTop').classList.toggle('visible', window.scrollY > 500); });</script>
 </body>
 </html>

@@ -2,400 +2,447 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Support FAQ — Common Questions & Answers - Slate Systems SOP</title>
+    <title>Support FAQ - Slate Systems SOP</title>
     <style>
+        :root { --navy: #152a45; --gray: #525c69; --orange: #ee7000; --white: #ffffff; --dark-bg: #0d1a2d; --card-bg: #1a2d47; --border: #2a4060; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: #0f172a;
-            color: #e2e8f0;
-            line-height: 1.7;
-            padding: 2rem;
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--dark-bg); color: var(--white); line-height: 1.7; }
+
+        .top-nav {
+            background: var(--navy);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 2px solid var(--orange);
         }
-        .container { max-width: 900px; margin: 0 auto; }
-        .back-link {
-            display: inline-flex;
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 1.5rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.6rem 0;
+            text-decoration: none;
+        }
+        .nav-logo { height: 28px; width: auto; }
+        .nav-subtitle {
+            background: var(--orange);
+            color: var(--white);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+        .nav-back {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 0.85rem;
+            opacity: 0.8;
+            transition: opacity 0.2s;
+        }
+        .nav-back:hover { opacity: 1; }
+
+        .container { max-width: 900px; margin: 0 auto; padding: 2rem 1.5rem; }
+
+        .toc-toggle {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            color: var(--white);
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+            display: flex;
             align-items: center;
             gap: 0.5rem;
-            color: #3b82f6;
-            text-decoration: none;
-            margin-bottom: 2rem;
-            font-size: 0.9rem;
+            width: 100%;
+            justify-content: space-between;
         }
-        .back-link:hover { text-decoration: underline; }
-        h1 { font-size: 2rem; color: #f8fafc; margin-bottom: 0.5rem; border-bottom: 2px solid #3b82f6; padding-bottom: 0.5rem; }
-        h2 { font-size: 1.5rem; color: #f8fafc; margin: 2rem 0 1rem; padding-top: 1rem; border-top: 1px solid #334155; }
+        .toc-toggle:hover { border-color: var(--orange); }
+        .toc-toggle .arrow { transition: transform 0.2s; }
+        .toc-toggle.open .arrow { transform: rotate(180deg); }
+
+        .toc {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1rem 1.5rem;
+            margin-bottom: 2rem;
+            display: none;
+        }
+        .toc.open { display: block; }
+        .toc-title { font-weight: 600; margin-bottom: 0.75rem; color: var(--orange); }
+        .toc ul { list-style: none; }
+        .toc li { margin-bottom: 0.4rem; }
+        .toc a { color: var(--white); text-decoration: none; font-size: 0.9rem; opacity: 0.8; }
+        .toc a:hover { opacity: 1; color: var(--orange); }
+
+        h1 { font-size: 2rem; color: var(--white); margin-bottom: 0.5rem; border-bottom: 2px solid var(--orange); padding-bottom: 0.75rem; }
+        h2 { font-size: 1.5rem; color: var(--white); margin: 2.5rem 0 1rem; padding-top: 1.5rem; border-top: 1px solid var(--border); scroll-margin-top: 80px; }
         h3 { font-size: 1.2rem; color: #cbd5e1; margin: 1.5rem 0 0.75rem; }
+        h4 { font-size: 1rem; color: #94a3b8; margin: 1.25rem 0 0.5rem; }
         p { margin-bottom: 1rem; }
         ul, ol { margin: 1rem 0; padding-left: 2rem; }
         li { margin-bottom: 0.5rem; }
-        li.nested { margin-left: 1.5rem; }
-        li.checkbox { list-style: none; margin-left: -1.5rem; }
-        li.checkbox input { margin-right: 0.5rem; }
+
+        .meta-box {
+            background: var(--card-bg);
+            border-left: 4px solid var(--orange);
+            padding: 1rem 1.25rem;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 1.5rem;
+        }
+        .meta-box p { margin: 0.25rem 0; font-size: 0.9rem; }
+        .meta-box strong { color: var(--orange); }
+
         blockquote {
-            background: #1e293b;
-            border-left: 4px solid #3b82f6;
+            background: var(--card-bg);
+            border-left: 4px solid var(--orange);
             padding: 1rem 1.5rem;
             margin: 1rem 0;
             border-radius: 0 8px 8px 0;
-            font-style: italic;
         }
+
         pre {
-            background: #1e293b;
+            background: var(--card-bg);
             padding: 1rem;
             border-radius: 8px;
             overflow-x: auto;
-            max-width: 100%;
             margin: 1rem 0;
-            border: 1px solid #334155;
-            white-space: pre-wrap;
-            word-wrap: break-word;
-        }
-        @media (max-width: 768px) {
-            body { padding: 1rem; }
-            pre { font-size: 0.85em; padding: 0.75rem; }
-            table { font-size: 0.9em; display: block; overflow-x: auto; }
-            th, td { padding: 0.5rem; }
-            h1 { font-size: 1.5rem; }
-            h2 { font-size: 1.25rem; }
+            border: 1px solid var(--border);
+            font-size: 0.85rem;
         }
         code {
             font-family: 'SF Mono', Monaco, monospace;
             font-size: 0.9em;
         }
         :not(pre) > code {
-            background: #334155;
+            background: var(--border);
             padding: 0.2rem 0.4rem;
             border-radius: 4px;
         }
+
         table {
             width: 100%;
             border-collapse: collapse;
             margin: 1rem 0;
-            background: #1e293b;
+            background: var(--card-bg);
             border-radius: 8px;
             overflow: hidden;
         }
         th, td {
             padding: 0.75rem 1rem;
             text-align: left;
-            border-bottom: 1px solid #334155;
+            border-bottom: 1px solid var(--border);
         }
-        th { background: #334155; color: #f8fafc; font-weight: 600; }
+        th { background: var(--border); color: var(--white); font-weight: 600; }
         tr:last-child td { border-bottom: none; }
-        hr { border: none; border-top: 1px solid #334155; margin: 2rem 0; }
-        a { color: #3b82f6; }
-        strong { color: #f8fafc; }
-        .meta {
-            background: #1e293b;
-            padding: 1rem;
-            border-radius: 8px;
-            margin-bottom: 2rem;
-            border-left: 4px solid #3b82f6;
-        }
-        .meta p { margin: 0.25rem 0; font-size: 0.9rem; color: #94a3b8; }
-        footer {
+
+        hr { border: none; border-top: 1px solid var(--border); margin: 2rem 0; }
+        a { color: var(--orange); }
+        strong { color: var(--white); }
+
+        .page-nav {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
             margin-top: 3rem;
             padding-top: 2rem;
-            border-top: 1px solid #334155;
-            text-align: center;
-            color: #64748b;
-            font-size: 0.875rem;
+            border-top: 1px solid var(--border);
         }
+        .page-nav a {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            color: var(--white);
+            transition: border-color 0.2s;
+            flex: 1;
+            max-width: 45%;
+        }
+        .page-nav a:hover { border-color: var(--orange); }
+        .page-nav .prev { text-align: left; }
+        .page-nav .next { text-align: right; margin-left: auto; }
+        .page-nav .label { font-size: 0.75rem; color: var(--gray); margin-bottom: 0.25rem; }
+        .page-nav .title { font-weight: 600; color: var(--orange); }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--gray);
+            font-size: 0.85rem;
+            border-top: 1px solid var(--border);
+            margin-top: 3rem;
+        }
+        footer a { color: var(--orange); }
     </style>
 </head>
 <body>
+    <nav class="top-nav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-brand">
+                <img src="assets/Slate_Systems_Logo_White.png" alt="Slate" class="nav-logo">
+                <span class="nav-subtitle">SUPPORT</span>
+            </a>
+            <a href="index.html" class="nav-back">Back to Portal</a>
+        </div>
+    </nav>
+
     <div class="container">
-        <a href="../index.html" class="back-link">← Back to Portal</a>
-        <h1 id="support-faq-common-questions-answers">Support FAQ — Common Questions & Answers</h1>
-
-<blockquote><strong>Role:</strong> Support / VA / Anyone handling client questions</blockquote>
-<blockquote><strong>Purpose:</strong> Standard answers to common client questions</blockquote>
-<blockquote><strong>Last Updated:</strong> Feb 23, 2026</blockquote>
-
-<hr>
-
-<h2 id="ai-agent-handles-tier-1-automatically">AI Agent Handles Tier 1 Automatically</h2>
-
-<strong>Most routine questions are handled by the Support AI Agent automatically.</strong>
-
-<table><thead><tr><th>Component</th><th>Value</th></tr></thead><tbody><tr><td>Workflow</td><td>SLATE - Support AI Agent</td></tr><tr><td>n8n ID</td><td><code>pY9srGq9t6CmkbD7</code></td></tr><tr><td>Webhook</td><td><code>https://n8n.slatesystems.io/webhook/support-agent</code></td></tr><tr><td>Status</td><td>Active (needs GHL trigger workflow)</td></tr></tbody></table>
-<strong>What the AI handles:</strong>
-<ul><li>How-to questions (app, website, reviews)</li>
-<li>Password reset guidance</li>
-<li>Review link requests</li>
-<li>Feature explanations</li>
-<li>Basic troubleshooting</li>
-</ul>
-<strong>What the AI escalates:</strong> (adds <code>support-escalation</code> tag)
-<ul><li>Cancellation requests</li>
-<li>Complaints / frustration</li>
-<li>Billing issues</li>
-<li>Technical bugs</li>
-<li>Custom requests</li>
-<li>Anything unclear</li>
-</ul>
-See <code>agents/support-agent.md</code> for full specification.
-
-<hr>
-
-<h2 id="how-to-use-this-document">How to Use This Document</h2>
-
-<ol><li class="ordered">Client asks a question</li>
-<li class="ordered"><strong>Check if AI already responded</strong> (look in conversation history)</li>
-<li class="ordered">If AI escalated or didn't respond, use this FAQ</li>
-<li class="ordered">If not found → escalate per <code>escalation-rules.md</code></li>
-</ol>
-<hr>
-
-<h2 id="category-website">CATEGORY: WEBSITE</h2>
-
-<h3 id="how-do-i-see-my-website">"How do I see my website?"</h3>
-
-<strong>Answer:</strong>
-<blockquote>Your website is at [their domain]. You can also find it on your quick links page at [their domain]/my-links.</blockquote>
-
-<h3 id="how-do-i-update-my-phone-number-on-the-website">"How do I update my phone number on the website?"</h3>
-
-<strong>Answer:</strong>
-<blockquote>Let us know the new number and we'll update it for you within 24 hours. Reply with the new number and we'll take care of it.</blockquote>
-
-<strong>Note:</strong> Update custom values: <code>company_phone__aesthetic_</code>, <code>company_phone__functional_</code>, <code>company_twilio_phone</code>
-
-<h3 id="can-i-change-the-text-images-on-my-website">"Can I change the text/images on my website?"</h3>
-
-<strong>Answer:</strong>
-<blockquote>Yes! For text changes, just tell us what you'd like changed and where. For images, send us the new images and we'll swap them out.</blockquote>
-
-<strong>Note:</strong> Fulfillment handles this. Create task in pipeline.
-
-<h3 id="my-website-isn-t-loading">"My website isn't loading"</h3>
-
-<strong>Answer:</strong>
-<blockquote>I'll check on that right now. Can you tell me what you see when you try to visit it? Also, try clearing your browser cache or using a different browser.</blockquote>
-
-<strong>Note:</strong> Check: Domain DNS, SSL certificate, GHL site status. If actual issue → escalate to Fulfillment.
-
-<h3 id="the-chat-widget-isn-t-working">"The chat widget isn't working"</h3>
-
-<strong>Answer:</strong>
-<blockquote>Let me check on that. Can you tell me what happens when you try to use it? I'll look into it right now.</blockquote>
-
-<strong>Note:</strong> Check: Chat widget enabled on site, correct configuration.
-
-<hr>
-
-<h2 id="category-app-lead-connector">CATEGORY: APP / LEAD CONNECTOR</h2>
-
-<h3 id="how-do-i-download-the-app">"How do I download the app?"</h3>
-
-<strong>Answer:</strong>
-<blockquote>Here are the links:</blockquote>
-<blockquote>- iPhone: https://apps.apple.com/app/highlevel/id1459516266</blockquote>
-<blockquote>- Android: https://play.google.com/store/apps/details?id=com.gohighlevel</blockquote>
->
-<blockquote>After downloading, use your email and the password we set up. Let me know if you need help logging in.</blockquote>
-
-<h3 id="i-can-t-log-in-to-the-app">"I can't log in to the app"</h3>
-
-<strong>Answer:</strong>
-<blockquote>No problem! I'll reset your password right now. Make sure the new password has at least one special character (like ! or @). I'll text you the new password in a moment.</blockquote>
-
-<strong>Note:</strong> Reset in GHL: Sub-account → Team → User → Reset password
-
-<h3 id="where-do-i-see-my-leads">"Where do I see my leads?"</h3>
-
-<strong>Answer:</strong>
-<blockquote>In the app, tap "Conversations" at the bottom. All your leads show up there. You can also tap "Contacts" to see everyone in your system.</blockquote>
-
-<h3 id="how-do-i-respond-to-leads">"How do I respond to leads?"</h3>
-
-<strong>Answer:</strong>
-<blockquote>In the app, tap "Conversations", then tap on the lead's name. You can text them right from there. Just type your message and hit send.</blockquote>
-
-<h3 id="i-m-not-getting-notifications">"I'm not getting notifications"</h3>
-
-<strong>Answer:</strong>
-<blockquote>Let's fix that. Go to your phone's Settings → Notifications → Lead Connector (or HighLevel). Make sure notifications are turned ON. Also check that "Do Not Disturb" isn't enabled.</blockquote>
-
-<hr>
-
-<h2 id="category-reviews">CATEGORY: REVIEWS</h2>
-
-<h3 id="how-do-i-get-more-reviews">"How do I get more reviews?"</h3>
-
-<strong>Answer:</strong>
-<blockquote>Use the marketing form in your app! Go to Marketing → Forms → "Request Review". Enter your customer's name and phone, hit send, and they'll get a link to leave a review. We recommend doing this right after you finish a job.</blockquote>
-
-<h3 id="where-do-i-find-my-review-link">"Where do I find my review link?"</h3>
-
-<strong>Answer:</strong>
-<blockquote>Your Google review link is on your quick links page: [their domain]/my-links. You can also copy it and text it directly to customers.</blockquote>
-
-<h3 id="how-does-the-review-system-work">"How does the review system work?"</h3>
-
-<strong>Answer:</strong>
-<blockquote>When a customer clicks your review link:</blockquote>
-<blockquote>- If they click 4-5 stars → they go straight to Google to leave a review</blockquote>
-<blockquote>- If they click 1-3 stars → they go to a private feedback form</blockquote>
->
-<blockquote>This protects your Google rating while still getting feedback from unhappy customers.</blockquote>
-
-<h3 id="can-i-respond-to-google-reviews">"Can I respond to Google reviews?"</h3>
-
-<strong>Answer:</strong>
-<blockquote>Yes! Our system automatically responds to positive reviews (4-5 stars) for you. If you want to respond to one personally, you can do that in your Google Business Profile.</blockquote>
-
-<h3 id="i-got-a-negative-review">"I got a negative review"</h3>
-
-<strong>Answer:</strong>
-<blockquote>Sorry to hear that. If it's from a real customer, the best approach is to respond professionally and try to make it right. Would you like some help crafting a response?</blockquote>
-
-<strong>Note:</strong> If fake review, guide them on flagging it in Google.
-
-<hr>
-
-<h2 id="category-phone-sms">CATEGORY: PHONE / SMS</h2>
-
-<h3 id="my-phone-number-isn-t-working">"My phone number isn't working"</h3>
-
-<strong>Answer:</strong>
-<blockquote>Let me check on that. Can you tell me what's happening? Are calls not coming through, or is it texts?</blockquote>
-
-<strong>Note:</strong> Check: Phone forwarding config, A2P status, number not suspended
-
-<h3 id="texts-aren-t-sending">"Texts aren't sending"</h3>
-
-<strong>Answer:</strong>
-<blockquote>This could be related to your A2P verification. Let me check the status. It usually takes 5-7 business days to get approved after we submit.</blockquote>
-
-<strong>Note:</strong> Check A2P status. If rejected → see a2p-submission.md
-
-<h3 id="what-s-a2p">"What's A2P?"</h3>
-
-<strong>Answer:</strong>
-<blockquote>A2P stands for Application-to-Person. It's a verification process required by phone carriers to send automated texts. We submit this for you, and it usually takes 5-7 business days to get approved.</blockquote>
-
-<h3 id="i-m-getting-spam-calls">"I'm getting spam calls"</h3>
-
-<strong>Answer:</strong>
-<blockquote>Unfortunately, spam calls are an industry-wide issue. Your toll-free number is new, so it may get fewer spam calls than your personal number. You can also block specific numbers in the app.</blockquote>
-
-<hr>
-
-<h2 id="category-billing">CATEGORY: BILLING</h2>
-
-<h3 id="when-is-my-next-payment">"When is my next payment?"</h3>
-
-<strong>Answer:</strong>
-<blockquote>Let me check that for you. [Check Stripe] Your next payment is on [date].</blockquote>
-
-<h3 id="how-do-i-update-my-credit-card">"How do I update my credit card?"</h3>
-
-<strong>Answer:</strong>
-<blockquote>I'll send you a link to your billing portal where you can update your card securely.</blockquote>
-
-<strong>Note:</strong> Send billing portal link from Stripe
-
-<h3 id="can-i-get-a-receipt">"Can I get a receipt?"</h3>
-
-<strong>Answer:</strong>
-<blockquote>Of course! I'll email you a receipt right now. What email should I send it to?</blockquote>
-
-<strong>Note:</strong> Generate invoice/receipt in Stripe → Email to client
-
-<h3 id="i-was-charged-wrong">"I was charged wrong"</h3>
-
-<strong>Note:</strong> ESCALATE to Founder. Do not handle billing disputes directly.
-
-<strong>Say:</strong>
-<blockquote>I want to make sure this is handled correctly. Let me have [Dan/Owner] look into this personally. He'll reach out to you today.</blockquote>
-
-<hr>
-
-<h2 id="category-cancellation">CATEGORY: CANCELLATION</h2>
-
-<strong>Note:</strong> ALL cancellation requests → ESCALATE to Closer/Founder per cancellation-saves.md
-
-<strong>Say:</strong>
-<blockquote>I understand. Let me have [Dan/Owner] give you a call to discuss. We want to make sure we understand what's happening and see if there's anything we can do.</blockquote>
-
-<strong>Never process a cancellation without a conversation.</strong>
-
-<hr>
-
-<h2 id="category-technical">CATEGORY: TECHNICAL</h2>
-
-<h3 id="something-on-my-website-looks-wrong">"Something on my website looks wrong"</h3>
-
-<strong>Answer:</strong>
-<blockquote>Can you send me a screenshot of what you're seeing? I'll take a look and get it fixed.</blockquote>
-
-<strong>Note:</strong> Create task for Fulfillment
-
-<h3 id="my-form-isn-t-working">"My form isn't working"</h3>
-
-<strong>Answer:</strong>
-<blockquote>Let me test it right now. I'll submit a test and see if it comes through. One moment.</blockquote>
-
-<strong>Note:</strong> Test the form. If broken → escalate to Fulfillment.
-
-<h3 id="links-aren-t-working">"Links aren't working"</h3>
-
-<strong>Answer:</strong>
-<blockquote>Can you tell me which link isn't working? I'll check it out and fix it.</blockquote>
-
-<hr>
-
-<h2 id="response-tone-guidelines">Response Tone Guidelines</h2>
-
-<strong>DO:</strong>
-<ul><li>Use their first name</li>
-<li>Be friendly and helpful</li>
-<li>Keep it short and simple</li>
-<li>Offer solutions, not excuses</li>
-<li>Follow up to confirm resolution</li>
-</ul>
-<strong>DON'T:</strong>
-<ul><li>Use jargon (CRM, pipeline, etc.)</li>
-<li>Be defensive</li>
-<li>Over-explain</li>
-<li>Make promises you can't keep</li>
-<li>Leave issues unresolved</li>
-</ul>
-<hr>
-
-<h2 id="quick-templates">Quick Templates</h2>
-
-<h3 id="acknowledging-question">Acknowledging question</h3>
-<blockquote>"Hey [Name]! Good question. [Answer]"</blockquote>
-
-<h3 id="need-to-check-something">Need to check something</h3>
-<blockquote>"Let me look into that real quick. I'll get back to you shortly."</blockquote>
-
-<h3 id="fixed-the-issue">Fixed the issue</h3>
-<blockquote>"All fixed! [Explain what was done]. Let me know if you need anything else."</blockquote>
-
-<h3 id="escalating">Escalating</h3>
-<blockquote>"I want to make sure this is handled right. Let me have [Name] take a look and get back to you today."</blockquote>
-
-<hr>
-
-<h2 id="related-sops">Related SOPs</h2>
-
-<ul><li><code>escalation-rules.md</code> — When to escalate</li>
-<li><code>app-guide.md</code> — Lead Connector details</li>
-<li><code>cc-decline-handling.md</code> — Billing issues</li>
-</ul>
-<hr>
-
-<em>Last updated: Feb 22, 2026</em>
-
-        <footer>
-            <p>&copy; 2026 Slate Systems Inc. Internal use only.</p>
-        </footer>
+        <h1>Support FAQ</h1>
+
+        <div class="meta-box">
+            <p><strong>Role:</strong> Support / VA / Anyone handling client questions</p>
+            <p><strong>Purpose:</strong> Standard answers to common client questions</p>
+            <p><strong>Last Updated:</strong> Feb 22, 2026</p>
+        </div>
+
+        <button class="toc-toggle" onclick="toggleToc()">
+            <span>Table of Contents</span>
+            <span class="arrow">&#9660;</span>
+        </button>
+
+        <div class="toc" id="toc">
+            <div class="toc-title">Contents</div>
+            <ul>
+                <li><a href="#how-to-use">How to Use This Document</a></li>
+                <li><a href="#website">Website</a></li>
+                <li><a href="#app">App / Lead Connector</a></li>
+                <li><a href="#reviews">Reviews</a></li>
+                <li><a href="#phone-sms">Phone / SMS</a></li>
+                <li><a href="#billing">Billing</a></li>
+                <li><a href="#cancellation">Cancellation</a></li>
+                <li><a href="#technical">Technical</a></li>
+                <li><a href="#tone">Response Tone Guidelines</a></li>
+                <li><a href="#templates">Quick Templates</a></li>
+                <li><a href="#related">Related SOPs</a></li>
+            </ul>
+        </div>
+
+        <h2 id="how-to-use">How to Use This Document</h2>
+        <ol>
+            <li>Client asks a question</li>
+            <li>Find it in this FAQ</li>
+            <li>Use the answer (customize with their name/details)</li>
+            <li>If not found, escalate per <code>escalation-rules.md</code></li>
+        </ol>
+
+        <h2 id="website">CATEGORY: WEBSITE</h2>
+
+        <h3>"How do I see my website?"</h3>
+        <p><strong>Answer:</strong></p>
+        <blockquote>Your website is at [their domain]. You can also find it on your quick links page at [their domain]/my-links.</blockquote>
+
+        <h3>"How do I update my phone number on the website?"</h3>
+        <p><strong>Answer:</strong></p>
+        <blockquote>Let us know the new number and we'll update it for you within 24 hours. Reply with the new number and we'll take care of it.</blockquote>
+        <p><strong>Note:</strong> Update custom values: <code>company_phone__aesthetic_</code>, <code>company_phone__functional_</code>, <code>company_twilio_phone</code></p>
+
+        <h3>"Can I change the text/images on my website?"</h3>
+        <p><strong>Answer:</strong></p>
+        <blockquote>Yes! For text changes, just tell us what you'd like changed and where. For images, send us the new images and we'll swap them out.</blockquote>
+        <p><strong>Note:</strong> Fulfillment handles this. Create task in pipeline.</p>
+
+        <h3>"My website isn't loading"</h3>
+        <p><strong>Answer:</strong></p>
+        <blockquote>I'll check on that right now. Can you tell me what you see when you try to visit it? Also, try clearing your browser cache or using a different browser.</blockquote>
+        <p><strong>Note:</strong> Check: Domain DNS, SSL certificate, GHL site status. If actual issue, escalate to Fulfillment.</p>
+
+        <h3>"The chat widget isn't working"</h3>
+        <p><strong>Answer:</strong></p>
+        <blockquote>Let me check on that. Can you tell me what happens when you try to use it? I'll look into it right now.</blockquote>
+        <p><strong>Note:</strong> Check: Chat widget enabled on site, correct configuration.</p>
+
+        <h2 id="app">CATEGORY: APP / LEAD CONNECTOR</h2>
+
+        <h3>"How do I download the app?"</h3>
+        <p><strong>Answer:</strong></p>
+        <blockquote>Here are the links:<br>
+        - iPhone: https://apps.apple.com/app/highlevel/id1459516266<br>
+        - Android: https://play.google.com/store/apps/details?id=com.gohighlevel<br><br>
+        After downloading, use your email and the password we set up. Let me know if you need help logging in.</blockquote>
+
+        <h3>"I can't log in to the app"</h3>
+        <p><strong>Answer:</strong></p>
+        <blockquote>No problem! I'll reset your password right now. Make sure the new password has at least one special character (like ! or @). I'll text you the new password in a moment.</blockquote>
+        <p><strong>Note:</strong> Reset in GHL: Sub-account > Team > User > Reset password</p>
+
+        <h3>"Where do I see my leads?"</h3>
+        <p><strong>Answer:</strong></p>
+        <blockquote>In the app, tap "Conversations" at the bottom. All your leads show up there. You can also tap "Contacts" to see everyone in your system.</blockquote>
+
+        <h3>"How do I respond to leads?"</h3>
+        <p><strong>Answer:</strong></p>
+        <blockquote>In the app, tap "Conversations", then tap on the lead's name. You can text them right from there. Just type your message and hit send.</blockquote>
+
+        <h3>"I'm not getting notifications"</h3>
+        <p><strong>Answer:</strong></p>
+        <blockquote>Let's fix that. Go to your phone's Settings > Notifications > Lead Connector (or HighLevel). Make sure notifications are turned ON. Also check that "Do Not Disturb" isn't enabled.</blockquote>
+
+        <h2 id="reviews">CATEGORY: REVIEWS</h2>
+
+        <h3>"How do I get more reviews?"</h3>
+        <p><strong>Answer:</strong></p>
+        <blockquote>Use the marketing form in your app! Go to Marketing > Forms > "Request Review". Enter your customer's name and phone, hit send, and they'll get a link to leave a review. We recommend doing this right after you finish a job.</blockquote>
+
+        <h3>"Where do I find my review link?"</h3>
+        <p><strong>Answer:</strong></p>
+        <blockquote>Your Google review link is on your quick links page: [their domain]/my-links. You can also copy it and text it directly to customers.</blockquote>
+
+        <h3>"How does the review system work?"</h3>
+        <p><strong>Answer:</strong></p>
+        <blockquote>When a customer clicks your review link:<br>
+        - If they click 4-5 stars, they go straight to Google to leave a review<br>
+        - If they click 1-3 stars, they go to a private feedback form<br><br>
+        This protects your Google rating while still getting feedback from unhappy customers.</blockquote>
+
+        <h3>"Can I respond to Google reviews?"</h3>
+        <p><strong>Answer:</strong></p>
+        <blockquote>Yes! Our system automatically responds to positive reviews (4-5 stars) for you. If you want to respond to one personally, you can do that in your Google Business Profile.</blockquote>
+
+        <h3>"I got a negative review"</h3>
+        <p><strong>Answer:</strong></p>
+        <blockquote>Sorry to hear that. If it's from a real customer, the best approach is to respond professionally and try to make it right. Would you like some help crafting a response?</blockquote>
+        <p><strong>Note:</strong> If fake review, guide them on flagging it in Google.</p>
+
+        <h2 id="phone-sms">CATEGORY: PHONE / SMS</h2>
+
+        <h3>"My phone number isn't working"</h3>
+        <p><strong>Answer:</strong></p>
+        <blockquote>Let me check on that. Can you tell me what's happening? Are calls not coming through, or is it texts?</blockquote>
+        <p><strong>Note:</strong> Check: Phone forwarding config, A2P status, number not suspended</p>
+
+        <h3>"Texts aren't sending"</h3>
+        <p><strong>Answer:</strong></p>
+        <blockquote>This could be related to your A2P verification. Let me check the status. It usually takes 5-7 business days to get approved after we submit.</blockquote>
+        <p><strong>Note:</strong> Check A2P status. If rejected, see a2p-submission.md</p>
+
+        <h3>"What's A2P?"</h3>
+        <p><strong>Answer:</strong></p>
+        <blockquote>A2P stands for Application-to-Person. It's a verification process required by phone carriers to send automated texts. We submit this for you, and it usually takes 5-7 business days to get approved.</blockquote>
+
+        <h3>"I'm getting spam calls"</h3>
+        <p><strong>Answer:</strong></p>
+        <blockquote>Unfortunately, spam calls are an industry-wide issue. Your toll-free number is new, so it may get fewer spam calls than your personal number. You can also block specific numbers in the app.</blockquote>
+
+        <h2 id="billing">CATEGORY: BILLING</h2>
+
+        <h3>"When is my next payment?"</h3>
+        <p><strong>Answer:</strong></p>
+        <blockquote>Let me check that for you. [Check Stripe] Your next payment is on [date].</blockquote>
+
+        <h3>"How do I update my credit card?"</h3>
+        <p><strong>Answer:</strong></p>
+        <blockquote>I'll send you a link to your billing portal where you can update your card securely.</blockquote>
+        <p><strong>Note:</strong> Send billing portal link from Stripe</p>
+
+        <h3>"Can I get a receipt?"</h3>
+        <p><strong>Answer:</strong></p>
+        <blockquote>Of course! I'll email you a receipt right now. What email should I send it to?</blockquote>
+        <p><strong>Note:</strong> Generate invoice/receipt in Stripe > Email to client</p>
+
+        <h3>"I was charged wrong"</h3>
+        <p><strong>Note:</strong> ESCALATE to Founder. Do not handle billing disputes directly.</p>
+        <p><strong>Say:</strong></p>
+        <blockquote>I want to make sure this is handled correctly. Let me have [Dan/Owner] look into this personally. He'll reach out to you today.</blockquote>
+
+        <h2 id="cancellation">CATEGORY: CANCELLATION</h2>
+
+        <p><strong>Note:</strong> ALL cancellation requests > ESCALATE to Closer/Founder per cancellation-saves.md</p>
+        <p><strong>Say:</strong></p>
+        <blockquote>I understand. Let me have [Dan/Owner] give you a call to discuss. We want to make sure we understand what's happening and see if there's anything we can do.</blockquote>
+        <p><strong>Never process a cancellation without a conversation.</strong></p>
+
+        <h2 id="technical">CATEGORY: TECHNICAL</h2>
+
+        <h3>"Something on my website looks wrong"</h3>
+        <p><strong>Answer:</strong></p>
+        <blockquote>Can you send me a screenshot of what you're seeing? I'll take a look and get it fixed.</blockquote>
+        <p><strong>Note:</strong> Create task for Fulfillment</p>
+
+        <h3>"My form isn't working"</h3>
+        <p><strong>Answer:</strong></p>
+        <blockquote>Let me test it right now. I'll submit a test and see if it comes through. One moment.</blockquote>
+        <p><strong>Note:</strong> Test the form. If broken, escalate to Fulfillment.</p>
+
+        <h3>"Links aren't working"</h3>
+        <p><strong>Answer:</strong></p>
+        <blockquote>Can you tell me which link isn't working? I'll check it out and fix it.</blockquote>
+
+        <h2 id="tone">Response Tone Guidelines</h2>
+
+        <p><strong>DO:</strong></p>
+        <ul>
+            <li>Use their first name</li>
+            <li>Be friendly and helpful</li>
+            <li>Keep it short and simple</li>
+            <li>Offer solutions, not excuses</li>
+            <li>Follow up to confirm resolution</li>
+        </ul>
+
+        <p><strong>DON'T:</strong></p>
+        <ul>
+            <li>Use jargon (CRM, pipeline, etc.)</li>
+            <li>Be defensive</li>
+            <li>Over-explain</li>
+            <li>Make promises you can't keep</li>
+            <li>Leave issues unresolved</li>
+        </ul>
+
+        <h2 id="templates">Quick Templates</h2>
+
+        <h3>Acknowledging question</h3>
+        <blockquote>"Hey [Name]! Good question. [Answer]"</blockquote>
+
+        <h3>Need to check something</h3>
+        <blockquote>"Let me look into that real quick. I'll get back to you shortly."</blockquote>
+
+        <h3>Fixed the issue</h3>
+        <blockquote>"All fixed! [Explain what was done]. Let me know if you need anything else."</blockquote>
+
+        <h3>Escalating</h3>
+        <blockquote>"I want to make sure this is handled right. Let me have [Name] take a look and get back to you today."</blockquote>
+
+        <h2 id="related">Related SOPs</h2>
+
+        <ul>
+            <li><a href="escalation-rules.html">Escalation Rules</a> - When to escalate</li>
+            <li><a href="app-guide.html">Lead Connector App Guide</a> - App details</li>
+            <li><a href="cc-decline-handling.html">CC Decline Handling</a> - Billing issues</li>
+        </ul>
+
+        <p><em>Last updated: Feb 22, 2026</em></p>
+
+        <div class="page-nav">
+            <div></div>
+            <a href="app-guide.html" class="next">
+                <div class="label">Next</div>
+                <div class="title">App Guide</div>
+            </a>
+        </div>
     </div>
+
+    <footer>
+        &copy; 2026 Slate Systems LLC | <a href="index.html">Support Portal</a>
+    </footer>
+
+    <script>
+        function toggleToc() {
+            const toc = document.getElementById('toc');
+            const btn = document.querySelector('.toc-toggle');
+            toc.classList.toggle('open');
+            btn.classList.toggle('open');
+        }
+    </script>
 </body>
 </html>

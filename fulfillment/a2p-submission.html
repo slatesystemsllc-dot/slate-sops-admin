@@ -2,448 +2,527 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A2P & Toll-Free Registration SOP - Slate Systems SOP</title>
+    <title>A2P Registration SOP - Slate Systems</title>
     <style>
+        :root { --navy: #152a45; --gray: #525c69; --orange: #ee7000; --white: #ffffff; --dark-bg: #0d1a2d; --card-bg: #1a2d47; --border: #2a4060; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: #0f172a;
-            color: #e2e8f0;
-            line-height: 1.7;
-            padding: 2rem;
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--dark-bg); color: var(--white); line-height: 1.7; }
+
+        .top-nav {
+            background: var(--navy);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 2px solid var(--orange);
         }
-        .container { max-width: 900px; margin: 0 auto; }
-        .back-link {
-            display: inline-flex;
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 1.5rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.6rem 0;
+            text-decoration: none;
+        }
+        .nav-logo { height: 28px; width: auto; }
+        .nav-subtitle {
+            background: var(--orange);
+            color: var(--white);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+        .nav-back {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 0.85rem;
+            opacity: 0.8;
+            transition: opacity 0.2s;
+        }
+        .nav-back:hover { opacity: 1; }
+
+        .container { max-width: 900px; margin: 0 auto; padding: 2rem 1.5rem; }
+
+        .toc-toggle {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            color: var(--white);
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+            display: flex;
             align-items: center;
             gap: 0.5rem;
-            color: #3b82f6;
-            text-decoration: none;
-            margin-bottom: 2rem;
-            font-size: 0.9rem;
+            width: 100%;
+            justify-content: space-between;
         }
-        .back-link:hover { text-decoration: underline; }
-        h1 { font-size: 2rem; color: #f8fafc; margin-bottom: 0.5rem; border-bottom: 2px solid #3b82f6; padding-bottom: 0.5rem; }
-        h2 { font-size: 1.5rem; color: #f8fafc; margin: 2rem 0 1rem; padding-top: 1rem; border-top: 1px solid #334155; }
+        .toc-toggle:hover { border-color: var(--orange); }
+        .toc-toggle .arrow { transition: transform 0.2s; }
+        .toc-toggle.open .arrow { transform: rotate(180deg); }
+
+        .toc {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1rem 1.5rem;
+            margin-bottom: 2rem;
+            display: none;
+        }
+        .toc.open { display: block; }
+        .toc-title { font-weight: 600; margin-bottom: 0.75rem; color: var(--orange); }
+        .toc ul { list-style: none; }
+        .toc li { margin-bottom: 0.4rem; }
+        .toc a { color: var(--white); text-decoration: none; font-size: 0.9rem; opacity: 0.8; }
+        .toc a:hover { opacity: 1; color: var(--orange); }
+
+        h1 { font-size: 2rem; color: var(--white); margin-bottom: 0.5rem; border-bottom: 2px solid var(--orange); padding-bottom: 0.75rem; }
+        h2 { font-size: 1.5rem; color: var(--white); margin: 2.5rem 0 1rem; padding-top: 1.5rem; border-top: 1px solid var(--border); scroll-margin-top: 80px; }
         h3 { font-size: 1.2rem; color: #cbd5e1; margin: 1.5rem 0 0.75rem; }
+        h4 { font-size: 1rem; color: #94a3b8; margin: 1.25rem 0 0.5rem; }
         p { margin-bottom: 1rem; }
         ul, ol { margin: 1rem 0; padding-left: 2rem; }
         li { margin-bottom: 0.5rem; }
-        li.nested { margin-left: 1.5rem; }
-        li.checkbox { list-style: none; margin-left: -1.5rem; }
-        li.checkbox input { margin-right: 0.5rem; }
+
+        .meta-box {
+            background: var(--card-bg);
+            border-left: 4px solid var(--orange);
+            padding: 1rem 1.25rem;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 1.5rem;
+        }
+        .meta-box p { margin: 0.25rem 0; font-size: 0.9rem; }
+        .meta-box strong { color: var(--orange); }
+
         blockquote {
-            background: #1e293b;
-            border-left: 4px solid #3b82f6;
+            background: var(--card-bg);
+            border-left: 4px solid var(--orange);
             padding: 1rem 1.5rem;
             margin: 1rem 0;
             border-radius: 0 8px 8px 0;
-            font-style: italic;
         }
+
         pre {
-            background: #1e293b;
+            background: var(--card-bg);
             padding: 1rem;
             border-radius: 8px;
             overflow-x: auto;
-            max-width: 100%;
             margin: 1rem 0;
-            border: 1px solid #334155;
-            white-space: pre-wrap;
-            word-wrap: break-word;
-        }
-        @media (max-width: 768px) {
-            body { padding: 1rem; }
-            pre { font-size: 0.85em; padding: 0.75rem; }
-            table { font-size: 0.9em; display: block; overflow-x: auto; }
-            th, td { padding: 0.5rem; }
-            h1 { font-size: 1.5rem; }
-            h2 { font-size: 1.25rem; }
+            border: 1px solid var(--border);
+            font-size: 0.85rem;
         }
         code {
             font-family: 'SF Mono', Monaco, monospace;
             font-size: 0.9em;
         }
         :not(pre) > code {
-            background: #334155;
+            background: var(--border);
             padding: 0.2rem 0.4rem;
             border-radius: 4px;
         }
+
         table {
             width: 100%;
             border-collapse: collapse;
             margin: 1rem 0;
-            background: #1e293b;
+            background: var(--card-bg);
             border-radius: 8px;
             overflow: hidden;
         }
         th, td {
             padding: 0.75rem 1rem;
             text-align: left;
-            border-bottom: 1px solid #334155;
+            border-bottom: 1px solid var(--border);
         }
-        th { background: #334155; color: #f8fafc; font-weight: 600; }
+        th { background: var(--border); color: var(--white); font-weight: 600; }
         tr:last-child td { border-bottom: none; }
-        hr { border: none; border-top: 1px solid #334155; margin: 2rem 0; }
-        a { color: #3b82f6; }
-        strong { color: #f8fafc; }
-        .meta {
-            background: #1e293b;
-            padding: 1rem;
-            border-radius: 8px;
-            margin-bottom: 2rem;
-            border-left: 4px solid #3b82f6;
-        }
-        .meta p { margin: 0.25rem 0; font-size: 0.9rem; color: #94a3b8; }
-        footer {
+
+        hr { border: none; border-top: 1px solid var(--border); margin: 2rem 0; }
+        a { color: var(--orange); }
+        strong { color: var(--white); }
+
+        .checkbox-item { list-style: none; margin-left: -1rem; }
+        .checkbox-item input { margin-right: 0.5rem; }
+
+        .page-nav {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
             margin-top: 3rem;
             padding-top: 2rem;
-            border-top: 1px solid #334155;
-            text-align: center;
-            color: #64748b;
-            font-size: 0.875rem;
+            border-top: 1px solid var(--border);
         }
+        .page-nav a {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            color: var(--white);
+            transition: border-color 0.2s;
+            flex: 1;
+            max-width: 45%;
+        }
+        .page-nav a:hover { border-color: var(--orange); }
+        .page-nav .prev { text-align: left; }
+        .page-nav .next { text-align: right; margin-left: auto; }
+        .page-nav .label { font-size: 0.75rem; color: var(--gray); margin-bottom: 0.25rem; }
+        .page-nav .title { font-weight: 600; color: var(--orange); }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--gray);
+            font-size: 0.85rem;
+            border-top: 1px solid var(--border);
+            margin-top: 3rem;
+        }
+        footer a { color: var(--orange); }
     </style>
 </head>
 <body>
+    <nav class="top-nav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-brand">
+                <img src="assets/Slate_Systems_Logo_White.png" alt="Slate" class="nav-logo">
+                <span class="nav-subtitle">FULFILLMENT</span>
+            </a>
+            <a href="index.html" class="nav-back">Back to Portal</a>
+        </div>
+    </nav>
+
     <div class="container">
-        <a href="../index.html" class="back-link">← Back to Portal</a>
-        <h1 id="a2p-toll-free-registration-sop">A2P & Toll-Free Registration SOP</h1>
+        <h1>A2P Registration SOP</h1>
 
-<blockquote><strong>Role:</strong> Fulfillment Specialist</blockquote>
-<blockquote><strong>When:</strong> After website homepage live, EIN verified</blockquote>
-<blockquote><strong>Time:</strong> 15-30 minutes per submission</blockquote>
-<blockquote><strong>Sources:</strong> GHL Official Docs, Kai/Stone Systems, Signal House</blockquote>
+        <div class="meta-box">
+            <p><strong>Role:</strong> Fulfillment Specialist</p>
+            <p><strong>When:</strong> After phone number purchased, website homepage live</p>
+            <p><strong>Time:</strong> 10-15 minutes per submission</p>
+            <p><strong>Last Updated:</strong> Feb 23, 2026</p>
+        </div>
 
-<hr>
+        <blockquote>
+            <strong>Two Paths Based on EIN:</strong><br>
+            <strong>Has EIN → LOCAL number → 10DLC Registration</strong> (this page)<br>
+            <strong>No EIN → TOLL-FREE number → <a href="#toll-free">Toll-Free Verification</a></strong> (simpler process, scroll down)
+        </blockquote>
 
-<h2 id="key-facts-2026-update">KEY FACTS (2026 Update)</h2>
+        <button class="toc-toggle" onclick="toggleToc()">
+            <span>Table of Contents</span>
+            <span class="arrow">&#9660;</span>
+        </button>
 
-<table><thead><tr><th>Item</th><th>Detail</th></tr></thead><tbody><tr><td><strong>EIN Requirement</strong></td><td>Required for BOTH A2P 10DLC and Toll-Free (as of 2026)</td></tr><tr><td><strong>EIN Age</strong></td><td>Must be 45+ days old for A2P 10DLC</td></tr><tr><td><strong>A2P 10DLC Cost</strong></td><td>$23.95-$68.05 brand + $12/mo campaign</td></tr><tr><td><strong>Toll-Free Cost</strong></td><td>FREE registration</td></tr><tr><td><strong>Signal House</strong></td><td>$4.50 - use ONCE to get perfect templates</td></tr><tr><td><strong>Resubmission</strong></td><td>FREE (GHL negotiated with Twilio)</td></tr><tr><td><strong>Volume Selection</strong></td><td>ALWAYS select "Low Volume"</td></tr><tr><td><strong>Compliance Checker</strong></td><td>GHL now has automated pre-submission scanner</td></tr></tbody></table>
-<hr>
+        <div class="toc" id="toc">
+            <div class="toc-title">Contents</div>
+            <ul>
+                <li><strong>10DLC Registration (EIN Clients)</strong></li>
+                <li style="margin-left: 1rem;"><a href="#prerequisites">Prerequisites</a></li>
+                <li style="margin-left: 1rem;"><a href="#information">Information Needed</a></li>
+                <li style="margin-left: 1rem;"><a href="#step1">Step 1: Access A2P Registration</a></li>
+                <li style="margin-left: 1rem;"><a href="#step2">Step 2: Brand Registration</a></li>
+                <li style="margin-left: 1rem;"><a href="#step3">Step 3: Campaign Registration</a></li>
+                <li style="margin-left: 1rem;"><a href="#step4">Step 4: Submit and Track</a></li>
+                <li><strong>Toll-Free Verification (No-EIN Clients)</strong></li>
+                <li style="margin-left: 1rem;"><a href="#toll-free">Toll-Free Process</a></li>
+                <li><strong>Common</strong></li>
+                <li style="margin-left: 1rem;"><a href="#rejected">If Rejected</a></li>
+                <li style="margin-left: 1rem;"><a href="#approved">After Approval</a></li>
+                <li style="margin-left: 1rem;"><a href="#checklist">Checklist</a></li>
+            </ul>
+        </div>
 
-<h2 id="two-registration-paths">Two Registration Paths</h2>
+        <h2 id="prerequisites">Prerequisites (10DLC - EIN Clients)</h2>
 
-<h3 id="path-1-a2p-10dlc-standard">Path 1: A2P 10DLC (Standard)</h3>
-<ul><li><strong>Best for:</strong> Clients with 45+ day old EIN</li>
-<li><strong>Cost:</strong> $23.95-$68.05 one-time + $12/mo</li>
-<li><strong>Approval time:</strong> 2-4 business days</li>
-<li><strong>Message throughput:</strong> Higher limits</li>
-</ul>
-<h3 id="path-2-toll-free-verification">Path 2: Toll-Free Verification</h3>
-<ul><li><strong>Best for:</strong> New businesses, clients without old EIN</li>
-<li><strong>Cost:</strong> FREE</li>
-<li><strong>Approval time:</strong> 1-2 weeks</li>
-<li><strong>Message throughput:</strong> Lower limits initially</li>
-<li><strong>2026 Change:</strong> Now requires EIN (previously didn't)</li>
-</ul>
-<strong>DECISION:</strong> Use Toll-Free for new clients, A2P 10DLC for established businesses.
+        <p>Before starting 10DLC registration:</p>
+        <ul>
+            <li class="checkbox-item"><input type="checkbox" disabled> <strong>LOCAL number</strong> purchased in sub-account (area code matching client location)</li>
+            <li class="checkbox-item"><input type="checkbox" disabled> Website homepage is LIVE (verification requires live URL)</li>
+            <li class="checkbox-item"><input type="checkbox" disabled> Client onboarding form completed (need business details)</li>
+            <li class="checkbox-item"><input type="checkbox" disabled> <strong>EIN letter on file</strong> (for exact legal name/address match)</li>
+        </ul>
 
-<hr>
+        <blockquote><strong>No EIN?</strong> Skip to <a href="#toll-free">Toll-Free Verification</a> instead.</blockquote>
 
-<h2 id="ghl-compliance-checker-new-2026">GHL Compliance Checker (NEW 2026)</h2>
+        <h2 id="information">Information Needed (From Onboarding Form + EIN)</h2>
 
-<p>GHL now has an <strong>automated compliance scanner</strong> that checks your submission before you submit. It validates:</p>
+        <table>
+            <thead>
+                <tr><th>Field</th><th>Source</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Legal Company Name</td><td>EIN Letter (EXACT)</td></tr>
+                <tr><td>EIN</td><td>Client form / EIN Letter</td></tr>
+                <tr><td>Business Address</td><td>EIN Letter (EXACT)</td></tr>
+                <tr><td>Support Email</td><td>Client form</td></tr>
+                <tr><td>Support Phone</td><td>Local number purchased</td></tr>
+                <tr><td>Website URL</td><td>Sub-account domain</td></tr>
+                <tr><td>Owner Name</td><td>Client form</td></tr>
+            </tbody>
+        </table>
 
-<strong>Opt-in Form Review (8 checks):</strong>
-<ul><li>Business name clearly displayed</li>
-<li>Checkbox for explicit consent</li>
-<li>Privacy policy & terms links</li>
-<li>Opt-out instructions</li>
-<li>Message frequency disclosure</li>
-<li>Checkboxes can't be mandatory</li>
-<li>Message type disclosure</li>
-<li>Message & data rates disclosure</li>
-</ul>
-<strong>Privacy Policy Review (7 checks):</strong>
-<ul><li>What information is collected</li>
-<li>How user data is used</li>
-<li>SMS opt-in details</li>
-<li>Cookie & tracking practices</li>
-<li>Data security and handling</li>
-<li>User rights</li>
-<li>Mobile info sharing statement</li>
-</ul>
-<strong>Terms of Service Review (7 checks):</strong>
-<ul><li>Description of SMS use cases</li>
-<li>Opt-out instructions</li>
-<li>Customer support contact</li>
-<li>Message & data rate disclosure</li>
-<li>Carrier liability disclaimer</li>
-<li>Age restriction (18+)</li>
-<li>Link to Privacy Policy</li>
-</ul>
-<strong>USE THIS:</strong> Before submitting, run the compliance checker. Fix any flagged issues first.
+        <blockquote><strong>CRITICAL:</strong> Legal name and address must EXACTLY match EIN document. Character-for-character.</blockquote>
 
-<hr>
+        <h2 id="step1">Step 1: Access 10DLC Registration</h2>
 
-<h2 id="prerequisites">Prerequisites</h2>
+        <ol>
+            <li>Go to client sub-account</li>
+            <li>Settings → Phone Numbers</li>
+            <li>Find the local number</li>
+            <li>Click "Register for A2P 10DLC"</li>
+        </ol>
 
-<p>Before starting:<br><ul><li class="checkbox"><input type="checkbox" disabled> Website homepage is LIVE (verification requires live URL)</li><br><li class="checkbox"><input type="checkbox" disabled> Privacy Policy page LIVE with mandatory clause (see below)</li><br><li class="checkbox"><input type="checkbox" disabled> Terms of Service page LIVE with required language</li><br><li class="checkbox"><input type="checkbox" disabled> Client onboarding form completed</li><br><li class="checkbox"><input type="checkbox" disabled> EIN letter on file (CP 575)</li><br><li class="checkbox"><input type="checkbox" disabled> EIN is 45+ days old (for A2P 10DLC only)</li><br><li class="checkbox"><input type="checkbox" disabled> Run GHL Compliance Checker - all 22 checks PASS</li><br></ul><br><hr></p>
+        <h2 id="step2">Step 2: Brand Registration</h2>
 
-<h2 id="critical-privacy-policy-mandatory-clause">CRITICAL: Privacy Policy Mandatory Clause</h2>
+        <p>Enter information exactly as shown:</p>
 
-<strong>This EXACT language MUST appear in the client's privacy policy:</strong>
+        <p><strong>Business Information:</strong></p>
+        <ul>
+            <li>Legal Company Name: [FROM EIN - EXACT]</li>
+            <li>EIN: [FROM CLIENT]</li>
+            <li>Business Address: [FROM EIN - EXACT]</li>
+            <li>Website URL: [CLIENT DOMAIN with https://]</li>
+        </ul>
 
-<pre><code>No mobile information will be shared with third parties/affiliates for marketing/promotional purposes. All other categories exclude text messaging originator opt-in data and consent; this information will not be shared with any third parties.
-</code></pre>
+        <p><strong>Contact Information:</strong></p>
+        <ul>
+            <li>Support Email: [FROM FORM]</li>
+            <li>Support Phone: [TOLL-FREE NUMBER with +1]</li>
+        </ul>
 
-<p>If this clause is missing, the registration WILL be rejected.</p>
+        <p>Submit brand registration. Wait for approval (usually 1-2 days).</p>
 
-<hr>
+        <h2 id="step3">Step 3: Campaign Registration</h2>
 
-<h2 id="critical-terms-of-service-required-language">CRITICAL: Terms of Service Required Language</h2>
+        <p>After brand approved, register campaign:</p>
 
-<p>The Terms of Service must include:<br><ul><li>How users opt-in to receive messages</li><br><li>What types of messages they'll receive</li><br><li>How to opt-out (STOP keyword)</li><br><li>Message frequency disclosure</li><br><li>"Message and data rates may apply"</li><br></ul><br><hr></p>
+        <h3>Use Case Details</h3>
 
-<h2 id="critical-two-consent-checkboxes-required">CRITICAL: Two Consent Checkboxes Required</h2>
+        <table>
+            <thead>
+                <tr><th>Field</th><th>Value</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Estimated Monthly Volume</td><td>1000</td></tr>
+                <tr><td>Use Case Categories</td><td>Account Notifications &amp; Customer Care</td></tr>
+            </tbody>
+        </table>
 
-<p>The website form MUST have TWO separate checkboxes that are:<br><ul><li><strong>UNCHECKED by default</strong></li><br><li><strong>OPTIONAL (not required to submit)</strong></li><br></ul><br><h3 id="checkbox-1-customer-care-non-marketing">Checkbox 1 - Customer Care (Non-Marketing)</h3><br><pre><code>[ ] By providing a telephone number, clicking this button, and submitting the form, you are consenting to be contacted by SMS text message and AI-powered voice calls from [LEGAL COMPANY NAME], regarding Customer Care, (our message frequency may vary). Message & data rates apply. Reply STOP to unsubscribe from further messaging from [LEGAL COMPANY NAME]. Reply HELP for more information. See our Privacy Policy (containing our SMS Terms) at the bottom of the page for more information.<br></code></pre></p>
+        <h3>Use Case Description (Copy Exactly)</h3>
 
-<h3 id="checkbox-2-marketing">Checkbox 2 - Marketing</h3>
-<pre><code>[ ] By providing a telephone number, clicking this button, and submitting the form, you are consenting to be contacted by SMS text message from [LEGAL COMPANY NAME], regarding new offers (marketing), (our message frequency may vary). Message & data rates apply. Reply STOP to unsubscribe from further messaging from [LEGAL COMPANY NAME]. Reply HELP for more information. See our Privacy Policy (containing our SMS Terms) at the bottom of the page for more information.
-</code></pre>
+<pre><code>Send first-party Customer Care, marketing messages offered directly by the messaging party. [LEGAL COMPANY NAME] is a [BUSINESS TYPE] that provides products and services to customers in the Professional Services industry.</code></pre>
 
-<strong>Replace <code>[LEGAL COMPANY NAME]</code> with exact legal name from EIN.</strong>
+        <p><strong>Replace:</strong></p>
+        <ul>
+            <li><code>[LEGAL COMPANY NAME]</code> = exact legal name from EIN</li>
+            <li><code>[BUSINESS TYPE]</code> = their trade (Plumbing Company, HVAC Contractor, etc.)</li>
+        </ul>
 
-<hr>
+        <h3>Opt-In Details</h3>
 
-<h2 id="information-needed">Information Needed</h2>
+        <table>
+            <thead>
+                <tr><th>Field</th><th>Value</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Opt-in Type</td><td>Web Form</td></tr>
+                <tr><td>Opt-in URL</td><td>Client website homepage URL</td></tr>
+                <tr><td>Opt-in Image</td><td>Screenshot of website form with consent checkbox</td></tr>
+            </tbody>
+        </table>
 
-<table><thead><tr><th>Field</th><th>Source</th><th>Requirement</th></tr></thead><tbody><tr><td>Legal Company Name</td><td>CP 575 EIN Letter</td><td>EXACT character-for-character match</td></tr><tr><td>EIN</td><td>CP 575 EIN Letter</td><td>9 digits, no dashes</td></tr><tr><td>Business Address</td><td>CP 575 EIN Letter</td><td>EXACT match including suite/unit</td></tr><tr><td>Email Domain</td><td>Client</td><td>MUST match company/website domain</td></tr><tr><td>Website URL</td><td>Sub-account</td><td>MUST match company name</td></tr><tr><td>Owner Name</td><td>Client form</td><td>Full legal name</td></tr></tbody></table>
-<strong>CRITICAL:</strong> CP 575 must match EXACTLY. If the CP 575 says "ABC Services LLC" you cannot enter "ABC Services" or "ABC SERVICES LLC".
+        <p><strong>For opt-in image:</strong></p>
+        <ol>
+            <li>Go to client website</li>
+            <li>Screenshot the quote form showing the consent checkbox</li>
+            <li>Upload to https://imgbb.com/</li>
+            <li>Copy the direct image link</li>
+        </ol>
 
-<hr>
-
-<h2 id="step-1-access-a2p-registration">Step 1: Access A2P Registration</h2>
-
-<ol><li class="ordered">Go to client sub-account</li>
-<li class="ordered">Settings → Phone Numbers</li>
-<li class="ordered">Find the toll-free number</li>
-<li class="ordered">Click "Trust Center" or "Verify this Toll Free Number"</li>
-</ol>
-<hr>
-
-<h2 id="step-2-brand-registration">Step 2: Brand Registration</h2>
-
-<h3 id="business-information-exact-match-required">Business Information (EXACT MATCH REQUIRED)</h3>
-<ul><li><strong>Legal Company Name:</strong> FROM CP 575 - character-for-character</li>
-<li><strong>EIN:</strong> FROM CP 575 - 9 digits, no dashes</li>
-<li><strong>Business Address:</strong> FROM CP 575 - EXACT including suite/unit format</li>
-<li><strong>Website URL:</strong> Client domain with https://</li>
-<li><strong>Email:</strong> MUST use domain that matches company name</li>
-</ul>
-<h3 id="contact-information">Contact Information</h3>
-<ul><li><strong>Support Email:</strong> Must be on matching domain</li>
-<li><strong>Support Phone:</strong> The toll-free number with +1</li>
-</ul>
-<h3 id="volume-selection">Volume Selection</h3>
-<ul><li>Select <strong>"Low Volume"</strong> unless client specifically needs high volume</li>
-<li>Low volume = standard throughput, lower scrutiny</li>
-</ul>
-Submit brand registration. Wait for approval (usually 1-2 days).
-
-<hr>
-
-<h2 id="step-3-campaign-registration">Step 3: Campaign Registration</h2>
-
-<p>After brand approved:</p>
-
-<h3 id="use-case-details">Use Case Details</h3>
-
-<table><thead><tr><th>Field</th><th>Value</th></tr></thead><tbody><tr><td>Use Case</td><td>Customer Care & Marketing</td></tr><tr><td>Estimated Monthly Volume</td><td>1000 (low volume)</td></tr></tbody></table>
-<h3 id="use-case-description-copy-and-customize">Use Case Description (Copy and Customize)</h3>
-
-<pre><code>Send first-party Customer Care and marketing messages offered directly by the messaging party. [LEGAL COMPANY NAME] is a [BUSINESS TYPE] that provides products and services to customers in the Professional Services industry.
-</code></pre>
-
-<strong>Replace:</strong>
-<ul><li><code>[LEGAL COMPANY NAME]</code> = exact legal name from CP 575</li>
-<li><code>[BUSINESS TYPE]</code> = their trade (Plumbing Company, HVAC Contractor, etc.)</li>
-</ul>
-<h3 id="opt-in-details">Opt-In Details</h3>
-
-<table><thead><tr><th>Field</th><th>Value</th></tr></thead><tbody><tr><td>Opt-in Type</td><td>Web Form</td></tr><tr><td>Opt-in URL</td><td>Client website homepage URL</td></tr><tr><td>Opt-in Image</td><td>Screenshot showing BOTH consent checkboxes</td></tr></tbody></table>
-<strong>For opt-in image:</strong>
-<ol><li class="ordered">Go to client website</li>
-<li class="ordered">Screenshot the form showing BOTH consent checkboxes visible</li>
-<li class="ordered">Upload to https://imgbb.com/</li>
-<li class="ordered">Copy the direct image link</li>
-</ol>
-<h3 id="cta-opt-in-message-flow">CTA / Opt-In Message Flow</h3>
+        <h3>CTA / Opt-In Message Flow (Copy Exactly)</h3>
 
 <pre><code>Clients will be able to sign up to receive SMS notifications by checking their preference by clicking on [WEBSITE-URL] where they'll see a form to fill out information, and can click a specific box for Customer Care and/or Marketing. The text reads:
 
-<p>[ ] By providing a telephone number, clicking this button, and submitting the form, you are consenting to be contacted by SMS text message and AI-powered voice calls from [LEGAL COMPANY NAME], regarding Customer Care, (our message frequency may vary). Message & data rates apply. Reply STOP to unsubscribe from further messaging from [LEGAL COMPANY NAME]. Reply HELP for more information. See our Privacy Policy (containing our SMS Terms) at the bottom of the page for more information.</p>
+[ ] By providing a telephone number, clicking this button, and submitting the form, you are consenting to be contacted by SMS text message and AI-powered voice calls from [LEGAL COMPANY NAME], regarding Customer Care, (our message frequency may vary). Message &amp; data rates apply. Reply STOP to unsubscribe from further messaging from [LEGAL COMPANY NAME]. Reply HELP for more information. See our Privacy Policy (containing our SMS Terms) at the bottom of the page for more information.
 
-<p>[ ] By providing a telephone number, clicking this button, and submitting the form, you are consenting to be contacted by SMS text message from [LEGAL COMPANY NAME], regarding new offers (marketing), (our message frequency may vary). Message & data rates apply. Reply STOP to unsubscribe from further messaging from [LEGAL COMPANY NAME]. Reply HELP for more information. See our Privacy Policy (containing our SMS Terms) at the bottom of the page for more information.</p>
+[ ] By providing a telephone number, clicking this button, and submitting the form, you are consenting to be contacted by SMS text message from [LEGAL COMPANY NAME], regarding new offers (marketing), (our message frequency may vary). Message &amp; data rates apply. Reply STOP to unsubscribe from further messaging from [LEGAL COMPANY NAME]. Reply HELP for more information. See our Privacy Policy (containing our SMS Terms) at the bottom of the page for more information.
 
-<p>Consent is provided exclusively for [LEGAL COMPANY NAME] to contact the user based on the selection, not any other third parties mentioned on the site. SMS opt-in data is not shared/sold to third parties for promotional/marketing purposes.</p>
+Consent is provided exclusively for [LEGAL COMPANY NAME] to contact the user based on the selection, not any other third parties mentioned on the site. SMS opt-in data is not shared/sold to third parties for promotional/marketing purposes.
 
-<p>Privacy Policy URL: [PRIVACY-POLICY-URL]<br></code></pre></p>
+Privacy Policy URL: [PRIVACY-POLICY-URL]</code></pre>
 
-<h3 id="sample-messages">Sample Messages</h3>
+        <h3>Sample Messages (Copy Exactly)</h3>
 
 <pre><code>1. We think you'll love our new release, let's book a call and discuss soon! Respond STOP to opt out from [LEGAL COMPANY NAME]
 
-<ol><li class="ordered">We're here to save you time AND money. Let me know when you're free for a quick call. Respond STOP to opt out from [LEGAL COMPANY NAME]</li>
-</ol>
-<ol><li class="ordered">Our team has looked into your issue, and should have a resolution soon. We will reach out for more information as soon as possible. Respond STOP to opt out from [LEGAL COMPANY NAME]</li>
-</ol>
-<ol><li class="ordered">Thanks for reaching out concerning your account. Please describe the issue and we will respond as soon as possible. Respond STOP to opt out from [LEGAL COMPANY NAME]</li>
-</ol></code></pre>
+2. We're here to save you time AND money. Let me know when you're free for a quick call. Respond STOP to opt out from [LEGAL COMPANY NAME]
 
-<h3 id="campaign-attributes">Campaign Attributes</h3>
+3. Our team has looked into your issue, and should have a resolution soon. We will reach out for more information as soon as possible. Respond STOP to opt out from [LEGAL COMPANY NAME]
 
-<table><thead><tr><th>Attribute</th><th>Value</th></tr></thead><tbody><tr><td>Subscriber Opt-in</td><td>Yes</td></tr><tr><td>Subscriber Opt-out</td><td>Yes</td></tr><tr><td>Subscriber Help</td><td>Yes</td></tr><tr><td>Number Pooling</td><td>No</td></tr><tr><td>Embedded Link</td><td>Yes</td></tr><tr><td>Embedded Phone Number</td><td>Yes</td></tr><tr><td>Age Gated</td><td>No</td></tr><tr><td>Affiliate Marketing</td><td>No</td></tr></tbody></table>
-<hr>
+4. Thanks for reaching out concerning your account. Please describe the issue and we will respond as soon as possible. Respond STOP to opt out from [LEGAL COMPANY NAME]</code></pre>
 
-<h2 id="step-4-submit-and-track">Step 4: Submit and Track</h2>
+        <h3>Campaign Attributes</h3>
 
-<ol><li class="ordered">Review all information</li>
-<li class="ordered">Submit campaign</li>
-<li class="ordered">Note submission date in client record</li>
-<li class="ordered">Add tag <code>a2p-pending</code> to contact in agency account</li>
-</ol>
-<strong>Expected timeline:</strong> 2-4 business days
+        <table>
+            <thead>
+                <tr><th>Attribute</th><th>Value</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Subscriber Opt-in</td><td>Yes</td></tr>
+                <tr><td>Subscriber Opt-out</td><td>Yes</td></tr>
+                <tr><td>Subscriber Help</td><td>Yes</td></tr>
+                <tr><td>Number Pooling</td><td>No</td></tr>
+                <tr><td>Embedded Link</td><td>Yes</td></tr>
+                <tr><td>Embedded Phone Number</td><td>Yes</td></tr>
+                <tr><td>Age Gated</td><td>No</td></tr>
+                <tr><td>Affiliate Marketing</td><td>No</td></tr>
+            </tbody>
+        </table>
 
-<hr>
+        <h2 id="step4">Step 4: Submit and Track</h2>
 
-<h2 id="if-rejected-troubleshooting-guide">If Rejected - Troubleshooting Guide</h2>
+        <ol>
+            <li>Review all information</li>
+            <li>Submit campaign</li>
+            <li>Note submission date in client record</li>
+            <li>Add tag <code>a2p-pending</code> to contact in agency account</li>
+        </ol>
 
-<h3 id="common-rejection-reasons">Common Rejection Reasons</h3>
+        <p><strong>Expected timeline:</strong> 2-4 business days for brand, 1-2 days for campaign</p>
 
-<table><thead><tr><th>Rejection</th><th>Fix</th></tr></thead><tbody><tr><td><strong>Legal name mismatch</strong></td><td>Must match CP 575 character-for-character</td></tr><tr><td><strong>Address mismatch</strong></td><td>Must match CP 575 exactly including format</td></tr><tr><td><strong>Email domain mismatch</strong></td><td>Email must be on domain matching company</td></tr><tr><td><strong>Missing consent checkbox</strong></td><td>Website needs TWO visible unchecked checkboxes</td></tr><tr><td><strong>Privacy policy missing clause</strong></td><td>Add the mandatory SMS clause</td></tr><tr><td><strong>Website not live</strong></td><td>Ensure homepage loads before submission</td></tr><tr><td><strong>Opt-in screenshot unclear</strong></td><td>Retake showing both checkboxes clearly</td></tr></tbody></table>
-<h3 id="resubmission-process">Resubmission Process</h3>
+        <hr>
 
-<strong>Good news:</strong> GHL negotiated FREE resubmissions with Twilio. No extra charge to fix and resubmit.
+        <h2 id="toll-free">Toll-Free Verification (No-EIN Clients)</h2>
 
-<ol><li class="ordered">Fix the identified issue</li>
-<li class="ordered">Resubmit through Trust Center</li>
-<li class="ordered">Note new submission date</li>
-</ol>
-<h3 id="escalation-if-stuck">Escalation (If Stuck)</h3>
+        <p>For sole proprietors without an EIN, use toll-free verification instead of 10DLC:</p>
 
-<ol><li class="ordered">Open GHL support ticket via Zoom</li>
-<li class="ordered">Get ticket number</li>
-<li class="ordered">Book with Gabby: https://speakwith.us/gabbyc</li>
-<li class="ordered">She will NOT accept without ticket number</li>
-</ol>
-<strong>Update tags:</strong>
-<ul><li>Remove <code>a2p-pending</code></li>
-<li>Add <code>a2p-rejected</code></li>
-<li>Note rejection reason</li>
-</ul>
-<hr>
+        <h3>Prerequisites</h3>
+        <ul>
+            <li class="checkbox-item"><input type="checkbox" disabled> <strong>TOLL-FREE number</strong> purchased (888, 877, 866, etc.)</li>
+            <li class="checkbox-item"><input type="checkbox" disabled> Website homepage is LIVE</li>
+            <li class="checkbox-item"><input type="checkbox" disabled> Client onboarding form completed</li>
+        </ul>
 
-<h2 id="after-approval">After Approval</h2>
+        <h3>Process</h3>
+        <ol>
+            <li>Go to client sub-account → Settings → Phone Numbers</li>
+            <li>Find the toll-free number</li>
+            <li>Click "Verify this Toll Free Number"</li>
+            <li>Enter business information (legal name can match what client provided - no EIN verification)</li>
+            <li>Enter website URL</li>
+            <li>Describe use case: "Customer care and appointment reminders for [business type] services"</li>
+            <li>Submit</li>
+        </ol>
 
-<ol><li class="ordered">Remove <code>a2p-pending</code> tag</li>
-<li class="ordered">Add <code>a2p-approved</code> tag</li>
-<li class="ordered">Test SMS sending from sub-account</li>
-<li class="ordered">Move client to next stage if blocked on A2P</li>
-</ol>
-<hr>
+        <p><strong>Expected timeline:</strong> 1-3 business days (faster than 10DLC)</p>
 
-<h2 id="additional-verifications-optional">Additional Verifications (Optional)</h2>
+        <h3>Key Differences from 10DLC</h3>
+        <table>
+            <thead>
+                <tr><th>Aspect</th><th>10DLC (Local)</th><th>Toll-Free</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>EIN required</td><td>Yes (exact match)</td><td>No</td></tr>
+                <tr><td>Verification time</td><td>3-6 days</td><td>1-3 days</td></tr>
+                <tr><td>Throughput</td><td>Higher</td><td>Lower (usually sufficient)</td></tr>
+                <tr><td>Cost per SMS</td><td>Lower</td><td>Slightly higher</td></tr>
+            </tbody>
+        </table>
 
-<p>After A2P approval, can add:<br><ul><li><strong>Shaken/Stir:</strong> Caller ID verification</li><br><li><strong>CNAM:</strong> Caller name display</li><br><li><strong>Voice Integrity:</strong> Voice call verification</li><br></ul><br>These are optional enhancements, not required.</p>
+        <hr>
 
-<hr>
+        <h2 id="rejected">If Rejected</h2>
 
-<h2 id="signal-house-strategy-4-50-one-time">Signal House Strategy ($4.50 ONE-TIME)</h2>
+        <p>Common rejection reasons:</p>
+        <ol>
+            <li><strong>Legal name mismatch</strong> - Must match EIN exactly</li>
+            <li><strong>Address mismatch</strong> - Must match EIN exactly</li>
+            <li><strong>Missing consent checkbox</strong> - Website form needs visible checkbox</li>
+            <li><strong>Privacy policy issues</strong> - Must be live and accessible</li>
+        </ol>
 
-<strong>Purpose:</strong> Use Signal House ONCE to generate perfect, compliant templates. Then copy/paste for all future submissions.
+        <p><strong>To fix:</strong></p>
+        <ol>
+            <li>Open GHL support ticket via Zoom</li>
+            <li>Get ticket number</li>
+            <li>Book with Gabby: https://speakwith.us/gabbyc</li>
+            <li>She will NOT accept without ticket number</li>
+        </ol>
 
-<strong>What Signal House provides:</strong>
-<ol><li class="ordered">Creates compliant landing page with perfect opt-in forms</li>
-<li class="ordered">Generates use case description that always gets approved</li>
-<li class="ordered">Generates CTA/opt-in message flow</li>
-<li class="ordered">99% approval rate</li>
-</ol>
-<strong>How to use it:</strong>
-<ol><li class="ordered">Sign up at signalhouse.io (~$4.50-$10 one-time)</li>
-<li class="ordered">Create one brand + campaign with your info</li>
-<li class="ordered">Copy ALL generated descriptions, sample messages, opt-in text</li>
-<li class="ordered">Save to a master document</li>
-<li class="ordered">Use this template for ALL future GHL submissions</li>
-<li class="ordered">Never pay Signal House again</li>
-</ol>
-<strong>What you get (save these):</strong>
-<ul><li>Use Case Description template</li>
-<li>CTA / Opt-In Message Flow template</li>
-<li>Sample Messages (4)</li>
-<li>Compliant checkbox text</li>
-<li>Privacy Policy language</li>
-<li>Terms of Service language</li>
-</ul>
-<strong>NOTE:</strong> Don't use Signal House for actual messaging - just for getting the perfect templates.
+        <p><strong>Update tags:</strong></p>
+        <ul>
+            <li>Remove <code>a2p-pending</code></li>
+            <li>Add <code>a2p-rejected</code></li>
+            <li>Note rejection reason</li>
+        </ul>
 
-<hr>
+        <p><strong>Escalate to Dan if:</strong></p>
+        <ul>
+            <li>Rejected 3+ times with same issue</li>
+            <li>Gabby can't resolve</li>
+            <li>Client threatening to cancel over A2P delays</li>
+        </ul>
 
-<h2 id="chatgpt-claude-method-alternative">ChatGPT/Claude Method (Alternative)</h2>
+        <h2 id="approved">After Approval</h2>
 
-<p>Instead of Signal House, you can use AI to generate compliant descriptions:</p>
+        <ol>
+            <li>Remove <code>a2p-pending</code> tag</li>
+            <li>Add <code>a2p-approved</code> tag</li>
+            <li>Test SMS sending from sub-account</li>
+            <li>Move client to next stage if blocked on A2P</li>
+        </ol>
 
-<ol><li class="ordered">Start new chat with Claude</li>
-<li class="ordered">Provide: Company website, business type, EIN info</li>
-<li class="ordered">Feed these documents:</li>
-</ol>   - GHL A2P Best Practices doc
-   - Twilio 10DLC Compliance doc
-   - GHL Privacy Policy template
-<ol><li class="ordered">Ask: "Generate compliant A2P campaign description, sample messages, and opt-in flow"</li>
-<li class="ordered">Review output against GHL Compliance Checker</li>
-<li class="ordered">Submit</li>
-</ol>
-<strong>Backlog:</strong> Automate this as n8n workflow
+        <h2 id="checklist">Checklist</h2>
 
-<hr>
+        <ul>
+            <li class="checkbox-item"><input type="checkbox" disabled> Prerequisites verified</li>
+            <li class="checkbox-item"><input type="checkbox" disabled> Legal name matches EIN exactly</li>
+            <li class="checkbox-item"><input type="checkbox" disabled> Address matches EIN exactly</li>
+            <li class="checkbox-item"><input type="checkbox" disabled> Brand registration submitted</li>
+            <li class="checkbox-item"><input type="checkbox" disabled> Brand approved</li>
+            <li class="checkbox-item"><input type="checkbox" disabled> Campaign registration submitted</li>
+            <li class="checkbox-item"><input type="checkbox" disabled> Tag updated (<code>a2p-pending</code>)</li>
+            <li class="checkbox-item"><input type="checkbox" disabled> Approval received / Rejection handled</li>
+            <li class="checkbox-item"><input type="checkbox" disabled> Tag updated (<code>a2p-approved</code> or <code>a2p-rejected</code>)</li>
+            <li class="checkbox-item"><input type="checkbox" disabled> SMS tested</li>
+        </ul>
 
-<h2 id="cold-outreach-compliance">Cold Outreach Compliance</h2>
+        <hr>
 
-<p>If client plans ANY cold outreach:<br><ul><li><strong>Message limit:</strong> 50-100 per day MAX</li><br><li><strong>Use separate sub-account</strong> to protect main brand</li><br><li><strong>Never mix</strong> cold outreach with customer care</li><br><li><strong>Higher rejection risk</strong> - expect delays</li><br></ul><br><hr></p>
+        <p><em>Last updated: Feb 23, 2026 - Added toll-free verification path, clarified 10DLC vs toll-free</em></p>
 
-<h2 id="cost-summary">Cost Summary</h2>
-
-<table><thead><tr><th>Path</th><th>First Month</th><th>Ongoing</th></tr></thead><tbody><tr><td>A2P 10DLC (Low Volume)</td><td>$35.95-$80.05</td><td>$12/mo</td></tr><tr><td>A2P 10DLC (Standard)</td><td>$35.95-$80.05</td><td>$12/mo</td></tr><tr><td>Toll-Free</td><td>FREE</td><td>FREE</td></tr><tr><td>Signal House</td><td>$4.50 one-time</td><td>N/A</td></tr></tbody></table>
-<hr>
-
-<h2 id="checklist">Checklist</h2>
-
-<strong>Pre-Submission:</strong>
-<ul><li class="checkbox"><input type="checkbox" disabled> Website homepage LIVE</li>
-<li class="checkbox"><input type="checkbox" disabled> Privacy policy has mandatory SMS clause</li>
-<li class="checkbox"><input type="checkbox" disabled> Terms of service has required language</li>
-<li class="checkbox"><input type="checkbox" disabled> TWO consent checkboxes on form (unchecked, optional)</li>
-<li class="checkbox"><input type="checkbox" disabled> CP 575 on file</li>
-<li class="checkbox"><input type="checkbox" disabled> Legal name matches CP 575 exactly</li>
-<li class="checkbox"><input type="checkbox" disabled> Address matches CP 575 exactly</li>
-<li class="checkbox"><input type="checkbox" disabled> Email domain matches company name</li>
-<li class="checkbox"><input type="checkbox" disabled> <strong>GHL Compliance Checker: 22/22 PASS</strong></li>
-</ul>
-<strong>Brand Registration:</strong>
-<ul><li class="checkbox"><input type="checkbox" disabled> Brand registration submitted</li>
-<li class="checkbox"><input type="checkbox" disabled> <strong>Volume: Low Volume selected</strong></li>
-<li class="checkbox"><input type="checkbox" disabled> Brand approved</li>
-</ul>
-<strong>Campaign Registration:</strong>
-<ul><li class="checkbox"><input type="checkbox" disabled> Opt-in screenshot shows both checkboxes</li>
-<li class="checkbox"><input type="checkbox" disabled> Campaign registration submitted</li>
-<li class="checkbox"><input type="checkbox" disabled> Tag updated (<code>a2p-pending</code>)</li>
-</ul>
-<strong>Post-Approval:</strong>
-<ul><li class="checkbox"><input type="checkbox" disabled> Approval received / Rejection handled</li>
-<li class="checkbox"><input type="checkbox" disabled> Tag updated (<code>a2p-approved</code> or <code>a2p-rejected</code>)</li>
-<li class="checkbox"><input type="checkbox" disabled> SMS tested from sub-account</li>
-</ul>
-<hr>
-
-<em>Last updated: Feb 23, 2026</em>
-
-        <footer>
-            <p>&copy; 2026 Slate Systems Inc. Internal use only.</p>
-        </footer>
+        <div class="page-nav">
+            <a href="client-build.html" class="prev">
+                <div class="label">Previous</div>
+                <div class="title">Client Build SOP</div>
+            </a>
+            <a href="gmb-setup.html" class="next">
+                <div class="label">Next</div>
+                <div class="title">GMB Setup</div>
+            </a>
+        </div>
     </div>
+
+    <footer>
+        &copy; 2026 Slate Systems LLC | <a href="index.html">Fulfillment Portal</a>
+    </footer>
+
+    <script>
+        function toggleToc() {
+            const toc = document.getElementById('toc');
+            const btn = document.querySelector('.toc-toggle');
+            toc.classList.toggle('open');
+            btn.classList.toggle('open');
+        }
+    </script>
 </body>
 </html>

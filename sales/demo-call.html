@@ -2,385 +2,291 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Demo Call SOP - Slate Systems SOP</title>
+    <title>Demo Call SOP - Slate Systems</title>
     <style>
+        :root { --navy: #152a45; --gray: #525c69; --orange: #ee7000; --white: #ffffff; --dark-bg: #0d1a2d; --card-bg: #1a2d47; --border: #2a4060; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: #0f172a;
-            color: #e2e8f0;
-            line-height: 1.7;
-            padding: 2rem;
-        }
-        .container { max-width: 900px; margin: 0 auto; }
-        .back-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: #3b82f6;
-            text-decoration: none;
-            margin-bottom: 2rem;
-            font-size: 0.9rem;
-        }
-        .back-link:hover { text-decoration: underline; }
-        h1 { font-size: 2rem; color: #f8fafc; margin-bottom: 0.5rem; border-bottom: 2px solid #3b82f6; padding-bottom: 0.5rem; }
-        h2 { font-size: 1.5rem; color: #f8fafc; margin: 2rem 0 1rem; padding-top: 1rem; border-top: 1px solid #334155; }
-        h3 { font-size: 1.2rem; color: #cbd5e1; margin: 1.5rem 0 0.75rem; }
-        p { margin-bottom: 1rem; }
-        ul, ol { margin: 1rem 0; padding-left: 2rem; }
-        li { margin-bottom: 0.5rem; }
-        li.nested { margin-left: 1.5rem; }
-        li.checkbox { list-style: none; margin-left: -1.5rem; }
-        li.checkbox input { margin-right: 0.5rem; }
-        blockquote {
-            background: #1e293b;
-            border-left: 4px solid #3b82f6;
-            padding: 1rem 1.5rem;
-            margin: 1rem 0;
-            border-radius: 0 8px 8px 0;
-            font-style: italic;
-        }
-        pre {
-            background: #1e293b;
-            padding: 1rem;
-            border-radius: 8px;
-            overflow-x: auto;
-            max-width: 100%;
-            margin: 1rem 0;
-            border: 1px solid #334155;
-            white-space: pre-wrap;
-            word-wrap: break-word;
-        }
-        @media (max-width: 768px) {
-            body { padding: 1rem; }
-            pre { font-size: 0.85em; padding: 0.75rem; }
-            table { font-size: 0.9em; display: block; overflow-x: auto; }
-            th, td { padding: 0.5rem; }
-            h1 { font-size: 1.5rem; }
-            h2 { font-size: 1.25rem; }
-        }
-        code {
-            font-family: 'SF Mono', Monaco, monospace;
-            font-size: 0.9em;
-        }
-        :not(pre) > code {
-            background: #334155;
-            padding: 0.2rem 0.4rem;
-            border-radius: 4px;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 1rem 0;
-            background: #1e293b;
-            border-radius: 8px;
-            overflow: hidden;
-        }
-        th, td {
-            padding: 0.75rem 1rem;
-            text-align: left;
-            border-bottom: 1px solid #334155;
-        }
-        th { background: #334155; color: #f8fafc; font-weight: 600; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--dark-bg); color: var(--white); line-height: 1.6; }
+        .top-nav { background: var(--navy); padding: 0.75rem 1rem; position: sticky; top: 0; z-index: 100; border-bottom: 2px solid var(--orange); }
+        .nav-container { max-width: 1000px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; }
+        .nav-brand { display: flex; align-items: center; gap: 0.5rem; }
+        .nav-logo { height: 28px; }
+        .breadcrumb { font-size: 0.8rem; color: var(--gray); }
+        .breadcrumb a { color: var(--orange); text-decoration: none; }
+        .nav-actions { display: flex; gap: 0.5rem; }
+        .nav-btn { background: rgba(255,255,255,0.1); color: var(--white); text-decoration: none; padding: 0.4rem 0.75rem; border-radius: 4px; font-size: 0.8rem; }
+        .nav-btn:hover { background: var(--orange); }
+        .toc-toggle { background: var(--card-bg); border: 1px solid var(--border); color: var(--white); padding: 0.75rem 1rem; width: 100%; text-align: left; cursor: pointer; font-size: 0.9rem; border-radius: 8px; margin-bottom: 1rem; display: flex; justify-content: space-between; }
+        .toc-toggle:after { content: '▼'; font-size: 0.7rem; }
+        .toc-toggle.open:after { content: '▲'; }
+        .toc { background: var(--card-bg); border: 1px solid var(--border); border-radius: 8px; padding: 1rem; margin-bottom: 1.5rem; display: none; }
+        .toc.open { display: block; }
+        .toc-list { list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 0.25rem; }
+        .toc-list a { color: var(--white); text-decoration: none; font-size: 0.85rem; padding: 0.35rem 0.5rem; display: block; border-left: 2px solid transparent; }
+        .toc-list a:hover { color: var(--orange); border-left-color: var(--orange); }
+        .main { max-width: 900px; margin: 0 auto; padding: 1.5rem 1rem; }
+        .page-header { margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 2px solid var(--orange); }
+        .page-header h1 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+        .meta-row { display: flex; flex-wrap: wrap; gap: 1rem; font-size: 0.8rem; color: var(--gray); }
+        .section { margin-bottom: 2rem; scroll-margin-top: 80px; }
+        .section h2 { font-size: 1.1rem; font-weight: 600; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border); color: var(--orange); }
+        p { margin-bottom: 0.75rem; font-size: 0.95rem; }
+        .callout { background: var(--card-bg); border-left: 3px solid var(--orange); padding: 0.75rem 1rem; margin: 0.75rem 0; border-radius: 0 6px 6px 0; font-size: 0.9rem; }
+        .script-box { background: var(--navy); border: 1px solid var(--border); border-radius: 8px; padding: 1rem; margin: 0.75rem 0; font-family: 'SF Mono', Monaco, monospace; font-size: 0.8rem; white-space: pre-wrap; overflow-x: auto; line-height: 1.5; }
+        table { width: 100%; border-collapse: collapse; margin: 0.75rem 0; font-size: 0.9rem; background: var(--card-bg); border-radius: 8px; overflow: hidden; }
+        th, td { padding: 0.6rem 0.75rem; text-align: left; border-bottom: 1px solid var(--border); }
+        th { background: var(--navy); font-weight: 600; font-size: 0.8rem; }
         tr:last-child td { border-bottom: none; }
-        hr { border: none; border-top: 1px solid #334155; margin: 2rem 0; }
-        a { color: #3b82f6; }
-        strong { color: #f8fafc; }
-        .meta {
-            background: #1e293b;
-            padding: 1rem;
-            border-radius: 8px;
-            margin-bottom: 2rem;
-            border-left: 4px solid #3b82f6;
-        }
-        .meta p { margin: 0.25rem 0; font-size: 0.9rem; color: #94a3b8; }
-        footer {
-            margin-top: 3rem;
-            padding-top: 2rem;
-            border-top: 1px solid #334155;
-            text-align: center;
-            color: #64748b;
-            font-size: 0.875rem;
-        }
+        ul, ol { margin: 0.5rem 0 0.75rem 1.25rem; font-size: 0.9rem; }
+        li { margin-bottom: 0.35rem; }
+        h3 { color: var(--orange); margin: 1rem 0 0.5rem; font-size: 1rem; }
+        .page-nav { display: flex; justify-content: space-between; gap: 1rem; margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+        .page-nav a { background: var(--card-bg); padding: 0.75rem 1rem; border-radius: 8px; text-decoration: none; color: var(--white); font-size: 0.85rem; border: 1px solid var(--border); flex: 1; max-width: 45%; }
+        .page-nav a:hover { border-color: var(--orange); }
+        .page-nav .next { text-align: right; }
+        .page-nav .label { font-size: 0.7rem; color: var(--gray); display: block; margin-bottom: 0.25rem; }
+        footer { text-align: center; padding: 1.5rem; color: var(--gray); font-size: 0.8rem; border-top: 1px solid var(--border); margin-top: 2rem; }
+        footer a { color: var(--orange); }
+        .back-top { position: fixed; bottom: 1rem; right: 1rem; background: var(--orange); color: var(--white); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 1.2rem; opacity: 0; transition: opacity 0.2s; }
+        .back-top.visible { opacity: 1; }
     </style>
 </head>
 <body>
-    <div class="container">
-        <a href="../index.html" class="back-link">← Back to Portal</a>
-        <h1 id="demo-call-sop">Demo Call SOP</h1>
+    <nav class="top-nav">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <img src="../assets/Slate_Systems_Logo_White.png" alt="Slate" class="nav-logo">
+                <span class="breadcrumb"><a href="../index.html">Admin</a> / <a href="../index.html#sales-sops">Sales</a> / Demo Call</span>
+            </div>
+            <div class="nav-actions">
+                <a href="../glossary.html" class="nav-btn">Glossary</a>
+                <a href="../index.html" class="nav-btn">← Portal</a>
+            </div>
+        </div>
+    </nav>
 
-<blockquote><strong>Role:</strong> Closer</blockquote>
-<blockquote><strong>When:</strong> Prospect booked from cold outreach or inbound</blockquote>
-<blockquote><strong>Duration:</strong> 5-15 minutes (if they watched VSL)</blockquote>
-<blockquote><strong>Calendar:</strong> Slate Systems Demo Calendar</blockquote>
-<blockquote><strong>Platform:</strong> Google Meet</blockquote>
-<blockquote><strong>VSL:</strong> https://slatesystems.io/watch-this-616006</blockquote>
-<blockquote><strong>Last Updated:</strong> Feb 23, 2026</blockquote>
+    <main class="main">
+        <header class="page-header">
+            <h1>📞 Demo Call SOP</h1>
+            <div class="meta-row">
+                <span>⏱️ 5-15 min (if VSL watched)</span>
+                <span>📍 Google Meet</span>
+                <span>📅 Feb 23, 2026</span>
+            </div>
+        </header>
 
-<hr>
+        <button class="toc-toggle" onclick="this.classList.toggle('open'); document.querySelector('.toc').classList.toggle('open');">📑 Table of Contents</button>
+        <nav class="toc">
+            <ul class="toc-list">
+                <li><a href="#before">Before the Call</a></li>
+                <li><a href="#script">The Script</a></li>
+                <li><a href="#no-watch">Didn't Watch Video</a></li>
+                <li><a href="#objections">Objections</a></li>
+                <li><a href="#lightbulbs">Lightbulb Moments</a></li>
+                <li><a href="#red-flags">Red Flags</a></li>
+                <li><a href="#after">After the Close</a></li>
+            </ul>
+        </nav>
 
-<h2 id="before-the-call">Before the Call</h2>
+        <section class="section" id="before">
+            <h2>Before the Call</h2>
+            <h3>1. Confirm VSL Was Sent</h3>
+            <ul>
+                <li>Initial VSL text (after booking)</li>
+                <li>24hr reminder with VSL link</li>
+                <li>2hr reminder with VSL link</li>
+            </ul>
 
-<h3 id="1-confirm-vsl-was-sent">1. Confirm VSL Was Sent</h3>
-Check that prospect received:
-<ul><li>Initial VSL text (after booking)</li>
-<li>24hr reminder with VSL link</li>
-<li>2hr reminder with VSL link</li>
-</ul>
-<strong>If VSL wasn't sent:</strong> Send it NOW and note the gap.
+            <h3>2. Quick Research (2 min)</h3>
+            <ul>
+                <li>Search "[business name] [city]" → their Google Business Profile</li>
+                <li>Check their website (if any)</li>
+                <li>Note: review count, website quality, obvious issues</li>
+            </ul>
+            <div class="callout">
+                <strong>What to look for:</strong><br>
+                • No website = "best case scenario"<br>
+                • Bad website = point out issues<br>
+                • Few reviews = "8 reviews after 18 years?"<br>
+                • Phone not clickable = accessibility issue
+            </div>
+        </section>
 
-<h3 id="2-quick-research-2-min">2. Quick Research (2 min)</h3>
-Pull up:
-<ul><li>Their Google Business Profile (search "[business name] [city]")</li>
-<li>Their website (if they have one)</li>
-<li>Note: review count, website quality, obvious issues</li>
-</ul>
-<strong>What to look for:</strong>
-<ul><li>No website = "best case scenario" (Kai's line)</li>
-<li>Bad website = point out issues</li>
-<li>Few reviews = "8 reviews after 18 years?"</li>
-<li>Phone not clickable = accessibility issue</li>
-</ul>
-<hr>
+        <section class="section" id="script">
+            <h2>The Script (Tight)</h2>
 
-<h2 id="the-call-tight-script">The Call (Tight Script)</h2>
-
-<h3 id="phase-1-video-check-15-seconds">Phase 1: Video Check (15 seconds)</h3>
-
-<pre><code>"Hey [Name], how's it going?"
+            <h3>Phase 1: Video Check (15 sec)</h3>
+            <div class="script-box">"Hey [Name], how's it going?"
 [Let them respond]
 
-<p>"Quick question - did you get a chance to watch that short video I sent over?"<br></code></pre></p>
+"Quick question - did you watch that short video I sent over?"
 
-<strong>If YES:</strong> → Go to Phase 2
+→ YES: Go to Phase 2
+→ NO: Go to "Didn't Watch" section</div>
 
-<strong>If NO:</strong> → Go to "They Didn't Watch" section below
+            <h3>Phase 2: Open for Questions (10 sec)</h3>
+            <div class="script-box">"Perfect, appreciate you watching. That video is pretty much
+exactly what we do."
 
-<hr>
+"That being said - what questions do you have?"</div>
 
-<h3 id="phase-2-open-for-questions-10-seconds">Phase 2: Open for Questions (10 seconds)</h3>
+            <h3>Phase 3: Answer Loop (1-5 min)</h3>
+            <div class="script-box">1. Answer question (30-60 sec max)
+2. "Does that make sense?"
+3. "What OTHER questions do you have?"
 
-<pre><code>"Perfect, appreciate you watching that. So yeah, that video is pretty much exactly what we do."
+THE HAMMER (use when they ramble):
+"Cool. What other questions do you have?"</div>
 
-<p>"That being said - what questions do you have?"<br></code></pre></p>
+            <h3>Phase 4: Permission to Close</h3>
+            <div class="script-box">"Awesome. Any other questions before I get you going?"
 
-<strong>If they have questions:</strong> Answer briefly (30-60 sec max), then:
-<pre><code>"Does that make sense? Cool. What OTHER questions do you have?"
-</code></pre>
+→ "No": CLOSE
+→ More questions: Answer, repeat
+→ Objection: Handle it, repeat</div>
 
-<strong>If no questions:</strong> They're ready to close → Go to Phase 4
+            <h3>Phase 5: Close (1-2 min)</h3>
+            <div class="script-box">"Perfect. Let me grab some info."
 
-<hr>
+"What's the official business name?"
+"And what's the best address?"
+"Cool. And what's the card number?"
+"Expiration?" "3 digits on the back?"
 
-<h3 id="phase-3-answer-loop-1-5-minutes">Phase 3: Answer Loop (1-5 minutes)</h3>
+"Perfect, you're all set. You'll get a text in 20 minutes with
+the onboarding form. 8-9 days to build."</div>
+            <div class="callout" style="border-left-color: #dc2626;"><strong>CRITICAL:</strong> Card number is ALWAYS last.</div>
+        </section>
 
-<p>Keep it tight:<br><ol><li class="ordered">Answer the question (30-60 seconds)</li><br><li class="ordered">"Does that make sense?"</li><br><li class="ordered">"What other questions do you have?"</li><br></ol><br><strong>The Hammer</strong> (use when they ramble):<br><pre><code>"Cool. What other questions do you have?"<br></code></pre></p>
+        <section class="section" id="no-watch">
+            <h2>They Didn't Watch the Video</h2>
 
-<p>This brings them back to buy mode.</p>
+            <h3>Option A: Watch Now</h3>
+            <div class="script-box">"No worries. It's only 5 minutes. Have a sec to watch it?
+I can wait."
 
-<hr>
+[If yes - MUTE yourself, wait 5-6 min]
 
-<h3 id="phase-4-permission-to-close-10-seconds">Phase 4: Permission to Close (10 seconds)</h3>
+"Cool, what questions do you have?"</div>
 
-<pre><code>"Awesome. Any other questions before I get you going?"
-</code></pre>
-
-<strong>If "No":</strong> → Close
-<strong>If more questions:</strong> Answer, repeat Phase 4
-<strong>If objection:</strong> Handle it (see Objection Handling below), repeat Phase 4
-
-<hr>
-
-<h3 id="phase-5-close-1-2-minutes">Phase 5: Close (1-2 minutes)</h3>
-
-<pre><code>"Perfect. Let me grab some info from you real quick."
-
-<p>"What's the official business name?"<br>[Write it down]</p>
-
-<p>"And what's the best address for the business?"<br>[Write it down]</p>
-
-<p>"Cool. And what's the card number?"<br>[Enter into Stripe/GHL]</p>
-
-<p>"Expiration?"<br>"And the 3 digits on the back?"</p>
-
-<p>"Perfect, you're all set. You're gonna get a text from us in about 20 minutes with the onboarding form. Fill that out and we'll have everything built in about 8-9 days."<br></code></pre></p>
-
-<strong>CRITICAL:</strong> Card number is ALWAYS last. By then they've already committed.
-
-<hr>
-
-<h2 id="they-didn-t-watch-the-video">They Didn't Watch the Video</h2>
-
-<h3 id="option-a-watch-now">Option A: Watch Now</h3>
-<pre><code>"No worries at all. It's only about 5 minutes. You have a sec to watch it real quick? I can wait."
-
-<p>[If yes]<br>"Perfect. I just sent it to you again via text. Let me know when you've got it pulled up."</p>
-
-<p>[Mute yourself. Wait 5-6 minutes.]</p>
-
-<p>[When done]<br>"Cool, appreciate you taking the time. So that's pretty much exactly what we do. What questions do you have?"<br></code></pre></p>
-
-<h3 id="option-b-driving">Option B: Driving</h3>
-<pre><code>"No worries man, safety first. I'll shoot you the link right now, you watch it when you get where you're going, then just text me 'ready' and I'll call you right back. Sound good?"
-</code></pre>
-
-<strong>Alternative:</strong> If they'll be parked soon:
-<blockquote>"When you get where you're going, I can share my screen and walk you through the video together if that's easier."</blockquote>
-
-<h3 id="option-c-too-busy">Option C: Too Busy</h3>
-<pre><code>"I hear you, but honestly the video does a way better job than I can in 2 minutes. It shows real client results and exactly how everything works.
-
-<p>Tell you what - it's only 5 minutes. Watch it tonight and let's reschedule for tomorrow. What time works?"<br></code></pre></p>
-
-<h3 id="option-d-refuses">Option D: Refuses</h3>
-<pre><code>"We've found that guys who watch the video first have way better calls because we're on the same page. It's 5 minutes. Can you commit to watching it before we talk again?"
-
-<p>[If still no]<br>"No worries man, sounds like the timing might not be right. Feel free to book another call when you've got a few minutes to check it out."<br></code></pre></p>
-
-<strong>Don't waste time on people who won't invest 5 minutes. They won't be good clients.</strong>
-
-<hr>
-
-<h2 id="objection-handling">Objection Handling</h2>
-
-<h3 id="how-many-leads-will-i-get">"How many leads will I get?"</h3>
-<pre><code>"I'm gonna be straight with you - I can't tell you that Susan is gonna see your Google reviews and give you a $20K job. I can't prove that correlation.
-
-<p>What I do know is the contractors who have professional websites, tons of reviews, and fast follow-up are the ones winning. We give you all the systems to make that happen.</p>
-
-<p>You think it's worth $297 or you don't. But I'm not gonna promise you X leads per month because that would be bullshit."<br></code></pre></p>
-
-<h3 id="i-ve-been-burned-before">"I've been burned before"</h3>
-<pre><code>"I hear that a lot. Most marketing companies overpromise and underdeliver.
-
-<p>Here's how we're different - I'm not promising you leads. I'm giving you systems. The website, the reviews, the missed call follow-up. You saw it in the video.</p>
-
-<p>It either makes sense for $297 or it doesn't. No contracts, cancel anytime. What other questions do you have?"<br></code></pre></p>
-
-<h3 id="that-s-expensive">"That's expensive"</h3>
-<pre><code>"What's your average job ticket? $5K? $10K?
-
-<p>So if these systems help you land ONE extra job this year, you're 3-4x'ing what you paid us. One job.</p>
-
-<p>$297 is about what you'd spend taking your crew to lunch twice. What specifically do you need to think about?"<br></code></pre></p>
-
-<h3 id="no-contracts">"No contracts?"</h3>
-<pre><code>"Nope. No contracts. Those are just used to trap people who want to leave. We don't do that.
-
-<p>You can cancel anytime. If we're not delivering value, you shouldn't be paying us."<br></code></pre></p>
-
-<h3 id="let-me-talk-to-my-wife">"Let me talk to my wife"</h3>
-<pre><code>"Totally get it. When do you think you'll have that conversation?
-
-<p>[They give timeframe]</p>
-
-<p>Cool, let's get something on the calendar for [day after]. That way I can answer any questions they have too. What time works?"<br></code></pre></p>
-
-<h3 id="i-don-t-have-a-website">"I don't have a website"</h3>
-<pre><code>"That's actually perfect. Means we don't have to convince you your current website sucks. We just build you a good one from scratch.
-
-<p>What other questions do you have?"<br></code></pre></p>
-
-<h3 id="i-don-t-have-google-business">"I don't have Google Business"</h3>
-<pre><code>"That's free to set up. Takes about 5 days to verify. Check out guides.slatesystems.io - we have a step-by-step guide that walks you through exactly how to do it.
-
-<p>While you're getting that verified, we'll build your website. By the time it's approved, everything will be ready to connect."<br></code></pre></p>
-
-<hr>
-
-<h2 id="lightbulb-moments">Lightbulb Moments</h2>
-
-<p>Use these when the prospect needs convincing:</p>
-
-<h3 id="the-phone-number-test">The Phone Number Test</h3>
-<pre><code>"Pull up your website real quick. See how your phone number isn't clickable? My mom's in her 70s, has bad eyes - she can't read that small text. She's gonna leave and call the next guy."
-</code></pre>
-
-<h3 id="the-review-trap">The Review Trap</h3>
-<pre><code>"You have 8 reviews after 18 years. I KNOW you've served more than 8 people. You just don't ask. We automate that - every job done, review request goes out. They get reminded 4 times until they leave one."
-</code></pre>
-
-<h3 id="the-missed-call-reality">The Missed Call Reality</h3>
-<pre><code>"When you're on a roof or under a sink and miss a call, what happens? That person calls the next guy. With auto text back, they get 'Hey sorry, I'm with a customer, can I call you back in 20 min?' and they wait for YOU."
-</code></pre>
-
-<h3 id="the-susan-story">The Susan Story</h3>
-<pre><code>"Susan is shopping for a $50K kitchen remodel. She Googles you, sees 8 reviews and a janky website. She Googles your competitor, sees 150 reviews and a beautiful site. Who's she calling?"
-</code></pre>
-
-<hr>
-
-<h2 id="red-flags-when-to-disqualify">Red Flags (When to Disqualify)</h2>
-
-<ol><li class="ordered"><strong>No Google Business AND refuses to make one</strong></li>
-</ol>   - Tell them to make it first, call back when verified
-
-<ol><li class="ordered"><strong>Expects guaranteed leads</strong></li>
-</ol>   - Set expectations. If they push back, they'll be a problem.
-
-<ol><li class="ordered"><strong>$297 is a stretch for them</strong></li>
-</ol>   - If they can't afford $297/month, they're not doing enough business to benefit.
-
-<ol><li class="ordered"><strong>Decision maker isn't on the call</strong></li>
-</ol>   - Get both people on the next call or move on.
-
-<hr>
-
-<h2 id="after-the-close">After the Close</h2>
-
-<ol><li class="ordered"><strong>Move to pipeline stage:</strong> "Onboarding Form Sent"</li>
-</ol>
-<ol><li class="ordered"><strong>Send onboarding text:</strong></li>
-</ol><pre><code>"Hey [Name]! You're all set. Here's your onboarding form: [LINK]. Fill this out so we can build your website. Any questions, just text me here."
-</code></pre>
-
-<ol><li class="ordered"><strong>Send onboarding email</strong> (backup)</li>
-</ol>
-<ol><li class="ordered"><strong>Tell them:</strong> "8-9 business days" to complete build</li>
-</ol>
-<hr>
-
-<h2 id="getting-the-most-out-of-this-sop">Getting the Most Out of This SOP</h2>
-
-<h3 id="before-your-first-10-calls">Before Your First 10 Calls</h3>
-<ul><li>Memorize the video check question</li>
-<li>Memorize "What other questions do you have?"</li>
-<li>Practice the close sequence (name → address → card)</li>
-</ul>
-<h3 id="common-mistakes">Common Mistakes</h3>
-<ul><li>Talking too much after they say "no more questions" → JUST CLOSE</li>
-<li>Getting defensive at objections → Stay casual, same-side-of-table energy</li>
-<li>Asking for card first → ALWAYS last</li>
-<li>Trying to sell without VSL → They won't convert</li>
-</ul>
-<h3 id="the-mindset">The Mindset</h3>
-<ul><li>You're not convincing them across a table</li>
-<li>You're walking a friend through something</li>
-<li>Casual, cool, calm, collected</li>
-<li>"You either think it's worth $297 or you don't"</li>
-</ul>
-<hr>
-
-<h2 id="related-sops">Related SOPs</h2>
-
-<ul><li><code>sales-playbook.md</code> — Full objection database, lightbulb moments</li>
-<li><code>sales-sop.md</code> — Detailed script with VSL sequences</li>
-<li><code>show-rate-optimization.md</code> — Getting them to show up</li>
-</ul>
-<hr>
-
-<h2 id="key-resources">KEY RESOURCES</h2>
-
-<table><thead><tr><th>Resource</th><th>Value</th></tr></thead><tbody><tr><td>VSL</td><td>https://slatesystems.io/watch-this-616006</td></tr><tr><td>GMB Guide</td><td>guides.slatesystems.io</td></tr><tr><td>Help Center</td><td>help.slatesystems.io</td></tr><tr><td>Calendar</td><td>Slate Systems Demo Calendar</td></tr><tr><td>Platform</td><td>Google Meet</td></tr><tr><td>Only Discount</td><td>50% off first 3 months ($148.50/mo)</td></tr></tbody></table>
-<hr>
-
-<em>Last updated: Feb 23, 2026</em>
-
-        <footer>
-            <p>&copy; 2026 Slate Systems Inc. Internal use only.</p>
-        </footer>
-    </div>
+            <h3>Option B: Driving</h3>
+            <div class="script-box">"Safety first. I'll send the link now, you watch when you
+get there, text me 'ready' and I'll call right back."</div>
+
+            <h3>Option C: Too Busy</h3>
+            <div class="script-box">"The video does a way better job than I can in 2 min.
+Watch it tonight, let's reschedule for tomorrow. What time?"</div>
+
+            <h3>Option D: Refuses</h3>
+            <div class="script-box">"We've found guys who watch first have better calls.
+Can you commit to watching before we talk again?"
+
+[If still no]
+"Sounds like timing might not be right. Book another call
+when you've got a few minutes."</div>
+        </section>
+
+        <section class="section" id="objections">
+            <h2>Objection Handling</h2>
+
+            <h3>"How many leads will I get?"</h3>
+            <div class="script-box">"I can't tell you Susan sees your reviews and gives you $20K.
+
+What I know is contractors with professional websites, reviews,
+and fast follow-up are winning. We give you the systems.
+
+You think it's worth $297 or you don't."</div>
+
+            <h3>"I've been burned before"</h3>
+            <div class="script-box">"Most marketing companies overpromise.
+
+I'm not promising leads. I'm giving you systems. Website, reviews,
+missed call follow-up. $297, no contracts. What other questions?"</div>
+
+            <h3>"That's expensive"</h3>
+            <div class="script-box">"What's your average job? $5K? $10K?
+
+ONE extra job this year = 3-4x what you paid us.
+$297 is crew lunch twice."</div>
+
+            <h3>"Let me talk to my wife"</h3>
+            <div class="script-box">"Totally get it. When will you have that conversation?
+
+Cool, let's get something on the calendar for [day after].
+I can answer their questions too."</div>
+
+            <h3>"I don't have a website"</h3>
+            <div class="script-box">"That's actually perfect. We don't have to convince you your
+current website sucks. We just build you a good one."</div>
+        </section>
+
+        <section class="section" id="lightbulbs">
+            <h2>💡 Lightbulb Moments</h2>
+            <p>Use when prospect needs convincing:</p>
+
+            <h3>The Phone Number Test</h3>
+            <div class="script-box">"Pull up your website. See how your phone number isn't clickable?
+My mom's in her 70s, bad eyes - she can't read that small text.
+She's gonna leave and call the next guy."</div>
+
+            <h3>The Review Trap</h3>
+            <div class="script-box">"You have 8 reviews after 18 years. I KNOW you've served more
+than 8 people. You just don't ask. We automate that - every job
+done, review request goes out. They get reminded 4 times."</div>
+
+            <h3>The Missed Call Reality</h3>
+            <div class="script-box">"When you're on a roof and miss a call, what happens?
+They call the next guy.
+
+With auto text back, they get 'Hey sorry, with a customer,
+call you back in 20 min?' and they wait for YOU."</div>
+
+            <h3>The Susan Story</h3>
+            <div class="script-box">"Susan is shopping for a $50K kitchen remodel.
+She Googles you - 8 reviews, janky website.
+She Googles your competitor - 150 reviews, beautiful site.
+Who's she calling?"</div>
+        </section>
+
+        <section class="section" id="red-flags">
+            <h2>🚩 Red Flags (Disqualify)</h2>
+            <ul>
+                <li><strong>No Google Business AND refuses to make one</strong> → Tell them to make it first</li>
+                <li><strong>Expects guaranteed leads</strong> → Set expectations or move on</li>
+                <li><strong>$297 is a stretch</strong> → Not enough business to benefit</li>
+                <li><strong>Decision maker not on call</strong> → Get both people next time</li>
+            </ul>
+        </section>
+
+        <section class="section" id="after">
+            <h2>After the Close</h2>
+            <ol>
+                <li>Move to pipeline stage: "Onboarding Form Sent"</li>
+                <li>Send onboarding text with form link</li>
+                <li>Send onboarding email (backup)</li>
+                <li>Tell them: "8-9 business days"</li>
+            </ol>
+
+            <table>
+                <thead><tr><th>Resource</th><th>URL</th></tr></thead>
+                <tbody>
+                    <tr><td>VSL</td><td>slatesystems.io/watch-this-616006</td></tr>
+                    <tr><td>GMB Guide</td><td>guides.slatesystems.io</td></tr>
+                    <tr><td>Help Center</td><td>help.slatesystems.io</td></tr>
+                    <tr><td>Only Discount</td><td>50% off first 3 months ($148.50)</td></tr>
+                </tbody>
+            </table>
+        </section>
+
+        <nav class="page-nav">
+            <a href="sales-sop.html"><span class="label">← Previous</span>Sales SOP</a>
+            <a href="show-rate-optimization.html" class="next"><span class="label">Next →</span>Show Rate</a>
+        </nav>
+    </main>
+
+    <footer>© 2026 Slate Systems | <a href="../glossary.html">Glossary</a> | <a href="../index.html">Portal</a></footer>
+    <a href="#" class="back-top" id="backTop">↑</a>
+    <script>window.addEventListener('scroll', () => { document.getElementById('backTop').classList.toggle('visible', window.scrollY > 500); });</script>
 </body>
 </html>

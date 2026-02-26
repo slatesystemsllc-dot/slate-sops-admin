@@ -2,494 +2,729 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Slate Systems Sales Playbook v1.0 - Slate Systems SOP</title>
+    <title>Sales Playbook - Slate Systems</title>
     <style>
+        :root {
+            --navy: #152a45;
+            --gray: #525c69;
+            --orange: #ee7000;
+            --white: #ffffff;
+            --dark-bg: #0d1a2d;
+            --card-bg: #1a2d47;
+            --border: #2a4060;
+        }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: #0f172a;
-            color: #e2e8f0;
-            line-height: 1.7;
-            padding: 2rem;
+            background: var(--dark-bg);
+            color: var(--white);
+            line-height: 1.6;
         }
-        .container { max-width: 900px; margin: 0 auto; }
-        .back-link {
-            display: inline-flex;
+
+        /* Top Nav */
+        .top-nav {
+            background: var(--navy);
+            padding: 0.75rem 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 2px solid var(--orange);
+        }
+        .nav-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .nav-brand {
+            display: flex;
             align-items: center;
             gap: 0.5rem;
-            color: #3b82f6;
+        }
+        .nav-logo {
+            height: 28px;
+        }
+        .breadcrumb {
+            font-size: 0.8rem;
+            color: var(--gray);
+        }
+        .breadcrumb a {
+            color: var(--orange);
             text-decoration: none;
+        }
+        .nav-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+        .nav-btn {
+            background: rgba(255,255,255,0.1);
+            color: var(--white);
+            text-decoration: none;
+            padding: 0.4rem 0.75rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+        }
+        .nav-btn:hover { background: var(--orange); }
+
+        /* Table of Contents */
+        .toc-toggle {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            color: var(--white);
+            padding: 0.75rem 1rem;
+            width: 100%;
+            text-align: left;
+            cursor: pointer;
+            font-size: 0.9rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .toc-toggle:after { content: '▼'; font-size: 0.7rem; }
+        .toc-toggle.open:after { content: '▲'; }
+        .toc {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            display: none;
+        }
+        .toc.open { display: block; }
+        .toc-title {
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: var(--orange);
+            font-size: 0.85rem;
+        }
+        .toc-list {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 0.25rem;
+        }
+        .toc-list a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 0.85rem;
+            padding: 0.35rem 0;
+            display: block;
+            border-left: 2px solid transparent;
+            padding-left: 0.5rem;
+        }
+        .toc-list a:hover {
+            color: var(--orange);
+            border-left-color: var(--orange);
+        }
+
+        /* Main Content */
+        .main {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 1.5rem 1rem;
+        }
+
+        /* Page Header */
+        .page-header {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--orange);
+        }
+        .page-header h1 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .meta-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            font-size: 0.8rem;
+            color: var(--gray);
+        }
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        /* Sections */
+        .section {
             margin-bottom: 2rem;
+            scroll-margin-top: 80px;
+        }
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border);
+        }
+        .section-header h2 {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+        .section-anchor {
+            color: var(--gray);
+            text-decoration: none;
+            font-size: 0.8rem;
+        }
+        .section-anchor:hover { color: var(--orange); }
+
+        /* Content Styles */
+        p { margin-bottom: 0.75rem; font-size: 0.95rem; }
+
+        .callout {
+            background: var(--card-bg);
+            border-left: 3px solid var(--orange);
+            padding: 0.75rem 1rem;
+            margin: 0.75rem 0;
+            border-radius: 0 6px 6px 0;
             font-size: 0.9rem;
         }
-        .back-link:hover { text-decoration: underline; }
-        h1 { font-size: 2rem; color: #f8fafc; margin-bottom: 0.5rem; border-bottom: 2px solid #3b82f6; padding-bottom: 0.5rem; }
-        h2 { font-size: 1.5rem; color: #f8fafc; margin: 2rem 0 1rem; padding-top: 1rem; border-top: 1px solid #334155; }
-        h3 { font-size: 1.2rem; color: #cbd5e1; margin: 1.5rem 0 0.75rem; }
-        p { margin-bottom: 1rem; }
-        ul, ol { margin: 1rem 0; padding-left: 2rem; }
-        li { margin-bottom: 0.5rem; }
-        li.nested { margin-left: 1.5rem; }
-        li.checkbox { list-style: none; margin-left: -1.5rem; }
-        li.checkbox input { margin-right: 0.5rem; }
-        blockquote {
-            background: #1e293b;
-            border-left: 4px solid #3b82f6;
-            padding: 1rem 1.5rem;
-            margin: 1rem 0;
-            border-radius: 0 8px 8px 0;
-            font-style: italic;
-        }
-        pre {
-            background: #1e293b;
-            padding: 1rem;
+        .callout.blue { border-left-color: #3b82f6; }
+
+        .script-box {
+            background: var(--navy);
+            border: 1px solid var(--border);
             border-radius: 8px;
-            overflow-x: auto;
-            max-width: 100%;
-            margin: 1rem 0;
-            border: 1px solid #334155;
-            white-space: pre-wrap;
-            word-wrap: break-word;
-        }
-        @media (max-width: 768px) {
-            body { padding: 1rem; }
-            pre { font-size: 0.85em; padding: 0.75rem; }
-            table { font-size: 0.9em; display: block; overflow-x: auto; }
-            th, td { padding: 0.5rem; }
-            h1 { font-size: 1.5rem; }
-            h2 { font-size: 1.25rem; }
-        }
-        code {
+            padding: 1rem;
+            margin: 0.75rem 0;
             font-family: 'SF Mono', Monaco, monospace;
-            font-size: 0.9em;
+            font-size: 0.85rem;
+            white-space: pre-wrap;
+            overflow-x: auto;
         }
-        :not(pre) > code {
-            background: #334155;
-            padding: 0.2rem 0.4rem;
-            border-radius: 4px;
-        }
+
         table {
             width: 100%;
             border-collapse: collapse;
-            margin: 1rem 0;
-            background: #1e293b;
+            margin: 0.75rem 0;
+            font-size: 0.9rem;
+            background: var(--card-bg);
             border-radius: 8px;
             overflow: hidden;
         }
         th, td {
-            padding: 0.75rem 1rem;
+            padding: 0.6rem 0.75rem;
             text-align: left;
-            border-bottom: 1px solid #334155;
+            border-bottom: 1px solid var(--border);
         }
-        th { background: #334155; color: #f8fafc; font-weight: 600; }
+        th {
+            background: var(--navy);
+            font-weight: 600;
+            font-size: 0.8rem;
+        }
         tr:last-child td { border-bottom: none; }
-        hr { border: none; border-top: 1px solid #334155; margin: 2rem 0; }
-        a { color: #3b82f6; }
-        strong { color: #f8fafc; }
-        .meta {
-            background: #1e293b;
-            padding: 1rem;
+
+        ul, ol {
+            margin: 0.5rem 0 0.75rem 1.25rem;
+            font-size: 0.9rem;
+        }
+        li { margin-bottom: 0.35rem; }
+
+        .objection-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
             border-radius: 8px;
-            margin-bottom: 2rem;
-            border-left: 4px solid #3b82f6;
+            padding: 1rem;
+            margin-bottom: 1rem;
         }
-        .meta p { margin: 0.25rem 0; font-size: 0.9rem; color: #94a3b8; }
+        .objection-title {
+            font-weight: 600;
+            color: var(--orange);
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+        .objection-freq {
+            font-size: 0.7rem;
+            background: var(--navy);
+            padding: 0.15rem 0.4rem;
+            border-radius: 4px;
+            margin-left: 0.5rem;
+        }
+        .objection-response {
+            background: var(--navy);
+            padding: 0.75rem;
+            border-radius: 6px;
+            font-style: italic;
+            margin: 0.5rem 0;
+            font-size: 0.9rem;
+        }
+        .objection-why {
+            font-size: 0.8rem;
+            color: var(--gray);
+        }
+
+        /* Prev/Next Navigation */
+        .page-nav {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border);
+        }
+        .page-nav a {
+            background: var(--card-bg);
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            text-decoration: none;
+            color: var(--white);
+            font-size: 0.85rem;
+            border: 1px solid var(--border);
+            flex: 1;
+            max-width: 45%;
+        }
+        .page-nav a:hover { border-color: var(--orange); }
+        .page-nav .next { text-align: right; }
+        .page-nav .label {
+            font-size: 0.7rem;
+            color: var(--gray);
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+
+        /* Footer */
         footer {
-            margin-top: 3rem;
-            padding-top: 2rem;
-            border-top: 1px solid #334155;
             text-align: center;
-            color: #64748b;
-            font-size: 0.875rem;
+            padding: 1.5rem;
+            color: var(--gray);
+            font-size: 0.8rem;
+            border-top: 1px solid var(--border);
+            margin-top: 2rem;
         }
+
+        /* Back to top */
+        .back-top {
+            position: fixed;
+            bottom: 1rem;
+            right: 1rem;
+            background: var(--orange);
+            color: var(--white);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 1.2rem;
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+        .back-top.visible { opacity: 1; }
     </style>
 </head>
 <body>
-    <div class="container">
-        <a href="../index.html" class="back-link">← Back to Portal</a>
-        <h1 id="slate-systems-sales-playbook-v1-0">Slate Systems Sales Playbook v1.0</h1>
+    <nav class="top-nav">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <img src="assets/Slate_Systems_Logo_White.png" alt="Slate" class="nav-logo">
+                <span class="breadcrumb">
+                    <a href="index.html">Sales</a> / <a href="../index.html#sales-sops">Sales</a> / Playbook
+                </span>
+            </div>
+            <div class="nav-actions">
+                
+                <a href="../index.html" class="nav-btn">← Portal</a>
+            </div>
+        </div>
+    </nav>
 
-<blockquote><strong>Source:</strong> Analysis of 25+ Kai/Stone Systems sales calls, Kai SOPs, and commentary videos</blockquote>
-<blockquote><strong>Product:</strong> $297/month GHL SaaS for local service businesses (contractors, plumbers, HVAC, etc.)</blockquote>
-<blockquote><strong>Last Updated:</strong> February 22, 2026</blockquote>
+    <main class="main">
+        <header class="page-header">
+            <h1>📞 Sales Playbook v1.0</h1>
+            <div class="meta-row">
+                <span class="meta-item">📄 Proven Sales Framework</span>
+                <span class="meta-item">💰 Product: $297/mo GHL SaaS</span>
+                <span class="meta-item">📅 Updated: Feb 23, 2026</span>
+            </div>
+        </header>
 
-<hr>
+        <!-- Table of Contents -->
+        <button class="toc-toggle" onclick="this.classList.toggle('open'); document.querySelector('.toc').classList.toggle('open');">
+            📑 Table of Contents
+        </button>
+        <nav class="toc">
+            <div class="toc-title">JUMP TO SECTION</div>
+            <ul class="toc-list">
+                <li><a href="#features">5 Features We Sell</a></li>
+                <li><a href="#script">The Tight Script</a></li>
+                <li><a href="#principles">Key Principles</a></li>
+                <li><a href="#objections">Objection Handling</a></li>
+                <li><a href="#questions">Question Database</a></li>
+                <li><a href="#pain">Pain Points</a></li>
+                <li><a href="#lightbulbs">Lightbulb Moments</a></li>
+                <li><a href="#closing">Closing Sequences</a></li>
+                <li><a href="#call-types">Call Types</a></li>
+                <li><a href="#red-flags">Red Flags</a></li>
+                <li><a href="#resources">Resources</a></li>
+            </ul>
+        </nav>
 
-<h2 id="the-5-features-we-sell">THE 5 FEATURES WE SELL</h2>
+        <!-- Features -->
+        <section class="section" id="features">
+            <div class="section-header">
+                <h2>THE 5 FEATURES WE SELL</h2>
+                <a href="#features" class="section-anchor">#</a>
+            </div>
+            <table>
+                <thead><tr><th>Feature</th><th>What It Does</th><th>Outcome</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>Professional Website</strong></td><td>Fast, mobile-optimized, chat, quote form</td><td>Looks legit, captures leads</td></tr>
+                    <tr><td><strong>5-Star Review System</strong></td><td>Auto-request reviews, bad review protection</td><td>More reviews → higher rank → more calls</td></tr>
+                    <tr><td><strong>AI Review Responses</strong></td><td>AI responds to Google reviews</td><td>Google rewards engagement</td></tr>
+                    <tr><td><strong>Missed Call Text-Back</strong></td><td>Auto-texts when they miss a call</td><td>Never lose a lead</td></tr>
+                    <tr><td><strong>1-Year Follow-Up</strong></td><td>Automated texts every 3 months</td><td>Repeat business on autopilot</td></tr>
+                </tbody>
+            </table>
+            <div class="callout">
+                <strong>Always sell OUTCOMES, not features:</strong><br>
+                ❌ "We automate review requests"<br>
+                ✅ "You'll stack up 5-star reviews, rank higher on Google, and get more calls"
+            </div>
+        </section>
 
-<table><thead><tr><th>Feature</th><th>What It Does</th><th>Outcome for Customer</th></tr></thead><tbody><tr><td><strong>Professional Website</strong></td><td>Fast, mobile-optimized, chat widget, quote form</td><td>Looks legit, captures every lead</td></tr><tr><td><strong>5-Star Review System</strong></td><td>Auto-request reviews, bad review protection</td><td>More reviews → higher ranking → more calls</td></tr><tr><td><strong>AI Review Responses</strong></td><td>AI automatically responds to Google reviews</td><td>Google rewards engagement, saves time</td></tr><tr><td><strong>Missed Call Text-Back</strong></td><td>Auto-texts when they miss a call</td><td>Never lose a lead to "next guy"</td></tr><tr><td><strong>1-Year Follow-Up</strong></td><td>Automated texts every 3 months</td><td>Repeat business, referrals on autopilot</td></tr></tbody></table>
-<strong>Always sell OUTCOMES, not features:</strong>
-<ul><li>❌ "We automate review requests"</li>
-<li>✅ "You'll stack up 5-star reviews, rank higher on Google, and get more calls"</li>
-</ul>
-<hr>
+        <!-- Script -->
+        <section class="section" id="script">
+            <div class="section-header">
+                <h2>THE TIGHT SCRIPT (2026)</h2>
+                <a href="#script" class="section-anchor">#</a>
+            </div>
+            <p><strong>Context:</strong> This script has closed clients in as little as 4-8 minutes when prospects watched the VSL first.</p>
 
-<h2 id="the-new-tight-script-2026">THE NEW TIGHT SCRIPT (2026)</h2>
+            <div class="callout" style="border-left-color: #dc2626;">
+                <strong>CRITICAL:</strong> Send VSL before every call. 5-6 min video covering what we do, how it makes money, price. If they haven't watched, make them watch ON THE CALL or reschedule.
+            </div>
 
-<strong>Context:</strong> Kai closed 3 clients in 19 minutes (8 min, 7 min, 4 min). $234K MRR, 730 clients, signing ~9 clients/day.
+            <div class="script-box">1. OPENING (10 seconds)
+   "Hey man, did you get a chance to watch that short video?"
+   → YES: Continue
+   → NO: "No worries, it's only 6 minutes. Watch it real quick."
 
-<h3 id="pre-call-requirements">Pre-Call Requirements</h3>
+2. CONFIRM (5 seconds)
+   "Awesome, appreciate you watching. So yeah, that's what we do."
 
-<strong>CRITICAL: Send VSL Before Every Call</strong>
-<ul><li>5-6 minute video covering: what we do, how it makes them money, price ($297/month)</li>
-<li>Without VSL, you're speaking different languages</li>
-<li>If they haven't watched, make them watch ON THE CALL or reschedule</li>
-</ul>
-<h3 id="the-script-flow">The Script Flow</h3>
+3. THE QUESTION (5 seconds)
+   "That being said, what questions do you have?"
 
-<pre><code>1. OPENING (10 seconds)
-   "Hey man, did you get a chance to watch that short video I sent over to you?"
+4. THE HAMMER (use anytime you're lost)
+   "Cool. What other questions do you have?"
+   Use to: bring them back, reel in talkers, get permission to close
 
-<p>   → YES: Continue<br>   → NO: "No worries, it's only 6 minutes. Let me send it to you now and you can watch it real quick."</p>
+5. PERMISSION TO CLOSE
+   "Do you have any other questions before I get you going?"
+   → "No" = CLOSE
+   → More questions = Answer, repeat
 
-<ol><li class="ordered">CONFIRM (5 seconds)</li>
-</ol>   "Awesome, appreciate you watching that. So yeah, that's exactly what we do."
-
-<ol><li class="ordered">THE QUESTION (5 seconds)</li>
-</ol>   "That being said, what questions do you have?"
-
-<p>   → If they have questions: Answer briefly, move on<br>   → If no questions: They're ready to close</p>
-
-<ol><li class="ordered">THE HAMMER (use anytime you're lost)</li>
-</ol>   "Cool. What other questions do you have?"
-
-<p>   This is your catch-all. Use it to:<br>   - Bring them back when they go off-topic<br>   - Reel in talkative prospects<br>   - Get permission to close</p>
-
-<ol><li class="ordered">PERMISSION TO CLOSE</li>
-</ol>   "Do you have any other questions before I get you going?"
-
-<p>   → "No" = CLOSE<br>   → More questions = Answer, repeat</p>
-
-<ol><li class="ordered">CLOSE (Assume the close throughout)</li>
-</ol>   "Cool, let me get some info from you..."
+6. CLOSE (Assume the close)
+   "Cool, let me get some info from you..."
    - Name
    - Business name
    - Address
-   - CARD NUMBER LAST (always)
-</code></pre>
-
-<h3 id="key-principles">Key Principles</h3>
-
-<strong>1. ASSUME THE CLOSE</strong>
-<ul><li>Don't ask permission, state what will happen</li>
-<li>"We'll just have you fill out the onboarding form..."</li>
-<li>"We'll be done in about 7-9 days..."</li>
-<li>"Which company do you want us to work on?" (not "if")</li>
-</ul>
-<strong>2. BE POLARIZING</strong>
-Say things they've NEVER heard from a salesperson:
-<ul><li>"We're gonna try to sell you more shit later once you're happy. Just so you know."</li>
-<li>"If you don't have a website, that's the best case scenario. Otherwise I have to convince you your website's shit."</li>
-<li>"Contracts? No, we don't do contracts. Those are just used to scare you into not canceling."</li>
-<li>"Nobody's chasing you down for 300 bucks."</li>
-</ul>
-<strong>3. SAME SIDE OF THE TABLE ENERGY</strong>
-<ul><li>Don't feel like you're convincing them across a table</li>
-<li>Feel like you're walking a friend through something</li>
-<li>Casual, cool, calm, collected</li>
-<li>"Bro, you gotta at least attach your website to your Google page, man" [laugh]</li>
-</ul>
-<strong>4. MAKE THEM PROBLEM AWARE</strong>
-<ul><li>Point out issues casually (not salesy)</li>
-<li>"See how your phone number isn't hyperlinked? People with bad eyes can't even click to call."</li>
-<li>Give them "lightbulb moments" where they realize the problem</li>
-</ul>
-<strong>5. CREDIT CARD ALWAYS LAST</strong>
-<ul><li>Get name, address, business info first</li>
-<li>By the time you ask for card, they're already committed</li>
-</ul>
-<hr>
-
-<h2 id="objection-handling-database">OBJECTION HANDLING DATABASE</h2>
-
-<h3 id="frequency-legend">Frequency Legend</h3>
-<ul><li>(HIGH) = Appears in 10+ calls</li>
-<li>(MED) = Appears in 5-9 calls</li>
-<li>(LOW) = Appears in 1-4 calls</li>
-</ul>
-<hr>
-
-<h3 id="objection-i-don-t-have-a-website-high">OBJECTION: "I don't have a website" (HIGH)</h3>
-
-<strong>Response:</strong>
-<blockquote>"That's actually the best case scenario for us. Otherwise I have to convince you your website's shit and we should rebuild it. If you don't have anything, we just set it all up for you fresh."</blockquote>
-
-<strong>Why it works:</strong> Reframes perceived weakness as advantage. Polarizing.
-
-<hr>
-
-<h3 id="objection-do-you-have-contracts-high">OBJECTION: "Do you have contracts?" (HIGH)</h3>
-
-<strong>Response:</strong>
-<blockquote>"No, we don't do contracts. Contracts are literally just used to scare you into not canceling. Nobody's chasing you down for 300 bucks, bro."</blockquote>
-
-<strong>Why it works:</strong> Confident tone reframes their concern. They expect you to get defensive.
-
-<hr>
-
-<h3 id="objection-i-ve-been-burned-by-3-other-companies-high">OBJECTION: "I've been burned by 3 other companies" (HIGH)</h3>
-
-<strong>Response:</strong>
-<blockquote>[Be different] "Look, I'm not going to sit here and promise you the world. What I can tell you is here's exactly what we do [point to video]. You either think it's worth $297 or you don't. I can't guarantee Susan's going to see your website and decide to give you $50,000. What I can guarantee is you'll have the systems in place that make that possible."</blockquote>
-
-<strong>Why it works:</strong> Honest, not salesy, no false promises = different from everyone else
-
-<hr>
-
-<h3 id="objection-how-many-leads-will-i-get-when-will-i-get-leads-high">OBJECTION: "How many leads will I get?" / "When will I get leads?" (HIGH)</h3>
-
-<strong>Best Response (from Kai commentary):</strong>
-<blockquote>"I'm gonna be real with you. I cannot prove to you that in 2 months, Susan saw your Google reviews and your website and said 'holy shit these guys look professional' and decided to give you a $15,000 job. I can't prove that correlation. What I do know is the guys who have professional websites, tons of reviews, and fast follow-up are the ones winning. Does that make sense?"</blockquote>
-
-<strong>Why it works:</strong> Sets realistic expectations, avoids overpromising, logical
-
-<hr>
-
-<h3 id="objection-it-seems-expensive-that-s-a-lot-med">OBJECTION: "It seems expensive" / "That's a lot" (MED)</h3>
-
-<strong>Response:</strong>
-<blockquote>"What's your average job ticket? $10K-$20K? So if you get ONE job off this system in an entire YEAR, you're still 3-6x'ing what you're paying us. It's $297 a month - one job pays for 3 years."</blockquote>
-
-<strong>Why it works:</strong> Simple ROI math in their language
-
-<hr>
-
-<h3 id="objection-i-need-to-think-about-it-med">OBJECTION: "I need to think about it" (MED)</h3>
-
-<strong>Response:</strong>
-<blockquote>"For sure, man. Listen, I'm not here to pressure you. What specifically do you need to think about? Maybe I can help clarify something."</blockquote>
-
-<p>Then:<br><blockquote>"Look, you either think this is worth $297 or you don't. What you saw in the video is exactly what you get. No tricks."</blockquote></p>
-
-<hr>
-
-<h3 id="objection-let-me-talk-to-my-partner-wife-med">OBJECTION: "Let me talk to my partner/wife" (MED)</h3>
-
-<strong>Response:</strong>
-<blockquote>"Totally get it. When do you think you'll have that conversation? Let's get something on the calendar so I can answer any questions they might have too."</blockquote>
-
-<strong>Note from Kai:</strong> Wife/partner objection is hardest. They often say "it doesn't feel right" without specifics.
-
-<hr>
-
-<h3 id="objection-i-m-already-working-with-someone-for-seo-reviews-med">OBJECTION: "I'm already working with someone for SEO/reviews" (MED)</h3>
-
-<strong>Response:</strong>
-<blockquote>"No problem. What are you paying? What results have you gotten? ... Look, 95% of companies are totally full of shit, honestly. If it's working for you, stick with it. But understand what we do is the foundation - website, reviews, missed call follow-up, remarketing. That's different from just SEO."</blockquote>
-
-<hr>
-
-<h3 id="objection-do-you-do-lead-generation-high">OBJECTION: "Do you do lead generation?" (HIGH)</h3>
-
-<strong>Response:</strong>
-<blockquote>"I hate marketing ourselves as a lead generation company. You're paying $297 for pre-built business SYSTEMS that I spent a long time creating. The leads come as a byproduct of having these systems in place - professional website, Google reviews, missed call follow-up. If you want direct lead gen, you need paid ads at $1,500-3,000/month. We don't even do that."</blockquote>
-
-<hr>
-
-<h3 id="objection-what-happens-if-i-cancel-do-i-keep-the-website-med">OBJECTION: "What happens if I cancel? Do I keep the website?" (MED)</h3>
-
-<strong>Response:</strong>
-<blockquote>"If you cancel, the website goes down since it's hosted on our platform. What you'd lose is the automations - review sequences, auto call text back, follow-up campaigns. But honestly, there's no contracts, so you're never locked in. Most people who try it end up staying because it works."</blockquote>
-
-<hr>
-
-<h3 id="objection-i-can-do-this-myself-low">OBJECTION: "I can do this myself" (LOW)</h3>
-
-<strong>Response:</strong>
-<blockquote>"You absolutely can. Same way I could watch YouTube and figure out how to fix my own roof. But I'm gonna call a roofer because that's what he does every day. That's what we do - this is all we do, all day, every day. You should be out doing jobs, not messing with websites."</blockquote>
-
-<hr>
-
-<h3 id="objection-i-m-not-tech-savvy-med">OBJECTION: "I'm not tech savvy" (MED)</h3>
-
-<strong>Response:</strong>
-<blockquote>"Perfect. That's why we exist. We handle everything. All you do is fill out an onboarding form - basic business info, pictures, services. We build everything. You just approve it."</blockquote>
-
-<hr>
-
-<h3 id="objection-i-don-t-have-a-google-business-page-med">OBJECTION: "I don't have a Google Business Page" (MED)</h3>
-
-<strong>Response:</strong>
-<blockquote>"That's free to set up - takes about 5 days to verify. Check out guides.slatesystems.io - we have a step-by-step guide that walks you through exactly how to do it. If anyone tries to charge you for that, they're full of shit. While you're setting that up, we'll build your website. By the time you're verified, everything will be ready to connect."</blockquote>
-
-<hr>
-
-<h3 id="objection-my-phone-doesn-t-ring-enough-i-need-work-now-med">OBJECTION: "My phone doesn't ring enough" / "I need work NOW" (MED)</h3>
-
-<strong>Response:</strong>
-<blockquote>"I hear you. The website and reviews are the foundation - that's what we set up. That's how people find you organically on Google. If you need leads TODAY, that's paid ads - you're looking at $1,500-3,000/month with someone managing it plus ad spend. We don't do that. What we do is make sure when leads DO come, you capture them, follow up, and convert them."</blockquote>
-
-<hr>
-
-<h2 id="question-database">QUESTION DATABASE</h2>
-
-<h3 id="q-how-does-this-work-walk-me-through-it">Q: "How does this work?" / "Walk me through it"</h3>
-<blockquote>"Did you watch the video? [Yes] Cool, that's literally it. Four systems: website, Google reviews, auto call text back, remarketing campaigns. What specific questions do you have about any of those?"</blockquote>
-
-<h3 id="q-how-long-does-it-take">Q: "How long does it take?"</h3>
-<blockquote>"8-9 days from when you submit the onboarding form. You fill out the form, we build everything, then we hop on a launch call to go over it together."</blockquote>
-
-<h3 id="q-what-do-i-need-to-do">Q: "What do I need to do?"</h3>
-<blockquote>"Three things: Fill out the onboarding form (basic business info, services, pictures), connect your Google My Business page (I'll send you a video), and send us photos of your work. That's it."</blockquote>
-
-<h3 id="q-what-about-seo">Q: "What about SEO?"</h3>
-<blockquote>"Everything we build is optimized for SEO - pages for each service, pages for each service area, proper keywords. The reviews are huge for SEO. The website structure alone handles 90% of what most people need. If you want something more advanced down the road, we can talk about that once you have 70+ reviews and we've been working together a few months."</blockquote>
-
-<h3 id="q-can-i-make-changes-to-the-website">Q: "Can I make changes to the website?"</h3>
-<blockquote>"You can change wording and pictures, no problem. What I don't want you doing is messing with the structure or layout - there's custom code for speed optimization. If you want sections added or changed, just tell us and we'll do it."</blockquote>
-
-<h3 id="q-do-you-do-facebook-instagram-ads">Q: "Do you do Facebook/Instagram ads?"</h3>
-<blockquote>"We're launching a self-serve ad platform soon where you can launch your own ads in 3 clicks. But traditional managed ads are $1,500-3,000/month. We don't do that currently."</blockquote>
-
-<hr>
-
-<h2 id="pain-points-what-prospects-actually-say">PAIN POINTS (What Prospects Actually Say)</h2>
-
-<h3 id="business-pain-high-frequency">Business Pain (HIGH frequency)</h3>
-<ul><li>"It's been peaks and valleys lately"</li>
-<li>"I'm not getting as many calls as I used to"</li>
-<li>"I'm losing jobs to guys with more reviews"</li>
-<li>"People don't call me back after I quote"</li>
-<li>"I miss too many calls when I'm on jobs"</li>
-<li>"I don't have time for this marketing stuff"</li>
-</ul>
-<h3 id="past-experience-pain-high-frequency">Past Experience Pain (HIGH frequency)</h3>
-<ul><li>"I've been burned by 3 companies"</li>
-<li>"Paid $1,500/month for SEO and got nothing"</li>
-<li>"Companies keep upselling me but nothing works"</li>
-<li>"I don't understand any of this tech stuff"</li>
-<li>"Everyone promises leads but nobody delivers"</li>
-</ul>
-<h3 id="technical-pain-med-frequency">Technical Pain (MED frequency)</h3>
-<ul><li>"My website is old and doesn't work on phones"</li>
-<li>"I don't have a Google page set up"</li>
-<li>"I only have 8 reviews after 18 years"</li>
-<li>"People submit forms and I never see them"</li>
-<li>"I keep my customers in my phone contacts"</li>
-</ul>
-<hr>
-
-<h2 id="lightbulb-moments-what-makes-them-buy">LIGHTBULB MOMENTS (What Makes Them Buy)</h2>
-
-<ol><li class="ordered"><strong>The Phone Number Test</strong></li>
-</ol>   > "See how your phone number isn't hyperlinked? My mom's in her 70s, has bad eyes - she can't read that small text. She's gonna leave your site. [They check their site] There should be a big CALL NOW button."
-
-<ol><li class="ordered"><strong>The Review Trap</strong></li>
-</ol>   > "You have 8 reviews after 18 years. I KNOW you've served more than 8 people. You just don't ask. We automate that - every job done, review request goes out. They get reminded 4 times until they leave one."
-
-<ol><li class="ordered"><strong>The Missed Call Reality</strong></li>
-</ol>   > "When you're on a roof or under a sink and miss a call, what happens? That person calls the next guy. With auto text back, they get 'Hey sorry, I'm with a customer, can I call you back in 20 min?' and they wait for YOU."
-
-<ol><li class="ordered"><strong>The Susan Story</strong></li>
-</ol>   > "Susan is shopping for a $50K kitchen remodel. She Googles you, sees 8 reviews and a janky website. She Googles your competitor, sees 150 reviews and a beautiful site. Who's she calling? That's what we fix."
-
-<ol><li class="ordered"><strong>The Christmas Blast</strong></li>
-</ol>   > "You have 500 past customers in a spreadsheet? With one click we can text all 500: 'Hey, 10% off for past customers this month.' One guy got $100K in jobs in a week from a text blast."
-
-<hr>
-
-<h2 id="closing-sequences">CLOSING SEQUENCES</h2>
-
-<h3 id="standard-close">Standard Close</h3>
-<pre><code>"Awesome, no more questions? Cool, let me get some info from you."
+   - CARD NUMBER LAST (always)</div>
+        </section>
+
+        <!-- Principles -->
+        <section class="section" id="principles">
+            <div class="section-header">
+                <h2>KEY PRINCIPLES</h2>
+                <a href="#principles" class="section-anchor">#</a>
+            </div>
+
+            <h3 style="color: var(--orange); margin: 1rem 0 0.5rem;">1. ASSUME THE CLOSE</h3>
+            <ul>
+                <li>Don't ask permission, state what will happen</li>
+                <li>"We'll just have you fill out the onboarding form..."</li>
+                <li>"Which company do you want us to work on?" (not "if")</li>
+            </ul>
+
+            <h3 style="color: var(--orange); margin: 1rem 0 0.5rem;">2. BE POLARIZING</h3>
+            <p>Say things they've NEVER heard from a salesperson:</p>
+            <ul>
+                <li>"We're gonna try to sell you more shit later once you're happy."</li>
+                <li>"If you don't have a website, that's best case scenario."</li>
+                <li>"Contracts? Those are just used to scare you into not canceling."</li>
+            </ul>
+
+            <h3 style="color: var(--orange); margin: 1rem 0 0.5rem;">3. SAME SIDE OF THE TABLE</h3>
+            <ul>
+                <li>Feel like you're walking a friend through something</li>
+                <li>Casual, cool, calm, collected</li>
+            </ul>
+
+            <h3 style="color: var(--orange); margin: 1rem 0 0.5rem;">4. MAKE THEM PROBLEM AWARE</h3>
+            <ul>
+                <li>Point out issues casually (not salesy)</li>
+                <li>Give them "lightbulb moments"</li>
+            </ul>
+
+            <h3 style="color: var(--orange); margin: 1rem 0 0.5rem;">5. CARD ALWAYS LAST</h3>
+            <ul>
+                <li>Get name, address, business info first</li>
+                <li>By the time you ask for card, they're committed</li>
+            </ul>
+        </section>
+
+        <!-- Objections -->
+        <section class="section" id="objections">
+            <div class="section-header">
+                <h2>OBJECTION HANDLING</h2>
+                <a href="#objections" class="section-anchor">#</a>
+            </div>
+            <p style="font-size: 0.8rem; color: var(--gray);">Legend: HIGH = 10+ calls, MED = 5-9 calls, LOW = 1-4 calls</p>
+
+            <div class="objection-card">
+                <div class="objection-title">"I don't have a website" <span class="objection-freq">HIGH</span></div>
+                <div class="objection-response">"That's actually the best case scenario for us. Otherwise I have to convince you your website's shit. If you don't have anything, we just set it all up fresh."</div>
+                <div class="objection-why">Reframes weakness as advantage. Polarizing.</div>
+            </div>
+
+            <div class="objection-card">
+                <div class="objection-title">"Do you have contracts?" <span class="objection-freq">HIGH</span></div>
+                <div class="objection-response">"No, we don't do contracts. Contracts are just used to lock you in. We'd rather earn your business every month. If it's not working for you, you can cancel anytime — no hassle."</div>
+                <div class="objection-why">Confident tone reframes concern.</div>
+            </div>
+
+            <div class="objection-card">
+                <div class="objection-title">"I've been burned by 3 other companies" <span class="objection-freq">HIGH</span></div>
+                <div class="objection-response">"Look, I'm not going to promise you the world. Here's exactly what we do [point to video]. You either think it's worth $297 or you don't. I can't guarantee Susan gives you $50K. What I can guarantee is you'll have the systems in place."</div>
+                <div class="objection-why">Honest, no false promises = different.</div>
+            </div>
+
+            <div class="objection-card">
+                <div class="objection-title">"How many leads will I get?" <span class="objection-freq">HIGH</span></div>
+                <div class="objection-response">"I cannot prove that Susan saw your reviews and gave you a $15K job. What I know is guys with professional websites, tons of reviews, and fast follow-up are the ones winning. Does that make sense?"</div>
+                <div class="objection-why">Realistic expectations, logical.</div>
+            </div>
+
+            <div class="objection-card">
+                <div class="objection-title">"It seems expensive" <span class="objection-freq">MED</span></div>
+                <div class="objection-response">"What's your average job? $10K-$20K? If you get ONE job in a YEAR, you're 3-6x'ing what you pay us. It's $297/month - one job pays for 3 years."</div>
+                <div class="objection-why">Simple ROI math.</div>
+            </div>
+
+            <div class="objection-card">
+                <div class="objection-title">"I need to think about it" <span class="objection-freq">MED</span></div>
+                <div class="objection-response">"For sure. What specifically do you need to think about? Maybe I can clarify. ... Look, you either think this is worth $297 or you don't. What you saw is exactly what you get."</div>
+            </div>
+
+            <div class="objection-card">
+                <div class="objection-title">"Let me talk to my partner/wife" <span class="objection-freq">MED</span></div>
+                <div class="objection-response">"Totally get it. When will you have that conversation? Let's get something on the calendar so I can answer their questions too."</div>
+                <div class="objection-why">Note: Wife/partner objection is hardest.</div>
+            </div>
+
+            <div class="objection-card">
+                <div class="objection-title">"Do you do lead generation?" <span class="objection-freq">HIGH</span></div>
+                <div class="objection-response">"I hate marketing as lead gen. You're paying $297 for pre-built SYSTEMS. Leads come as a byproduct. If you want direct lead gen, that's paid ads at $1,500-3,000/month. We don't do that."</div>
+            </div>
+
+            <div class="objection-card">
+                <div class="objection-title">"I can do this myself" <span class="objection-freq">LOW</span></div>
+                <div class="objection-response">"You absolutely can. Same way I could watch YouTube and fix my own roof. But I'm gonna call a roofer because that's what he does every day. You should be out doing jobs, not messing with websites."</div>
+            </div>
+        </section>
+
+        <!-- Questions -->
+        <section class="section" id="questions">
+            <div class="section-header">
+                <h2>QUESTION DATABASE</h2>
+                <a href="#questions" class="section-anchor">#</a>
+            </div>
+
+            <div class="objection-card">
+                <div class="objection-title">"How does this work?"</div>
+                <div class="objection-response">"Did you watch the video? Cool, that's literally it. Four systems: website, reviews, auto text back, remarketing. What specific questions about those?"</div>
+            </div>
+
+            <div class="objection-card">
+                <div class="objection-title">"How long does it take?"</div>
+                <div class="objection-response">"8-9 days from when you submit the onboarding form. You fill it out, we build, then launch call together."</div>
+            </div>
+
+            <div class="objection-card">
+                <div class="objection-title">"What do I need to do?"</div>
+                <div class="objection-response">"Three things: Fill out onboarding form (basic info, services, pictures), connect Google My Business (I'll send video), send photos of your work. That's it."</div>
+            </div>
+
+            <div class="objection-card">
+                <div class="objection-title">"What about SEO?"</div>
+                <div class="objection-response">"Everything's optimized - pages for each service and area, proper keywords. Reviews are huge for SEO. The structure handles 90% of what you need."</div>
+            </div>
+        </section>
+
+        <!-- Pain Points -->
+        <section class="section" id="pain">
+            <div class="section-header">
+                <h2>PAIN POINTS</h2>
+                <a href="#pain" class="section-anchor">#</a>
+            </div>
+
+            <h3 style="color: var(--orange); margin: 1rem 0 0.5rem;">Business Pain (HIGH)</h3>
+            <ul>
+                <li>"It's been peaks and valleys lately"</li>
+                <li>"I'm not getting as many calls as I used to"</li>
+                <li>"I'm losing jobs to guys with more reviews"</li>
+                <li>"People don't call me back after I quote"</li>
+                <li>"I miss too many calls when I'm on jobs"</li>
+            </ul>
+
+            <h3 style="color: var(--orange); margin: 1rem 0 0.5rem;">Past Experience Pain (HIGH)</h3>
+            <ul>
+                <li>"I've been burned by 3 companies"</li>
+                <li>"Paid $1,500/month for SEO and got nothing"</li>
+                <li>"Everyone promises leads but nobody delivers"</li>
+            </ul>
+
+            <h3 style="color: var(--orange); margin: 1rem 0 0.5rem;">Technical Pain (MED)</h3>
+            <ul>
+                <li>"My website is old and doesn't work on phones"</li>
+                <li>"I only have 8 reviews after 18 years"</li>
+                <li>"I keep my customers in my phone contacts"</li>
+            </ul>
+        </section>
+
+        <!-- Lightbulbs -->
+        <section class="section" id="lightbulbs">
+            <div class="section-header">
+                <h2>💡 LIGHTBULB MOMENTS</h2>
+                <a href="#lightbulbs" class="section-anchor">#</a>
+            </div>
+
+            <div class="objection-card">
+                <div class="objection-title">1. The Phone Number Test</div>
+                <div class="objection-response">"See how your phone number isn't hyperlinked? My mom's in her 70s, bad eyes - she can't read that small text. She's gonna leave. There should be a big CALL NOW button."</div>
+            </div>
+
+            <div class="objection-card">
+                <div class="objection-title">2. The Review Trap</div>
+                <div class="objection-response">"You have 8 reviews after 18 years. I KNOW you've served more than 8 people. You just don't ask. We automate that - every job done, review request goes out."</div>
+            </div>
+
+            <div class="objection-card">
+                <div class="objection-title">3. The Missed Call Reality</div>
+                <div class="objection-response">"When you're on a roof and miss a call, what happens? That person calls the next guy. With auto text back, they get 'Sorry, with a customer, call you back in 20 min?' and they wait for YOU."</div>
+            </div>
+
+            <div class="objection-card">
+                <div class="objection-title">4. The Susan Story</div>
+                <div class="objection-response">"Susan is shopping for a $50K kitchen remodel. She Googles you, sees 8 reviews and a janky website. She Googles your competitor, sees 150 reviews and a beautiful site. Who's she calling?"</div>
+            </div>
+
+            <div class="objection-card">
+                <div class="objection-title">5. The Christmas Blast</div>
+                <div class="objection-response">"You have 500 past customers? With one click we text all 500: 'Hey, 10% off for past customers this month.' One guy got $100K in jobs in a week from a text blast."</div>
+            </div>
+        </section>
+
+        <!-- Closing -->
+        <section class="section" id="closing">
+            <div class="section-header">
+                <h2>CLOSING SEQUENCES</h2>
+                <a href="#closing" class="section-anchor">#</a>
+            </div>
+
+            <h3 style="color: var(--orange); margin: 1rem 0 0.5rem;">Standard Close</h3>
+            <div class="script-box">"Awesome, no more questions? Cool, let me get some info from you."
 "What's the official business name?"
 "And the address?"
 "Perfect. And what's the card number?"
-[Always card LAST]
-</code></pre>
+[Always card LAST]</div>
 
-<h3 id="the-soft-qualifier-close">The Soft Qualifier Close</h3>
-<pre><code>"Look, I'm not here to convince you you need this. You either think it's worth $297 or you don't. If you want to grow and have these systems in place, we can help. If you're good with word of mouth and pen and paper, that's cool too. What do you want to do?"
-</code></pre>
+            <h3 style="color: var(--orange); margin: 1rem 0 0.5rem;">Soft Qualifier Close</h3>
+            <div class="script-box">"Look, I'm not here to convince you. You either think it's worth $297 or you don't. If you want to grow and have these systems, we can help. If you're good with word of mouth and pen and paper, that's cool too. What do you want to do?"</div>
 
-<h3 id="the-trial-close-for-hesitant-prospects">The Trial Close (for hesitant prospects)</h3>
-<pre><code>"Tell you what - I can do 50% off your first 3 months. That's $148.50 instead of $297. Gives you time to see it working without full commitment. Sound fair?"
-</code></pre>
+            <h3 style="color: var(--orange); margin: 1rem 0 0.5rem;">Trial Close (hesitant prospects)</h3>
+            <div class="script-box">"Tell you what - I can do 50% off your first 3 months. That's $148.50 instead of $297. Gives you time to see it working. Sound fair?"</div>
+            <p style="font-size: 0.85rem; color: var(--gray);">This is the ONLY discount. 50% off first 3 months.</p>
+        </section>
 
-<strong>Note:</strong> This is the ONLY discount offer. 50% off first 3 months = $148.50/mo for months 1-3, then $297/mo.
+        <!-- Call Types -->
+        <section class="section" id="call-types">
+            <div class="section-header">
+                <h2>CALL TYPES</h2>
+                <a href="#call-types" class="section-anchor">#</a>
+            </div>
 
-<hr>
+            <table>
+                <thead><tr><th>Type</th><th>Duration</th><th>Approach</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>Pre-Sold Buyer</strong></td><td>4-7 min</td><td>Watched video, no questions. JUST CLOSE.</td></tr>
+                    <tr><td><strong>Curious Skeptic</strong></td><td>10-15 min</td><td>Has questions, been burned. Answer → Trust → Close.</td></tr>
+                    <tr><td><strong>The Talker</strong></td><td>15-25 min</td><td>Goes off on tangents. Keep pulling back with "Cool, what other questions?"</td></tr>
+                    <tr><td><strong>Hasn't Watched</strong></td><td>—</td><td>Make them watch or reschedule. Don't sell without video.</td></tr>
+                    <tr><td><strong>Driving</strong></td><td>—</td><td>"Safety first. Text me 'ready' when you're parked."</td></tr>
+                </tbody>
+            </table>
+        </section>
 
-<h2 id="call-structure-by-type">CALL STRUCTURE BY TYPE</h2>
+        <!-- Red Flags -->
+        <section class="section" id="red-flags">
+            <div class="section-header">
+                <h2>🚩 RED FLAGS</h2>
+                <a href="#red-flags" class="section-anchor">#</a>
+            </div>
+            <ul>
+                <li><strong>No Google Business AND doesn't want one</strong> → "Go make it first. Call me back when it's verified."</li>
+                <li><strong>Expects guaranteed leads</strong> → Set expectations. If they push back, they'll be a problem customer.</li>
+                <li><strong>$297 is a stretch</strong> → Probably not doing enough business to benefit.</li>
+                <li><strong>Wife/partner makes decisions and isn't on call</strong> → Get both on next call or move on.</li>
+            </ul>
+        </section>
 
-<h3 id="the-pre-sold-buyer-4-7-min">The Pre-Sold Buyer (4-7 min)</h3>
-<ul><li>Watched video</li>
-<li>No questions or minimal questions</li>
-<li>"When can we start?"</li>
-<li>JUST CLOSE. Don't oversell.</li>
-</ul>
-<h3 id="the-curious-skeptic-10-15-min">The Curious Skeptic (10-15 min)</h3>
-<ul><li>Watched video</li>
-<li>Has specific questions</li>
-<li>Been burned before</li>
-<li>ANSWER QUESTIONS → BUILD TRUST → CLOSE</li>
-</ul>
-<h3 id="the-talker-15-25-min">The Talker (15-25 min)</h3>
-<ul><li>Wants to tell their life story</li>
-<li>Goes off on tangents</li>
-<li>Keep pulling back: "Cool, what other questions do you have?"</li>
-<li>DON'T LET THEM LEAVE "BUY MODE"</li>
-</ul>
-<h3 id="the-hasn-t-watched-video">The Hasn't Watched Video</h3>
-<ul><li>Make them watch it</li>
-<li>Offer to screen share: "I can share my screen and walk you through it real quick if you want"</li>
-<li>Or reschedule</li>
-<li>DON'T try to sell without them seeing the video</li>
-</ul>
-<h3 id="they-re-driving">They're Driving</h3>
-<ul><li>Don't do the call</li>
-<li>"Safety first. Text me 'ready' when you're parked and I'll call you right back."</li>
-<li>Or offer: "When you get where you're going, I can screen share the video with you"</li>
-<li>Reschedule if needed</li>
-</ul>
-<hr>
+        <!-- Resources -->
+        <section class="section" id="resources">
+            <div class="section-header">
+                <h2>KEY RESOURCES</h2>
+                <a href="#resources" class="section-anchor">#</a>
+            </div>
+            <table>
+                <thead><tr><th>Resource</th><th>URL</th><th>When</th></tr></thead>
+                <tbody>
+                    <tr><td>VSL</td><td>slatesystems.io/watch-this-616006</td><td>Before every call</td></tr>
+                    <tr><td>GMB Guide</td><td>guides.slatesystems.io</td><td>When they need Google Business setup</td></tr>
+                    <tr><td>Help Center</td><td>help.slatesystems.io</td><td>Post-sale reference</td></tr>
+                </tbody>
+            </table>
 
-<h2 id="red-flags-when-to-disqualify">RED FLAGS (When to Disqualify)</h2>
+            <div class="callout" style="margin-top: 1rem;">
+                <strong>ONLY DISCOUNT:</strong> 50% off first 3 months = $148.50/mo<br>
+                Never offer: $97/mo, free trials, custom pricing
+            </div>
+        </section>
 
-<ol><li class="ordered"><strong>No Google Business Page AND don't want to make one</strong></li>
-</ol>   > "Go make the Google page first. It's free. Call me back when it's verified."
+        <!-- Prev/Next -->
+        <nav class="page-nav">
+            <a href="../index.html#sales-sops" class="prev">
+                <span class="label">← Previous</span>
+                Sales SOPs Index
+            </a>
+            <a href="sales-sop.html" class="next">
+                <span class="label">Next →</span>
+                Sales SOP (Procedures)
+            </a>
+        </nav>
+    </main>
 
-<ol><li class="ordered"><strong>Expect guaranteed leads</strong></li>
-</ol>   > Set expectations clearly. If they push back, they'll be a problem customer.
+    <footer>
+        © 2026 Slate Systems Inc. | <a href="../glossary.html" style="color: var(--orange);">Glossary</a> | <a href="../index.html" style="color: var(--orange);">Portal Home</a>
+    </footer>
 
-<ol><li class="ordered"><strong>Budget objection on $297</strong></li>
-</ol>   > If $297/month is a stretch, they're probably not doing enough business to benefit.
+    <a href="#" class="back-top" id="backTop">↑</a>
 
-<ol><li class="ordered"><strong>Wife/partner makes all decisions and isn't on call</strong></li>
-</ol>   > Get them BOTH on the next call or move on.
-
-<hr>
-
-<h2 id="related-sops">Related SOPs</h2>
-
-<ul><li><code>sales-sop.md</code> — Step-by-step call procedures</li>
-<li><code>show-rate-optimization.md</code> — Getting them to show up</li>
-<li><code>testimonial-collection.md</code> — Post-close testimonials</li>
-<li><code>cancellation-saves.md</code> — Retention scripts</li>
-</ul>
-<hr>
-
-<h2 id="key-resources">KEY RESOURCES</h2>
-
-<table><thead><tr><th>Resource</th><th>URL</th><th>When to Use</th></tr></thead><tbody><tr><td>VSL</td><td>https://slatesystems.io/watch-this-616006</td><td>Send before every call</td></tr><tr><td>GMB Setup Guide</td><td>guides.slatesystems.io</td><td>When they need to set up Google Business</td></tr><tr><td>Help Center</td><td>help.slatesystems.io</td><td>Post-sale reference</td></tr><tr><td>Booking Calendar</td><td>Slate Systems Demo Calendar</td><td>All demos</td></tr><tr><td>Platform</td><td>Google Meet</td><td>Video calls</td></tr></tbody></table>
-<hr>
-
-<h2 id="only-discount-offer">ONLY DISCOUNT OFFER</h2>
-
-<strong>50% off first 3 months = $148.50/mo (instead of $297)</strong>
-
-<p>This is the ONLY approved discount. Found in SMS sequences at Long Term Nurture Day 28 and Cancelled sequence SMS 6.</p>
-
-<p>Never offer:<br><ul><li>❌ $97/mo (doesn't exist)</li><br><li>❌ $997/mo advanced tier (doesn't exist)</li><br><li>❌ Free trials</li><br><li>❌ Custom pricing</li><br></ul><br><hr></p>
-
-<em>Adapted from Stone Systems training, customized for Slate Systems</em>
-<em>Updated: Feb 23, 2026</em>
-
-        <footer>
-            <p>&copy; 2026 Slate Systems Inc. Internal use only.</p>
-        </footer>
-    </div>
+    <script>
+        // Back to top button
+        window.addEventListener('scroll', () => {
+            document.getElementById('backTop').classList.toggle('visible', window.scrollY > 500);
+        });
+    </script>
 </body>
 </html>

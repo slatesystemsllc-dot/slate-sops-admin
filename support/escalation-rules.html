@@ -2,248 +2,426 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Escalation Rules - Slate Systems SOP</title>
     <style>
+        :root { --navy: #152a45; --gray: #525c69; --orange: #ee7000; --white: #ffffff; --dark-bg: #0d1a2d; --card-bg: #1a2d47; --border: #2a4060; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: #0f172a;
-            color: #e2e8f0;
-            line-height: 1.7;
-            padding: 2rem;
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--dark-bg); color: var(--white); line-height: 1.7; }
+
+        .top-nav {
+            background: var(--navy);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 2px solid var(--orange);
         }
-        .container { max-width: 900px; margin: 0 auto; }
-        .back-link {
-            display: inline-flex;
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 1.5rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.6rem 0;
+            text-decoration: none;
+        }
+        .nav-logo { height: 28px; width: auto; }
+        .nav-subtitle {
+            background: var(--orange);
+            color: var(--white);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+        .nav-back {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 0.85rem;
+            opacity: 0.8;
+            transition: opacity 0.2s;
+        }
+        .nav-back:hover { opacity: 1; }
+
+        .container { max-width: 900px; margin: 0 auto; padding: 2rem 1.5rem; }
+
+        .toc-toggle {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            color: var(--white);
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+            display: flex;
             align-items: center;
             gap: 0.5rem;
-            color: #3b82f6;
-            text-decoration: none;
-            margin-bottom: 2rem;
-            font-size: 0.9rem;
+            width: 100%;
+            justify-content: space-between;
         }
-        .back-link:hover { text-decoration: underline; }
-        h1 { font-size: 2rem; color: #f8fafc; margin-bottom: 0.5rem; border-bottom: 2px solid #3b82f6; padding-bottom: 0.5rem; }
-        h2 { font-size: 1.5rem; color: #f8fafc; margin: 2rem 0 1rem; padding-top: 1rem; border-top: 1px solid #334155; }
+        .toc-toggle:hover { border-color: var(--orange); }
+        .toc-toggle .arrow { transition: transform 0.2s; }
+        .toc-toggle.open .arrow { transform: rotate(180deg); }
+
+        .toc {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1rem 1.5rem;
+            margin-bottom: 2rem;
+            display: none;
+        }
+        .toc.open { display: block; }
+        .toc-title { font-weight: 600; margin-bottom: 0.75rem; color: var(--orange); }
+        .toc ul { list-style: none; }
+        .toc li { margin-bottom: 0.4rem; }
+        .toc a { color: var(--white); text-decoration: none; font-size: 0.9rem; opacity: 0.8; }
+        .toc a:hover { opacity: 1; color: var(--orange); }
+
+        h1 { font-size: 2rem; color: var(--white); margin-bottom: 0.5rem; border-bottom: 2px solid var(--orange); padding-bottom: 0.75rem; }
+        h2 { font-size: 1.5rem; color: var(--white); margin: 2.5rem 0 1rem; padding-top: 1.5rem; border-top: 1px solid var(--border); scroll-margin-top: 80px; }
         h3 { font-size: 1.2rem; color: #cbd5e1; margin: 1.5rem 0 0.75rem; }
+        h4 { font-size: 1rem; color: #94a3b8; margin: 1.25rem 0 0.5rem; }
         p { margin-bottom: 1rem; }
         ul, ol { margin: 1rem 0; padding-left: 2rem; }
         li { margin-bottom: 0.5rem; }
-        li.nested { margin-left: 1.5rem; }
-        li.checkbox { list-style: none; margin-left: -1.5rem; }
-        li.checkbox input { margin-right: 0.5rem; }
+
+        .meta-box {
+            background: var(--card-bg);
+            border-left: 4px solid var(--orange);
+            padding: 1rem 1.25rem;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 1.5rem;
+        }
+        .meta-box p { margin: 0.25rem 0; font-size: 0.9rem; }
+        .meta-box strong { color: var(--orange); }
+
         blockquote {
-            background: #1e293b;
-            border-left: 4px solid #3b82f6;
+            background: var(--card-bg);
+            border-left: 4px solid var(--orange);
             padding: 1rem 1.5rem;
             margin: 1rem 0;
             border-radius: 0 8px 8px 0;
-            font-style: italic;
         }
+
         pre {
-            background: #1e293b;
+            background: var(--card-bg);
             padding: 1rem;
             border-radius: 8px;
             overflow-x: auto;
-            max-width: 100%;
             margin: 1rem 0;
-            border: 1px solid #334155;
-            white-space: pre-wrap;
-            word-wrap: break-word;
-        }
-        @media (max-width: 768px) {
-            body { padding: 1rem; }
-            pre { font-size: 0.85em; padding: 0.75rem; }
-            table { font-size: 0.9em; display: block; overflow-x: auto; }
-            th, td { padding: 0.5rem; }
-            h1 { font-size: 1.5rem; }
-            h2 { font-size: 1.25rem; }
+            border: 1px solid var(--border);
+            font-size: 0.85rem;
         }
         code {
             font-family: 'SF Mono', Monaco, monospace;
             font-size: 0.9em;
         }
         :not(pre) > code {
-            background: #334155;
+            background: var(--border);
             padding: 0.2rem 0.4rem;
             border-radius: 4px;
         }
+
         table {
             width: 100%;
             border-collapse: collapse;
             margin: 1rem 0;
-            background: #1e293b;
+            background: var(--card-bg);
             border-radius: 8px;
             overflow: hidden;
         }
         th, td {
             padding: 0.75rem 1rem;
             text-align: left;
-            border-bottom: 1px solid #334155;
+            border-bottom: 1px solid var(--border);
         }
-        th { background: #334155; color: #f8fafc; font-weight: 600; }
+        th { background: var(--border); color: var(--white); font-weight: 600; }
         tr:last-child td { border-bottom: none; }
-        hr { border: none; border-top: 1px solid #334155; margin: 2rem 0; }
-        a { color: #3b82f6; }
-        strong { color: #f8fafc; }
-        .meta {
-            background: #1e293b;
-            padding: 1rem;
-            border-radius: 8px;
-            margin-bottom: 2rem;
-            border-left: 4px solid #3b82f6;
-        }
-        .meta p { margin: 0.25rem 0; font-size: 0.9rem; color: #94a3b8; }
-        footer {
+
+        hr { border: none; border-top: 1px solid var(--border); margin: 2rem 0; }
+        a { color: var(--orange); }
+        strong { color: var(--white); }
+
+        .urgency-urgent { color: #ef4444; }
+        .urgency-high { color: #f59e0b; }
+        .urgency-normal { color: #22c55e; }
+
+        .page-nav {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
             margin-top: 3rem;
             padding-top: 2rem;
-            border-top: 1px solid #334155;
-            text-align: center;
-            color: #64748b;
-            font-size: 0.875rem;
+            border-top: 1px solid var(--border);
         }
+        .page-nav a {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            color: var(--white);
+            transition: border-color 0.2s;
+            flex: 1;
+            max-width: 45%;
+        }
+        .page-nav a:hover { border-color: var(--orange); }
+        .page-nav .prev { text-align: left; }
+        .page-nav .next { text-align: right; margin-left: auto; }
+        .page-nav .label { font-size: 0.75rem; color: var(--gray); margin-bottom: 0.25rem; }
+        .page-nav .title { font-weight: 600; color: var(--orange); }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--gray);
+            font-size: 0.85rem;
+            border-top: 1px solid var(--border);
+            margin-top: 3rem;
+        }
+        footer a { color: var(--orange); }
     </style>
 </head>
 <body>
+    <nav class="top-nav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-brand">
+                <img src="assets/Slate_Systems_Logo_White.png" alt="Slate" class="nav-logo">
+                <span class="nav-subtitle">SUPPORT</span>
+            </a>
+            <a href="index.html" class="nav-back">Back to Portal</a>
+        </div>
+    </nav>
+
     <div class="container">
-        <a href="../index.html" class="back-link">← Back to Portal</a>
-        <h1 id="escalation-rules">Escalation Rules</h1>
+        <h1>Escalation Rules</h1>
 
-<blockquote><strong>Role:</strong> Support / VA</blockquote>
-<blockquote><strong>Purpose:</strong> Know when to handle vs when to escalate</blockquote>
-<blockquote><strong>Last Updated:</strong> Feb 23, 2026</blockquote>
+        <div class="meta-box">
+            <p><strong>Role:</strong> Support / VA</p>
+            <p><strong>Purpose:</strong> Know when to handle vs when to escalate</p>
+            <p><strong>Last Updated:</strong> Feb 22, 2026</p>
+        </div>
 
-<hr>
+        <button class="toc-toggle" onclick="toggleToc()">
+            <span>Table of Contents</span>
+            <span class="arrow">&#9660;</span>
+        </button>
 
-<h2 id="support-ai-agent-tier-1-automation">Support AI Agent (Tier 1 Automation)</h2>
+        <div class="toc" id="toc">
+            <div class="toc-title">Contents</div>
+            <ul>
+                <li><a href="#principle">Core Principle</a></li>
+                <li><a href="#matrix">Escalation Matrix</a></li>
+                <li><a href="#process">Escalation Process</a></li>
+                <li><a href="#urgency">Urgency Levels</a></li>
+                <li><a href="#not-to-do">What NOT to Do</a></li>
+                <li><a href="#scripts">Scripts</a></li>
+                <li><a href="#contacts">Escalation Contacts</a></li>
+                <li><a href="#quick-ref">Quick Reference</a></li>
+                <li><a href="#related">Related SOPs</a></li>
+            </ul>
+        </div>
 
-<strong>The Support AI Agent handles most routine questions automatically.</strong>
+        <h2 id="principle">Core Principle</h2>
+        <p><strong>If in doubt, escalate.</strong> It's better to escalate unnecessarily than to mishandle a client issue.</p>
 
-<p>When client sends a message:<br><ol><li class="ordered">AI receives via webhook</li><br><li class="ordered">AI attempts to answer (using client data + knowledge base)</li><br><li class="ordered">If AI can handle → responds directly</li><br><li class="ordered">If AI can't handle → adds <code>support-escalation</code> tag → human reviews</li><br></ol><br><strong>Check conversation history before responding.</strong> The AI may have already answered.</p>
+        <h2 id="matrix">Escalation Matrix</h2>
 
-<strong>AI Workflow:</strong> <code>pY9srGq9t6CmkbD7</code> (SLATE - Support AI Agent)
+        <h3>HANDLE YOURSELF (Tier 1)</h3>
+        <table>
+            <thead>
+                <tr><th>Category</th><th>Examples</th><th>Action</th></tr>
+            </thead>
+            <tbody>
+                <tr><td><strong>How-to questions</strong></td><td>"How do I use the app?"</td><td>Answer per support-faq.md</td></tr>
+                <tr><td><strong>Feature explanations</strong></td><td>"What does the review system do?"</td><td>Explain</td></tr>
+                <tr><td><strong>Password resets</strong></td><td>"I can't log in"</td><td>Reset in GHL</td></tr>
+                <tr><td><strong>Simple fixes</strong></td><td>"Wrong phone number on site"</td><td>Fix or create task</td></tr>
+                <tr><td><strong>Status checks</strong></td><td>"When will my site be ready?"</td><td>Check pipeline, respond</td></tr>
+                <tr><td><strong>Thank you messages</strong></td><td>"Thanks for the help!"</td><td>Acknowledge</td></tr>
+                <tr><td><strong>Review link requests</strong></td><td>"Where's my review link?"</td><td>Send from custom values</td></tr>
+            </tbody>
+        </table>
 
-<hr>
+        <h3>ESCALATE TO FULFILLMENT</h3>
+        <table>
+            <thead>
+                <tr><th>Category</th><th>Examples</th><th>Action</th></tr>
+            </thead>
+            <tbody>
+                <tr><td><strong>Website broken</strong></td><td>"Site not loading"</td><td>Escalate immediately</td></tr>
+                <tr><td><strong>Build issues</strong></td><td>"Content is wrong"</td><td>Create task for fix</td></tr>
+                <tr><td><strong>Technical bugs</strong></td><td>"Form not submitting"</td><td>Escalate</td></tr>
+                <tr><td><strong>A2P problems</strong></td><td>"Texts not sending, rejected"</td><td>Escalate</td></tr>
+                <tr><td><strong>GMB issues</strong></td><td>"Can't connect Google"</td><td>Escalate</td></tr>
+                <tr><td><strong>Complex changes</strong></td><td>"Rebuild my service pages"</td><td>Escalate</td></tr>
+            </tbody>
+        </table>
 
-<h2 id="core-principle">Core Principle</h2>
+        <h3>ESCALATE TO CLOSER/FOUNDER</h3>
+        <table>
+            <thead>
+                <tr><th>Category</th><th>Examples</th><th>Action</th></tr>
+            </thead>
+            <tbody>
+                <tr><td><strong>Cancellation requests</strong></td><td>"I want to cancel"</td><td>ALWAYS escalate</td></tr>
+                <tr><td><strong>Billing disputes</strong></td><td>"I was charged wrong"</td><td>ALWAYS escalate</td></tr>
+                <tr><td><strong>Refund requests</strong></td><td>"I want my money back"</td><td>ALWAYS escalate</td></tr>
+                <tr><td><strong>Complaints</strong></td><td>"This isn't working, I'm frustrated"</td><td>ALWAYS escalate</td></tr>
+                <tr><td><strong>Pricing questions</strong></td><td>"Can I get a discount?"</td><td>ALWAYS escalate</td></tr>
+                <tr><td><strong>Scope changes</strong></td><td>"Can you add X feature?"</td><td>ALWAYS escalate</td></tr>
+                <tr><td><strong>Angry/hostile client</strong></td><td>Any hostile tone</td><td>ALWAYS escalate</td></tr>
+                <tr><td><strong>Legal mentions</strong></td><td>"I'm contacting my lawyer"</td><td>ALWAYS escalate</td></tr>
+            </tbody>
+        </table>
 
-<strong>If in doubt, escalate.</strong> It's better to escalate unnecessarily than to mishandle a client issue.
+        <h2 id="process">Escalation Process</h2>
 
-<hr>
+        <h3>Step 1: Acknowledge the Client</h3>
+        <p>Don't leave them hanging. Even if escalating, respond:</p>
+        <blockquote>"I want to make sure this is handled right. I'm getting [Dan/appropriate person] involved and they'll reach out to you today."</blockquote>
 
-<h2 id="escalation-matrix">Escalation Matrix</h2>
+        <h3>Step 2: Notify the Right Person</h3>
+        <p><strong>For Fulfillment issues:</strong></p>
+        <ul>
+            <li>Tag in Slack/communication tool</li>
+            <li>Include: client name, issue, urgency</li>
+        </ul>
+        <p><strong>For Closer/Founder issues:</strong></p>
+        <ul>
+            <li>Call or text immediately</li>
+            <li>Don't wait for them to see a message</li>
+        </ul>
 
-<h3 id="handle-yourself-tier-1-ai-handles-most-automatically">HANDLE YOURSELF (Tier 1) — AI Handles Most Automatically</h3>
+        <h3>Step 3: Document</h3>
+        <p>In the client's contact record:</p>
+        <ul>
+            <li>Add note describing the issue</li>
+            <li>What you told the client</li>
+            <li>Who you escalated to</li>
+        </ul>
 
-<table><thead><tr><th>Category</th><th>Examples</th><th>Action</th></tr></thead><tbody><tr><td><strong>How-to questions</strong></td><td>"How do I use the app?"</td><td>AI handles or answer per support-faq.md</td></tr><tr><td><strong>Feature explanations</strong></td><td>"What does the review system do?"</td><td>AI handles or explain</td></tr><tr><td><strong>Password resets</strong></td><td>"I can't log in"</td><td>AI gives guidance, you reset in GHL</td></tr><tr><td><strong>Simple fixes</strong></td><td>"Wrong phone number on site"</td><td>Fix or create task</td></tr><tr><td><strong>Status checks</strong></td><td>"When will my site be ready?"</td><td>Check pipeline, respond</td></tr><tr><td><strong>Thank you messages</strong></td><td>"Thanks for the help!"</td><td>AI handles or acknowledge</td></tr><tr><td><strong>Review link requests</strong></td><td>"Where's my review link?"</td><td>AI handles or send from custom values</td></tr></tbody></table>
-<strong>Note:</strong> Check if AI already responded before jumping in.
+        <h3>Step 4: Follow Up</h3>
+        <p>If the escalation person hasn't responded in 2 hours:</p>
+        <ul>
+            <li>Ping them again</li>
+            <li>Check in with client: "Still working on this for you"</li>
+        </ul>
 
-<h3 id="escalate-to-fulfillment">ESCALATE TO FULFILLMENT</h3>
+        <h2 id="urgency">Urgency Levels</h2>
 
-<table><thead><tr><th>Category</th><th>Examples</th><th>Action</th></tr></thead><tbody><tr><td><strong>Website broken</strong></td><td>"Site not loading"</td><td>Escalate immediately</td></tr><tr><td><strong>Build issues</strong></td><td>"Content is wrong"</td><td>Create task for fix</td></tr><tr><td><strong>Technical bugs</strong></td><td>"Form not submitting"</td><td>Escalate</td></tr><tr><td><strong>A2P problems</strong></td><td>"Texts not sending, rejected"</td><td>Escalate</td></tr><tr><td><strong>GMB issues</strong></td><td>"Can't connect Google"</td><td>Escalate</td></tr><tr><td><strong>Complex changes</strong></td><td>"Rebuild my service pages"</td><td>Escalate</td></tr></tbody></table>
-<h3 id="escalate-to-closer-founder">ESCALATE TO CLOSER/FOUNDER</h3>
+        <h3 class="urgency-urgent">URGENT (Respond in &lt;1 hour)</h3>
+        <ul>
+            <li>Website completely down</li>
+            <li>Client threatening to cancel</li>
+            <li>Angry/hostile message</li>
+            <li>Legal mentions</li>
+            <li>Payment issues</li>
+        </ul>
 
-<table><thead><tr><th>Category</th><th>Examples</th><th>Action</th></tr></thead><tbody><tr><td><strong>Cancellation requests</strong></td><td>"I want to cancel"</td><td>ALWAYS escalate</td></tr><tr><td><strong>Billing disputes</strong></td><td>"I was charged wrong"</td><td>ALWAYS escalate</td></tr><tr><td><strong>Refund requests</strong></td><td>"I want my money back"</td><td>ALWAYS escalate</td></tr><tr><td><strong>Complaints</strong></td><td>"This isn't working, I'm frustrated"</td><td>ALWAYS escalate</td></tr><tr><td><strong>Pricing questions</strong></td><td>"Can I get a discount?"</td><td>ALWAYS escalate</td></tr><tr><td><strong>Scope changes</strong></td><td>"Can you add X feature?"</td><td>ALWAYS escalate</td></tr><tr><td><strong>Angry/hostile client</strong></td><td>Any hostile tone</td><td>ALWAYS escalate</td></tr><tr><td><strong>Legal mentions</strong></td><td>"I'm contacting my lawyer"</td><td>ALWAYS escalate</td></tr></tbody></table>
-<hr>
+        <h3 class="urgency-high">HIGH (Respond in &lt;4 hours)</h3>
+        <ul>
+            <li>Feature not working</li>
+            <li>Complaint about quality</li>
+            <li>A2P rejected</li>
+            <li>GMB connection issues</li>
+        </ul>
 
-<h2 id="escalation-process">Escalation Process</h2>
+        <h3 class="urgency-normal">NORMAL (Respond in &lt;24 hours)</h3>
+        <ul>
+            <li>How-to questions</li>
+            <li>Feature requests</li>
+            <li>Minor fixes needed</li>
+            <li>General check-ins</li>
+        </ul>
 
-<h3 id="step-1-acknowledge-the-client">Step 1: Acknowledge the Client</h3>
+        <h2 id="not-to-do">What NOT to Do</h2>
 
-<p>Don't leave them hanging. Even if escalating, respond:</p>
+        <p><strong>Never say:</strong></p>
+        <ul>
+            <li>"That's not my department"</li>
+            <li>"I don't know, figure it out"</li>
+            <li>"There's nothing I can do"</li>
+        </ul>
 
-<blockquote>"I want to make sure this is handled right. I'm getting [Dan/appropriate person] involved and they'll reach out to you today."</blockquote>
+        <p><strong>Never do:</strong></p>
+        <ul>
+            <li>Process cancellations without conversation</li>
+            <li>Offer refunds or discounts</li>
+            <li>Make promises about timelines</li>
+            <li>Ignore messages</li>
+        </ul>
 
-<h3 id="step-2-notify-the-right-person">Step 2: Notify the Right Person</h3>
+        <h2 id="scripts">Scripts</h2>
 
-<strong>For Fulfillment issues:</strong>
-<ul><li>Tag in Slack/communication tool</li>
-<li>Include: client name, issue, urgency</li>
-</ul>
-<strong>For Closer/Founder issues:</strong>
-<ul><li>Call or text immediately</li>
-<li>Don't wait for them to see a message</li>
-</ul>
-<h3 id="step-3-document">Step 3: Document</h3>
+        <h3>Escalating to Founder/Closer</h3>
+        <blockquote>"I understand. Let me have [Dan] look into this personally. He'll reach out to you today to make sure everything's handled right."</blockquote>
 
-<p>In the client's contact record:<br><ul><li>Add note describing the issue</li><br><li>What you told the client</li><br><li>Who you escalated to</li><br></ul><br><h3 id="step-4-follow-up">Step 4: Follow Up</h3></p>
+        <h3>Escalating to Fulfillment</h3>
+        <blockquote>"I see what's happening. I'm going to have our technical team take a look at this. They'll have it sorted out shortly. I'll follow up once it's fixed."</blockquote>
 
-<p>If the escalation person hasn't responded in 2 hours:<br><ul><li>Ping them again</li><br><li>Check in with client: "Still working on this for you"</li><br></ul><br><hr></p>
+        <h3>When you don't know</h3>
+        <blockquote>"Great question. Let me find out the exact answer and get back to you. Give me a few hours."</blockquote>
 
-<h2 id="urgency-levels">Urgency Levels</h2>
+        <h2 id="contacts">Escalation Contacts</h2>
+        <table>
+            <thead>
+                <tr><th>Role</th><th>When to Contact</th><th>Method</th></tr>
+            </thead>
+            <tbody>
+                <tr><td><strong>Fulfillment</strong></td><td>Technical/build issues</td><td>Slack/Task</td></tr>
+                <tr><td><strong>Closer</strong></td><td>Sales/retention issues</td><td>Call/Text</td></tr>
+                <tr><td><strong>Founder (Dan)</strong></td><td>Billing, legal, angry clients</td><td>Call/Text immediately</td></tr>
+            </tbody>
+        </table>
 
-<h3 id="urgent-respond-in-1-hour">🔴 URGENT (Respond in <1 hour)</h3>
+        <h2 id="quick-ref">Quick Reference</h2>
+        <p><strong>Ask yourself:</strong></p>
+        <ol>
+            <li>Can I solve this in &lt;5 minutes with info I have? - Handle</li>
+            <li>Does it involve money, canceling, or anger? - Escalate to Founder</li>
+            <li>Does it involve something broken? - Escalate to Fulfillment</li>
+            <li>Am I unsure? - Escalate</li>
+        </ol>
 
-<ul><li>Website completely down</li>
-<li>Client threatening to cancel</li>
-<li>Angry/hostile message</li>
-<li>Legal mentions</li>
-<li>Payment issues</li>
-</ul>
-<h3 id="high-respond-in-4-hours">🟡 HIGH (Respond in <4 hours)</h3>
+        <h2 id="related">Related SOPs</h2>
+        <ul>
+            <li><a href="support-faq.html">Support FAQ</a> - Answers to common questions</li>
+            <li><a href="cc-decline-handling.html">CC Decline Handling</a> - How billing issues are handled</li>
+            <li><a href="app-guide.html">App Guide</a> - Lead Connector app details</li>
+        </ul>
 
-<ul><li>Feature not working</li>
-<li>Complaint about quality</li>
-<li>A2P rejected</li>
-<li>GMB connection issues</li>
-</ul>
-<h3 id="normal-respond-in-24-hours">🟢 NORMAL (Respond in <24 hours)</h3>
+        <p><em>Last updated: Feb 22, 2026</em></p>
 
-<ul><li>How-to questions</li>
-<li>Feature requests</li>
-<li>Minor fixes needed</li>
-<li>General check-ins</li>
-</ul>
-<hr>
-
-<h2 id="what-not-to-do">What NOT to Do</h2>
-
-<p>❌ <strong>Never say:</strong><br><ul><li>"That's not my department"</li><br><li>"I don't know, figure it out"</li><br><li>"There's nothing I can do"</li><br></ul><br>❌ <strong>Never do:</strong><br><ul><li>Process cancellations without conversation</li><br><li>Offer refunds or discounts</li><br><li>Make promises about timelines</li><br><li>Ignore messages</li><br></ul><br><hr></p>
-
-<h2 id="scripts">Scripts</h2>
-
-<h3 id="escalating-to-founder-closer">Escalating to Founder/Closer</h3>
-<blockquote>"I understand. Let me have [Dan] look into this personally. He'll reach out to you today to make sure everything's handled right."</blockquote>
-
-<h3 id="escalating-to-fulfillment">Escalating to Fulfillment</h3>
-<blockquote>"I see what's happening. I'm going to have our technical team take a look at this. They'll have it sorted out shortly. I'll follow up once it's fixed."</blockquote>
-
-<h3 id="when-you-don-t-know">When you don't know</h3>
-<blockquote>"Great question. Let me find out the exact answer and get back to you. Give me a few hours."</blockquote>
-
-<hr>
-
-<h2 id="escalation-contacts">Escalation Contacts</h2>
-
-<table><thead><tr><th>Role</th><th>When to Contact</th><th>Method</th></tr></thead><tbody><tr><td><strong>Fulfillment</strong></td><td>Technical/build issues</td><td>Slack/Task</td></tr><tr><td><strong>Closer</strong></td><td>Sales/retention issues</td><td>Call/Text</td></tr><tr><td><strong>Founder (Dan)</strong></td><td>Billing, legal, angry clients</td><td>Call/Text immediately</td></tr></tbody></table>
-<hr>
-
-<h2 id="quick-reference">Quick Reference</h2>
-
-<strong>Ask yourself:</strong>
-<ol><li class="ordered">Can I solve this in <5 minutes with info I have? → Handle</li>
-<li class="ordered">Does it involve money, canceling, or anger? → Escalate to Founder</li>
-<li class="ordered">Does it involve something broken? → Escalate to Fulfillment</li>
-<li class="ordered">Am I unsure? → Escalate</li>
-</ol>
-<hr>
-
-<h2 id="related-sops">Related SOPs</h2>
-
-<ul><li><code>support-faq.md</code> — Answers to common questions</li>
-<li><code>cancellation-saves.md</code> — How cancellations are handled</li>
-<li><code>cc-decline-handling.md</code> — How billing issues are handled</li>
-<li><code>../agents/support-agent.md</code> — Support AI Agent specification</li>
-</ul>
-<hr>
-
-<em>Last updated: Feb 23, 2026</em>
-
-        <footer>
-            <p>&copy; 2026 Slate Systems Inc. Internal use only.</p>
-        </footer>
+        <div class="page-nav">
+            <a href="cc-decline-handling.html" class="prev">
+                <div class="label">Previous</div>
+                <div class="title">CC Decline Handling</div>
+            </a>
+            <div></div>
+        </div>
     </div>
+
+    <footer>
+        &copy; 2026 Slate Systems LLC | <a href="index.html">Support Portal</a>
+    </footer>
+
+    <script>
+        function toggleToc() {
+            const toc = document.getElementById('toc');
+            const btn = document.querySelector('.toc-toggle');
+            toc.classList.toggle('open');
+            btn.classList.toggle('open');
+        }
+    </script>
 </body>
 </html>
