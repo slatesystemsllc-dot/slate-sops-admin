@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GHL User Setup - Slate Systems SOP</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0f172a;
+            color: #e2e8f0;
+            line-height: 1.7;
+            padding: 2rem;
+        }
+        .container { max-width: 900px; margin: 0 auto; }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #3b82f6;
+            text-decoration: none;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+        }
+        .back-link:hover { text-decoration: underline; }
+        h1 { font-size: 2rem; color: #f8fafc; margin-bottom: 0.5rem; border-bottom: 2px solid #3b82f6; padding-bottom: 0.5rem; }
+        h2 { font-size: 1.5rem; color: #f8fafc; margin: 2rem 0 1rem; padding-top: 1rem; border-top: 1px solid #334155; }
+        h3 { font-size: 1.2rem; color: #cbd5e1; margin: 1.5rem 0 0.75rem; }
+        h4 { font-size: 1rem; color: #94a3b8; margin: 1rem 0 0.5rem; }
+        p { margin-bottom: 1rem; }
+        ul, ol { margin: 1rem 0; padding-left: 2rem; }
+        li { margin-bottom: 0.5rem; }
+        blockquote {
+            background: #1e293b;
+            border-left: 4px solid #3b82f6;
+            padding: 1rem 1.5rem;
+            margin: 1rem 0;
+            border-radius: 0 8px 8px 0;
+            font-style: italic;
+        }
+        pre {
+            background: #1e293b;
+            padding: 1rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            max-width: 100%;
+            margin: 1rem 0;
+            border: 1px solid #334155;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        @media (max-width: 768px) {
+            body { padding: 1rem; }
+            pre { font-size: 0.85em; padding: 0.75rem; }
+            table { font-size: 0.9em; display: block; overflow-x: auto; }
+            th, td { padding: 0.5rem; }
+            h1 { font-size: 1.5rem; }
+            h2 { font-size: 1.25rem; }
+        }
+        code {
+            font-family: 'SF Mono', Monaco, monospace;
+            font-size: 0.9em;
+        }
+        :not(pre) > code {
+            background: #334155;
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            background: #1e293b;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        th, td {
+            padding: 0.75rem 1rem;
+            text-align: left;
+            border-bottom: 1px solid #334155;
+        }
+        th { background: #334155; color: #f8fafc; font-weight: 600; }
+        tr:last-child td { border-bottom: none; }
+        hr { border: none; border-top: 1px solid #334155; margin: 2rem 0; }
+        a { color: #3b82f6; }
+        strong { color: #f8fafc; }
+        .meta {
+            background: #1e293b;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            border-left: 4px solid #3b82f6;
+        }
+        .meta p { margin: 0.25rem 0; font-size: 0.9rem; color: #94a3b8; }
+        .yes { color: #22c55e; }
+        .no { color: #ef4444; }
+        .warning {
+            background: #422006;
+            border-left: 4px solid #f97316;
+            padding: 1rem 1.5rem;
+            margin: 1rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .info {
+            background: #172554;
+            border-left: 4px solid #3b82f6;
+            padding: 1rem 1.5rem;
+            margin: 1rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+        footer {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid #334155;
+            text-align: center;
+            color: #64748b;
+            font-size: 0.875rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../index.html" class="back-link">← Back to Portal</a>
+        <h1>GHL User Setup</h1>
+
+<div class="meta">
+    <p><strong>Purpose:</strong> Complete guide for setting up GHL users for Slate Systems sub-account</p>
+    <p><strong>Last Updated:</strong> Feb 27, 2026</p>
+</div>
+
+<hr>
+
+<h2>1. User Structure Overview</h2>
+
+<p>Slate uses <strong>role-based users</strong> for workflow assignments. When you hire, you edit the user details instead of updating workflows.</p>
+
+<table>
+    <thead>
+        <tr><th>User</th><th>Role</th><th>Assigned In</th><th>Current Owner</th></tr>
+    </thead>
+    <tbody>
+        <tr><td><strong>Dan A</strong></td><td>Sales</td><td>WF1 (Lead Form)</td><td>Dan</td></tr>
+        <tr><td><strong>Rick F</strong></td><td>Onboarding</td><td>WF-OB1 (Client Paid)</td><td>Ricardo</td></tr>
+        <tr><td><strong>Ricardo Fernandez</strong></td><td>Admin</td><td>Not in workflows</td><td>Ricardo (owner)</td></tr>
+        <tr><td><strong>(Your login)</strong></td><td>Admin</td><td>Not in workflows</td><td>Dan (owner)</td></tr>
+    </tbody>
+</table>
+
+<div class="info">
+    <strong>When you hire:</strong> Edit the role user (Dan A or Rick F) with the new employee's info. Workflows stay the same because they reference the user ID, not the name.
+</div>
+
+<h3>SMS Signatures</h3>
+<table>
+    <thead>
+        <tr><th>Track</th><th>Signature</th><th>Why</th></tr>
+    </thead>
+    <tbody>
+        <tr><td>Sales (WF0-WF7)</td><td><code>-{{user.first_name}}</code></td><td>Dynamic - shows assigned user's name</td></tr>
+        <tr><td>Onboarding (WF-OB1-OB6)</td><td><code>-The Slate Team</code></td><td>Team branding, scalable</td></tr>
+    </tbody>
+</table>
+
+<hr>
+
+<h2>2. Creating a New User</h2>
+
+<p><strong>Location:</strong> Settings → Team → Add Employee</p>
+
+<h3>Basic Info</h3>
+<table>
+    <thead>
+        <tr><th>Field</th><th>Dan A (Sales)</th><th>Rick F (Onboarding)</th></tr>
+    </thead>
+    <tbody>
+        <tr><td>First Name</td><td>Dan</td><td>Rick</td></tr>
+        <tr><td>Last Name</td><td>A</td><td>F</td></tr>
+        <tr><td>Email</td><td>dan@slatesystems.io</td><td>ricardo@slatesystems.io</td></tr>
+        <tr><td>Phone</td><td>(your phone)</td><td>(Ricardo's phone)</td></tr>
+        <tr><td>Password</td><td>(set one)</td><td>(set one)</td></tr>
+        <tr><td>Calendar</td><td><strong>Leave blank</strong></td><td><strong>Leave blank</strong></td></tr>
+        <tr><td>Profile Picture</td><td>Slate padded icon</td><td>Slate padded icon</td></tr>
+    </tbody>
+</table>
+
+<div class="warning">
+    <strong>Calendar field:</strong> Leave blank during user creation. Calendar connection is configured separately in Settings → Calendars → Connections.
+</div>
+
+<hr>
+
+<h2>3. User Role & Permissions</h2>
+
+<p><strong>Location:</strong> User Settings → Roles and Permissions</p>
+
+<h3>Role Selection</h3>
+<table>
+    <thead>
+        <tr><th>User</th><th>User Role</th><th>Restrict data visibility</th></tr>
+    </thead>
+    <tbody>
+        <tr><td>Dan A (Sales)</td><td><strong>User</strong></td><td>❌ Unchecked</td></tr>
+        <tr><td>Rick F (Onboarding)</td><td><strong>User</strong></td><td>❌ Unchecked</td></tr>
+        <tr><td>Admin accounts</td><td><strong>Admin</strong></td><td>N/A</td></tr>
+    </tbody>
+</table>
+
+<div class="warning">
+    <strong>Never give role users Admin access.</strong> When you hire, they inherit these permissions. Keep them limited.
+</div>
+
+<hr>
+
+<h3>Dan A - Sales Permissions</h3>
+
+<table>
+    <thead>
+        <tr><th>Category</th><th>Toggle</th><th>Sub-permissions</th></tr>
+    </thead>
+    <tbody>
+        <tr><td>AI Agents</td><td class="no">❌ OFF</td><td>—</td></tr>
+        <tr><td>Account Settings</td><td class="no">❌ OFF</td><td>—</td></tr>
+        <tr><td>Account Tools</td><td class="no">❌ OFF</td><td>—</td></tr>
+        <tr><td>Automation</td><td class="no">❌ OFF</td><td>—</td></tr>
+        <tr><td>Blogs</td><td class="no">❌ OFF</td><td>—</td></tr>
+        <tr><td><strong>Calendars</strong></td><td class="yes">✅ ON</td><td>
+            <span class="yes">✅</span> View appointments, calendars & groups<br>
+            <span class="yes">✅</span> Manage appointments<br>
+            <span class="no">❌</span> Manage groups<br>
+            <span class="no">❌</span> Manage calendars
+        </td></tr>
+        <tr><td>Certificates</td><td class="no">❌ OFF</td><td>—</td></tr>
+        <tr><td>Communities</td><td class="no">❌ OFF</td><td>—</td></tr>
+        <tr><td><strong>Contacts</strong></td><td class="yes">✅ ON</td><td>
+            <span class="yes">✅</span> View & manage contacts<br>
+            <span class="no">❌</span> View & manage bulk action
+        </td></tr>
+        <tr><td><strong>Conversations</strong></td><td class="yes">✅ ON</td><td>
+            <span class="yes">✅</span> View & manage conversation
+        </td></tr>
+        <tr><td><strong>Dashboard</strong></td><td class="yes">✅ ON</td><td>
+            <span class="yes">✅</span> View phone call stats<br>
+            <span class="no">❌</span> View adwords<br>
+            <span class="no">❌</span> View facebook ads<br>
+            <span class="yes">✅</span> View attribution<br>
+            <span class="no">❌</span> View & manage Local Marketing Audit<br>
+            <span class="yes">✅</span> View agent reporting<br>
+            <span class="no">❌</span> View & manage reporting<br>
+            <span class="no">❌</span> Export data<br>
+            <span class="yes">✅</span> View dashboard
+        </td></tr>
+        <tr><td>Forms</td><td class="no">❌ OFF</td><td>—</td></tr>
+        <tr><td>Funnels</td><td class="no">❌ OFF</td><td>—</td></tr>
+        <tr><td>Gokollab</td><td class="no">❌ OFF</td><td>—</td></tr>
+        <tr><td>Integrations</td><td class="no">❌ OFF</td><td>—</td></tr>
+        <tr><td>Launchpad</td><td class="no">❌ OFF</td><td>—</td></tr>
+        <tr><td>Marketing</td><td class="no">❌ OFF</td><td>—</td></tr>
+        <tr><td>Medias</td><td class="no">❌ OFF</td><td>—</td></tr>
+        <tr><td>Memberships</td><td class="no">❌ OFF</td><td>—</td></tr>
+        <tr><td><strong>Opportunities</strong></td><td class="yes">✅ ON</td><td>
+            <span class="yes">✅</span> View & manage opportunities<br>
+            <span class="yes">✅</span> View opportunities lead value<br>
+            <span class="no">❌</span> View and manage bulk actions
+        </td></tr>
+        <tr><td>Orders</td><td class="no">❌ OFF</td><td>—</td></tr>
+        <tr><td>Payment Settings</td><td class="no">❌ OFF</td><td>—</td></tr>
+        <tr><td>Payments</td><td class="no">❌ OFF</td><td>—</td></tr>
+        <tr><td>Products</td><td class="no">❌ OFF</td><td>—</td></tr>
+        <tr><td>QR Codes</td><td class="no">❌ OFF</td><td>—</td></tr>
+        <tr><td>Quizzes</td><td class="no">❌ OFF</td><td>—</td></tr>
+        <tr><td>Reputations</td><td class="no">❌ OFF</td><td>—</td></tr>
+        <tr><td>Sub-Accounts</td><td class="no">❌ OFF</td><td>—</td></tr>
+        <tr><td>Subscriptions</td><td class="no">❌ OFF</td><td>—</td></tr>
+        <tr><td>Surveys</td><td class="no">❌ OFF</td><td>—</td></tr>
+        <tr><td>Taxes</td><td class="no">❌ OFF</td><td>—</td></tr>
+        <tr><td>Transactions</td><td class="no">❌ OFF</td><td>—</td></tr>
+        <tr><td>WordPress</td><td class="no">❌ OFF</td><td>—</td></tr>
+    </tbody>
+</table>
+
+<hr>
+
+<h3>Rick F - Onboarding Permissions</h3>
+
+<table>
+    <thead>
+        <tr><th>Category</th><th>Toggle</th><th>Sub-permissions</th></tr>
+    </thead>
+    <tbody>
+        <tr><td>AI Agents</td><td class="no">❌ OFF</td><td>—</td></tr>
+        <tr><td>Account Settings</td><td class="no">❌ OFF</td><td>—</td></tr>
+        <tr><td>Account Tools</td><td class="no">❌ OFF</td><td>—</td></tr>
+        <tr><td>Automation</td><td class="no">❌ OFF</td><td>—</td></tr>
+        <tr><td>Blogs</td><td class="no">❌ OFF</td><td>—</td></tr>
+        <tr><td><strong>Calendars</strong></td><td class="yes">✅ ON</td><td>
+            <span class="yes">✅</span> View appointments, calendars & groups<br>
+            <span class="yes">✅</span> Manage appointments<br>
+            <span class="no">❌</span> Manage groups<br>
+            <span class="no">❌</span> Manage calendars
+        </td></tr>
+        <tr><td>Certificates</td><td class="no">❌ OFF</td><td>—</td></tr>
+        <tr><td>Communities</td><td class="no">❌ OFF</td><td>—</td></tr>
+        <tr><td><strong>Contacts</strong></td><td class="yes">✅ ON</td><td>
+            <span class="yes">✅</span> View & manage contacts<br>
+            <span class="yes">✅</span> View & manage bulk action
+        </td></tr>
+        <tr><td><strong>Conversations</strong></td><td class="yes">✅ ON</td><td>
+            <span class="yes">✅</span> View & manage conversation
+        </td></tr>
+        <tr><td><strong>Dashboard</strong></td><td class="yes">✅ ON</td><td>
+            <span class="no">❌</span> View phone call stats<br>
+            <span class="no">❌</span> View adwords<br>
+            <span class="no">❌</span> View facebook ads<br>
+            <span class="no">❌</span> View attribution<br>
+            <span class="no">❌</span> View & manage Local Marketing Audit<br>
+            <span class="no">❌</span> View agent reporting<br>
+            <span class="no">❌</span> View & manage reporting<br>
+            <span class="no">❌</span> Export data<br>
+            <span class="yes">✅</span> View dashboard
+        </td></tr>
+        <tr><td>Forms</td><td class="no">❌ OFF</td><td>—</td></tr>
+        <tr><td>Funnels</td><td class="no">❌ OFF</td><td>—</td></tr>
+        <tr><td>Gokollab</td><td class="no">❌ OFF</td><td>—</td></tr>
+        <tr><td>Integrations</td><td class="no">❌ OFF</td><td>—</td></tr>
+        <tr><td>Launchpad</td><td class="no">❌ OFF</td><td>—</td></tr>
+        <tr><td>Marketing</td><td class="no">❌ OFF</td><td>—</td></tr>
+        <tr><td>Medias</td><td class="no">❌ OFF</td><td>—</td></tr>
+        <tr><td>Memberships</td><td class="no">❌ OFF</td><td>—</td></tr>
+        <tr><td><strong>Opportunities</strong></td><td class="yes">✅ ON</td><td>
+            <span class="yes">✅</span> View & manage opportunities<br>
+            <span class="yes">✅</span> View opportunities lead value<br>
+            <span class="no">❌</span> View and manage bulk actions
+        </td></tr>
+        <tr><td>Orders</td><td class="no">❌ OFF</td><td>—</td></tr>
+        <tr><td>Payment Settings</td><td class="no">❌ OFF</td><td>—</td></tr>
+        <tr><td>Payments</td><td class="no">❌ OFF</td><td>—</td></tr>
+        <tr><td>Products</td><td class="no">❌ OFF</td><td>—</td></tr>
+        <tr><td>QR Codes</td><td class="no">❌ OFF</td><td>—</td></tr>
+        <tr><td>Quizzes</td><td class="no">❌ OFF</td><td>—</td></tr>
+        <tr><td>Reputations</td><td class="no">❌ OFF</td><td>—</td></tr>
+        <tr><td>Sub-Accounts</td><td class="no">❌ OFF</td><td>—</td></tr>
+        <tr><td>Subscriptions</td><td class="no">❌ OFF</td><td>—</td></tr>
+        <tr><td>Surveys</td><td class="no">❌ OFF</td><td>—</td></tr>
+        <tr><td>Taxes</td><td class="no">❌ OFF</td><td>—</td></tr>
+        <tr><td>Transactions</td><td class="no">❌ OFF</td><td>—</td></tr>
+        <tr><td>WordPress</td><td class="no">❌ OFF</td><td>—</td></tr>
+    </tbody>
+</table>
+
+<h3>Key Differences</h3>
+<table>
+    <thead>
+        <tr><th>Permission</th><th>Dan A (Sales)</th><th>Rick F (Onboarding)</th></tr>
+    </thead>
+    <tbody>
+        <tr><td>Contacts bulk action</td><td class="no">❌ OFF</td><td class="yes">✅ ON</td></tr>
+        <tr><td>Dashboard - phone call stats</td><td class="yes">✅ ON</td><td class="no">❌ OFF</td></tr>
+        <tr><td>Dashboard - attribution</td><td class="yes">✅ ON</td><td class="no">❌ OFF</td></tr>
+        <tr><td>Dashboard - agent reporting</td><td class="yes">✅ ON</td><td class="no">❌ OFF</td></tr>
+    </tbody>
+</table>
+
+<hr>
+
+<h2>4. Notification Settings</h2>
+
+<p><strong>Location:</strong> User Settings → Notifications</p>
+
+<h3>Dan A - Sales</h3>
+
+<table>
+    <thead>
+        <tr><th>Notification</th><th>In-App</th><th>Email</th><th>SMS</th></tr>
+    </thead>
+    <tbody>
+        <tr><td colspan="4"><strong>Conversation Notifications</strong></td></tr>
+        <tr><td>Notify for all new conversations & messages</td><td class="yes">✅</td><td class="no">❌</td><td class="no">❌</td></tr>
+        <tr><td>Notify when conversation assigned to me</td><td class="yes">✅</td><td class="yes">✅</td><td class="no">❌</td></tr>
+        <tr><td>Notify for new messages on assigned conversation</td><td class="yes">✅</td><td class="no">❌</td><td class="no">❌</td></tr>
+        <tr><td>Notify when mentioned in any conversation</td><td class="yes">✅</td><td class="no">❌</td><td class="no">❌</td></tr>
+        <tr><td>Notify for messages in convos where mentioned</td><td class="yes">✅</td><td class="no">❌</td><td class="no">❌</td></tr>
+        <tr><td colspan="4"><strong>Task Notifications</strong></td></tr>
+        <tr><td>Notify when task assigned to me</td><td class="yes">✅</td><td class="yes">✅</td><td class="no">❌</td></tr>
+        <tr><td>Get reminder before upcoming task (15 min)</td><td class="yes">✅</td><td class="no">❌</td><td class="no">❌</td></tr>
+        <tr><td colspan="4"><strong>Review Notifications</strong></td></tr>
+        <tr><td>Facebook - Notify when new review received</td><td class="no">❌</td><td class="no">❌</td><td class="no">❌</td></tr>
+        <tr><td>Google - Notify when new review received</td><td class="no">❌</td><td class="no">❌</td><td class="no">❌</td></tr>
+        <tr><td colspan="4"><strong>Calendar Notifications</strong></td></tr>
+        <tr><td>Notify when calendar integration disconnected</td><td class="yes">✅</td><td class="yes">✅</td><td class="no">❌</td></tr>
+        <tr><td>Notify when meeting link/location missing</td><td class="yes">✅</td><td class="no">❌</td><td class="no">❌</td></tr>
+    </tbody>
+</table>
+
+<h3>Rick F - Onboarding</h3>
+
+<p><em>Same as Dan A above.</em></p>
+
+<div class="info">
+    <strong>Review notifications OFF:</strong> These are for Slate's business reviews. Admin handles this, not role users.
+</div>
+
+<hr>
+
+<h2>5. Call & Voicemail Settings</h2>
+
+<p><strong>Location:</strong> User Settings → Call & Voicemail Settings</p>
+
+<table>
+    <thead>
+        <tr><th>Setting</th><th>Dan A (Sales)</th><th>Rick F (Onboarding)</th></tr>
+    </thead>
+    <tbody>
+        <tr><td>Inbound Number</td><td><em>(leave empty)</em></td><td><em>(leave empty)</em></td></tr>
+        <tr><td colspan="3"><strong>Forward Calls to</strong></td></tr>
+        <tr><td>Web App</td><td class="yes">✅</td><td class="yes">✅</td></tr>
+        <tr><td>Mobile App</td><td class="yes">✅</td><td class="yes">✅</td></tr>
+        <tr><td>My Phone Number</td><td class="no">❌</td><td class="no">❌</td></tr>
+        <tr><td>Deskphone (SIP)</td><td class="no">❌</td><td class="no">❌</td></tr>
+        <tr><td colspan="3"><strong>Default Channels</strong></td></tr>
+        <tr><td>Default Channel for Ring All</td><td>Mobile App</td><td>Mobile App</td></tr>
+        <tr><td>Default Channel for IVR</td><td>Mobile App</td><td>Mobile App</td></tr>
+        <tr><td colspan="3"><strong>Voicemail</strong></td></tr>
+        <tr><td>Incoming Call Timeout</td><td>20 Secs</td><td>20 Secs</td></tr>
+        <tr><td>Voicemail audio</td><td><em>(leave default)</em></td><td><em>(leave default)</em></td></tr>
+    </tbody>
+</table>
+
+<div class="warning">
+    <strong>Why "My Phone Number" is OFF:</strong> When you hire, you don't want the employee's personal cell receiving Slate calls. Keep calls in-app only via Web App and Mobile App.
+</div>
+
+<hr>
+
+<h2>6. Calendar Connection</h2>
+
+<p><strong>Location:</strong> Settings → Calendars → Connections</p>
+
+<ol>
+    <li>Select user from "My Staff" dropdown</li>
+    <li>Click "+ Add New" under Connected Calendars</li>
+    <li>Select Google</li>
+    <li>Sign in with <code>hello@slatesystems.io</code></li>
+    <li>Configure:
+        <ul>
+            <li><strong>Linked Calendar:</strong> hello@slatesystems.io</li>
+            <li><strong>Conflict Calendars:</strong> hello@slatesystems.io</li>
+        </ul>
+    </li>
+</ol>
+
+<div class="info">
+    Both Dan A and Rick F should be connected to <code>hello@slatesystems.io</code> calendar. This is the shared Slate calendar that syncs to Dan and Ricardo's personal calendars.
+</div>
+
+<hr>
+
+<h2>7. Workflow Assignments</h2>
+
+<p>Update these workflow nodes when user structure changes:</p>
+
+<table>
+    <thead>
+        <tr><th>Workflow</th><th>Node</th><th>Assign To</th></tr>
+    </thead>
+    <tbody>
+        <tr><td>1. Lead Form → New Opportunity</td><td>Assign to User</td><td>Dan A</td></tr>
+        <tr><td>1. Client Paid → Send Onboarding Info</td><td>Assign to User</td><td>Rick F</td></tr>
+    </tbody>
+</table>
+
+<hr>
+
+<h2>8. Checklist: New User Setup</h2>
+
+<ol>
+    <li class="checkbox"><input type="checkbox"> Create user with basic info (name, email, phone, password)</li>
+    <li class="checkbox"><input type="checkbox"> Set profile picture (Slate padded icon)</li>
+    <li class="checkbox"><input type="checkbox"> Set User Role to "User" (not Admin)</li>
+    <li class="checkbox"><input type="checkbox"> Configure permissions per tables above</li>
+    <li class="checkbox"><input type="checkbox"> Configure notification settings</li>
+    <li class="checkbox"><input type="checkbox"> Configure call & voicemail settings</li>
+    <li class="checkbox"><input type="checkbox"> Connect calendar (hello@slatesystems.io)</li>
+    <li class="checkbox"><input type="checkbox"> Update workflow "Assign to User" node if needed</li>
+    <li class="checkbox"><input type="checkbox"> Test login as user</li>
+</ol>
+
+<hr>
+
+<em>Last updated: Feb 27, 2026</em>
+
+        <footer>
+            <p>&copy; 2026 Slate Systems Inc. Internal use only.</p>
+        </footer>
+    </div>
+</body>
+</html>
