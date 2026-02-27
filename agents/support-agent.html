@@ -242,7 +242,7 @@ REVIEW FUNNEL:
 </ol>
 <h3 id="ghl-workflow-setup-you-need-to-create">GHL Workflow Setup (you need to create)</h3>
 
-<p>In GHL Carlsbad, create workflow:<br><ul><li><strong>Trigger:</strong> Inbound message received</li><br><li><strong>Filter:</strong> Contact has tag <code>currentclient</code></li><br><li><strong>Action:</strong> Webhook POST to <code>https://n8n.slatesystems.io/webhook/support-agent</code></li><br><li><strong>Body:</strong></li><br></ul><pre><code>{<br>  "contactId": "{{contact.id}}",<br>  "message": "{{message.body}}",<br>  "firstName": "{{contact.first_name}}",<br>  "phone": "{{contact.phone}}"<br>}<br></code></pre></p>
+<p>In GHL Main Snapshot, create workflow:<br><ul><li><strong>Trigger:</strong> Inbound message received</li><br><li><strong>Filter:</strong> Contact has tag <code>currentclient</code></li><br><li><strong>Action:</strong> Webhook POST to <code>https://n8n.slatesystems.io/webhook/support-agent</code></li><br><li><strong>Body:</strong></li><br></ul><pre><code>{<br>  "contactId": "{{contact.id}}",<br>  "message": "{{message.body}}",<br>  "firstName": "{{contact.first_name}}",<br>  "phone": "{{contact.phone}}"<br>}<br></code></pre></p>
 
 <hr>
 

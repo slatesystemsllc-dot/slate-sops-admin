@@ -119,13 +119,13 @@
 
 <h2 id="purpose">Purpose</h2>
 
-<p>Transform raw onboarding form data into a complete, professional website. Generates <strong>267 custom values</strong> including company info, services, areas, blog posts, FAQs, stats, and images. Outputs directly to GHL custom values via API.</p>
+<p>Transform raw onboarding form data into a complete, professional website. Generates <strong>324 custom values</strong> including company info, services, areas, blog posts, FAQs, stats, and images. Outputs directly to GHL custom values via API.</p>
 
 <hr>
 
 <h2 id="quick-reference">Quick Reference</h2>
 
-<table><thead><tr><th>Component</th><th>Value</th></tr></thead><tbody><tr><td><strong>Total Custom Values</strong></td><td>267 (241 content + 26 page heroes)</td></tr><tr><td><strong>n8n Workflows</strong></td><td>4 (Content Gen, Build Notes, Scraper, Image Upload)</td></tr><tr><td><strong>OpenClaw Endpoint</strong></td><td><code>http://178.156.233.54:18789/v1/chat/completions</code></td></tr><tr><td><strong>Model</strong></td><td>Claude Opus 4.5</td></tr><tr><td><strong>Max Tokens</strong></td><td>4000</td></tr><tr><td><strong>Image Library</strong></td><td>719 images across 37+ trades (Baserow 947)</td></tr><tr><td><strong>Tracking Table</strong></td><td>Baserow 946</td></tr></tbody></table>
+<table><thead><tr><th>Component</th><th>Value</th></tr></thead><tbody><tr><td><strong>Total Custom Values</strong></td><td>324</td></tr><tr><td><strong>n8n Workflows</strong></td><td>4 (Content Gen, Build Notes, Scraper, Image Upload)</td></tr><tr><td><strong>OpenClaw Endpoint</strong></td><td><code>http://178.156.233.54:18789/v1/chat/completions</code></td></tr><tr><td><strong>Model</strong></td><td>Claude Opus 4.5</td></tr><tr><td><strong>Max Tokens</strong></td><td>4000</td></tr><tr><td><strong>Image Library</strong></td><td>719 images across 37+ trades (Baserow 947)</td></tr><tr><td><strong>Tracking Table</strong></td><td>Baserow 946</td></tr></tbody></table>
 <hr>
 
 <h2 id="architecture">Architecture</h2>
@@ -169,7 +169,7 @@
 <table><thead><tr><th>Category</th><th>Fields</th></tr></thead><tbody><tr><td><strong>Core</strong></td><td>contact_id, location_id, business_name, owner_name, email</td></tr><tr><td><strong>Content</strong></td><td>client_about_us, client_services, client_service_areas</td></tr><tr><td><strong>Content</strong></td><td>client_certifications, client_highlights, client_hours, client_discounts, client_process, client_license</td></tr><tr><td><strong>Contact</strong></td><td>client_phone</td></tr><tr><td><strong>Social</strong></td><td>client_instagram, client_facebook, client_yelp, client_bbb, client_tiktok</td></tr><tr><td><strong>GMB</strong></td><td>client_has_gmb, client_gmb_link</td></tr><tr><td><strong>Branding</strong></td><td>client_color_preference (optional - AI picks if blank)</td></tr></tbody></table>
 <hr>
 
-<h2 id="output-267-custom-values">Output: 267 Custom Values</h2>
+<h2 id="output-324-custom-values">Output: 324 Custom Values</h2>
 
 <h3 id="company-info-4">Company Info (4)</h3>
 <table><thead><tr><th>Key</th><th>Source</th></tr></thead><tbody><tr><td><code>company_name</code></td><td>AI: Strip LLC/Inc/Corp</td></tr><tr><td><code>company_owner_first_name</code></td><td>Direct from form</td></tr><tr><td><code>company_email</code></td><td>Direct from form</td></tr><tr><td><code>company_hours</code></td><td>AI: Format consistently</td></tr></tbody></table>
@@ -322,12 +322,12 @@
 
 <h2 id="node-versions-current">Node Versions (Current)</h2>
 
-<table><thead><tr><th>Node</th><th>Version</th><th>Purpose</th></tr></thead><tbody><tr><td>Prepare Agent Prompt</td><td>v6.8</td><td>Build prompt with form data, scraped data, build notes</td></tr><tr><td>Process Response</td><td>v1.2</td><td>Parse AI JSON response</td></tr><tr><td>Search Images</td><td>v5.1</td><td>Match images from library by trade</td></tr><tr><td>Upload Images to GHL</td><td>v2.0</td><td>Convert HTTP → HTTPS via GHL Media Library</td></tr><tr><td>Update GHL Values</td><td>v2.5</td><td>Write all 267 values to GHL API</td></tr><tr><td>Update Baserow Generated</td><td>v1.4</td><td>Mark complete, store AI observations</td></tr><tr><td>Send Ideogram Email</td><td>v1.1</td><td>Email logo prompt to team</td></tr></tbody></table>
+<table><thead><tr><th>Node</th><th>Version</th><th>Purpose</th></tr></thead><tbody><tr><td>Prepare Agent Prompt</td><td>v6.8</td><td>Build prompt with form data, scraped data, build notes</td></tr><tr><td>Process Response</td><td>v1.2</td><td>Parse AI JSON response</td></tr><tr><td>Search Images</td><td>v5.1</td><td>Match images from library by trade</td></tr><tr><td>Upload Images to GHL</td><td>v2.0</td><td>Convert HTTP → HTTPS via GHL Media Library</td></tr><tr><td>Update GHL Values</td><td>v2.5</td><td>Write all 324 values to GHL API</td></tr><tr><td>Update Baserow Generated</td><td>v1.4</td><td>Mark complete, store AI observations</td></tr><tr><td>Send Ideogram Email</td><td>v1.1</td><td>Email logo prompt to team</td></tr></tbody></table>
 <hr>
 
 <h2 id="performance">Performance</h2>
 
-<table><thead><tr><th>Metric</th><th>Value</th></tr></thead><tbody><tr><td>Full generation</td><td>~4-5 minutes</td></tr><tr><td>OpenClaw call</td><td>~3-4 minutes</td></tr><tr><td>Image upload</td><td>~22 seconds (28 images)</td></tr><tr><td>GHL value updates</td><td>~30 seconds (267 values)</td></tr></tbody></table>
+<table><thead><tr><th>Metric</th><th>Value</th></tr></thead><tbody><tr><td>Full generation</td><td>~4-5 minutes</td></tr><tr><td>OpenClaw call</td><td>~3-4 minutes</td></tr><tr><td>Image upload</td><td>~22 seconds (28 images)</td></tr><tr><td>GHL value updates</td><td>~30 seconds (324 values)</td></tr></tbody></table>
 <hr>
 
 <h2 id="files-references">Files & References</h2>
