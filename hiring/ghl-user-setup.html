@@ -134,19 +134,23 @@
 
 <h2>1. User Structure Overview</h2>
 
-<p>Slate uses <strong>role-based users</strong> for workflow assignments. When you hire, you edit the user details instead of updating workflows.</p>
+<p>Slate uses <strong>role-based placeholder users</strong> for workflow assignments. These are NOT real employees — they're slots that get swapped when you hire.</p>
 
 <table>
     <thead>
-        <tr><th>User</th><th>Role</th><th>Assigned In</th><th>Current Owner</th></tr>
+        <tr><th>User</th><th>Role</th><th>Assigned In</th><th>Current Owner</th><th>When You Hire</th></tr>
     </thead>
     <tbody>
-        <tr><td><strong>Dan A</strong></td><td>Sales</td><td>WF1 (Lead Form)</td><td>Dan</td></tr>
-        <tr><td><strong>Rick F</strong></td><td>Onboarding</td><td>WF-OB1 (Client Paid)</td><td>Ricardo</td></tr>
-        <tr><td><strong>Ricardo Fernandez</strong></td><td>Admin</td><td>Not in workflows</td><td>Ricardo (owner)</td></tr>
-        <tr><td><strong>(Your login)</strong></td><td>Admin</td><td>Not in workflows</td><td>Dan (owner)</td></tr>
+        <tr><td><strong>Dan A</strong></td><td>Sales</td><td>WF1 (Lead Form)</td><td>Dan (temp)</td><td>Edit → new sales rep's info</td></tr>
+        <tr><td><strong>Rick F</strong></td><td>Onboarding</td><td>WF-OB1 (Client Paid)</td><td>Ricardo (temp)</td><td>Edit → new VA's info</td></tr>
+        <tr><td><strong>Ricardo Fernandez</strong></td><td>Admin</td><td>Not in workflows</td><td>Ricardo (owner)</td><td>Keep as admin</td></tr>
+        <tr><td><strong>(Your login)</strong></td><td>Admin</td><td>Not in workflows</td><td>Dan (owner)</td><td>Keep as admin</td></tr>
     </tbody>
 </table>
+
+<div class="warning">
+    <strong>Dan A and Rick F are placeholder users.</strong> Dan and Ricardo are using them temporarily. When you hire a sales rep or onboarding VA, you edit that user's name/email/password — the workflows don't change because they reference the user ID.
+</div>
 
 <div class="info">
     <strong>When you hire:</strong> Edit the role user (Dan A or Rick F) with the new employee's info. Workflows stay the same because they reference the user ID, not the name.
