@@ -242,17 +242,22 @@
 <pre><code>DAY 0: DEAL WON + PAYMENT
 ================================================================================
 
-  AUTOMATIC (SaaS Configurator)
+  AUTOMATIC (SaaS Welcome Email)
   +-------------------------------------------------------------------------+
-  | - Sub-account created from Main Snapshot snapshot                            |
-  | - All 16 workflows active                                               |
-  | - 324 custom value structure ready                                      |
-  | - Reviews AI agent configured                                           |
+  | - "Activate Your Account" email sent immediately                        |
+  | - From: noreply@donotreply.acct-mgmt.com (GHL system)                   |
   +------------------------------------+------------------------------------+
                                        |
-  AUTOMATIC (WF-OB1)                   |
+  MANUAL (Admin Activation)            |
   +------------------------------------v------------------------------------+
-  | - Welcome SMS sent with onboarding form link                            |
+  | - Admin goes to Agency → Sub-Accounts → click new account → activate   |
+  | - Sub-account created from Main Snapshot                                |
+  | - All 16 workflows active, 324 custom values ready                      |
+  +------------------------------------+------------------------------------+
+                                       |
+  AUTOMATIC (WF-OB1 - 2 min after activation)
+  +------------------------------------v------------------------------------+
+  | - Onboarding email + Welcome SMS sent                                   |
   | - Tag: onboarding-form-pending                                          |
   | - Pipeline: Client Delivery - Onboarding Form Sent                      |
   | - WF-OB2 starts: reminders every 48h                                    |
@@ -455,11 +460,20 @@ DAY 9-14: LAUNCH
 
         <p><strong>AUTOMATIC:</strong></p>
         <ul>
-            <li>SaaS Configurator creates sub-account from Main Snapshot snapshot</li>
-            <li>WF-OB1: Welcome SMS + onboarding form link</li>
+            <li>SaaS Welcome Email sent immediately ("Activate Your Account")</li>
+        </ul>
+        <p><strong>HUMAN (Admin - within 5 min):</strong></p>
+        <ul>
+            <li>Go to Agency → Sub-Accounts</li>
+            <li>Find new account → Click → Activate</li>
+            <li>This creates the sub-account from Main Snapshot</li>
+        </ul>
+        <p><strong>AUTOMATIC (after activation):</strong></p>
+        <ul>
+            <li>WF-OB1: Onboarding email + Welcome SMS (2 min delay)</li>
             <li>WF-OB2: Reminder loop starts (48h intervals)</li>
         </ul>
-        <p><strong>HUMAN:</strong> Nothing - wait for form</p>
+        <p><strong>HUMAN:</strong> After activation - wait for form</p>
 
         <hr>
 
